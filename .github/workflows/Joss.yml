@@ -3,7 +3,7 @@ name: Create Joss Paper Draft
 on:
   push:
     branches:
-      - master
+      - main
 
 jobs:
   paper:
