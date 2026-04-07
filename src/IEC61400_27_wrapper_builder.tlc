@@ -54,7 +54,6 @@
   %% Write C header includes and macro definitions
   %%===========================================================================
   %openfile tmpBuf
-    /* %<CompiledModel.ModelParameters> */
     /*
      * Copyright 1994-2026 The MathWorks, Inc.
      *
