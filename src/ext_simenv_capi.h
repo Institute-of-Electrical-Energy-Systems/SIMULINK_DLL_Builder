@@ -9,23 +9,10 @@
 /* Used fixed data type widths */
 #include "ext_simenv_types.h"
 
-
-
-/* Provide macros as strings */
-#define _QUOTE1(name)				#name
-#define _QUOTE(name)				_QUOTE1(name)
-
-/* Macro concatination */
-#define EXPAND_CONCAT(name1,name2)	name1 ## name2
-#define CONCAT(name1,name2)			EXPAND_CONCAT(name1,name2)
-
-
-
 /* Define NULL if not defined */
 #ifndef NULL
  #define NULL    ((void *)0)
 #endif
-
 
 
 /* Static input, output information; vectorized signals are allowed */
