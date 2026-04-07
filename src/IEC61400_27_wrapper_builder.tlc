@@ -1,51 +1,62 @@
 %% TLC file to automatically create the wrapper for IEC 61400-27 DLL 
 %% creation.
 %%
+%% This file is used by Simulink Coder (TLC language) to generate a C 
+%% wrapper around a compiled Simulink model so it can be exported as an 
+%% IEC 61400-27 DLL.
+%%
 %% Creator: Gregor Becker
 %% Email: gregor.becker@fau.de
+%% Creator: Dominik Frauenknecht
+%% Email: dominik.frauenknecht@fau.de
 %% Last modified: 18.02.2026
 %%
 
+
 %implements IEC61400_27_wrapper_builder "C"
 
-%% Function: BlockInstanceSetup ==============================================
-%% Abstract:
-%%   Set expression folding compliance
-%%
+%%=============================================================================
+%% Function: BlockInstanceSetup
+%% Purpose:
+%%   Marks the block as expression compliant (required for code generation).
+%%=============================================================================
 %function BlockInstanceSetup(block, system) void
   %<LibBlockSetIsExpressionCompliant(block)>
 %endfunction
 
 
-%% Function: FcnStructInputOutput ============================================
-%% Abstract:
-%%   Method to build the IEC 61400-27 wrapper
-%%
+%%=============================================================================
+%% Function: FcnStructInputOutput
+%% Purpose:
+%%   Main TLC function that generates the C wrapper file for the DLL.
+%%   - Creates source file
+%%   - Extracts model I/O and parameters
+%%   - Generates C structures and exported API functions
+%%=============================================================================
 %function FcnStructInputOutput() Output
     
-  %% create the empty source file which will be filled afterwards
+  %% Create empty C source file
   %assign fileh = LibCreateSourceFile("Source", "Custom", "IEC61400_27_DLL")
   
-  %% get the number of external inputs from the compiled simulink model
+  %% Extract model interface information from compiled Simulink model
   %assign numExtInputs  = CompiledModel.ExternalInputs.NumExternalInputs
-  %% get the number of external outputs from the compiled simulink model
   %assign numExtOutputs = CompiledModel.ExternalOutputs.NumExternalOutputs
-  %% get the number of parameters from the compiled simulink model 
   %assign numParameters = SIZE(CompiledModel.ModelParameters.GlobalParamsList)[1]
 
-  
-  %%assign numDiscStates = CompiledModel.DWorks.NumDWorks
-
+  %% Store metadata in a record
   %createrecord CodeExtIO {     \
     NumInputs  %<numExtInputs>  \
     NumOutputs %<numExtOutputs> \
     NumParameters %<numParameters> \
   }
 
+  %%===========================================================================
+  %% Write C header includes and macro definitions
+  %%===========================================================================
   %openfile tmpBuf
-    /*TEST %<CompiledModel.ModelParameters>*/
+    /* %<CompiledModel.ModelParameters> */
     /*
-     * Copyright 1994-2012 The MathWorks, Inc.
+     * Copyright 1994-2026 The MathWorks, Inc.
      *
      * File    : IEC61400_27_DLL.c
      *
@@ -64,38 +75,31 @@
      *			          Default is <MODEL>.mat
      */
 
+    /* Standard C libraries */
     #include <float.h>
     #include <stdio.h>
     #include <stdlib.h>
     #include <string.h>
     #include <windows.h>
     
+    /* IEC 61400-27 interface */
     #include "ext_simenv_capi.h"
     
+    /* Simulink runtime headers. */
     #include "rtwtypes.h"
     #include "rtmodel.h"
     #include "rt_sim.h"
     #include "rt_logging.h"
     #include "rtw_modelmap.h"
-    
     #include "ext_work.h"
     
-    /*=========*
-     * Defines *
-     *=========*/
-    
+    /* Boolean + return macros */
     #ifndef TRUE
     #define FALSE (0)
     #define TRUE  (1)
     #endif
     
-    #ifndef EXIT_FAILURE
-    #define EXIT_FAILURE  1
-    #endif
-    #ifndef EXIT_SUCCESS
-    #define EXIT_SUCCESS  0
-    #endif
-    
+    /* Make sure required Attributes are set */
     #ifndef RT
     # error "must define RT"
     #endif
@@ -114,174 +118,164 @@
     
     #define RUN_FOREVER -1.0
     
+    /* 
+       Macro mapping Simulink naming conventions 
+       suffix: U=Inport, Y=Outport, X=Parameter, DW=Discrete Work
+    */
     #define EXPAND_CONCAT(name1,name2) name1 ## name2
     #define CONCAT(name1,name2) EXPAND_CONCAT(name1,name2)
     #define RT_MODEL            CONCAT(MODEL,_rtModel)
-    
-    /* 
-    name2: U=Inport, Y=Outport, X=Parameter, DW=Discrete Work
-    */
+
     #define EXPAND_CONCAT3(name1,name2,name3) name1 ## _ ## name2 ## . ## name3
     #define CONCAT3(name1,name2,name3) EXPAND_CONCAT3(name1,name2,name3)
     #define SIG_MODEL(suffix,name)     CONCAT3(MODEL,suffix,name)
-    
-    /*====================*
-     * External functions *
-     *====================*/
-    #ifdef __cplusplus
-    
-    extern "C" {
-    
-    #endif
-    
+
+    /* External Simulink model functions */
+
+    /* Returns a pointer to the real-time model structure */
     extern RT_MODEL *MODEL(void);
-    
+
+    /* Initializes model sizes (e.g., number of states, inputs, outputs) */
     extern void MdlInitializeSizes(void);
+
+    /* Initializes sample times for the model */
     extern void MdlInitializeSampleTimes(void);
+
+    /* Called once at the start of the simulation */
     extern void MdlStart(void);
+
+    /* Computes model outputs at each time step */
     extern void MdlOutputs(int_T tid);
+
+    /* Updates model states at each time step */
     extern void MdlUpdate(int_T tid);
+
+    /* Cleans up resources at the end of the simulation */
     extern void MdlTerminate(void);
- 
 
-    #ifdef __cplusplus
-    
-    }
-    #endif
 
+    /* ===== Continuous State Handling ===== */
+
+    /* If the model has continuous states */
     #if NCSTATES > 0
-        #ifdef __cplusplus
     
-        extern "C" {
+        /* Allocates and initializes ODE solver integration data */
+        extern void rt_ODECreateIntegrationData(RTWSolverInfo *si);
     
-        #endif
-            extern void rt_ODECreateIntegrationData(RTWSolverInfo *si);
-            extern void rt_ODEUpdateContinuousStates(RTWSolverInfo *si);
-        #ifdef __cplusplus
+        /* Updates continuous states using the ODE solver */
+        extern void rt_ODEUpdateContinuousStates(RTWSolverInfo *si);
     
-        }
-        #endif
-    
-        # define rt_CreateIntegrationData(S) \
+        /* Macro to initialize integration data using solver info from model */
+        #define rt_CreateIntegrationData(S) \
             rt_ODECreateIntegrationData(rtmGetRTWSolverInfo(S));
-        # define rt_UpdateContinuousStates(S) \
+    
+        /* Macro to update continuous states using solver info from model */
+        #define rt_UpdateContinuousStates(S) \
             rt_ODEUpdateContinuousStates(rtmGetRTWSolverInfo(S));
-    # else
-        # define rt_CreateIntegrationData(S)  \
+
+    #else
+
+        /* If there are NO continuous states (purely discrete model) */
+    
+        /* Set solver type to fixed-step discrete */
+        #define rt_CreateIntegrationData(S)  \
             rtsiSetSolverName(rtmGetRTWSolverInfo(S),"FixedStepDiscrete");
-        # define rt_UpdateContinuousStates(S) /* Do Nothing */
+    
+        /* No continuous states to update → do nothing */
+        #define rt_UpdateContinuousStates(S) /* Do Nothing */
+
     #endif
 
 %closefile tmpBuf
 %<LibSetSourceFileSection(fileh, "Includes", tmpBuf)>  
 
 %with CompiledModel
-  %% ------------------------------------------------------------
-  %% Going through the inputs
-  %% ------------------------------------------------------------  
-  
-  %% open the data collection file and create the data structure to collect 
-  %% the inputs
+  %%===========================================================================
+  %% Generate static input signal description array
+  %%===========================================================================
   %openfile tmpBuf
-  /* static_inputs*/
   const StaticESEInputSignal static_inputs[] = {
   %closefile tmpBuf
   %<LibSetSourceFileSection(fileh, "Includes", tmpBuf)>  
 
-  %% loop over the number of inputs
-  %foreach loopId = ExternalInputs.NumExternalInputs
-        %% get the input corresponding to the current input id 
-        %assign extInp = ExternalInputs.ExternalInput[loopId]
-        %% get the inputs data type
-        %assign dataType = SLibGetRecordDataTypeName(extInp, "")
-        %% get the inputs signal name 
-        %assign sigName = extInp.Identifier
-        %% get the inputs width
-        %assign sigWidth = LibGetRecordWidth(extInp)
+  %foreach InputID = ExternalInputs.NumExternalInputs
+    %% get the input Metadata
+    %assign extInp = ExternalInputs.ExternalInput[InputID]
+    %assign dataType = SLibGetRecordDataTypeName(extInp, "")
+    %assign sigName = extInp.Identifier
+    %assign sigWidth = LibGetRecordWidth(extInp)
     
-        %addtorecord CodeExtIO \
-        Inputs { \
-          C_type  "%<dataType>"   \
-          Name    "%<sigName>"    \
-          Width   %<sigWidth>     \
-        }
-    
-        %% append the data set of the new input signal to the export file
-        %openfile tmpBuf  
-        {"%<sigName>", "" ,  %<sigWidth>},
-        %closefile tmpBuf
-        %<LibSetSourceFileSection(fileh, "Includes", tmpBuf)>  
+    %% Append entry to C array
+    %openfile tmpBuf  
+      {"%<sigName>", "" ,  %<sigWidth>},
+    %closefile tmpBuf
+    %<LibSetSourceFileSection(fileh, "Includes", tmpBuf)>  
   %endforeach
 
-  %% close the collection list of input signals 
+  %% Close input array
   %openfile tmpBuf
   };
   %closefile tmpBuf
   %<LibSetSourceFileSection(fileh, "Includes", tmpBuf)>  
 
-  %% ------------------------------------------------------------
-  %% Going through the outputs
-  %% ------------------------------------------------------------
-
-  %% open the data collection file and create the data structure to collect 
-  %% the outputs
+  %%===========================================================================
+  %% Generate static output signal description array
+  %%===========================================================================
   %openfile tmpBuf
-  /*static_outputs*/
   const StaticESEOutputSignal static_outputs[] = {
   %closefile tmpBuf
   %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>  
   
   %% loop over the number of outputs
-  %foreach loopId = ExternalOutputs.NumExternalOutputs
-        %% get the output corresponding to the current output id 
-        %assign extOut = ExternalOutputs.ExternalOutput[loopId]
-        %% get the outputs data type
-        %assign dataType = SLibGetRecordDataTypeName(extOut, "")
-        %% get the outputs signal name
-        %assign sigName = extOut.Identifier
-        %% get the outputs width
-        %assign sigWidth = LibGetRecordWidth(extOut)
-    
-    
-        %addtorecord CodeExtIO \
-          Outputs { \
-          C_type  "%<dataType>"   \
-          Name    "%<sigName>"    \
-          Width   %<sigWidth>   \
-        }
-        
-        %openfile tmpBuf  
-        { "%<sigName>", "", %<sigWidth> },
-        %closefile tmpBuf
-        %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>  
+  %foreach OutputID = ExternalOutputs.NumExternalOutputs
+    %% get the output Metadata
+    %assign extOut = ExternalOutputs.ExternalOutput[OutputID]
+    %assign dataType = SLibGetRecordDataTypeName(extOut, "")
+    %assign sigName = extOut.Identifier
+    %assign sigWidth = LibGetRecordWidth(extOut)
+       
+    %% Append entry to C array
+    %openfile tmpBuf  
+    { "%<sigName>", "", %<sigWidth> },
+    %closefile tmpBuf
+    %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>  
   %endforeach
   
-  %% close the collection list of input signals 
+  %% Close output array
   %openfile tmpBuf
   };
   %closefile tmpBuf
   %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>
   
+  %%===========================================================================
+  %% Generate static parameter description array
+  %%===========================================================================
   %openfile tmpBuf
-  /*static_parameters */
   const StaticESEParameter static_parameters[] = {
   %closefile tmpBuf
   %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>
 
-  %foreach loopId = %<numParameters>
-        %% get the parameter signal name from the global list of parameters
-        %assign sigName = CompiledModel.ModelParameters.GlobalParamsList[loopId]
-        
-        %openfile tmpBuf  
-        { "%<sigName>", "%<sigName>", "n/a", 0., -1e6, 1e6 },
-        %closefile tmpBuf
-        %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>  
+  %foreach ParamID = %<numParameters>
+    %% get the parameter Metadata
+    %assign sigName = CompiledModel.ModelParameters.GlobalParamsList[ParamID]
+    
+    %% Append entry to C array
+    %openfile tmpBuf  
+    { "%<sigName>", "%<sigName>", "n/a", 0., -1e6, 1e6 },
+    %closefile tmpBuf
+    %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>  
   %endforeach
     
+  %% Close parameter array
   %openfile tmpBuf 
     };
+  %closefile tmpBuf
+  %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>
     
-    /* static_model_info */
+  %%===========================================================================
+  %% Generate model info struct (IEC interface description)
+  %%===========================================================================
+  %openfile tmpBuf 
     StaticExtSimEnvCapi static_model_info = {
 	    {0, 8, 1, 5},	                                                   // const uint8_T APIRelease[4]: Release number of the API used during code generation
 	    "IEC DLL of a Matlab Simulink Model",	                           // const char_T * const ModelName: Model name
@@ -312,89 +306,70 @@
 	    0,				                                                   // const uint8_T LoadflowFlag: Model contains a loadflow function: 0 = no, 1 = yes
 	    0				                                                   // ESEExtension Extension: Provided for extensions
     };
+  %closefile tmpBuf
+  %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>
     
-    
+  %%===========================================================================
+  %% DLL API functions
+  %%===========================================================================
+  %openfile tmpBuf
     static RT_MODEL *S;
     
-    /* Model_GetInfo */
+    /* Returns static model information */
     __declspec(dllexport) const StaticExtSimEnvCapi* __cdecl Model_GetInfo(void)
     {
 	    return &static_model_info;
     }
 
-    /* Model_Instance */
+    /* Creates a runtime instance of the model */
     __declspec(dllexport) InstanceExtSimEnvCapi* __cdecl Model_Instance(void)
     {
+        /* integers used for memory allocation */
 	    uint8_T i, w;
     
+        /* initilization of the simulink model */
         S = MODEL();
-	    InstanceExtSimEnvCapi * pInstanceCapi;
-    
+	    
+        /* declaration of the inner-model cache */
+        InstanceExtSimEnvCapi * pInstanceCapi;
+        /* memory allocation for the inner-model cache */
 	    pInstanceCapi = (InstanceExtSimEnvCapi *)malloc(sizeof(InstanceExtSimEnvCapi));
+        /* safety check if allocation worked */
+	    if (pInstanceCapi == NULL) { return NULL; }
     
-	    if (pInstanceCapi == NULL) {
-		    return NULL;
-	    }
-    
-	    /* allocate internal memory */
-	    /* ExternalInputs, taking into account width of vectorized signals */
+	    /* Memory allocation for model input ports */
 	    w = 0;
 	    for (i = 0; i < static_model_info.NumInputPorts; i++) {
 		    w = w + (&static_model_info)->InputPortsInfo[i].Width;
 	    }
 	    pInstanceCapi->ExtU_DISCON_Empty_T = (real64_T *)malloc(w*sizeof(real64_T));
 		    
-	    /* ExternalOutputs, taking into account width of vectorized signals */
+	    /* Memory allocation for model output ports */
 	    w = 0;
 	    for (i = 0; i < static_model_info.NumOutputPorts; i++) {
 		    w = w + (&static_model_info)->OutputPortsInfo[i].Width;
 	    }
 	    pInstanceCapi->ExtY_DISCON_Empty_T = (real64_T *)malloc(w*sizeof(real64_T));
 	    
-	    /* Parameters, only scalar entries */
+        /* Memory allocation for model parameter */   
 	    pInstanceCapi->P_DISCON_Empty_T = (real64_T *)malloc(
 		    static_model_info.NumParameters*sizeof(real64_T));
 	    
-	    /* TODO GB  ContinuousStates, not used in current version, set NULL */
+        /* Unused attributes of the IEC 61400 DLL wrapper */
         pInstanceCapi->ContinuousStates = NULL;
-    
-	    /* StateDerivatives, not used in current version, set NULL */
-	    pInstanceCapi->StateDerivatives = NULL;
-    
-	    /* MiscStates, not used in current version, set NULL */
-	    pInstanceCapi->MiscStates = NULL;
-    
-	    /* LastGeneralMessage, not used in current version, set NULL */
-	    pInstanceCapi->LastGeneralMessage = NULL;
-    
-	    /* VerboseLevel, presently not used */
-	    pInstanceCapi->VerboseLevel = 0;
-    
-	    /* Extension, not used in current version */
-	    pInstanceCapi->Extension.UserVoidPtr = NULL;
+  	    pInstanceCapi->StateDerivatives = NULL;
+   	    pInstanceCapi->MiscStates = NULL;
+   	    pInstanceCapi->LastGeneralMessage = NULL;
+   	    pInstanceCapi->VerboseLevel = 0;
+   	    pInstanceCapi->Extension.UserVoidPtr = NULL;
     
 	    return pInstanceCapi;
     }
     
-    /* Model_Check_Parameters */
-    __declspec(dllexport) const char* __cdecl Model_CheckParameters(InstanceExtSimEnvCapi *pInstanceCapi)
-    {
-        // not used, nothing implemented
-	    return NULL;
-    }
-    
-    /* Model_Loadflow */
-    __declspec(dllexport) const char* __cdecl Model_Loadflow(InstanceExtSimEnvCapi *pInstanceCapi)
-    {
-	    // not used, nothing implemented
-	    return NULL;
-    }
-
-    /* Model_Derivatives, not used current version, return NULL */
-    __declspec(dllexport) const char* __cdecl Model_Derivatives(InstanceExtSimEnvCapi *pInstanceCapi)
-    {	
-	    return NULL;
-    }
+    /* Unused DLL Wrapper methods */
+    __declspec(dllexport) const char* __cdecl Model_CheckParameters(InstanceExtSimEnvCapi *pInstanceCapi){ return NULL; }
+    __declspec(dllexport) const char* __cdecl Model_Loadflow(InstanceExtSimEnvCapi *pInstanceCapi){ return NULL; }
+    __declspec(dllexport) const char* __cdecl Model_Derivatives(InstanceExtSimEnvCapi *pInstanceCapi){ return NULL; }
     
     
     /* Model_Terminate */
@@ -430,109 +405,185 @@
     
 	    return NULL;
     }
+  %closefile tmpBuf
+  %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>
 
-    /* Model_Initialize */
+  %%===========================================================================
+  %% DLL API function for model initialization
+  %%===========================================================================
+  %openfile tmpBuf
     __declspec(dllexport) const char* __cdecl Model_Initialize(InstanceExtSimEnvCapi *pInstanceCapi)
     {
-	    // Initialise outputs foreach output found in the compiled simulink model 
+	    //---------------------------------------------------------------------
+        // Initialize external output signals to a defined default (0.0)
+        // This ensures deterministic startup behavior of the model outputs
+        //---------------------------------------------------------------------
         for (int i=0; i<%<numExtOutputs>; i++)
         {
 	        pInstanceCapi->ExtY_DISCON_Empty_T[i] = 0.;
         }
-    %closefile tmpBuf
-    %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>
+  %closefile tmpBuf
+  %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>
+  
+  %%---------------------------------------------------------------------------
+  %% Map external parameters (from C-API) into Simulink model parameters
+  %%  
+  %% numParameters = number of externally tunable parameters
+  %% GlobalParamsList = list of parameter names exposed to the environment
+  %%---------------------------------------------------------------------------
+  %foreach GlobParamID = %<numParameters>
 
-    %foreach loopId = %<numParameters>
-        %assign model_param = CompiledModel.ModelParameters
-        %assign sigName = model_param.GlobalParamsList[loopId]
-        
-        %foreach ParamId = model_param.NumParameters
-            %assign P_scope_name = model_param.Parameter[ParamId].Identifier
+    %% Retrieve parameter metadata from compiled model
+    %assign model_param = CompiledModel.ModelParameters
+    %assign sigName = model_param.GlobalParamsList[GlobParamID]
+      
+      %%-----------------------------------------------------------------------
+      %% Direct parameter mapping:
+      %% Match external parameter names with internal model parameters
+      %% and assign their values
+      %%-----------------------------------------------------------------------
+      %foreach ParamId = model_param.NumParameters
+
+        %% Internal Simulink parameter identifier 
+        %assign P_scope_name = model_param.Parameter[ParamId].Identifier
             
-            %if P_scope_name == sigName
-                %openfile tmpBuf
-                    SIG_MODEL(P, %<P_scope_name>) = pInstanceCapi->P_DISCON_Empty_T[%<loopId>];
-                %closefile tmpBuf
-                %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>
-            %endif
-        %endforeach
+        %% If external parameter matches internal parameter → assign value
+        %if P_scope_name == sigName
+          %% map external parameter to model parameter 
+          %openfile tmpBuf
+            SIG_MODEL(P, %<P_scope_name>) = pInstanceCapi->P_DISCON_Empty_T[%<GlobParamID>];
+          %closefile tmpBuf
+          %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>
+        %endif
+      %endforeach
+      
+      %%-----------------------------------------------------------------------
+      %% Indirect parameter mapping:
+      %% Handle parameters embedded inside expressions (e.g. polynomials)
+      %%
+      %% Example:
+      %%   Expression: [1 T S]
+      %%   External parameter "T" must be mapped to correct index
+      %%-----------------------------------------------------------------------
+      %foreach ParamId = model_param.NumParameters
+
+        %% Access block hierarchy for resolving parameter locations
+        %assign BLKHR = CompiledModel.BlockHierarchyMap
         
-        %foreach ParamId = model_param.NumParameters
-            %assign BLKHR = CompiledModel.BlockHierarchyMap
-            %if CONTAINS(STRING(model_param.Parameter[ParamId]), "DataInterfaceSID")
-                %assign SID_str = model_param.Parameter[ParamId].DataInterfaceSID
-                %assign FieldStr = model_param.Parameter[ParamId].DataInterfaceGrName
-                %assign searched_SID = IDNUM(SID_str)[1]
+        %% Only process parameters with DataInterfaceSID (valid mapping info)
+        %if CONTAINS(STRING(model_param.Parameter[ParamId]), "DataInterfaceSID")
         
-                %foreach SubID = BLKHR.NumSubsystems
-                    %assign Subs = BLKHR.Subsystem
-                    %foreach BID = Subs[SubID].NumBlocks
-                        %if (IDNUM(Subs[SubID].Block[BID].SID)[1] == searched_SID)
-                            %foreach ParamID = Subs[SubID].Block[BID].NumParameters
-                                %assign search = Subs[SubID].Block[BID].Parameter[ParamID].Name
-                                %if CONTAINS(FieldStr, search)
-                                    %assign Field = Subs[SubID].Block[BID].Parameter[ParamID].String
-                                %endif
-                            %endforeach
-                        %endif
-                    %endforeach
+          %% Extract block SID and parameter expression string
+          %assign searched_SID = IDNUM(model_param.Parameter[ParamId].DataInterfaceSID)[1]
+          %assign FieldStr = model_param.Parameter[ParamId].DataInterfaceGrName
+        
+          %% Traverse model hierarchy to locate the corresponding block
+          %foreach SubID = BLKHR.NumSubsystems
+
+            %assign Subs = BLKHR.Subsystem
+            %foreach BID = Subs[SubID].NumBlocks
+              %% Identify the correct block via SID
+              %if (IDNUM(Subs[SubID].Block[BID].SID)[1] == searched_SID)
+
+                %% Search within block parameters
+                %foreach ParamID = Subs[SubID].Block[BID].NumParameters
+                  %% Parameter name inside the block 
+                  %assign search = Subs[SubID].Block[BID].Parameter[ParamID].Name
+                  %% Extract full parameter expression string
+                  %if CONTAINS(FieldStr, search)
+                    %assign Field = Subs[SubID].Block[BID].Parameter[ParamID].String
+                  %endif
                 %endforeach
-                %assign sigNameadapted = "%<sigName> "
-                %assign sigNameadapted2 = "%<sigName>]"
-                %if CONTAINS(STRING(Field), sigNameadapted) || CONTAINS(STRING(Field), sigNameadapted2)
-                    %openfile tmpBuf
-                        char str%<ParamId>[] = "%<Field>";
-                        char clean%<ParamId>[100]; // buffer for cleaned string
-                        int j%<ParamId> = 0;
+              %endif
+            %endforeach
+          %endforeach
+          
+          %%-------------------------------------------------------------------
+          %% Handle expression parsing edge cases:
+          %%
+          %% Case 1: Parameter followed by space → "T "
+          %% Case 2: Parameter at end → "T]"
+          %%-------------------------------------------------------------------
+          %assign sigNameadapted = "%<sigName> "
+          %assign sigNameadapted2 = "%<sigName>]"
+            
+          %% Check if parameter exists in expression
+          %if CONTAINS(STRING(Field), sigNameadapted) || CONTAINS(STRING(Field), sigNameadapted2)
+            %openfile tmpBuf
+            // Original parameter expression (e.g. "[1 T S]")
+            char str%<ParamId>[] = "%<Field>";
+
+            // Buffer to store cleaned expression (no brackets/spaces)
+            char clean%<ParamId>[100]; // buffer for cleaned string
+            int j%<ParamId> = 0;
                     
-                        // Iterate over each character
-                        for (int i = 0; str%<ParamId>[i] != '\0'; i++) {
-                            if (str%<ParamId>[i] != '[' && str%<ParamId>[i] != ']' && !isspace(str%<ParamId>[i])) {
-                                clean%<ParamId>[j%<ParamId>++] = str%<ParamId>[i];
-                            }
-                        }
+            //------------------------------------------------------------------
+            // Remove formatting characters:
+            //  - '[' and ']'
+            //  - whitespace
+            // Result: compact array-like representation (e.g. "1TS")
+            //------------------------------------------------------------------
+            for (int i = 0; str%<ParamId>[i] != '\0'; i++) {
+              if (str%<ParamId>[i] != '[' && str%<ParamId>[i] != ']' && !isspace(str%<ParamId>[i])) {
+                clean%<ParamId>[j%<ParamId>++] = str%<ParamId>[i];
+              }
+            }
             
-                        clean%<ParamId>[j%<ParamId>] = '\0'; // null-terminate
-            
-                        for (int i=0; i < j%<ParamId>; i++)
-                        {
-                            if (clean%<ParamId>[i] == '%<sigName>')
-                            {
-                                SIG_MODEL(P, %<model_param.Parameter[ParamId].Identifier>)[i] = pInstanceCapi->P_DISCON_Empty_T[%<loopId>];
-                            }
-                        }
-                    %closefile tmpBuf
-                    %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>
-                %endif
-            %endif
-        %endforeach
+            // Null-terminate cleaned string
+            clean%<ParamId>[j%<ParamId>] = '\0'; 
+
+            //------------------------------------------------------------------
+            // Locate the position of the external parameter inside the
+            // expression and assign its value into the correct index
+            //------------------------------------------------------------------
+            for (int i=0; i < j%<ParamId>; i++){
+              if (clean%<ParamId>[i] == '%<sigName>'){
+                SIG_MODEL(P, %<model_param.Parameter[ParamId].Identifier>)[i] = pInstanceCapi->P_DISCON_Empty_T[%<GlobParamID>];
+              }
+            }
+            %closefile tmpBuf
+            %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>
+          %endif
+        %endif
+      %endforeach
     %endforeach 
 
     %openfile tmpBuf
-        MdlStart();
+      //----------------------------------------------------------------------
+      // Final model initialization step
+      // Calls generated Simulink start function
+      //----------------------------------------------------------------------
+      MdlStart();
 
-	    return NULL;
+	  return NULL;
     }
-    
-    /* Model_Outputs */
-    __declspec(dllexport) const char* __cdecl Model_Outputs(InstanceExtSimEnvCapi *pInstanceCapi, uint32_T IsMajorTimeStep)
-    {
-        MdlOutputs(0);
-	    // Assign outputs foreach output found in thr compiled simulink model. Use SIG_Model to map the Simulink Signal to the IEC Signal
     %closefile tmpBuf
     %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>
 
-    %% loop over the number of outputs
-    %foreach loopId = ExternalOutputs.NumExternalOutputs
-        %% get the output corresponding to the current output id 
-        %assign extOut = ExternalOutputs.ExternalOutput[loopId]
-        %% get the outputs signal name
+    %%===========================================================================
+    %% DLL API function for model output extraction
+    %%===========================================================================
+    %openfile tmpBuf
+    __declspec(dllexport) const char* __cdecl Model_Outputs(InstanceExtSimEnvCapi *pInstanceCapi, uint32_T IsMajorTimeStep)
+    {
+        // get the current simulink model output values
+        MdlOutputs(0);
+
+	    // Assign outputs foreach output found in thr compiled simulink model. 
+        // Use SIG_Model to map the Simulink Signal to the IEC Signal
+    %closefile tmpBuf
+    %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>
+
+    %% loop over the number of external outputs
+    %foreach OutputID = ExternalOutputs.NumExternalOutputs
+        %% get the Output Metadata
+        %assign extOut = ExternalOutputs.ExternalOutput[OutputID]
         %assign sigName = extOut.Identifier
         
+        %% map the simulink outport to the correct external output
         %openfile tmpBuf  
-        pInstanceCapi->ExtY_DISCON_Empty_T[%<loopId>] = SIG_MODEL(Y, %<sigName>);
+        pInstanceCapi->ExtY_DISCON_Empty_T[%<OutputID>] = SIG_MODEL(Y, %<sigName>);
         %closefile tmpBuf
-
         %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>  
 
     %endforeach
@@ -541,29 +592,34 @@
 
 	    return NULL;
     }
-    
-    /* Model_Update */
+    %closefile tmpBuf
+    %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>
+
+    %%===========================================================================
+    %% DLL API function for model update call
+    %%===========================================================================
+    %openfile tmpBuf
     __declspec(dllexport) const char* __cdecl Model_Update(InstanceExtSimEnvCapi *pInstanceCapi)
     {
     %closefile tmpBuf
     %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>
 
-
-    %% loop over the number of outputs
-    %foreach loopId = ExternalInputs.NumExternalInputs
-        %% get the input corresponding to the current input id 
-        %assign extInp = ExternalInputs.ExternalInput[loopId]
-        %% get the inputs signal name 
+    %% loop over the number of External inputs
+    %foreach InputID = ExternalInputs.NumExternalInputs
+        %% get the input metadata
+        %assign extInp = ExternalInputs.ExternalInput[InputID]
         %assign sigName = extInp.Identifier
     
-        %% append the data set of the new input signal to the export file
+        %% map the external input value to the correct simulink model Inport
         %openfile tmpBuf  
-        SIG_MODEL(U, %<sigName>) = pInstanceCapi->ExtU_DISCON_Empty_T[%<loopId>];
+        SIG_MODEL(U, %<sigName>) = pInstanceCapi->ExtU_DISCON_Empty_T[%<InputID>];
         %closefile tmpBuf
         %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>  
     %endforeach
 
     %openfile tmpBuf
+        // call the simulink model update function after mapping the 
+        // external inputs to the correct inports
         MdlUpdate(0);
 	    return NULL;
     }
@@ -572,18 +628,8 @@
   
 %endwith  %% %with CompiledModel
 
-%return CodeExtIO
+%return "Done"
 
 %endfunction   %% %function FcnStructInputOutput() Output
 
 %assign text = FcnStructInputOutput()
-
-
-%% Function: Outputs ==========================================================
-%%
-%function Outputs(block, system) Output
-
-%endfunction %% Outputs
-
- 
-%% EOF step.tlc
