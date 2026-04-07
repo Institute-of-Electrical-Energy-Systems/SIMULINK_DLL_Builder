@@ -121,15 +121,6 @@ typedef struct
 	ESEExtension		Extension;				    // Provided for extensions
 }InstanceExtSimEnvCapi;
 
-
-
-/* If macro is defined then you make sure that the function is exported. Importing files must not define this macro */
-#ifndef DLL_EXPORT
- #define DLL_EXPORT
-#endif
-
-
-
 /* Function prototypes used when DLL is loaded via .lib */
 
 /*	- Return the static model information structure
