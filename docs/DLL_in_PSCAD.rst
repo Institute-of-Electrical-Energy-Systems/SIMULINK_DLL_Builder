@@ -36,3 +36,47 @@ In the present example, the impedance is defined by a resistance of R = 10.6137 
 A simulation can already be performed using these two components alone. 
 However, such a simulation is of limited significance, as the Thevenin equivalent only provides the voltage supply at the PCC without representing any connected equipment or grid interaction.
 
+2. Building the external controlled voltage source (Grid following IBR)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..  figure:: ./images/SMIB_IBR_PSCAD.png
+    :alt: IBR in a SMIB configuraiton in PSCAD.
+
+    IBR in a SMIB configuraiton in PSCAD.
+
+The regulated ideal voltage source is now connected to the PCC through a series impedance, thereby forming the equivalent circuit of a grid-following IBR.
+
+The voltage source consists of three independent single-phase DC voltage sources. 
+This configuration is necessary because the DLL will later provide the three-phase carrier signal as three sinusoidal signals. 
+The regulated DC voltage sources allow these signals to be directly applied to the simulation and used to represent the three-phase voltage at the PCC.
+
+In the present example, the DLL provides a line-to-line RMS voltage of 400 kV. 
+Therefore, no additional transformer is required, and only the internal impedance of the IBR needs to be represented. 
+The impedance is defined by a resistance of R = 0.782 Ω and an inductance of L = 0.1574 H.
+
+At this stage, the power system model cannot yet be simulated because the required signals ``u_s_a``, ``u_s_b`` and ``u_s_c`` have not yet been defined. 
+These signals will be introduced in a subsequent step.
+
+3. Adding the necessary measurements for the DLL
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..  figure:: ./images/PSCADMeasurementmodel.png
+    :alt: IBR in a SMIB configuraiton containing the DLL relevant measurements in PSCAD.
+
+    IBR in a SMIB configuraiton containing the DLL relevant measurements in PSCAD.
+
+The next step is to measure the PCC signals (line-to-ground voltages and current) that will subsequently be used by the DLL for control purposes. 
+To achieve this, three single-phase multimeters are added to the model, one for each phase. 
+The measurement names for the phase-to-ground voltage and current are then defined for each phase.
+
+..  figure:: ./images/Multimeter.png
+    :alt: PSCAD multimeter configuration pane of the phase a measurement at the PCC.
+
+    PSCAD multimeter configuration pane of the phase a measurement at the PCC.
+
+    
+..  figure:: ./images/Multimeter2.png
+    :alt: PSCAD multimeter signal names pane of the phase a measurement at the PCC.
+
+    PSCAD multimeter signal names pane of the phase a measurement at the PCC.
+
+At this stage, the power system model cannot yet be simulated because the required signals ``u_s_a``, ``u_s_b`` and ``u_s_c`` have not yet been defined. 
+These signals will be introduced in a subsequent step.
