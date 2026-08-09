@@ -79,4 +79,93 @@ The measurement names for the phase-to-ground voltage and current are then defin
     PSCAD multimeter signal names pane of the phase a measurement at the PCC.
 
 At this stage, the power system model cannot yet be simulated because the required signals ``u_s_a``, ``u_s_b`` and ``u_s_c`` have not yet been defined. 
-These signals will be introduced in a subsequent step.
+These signals will be introduced in a subsequent step. At this point, all required PSCAD components, with the exception of the DLL block, have been added to the model. 
+The DLL can now be imported and integrated into the PSCAD model.
+
+Importing the DLL to PSCAD via the self developed importer
+----------------------------------------------------------
+
+1. Importing
+^^^^^^^^^^^^
+PSCAD does not natively provide an interface for integrating IEC 61400-27 DLLs. 
+Therefore, a dedicated importer was developed in parallel to this project. 
+The importer is available in the repository `PSCAD-import-tool-for-IEC-61400-27-DLLs <https://github.com/Institute-of-Electrical-Energy-Systems/PSCAD-import-tool-for-IEC-61400-27-DLLs/tree/main>` and is included as a submodule within the repository. 
+The executable file `IEC_DLL_PSCAD_Import_Tool.exe` is located in the PSCAD directory.
+
+To start the importer, double-click the executable file. This opens a Python-based Tkinter graphical user interface. 
+..  figure:: ./images/IECImporterPSCAD.png
+    :alt: GUI of the PSCAD IEC 61400-27 DLL importer.
+
+    GUI of the PSCAD IEC 61400-27 DLL importer.
+
+The first step is to select the IEC 61400-27 DLL to be imported. The DLL path can either be selected using the `Browse` button or entered manually.
+
+The importer provides two options for integrating the DLL. 
+A new PSCAD project can be created with the imported DLL automatically added as the first component. 
+Alternatively, the DLL can be integrated into an existing PSCAD project. When this option is selected, the importer displays all PSCAD projects available for import.
+
+In this example, the existing PSCAD project is selected, as the required model has already been created in the previous steps.
+
+..  figure:: ./images/IECImporterPSCAD2.png
+    :alt: Filled GUI of the PSCAD IEC 61400-27 DLL importer.
+
+    Filled GUI of the PSCAD IEC 61400-27 DLL importer.
+
+By clicking ``Generate PSCAD Model`` the IEC Block generation process is triggered and results in a new block in your PSCAD model as well as a f90 wrapper within your projects resources. 
+
+..  figure:: ./images/IECImporterPSCAD3.png
+    :alt: IEC DLL Model Block for the control of the IBR in a SMIB configuraiton containing the DLL relevant measurements in PSCAD.
+
+    IEC DLL Model Block for the control of the IBR in a SMIB configuraiton containing the DLL relevant measurements in PSCAD.
+
+At this stage, the DLL is not yet operational, as the measured signals and the calculated voltage signals have not yet been connected to the model. 
+The next step is therefore to establish the required signal connections between the DLL and the voltage source.
+
+
+2. Binding to the model 
+^^^^^^^^^^^^^^^^^^^^^^^
+..  figure:: ./images/IECImporterPSCAD4.png
+    :alt: Connection of the PSCAD signals to the IEC DLL Model Block in PSCAD.
+
+    Connection of the PSCAD signals to the IEC DLL Model Block in PSCAD.    
+
+
+The next step is to connect the signals from the PCC measurement points to the IEC 61400-27 DLL. 
+It is important to note that the DLL expects voltage and current values in volts and amperes, respectively, whereas PSCAD uses kilovolt and kiloampere. 
+Therefore, the measured quantities must be converted to the units required by the DLL before being passed to it.
+
+The same principle applies to the connection between the DLL and the regulated DC voltage sources. 
+The DLL provides the calculated voltage signals in volts, while PSCAD expects the input values in kilovolts. 
+Consequently, the voltage signals must also be converted before being connected to the voltage sources.
+
+3. Optional: Changing parameters and initial values. 
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+..  figure:: ./images/IECBlockConfiguration.png
+    :alt: Configuration pane of the IEC 61400-27 DLL PSCAD block.
+
+    Configuration pane of the IEC 61400-27 DLL PSCAD block.
+
+..  figure:: ./images/IECBlockModelparameter.png
+    :alt: Model Parameters pane of the IEC 61400-27 DLL PSCAD block.
+
+    Model Parameters pane of the IEC 61400-27 DLL PSCAD block.
+
+..  figure:: ./images/IECBlockInitialconditions.png
+    :alt: Initial Conditions pane of the IEC 61400-27 DLL PSCAD block.
+
+    Initial Conditions pane of the IEC 61400-27 DLL PSCAD block.
+
+By double-clicking the created DLL block, the externally editable attributes of the DLL can be configured. The interface provides three menus for this purpose.
+
+The ``Configuration`` menu contains the basic DLL settings. 
+Here, the DLL path can be specified and interpolation can be enabled or disabled. 
+
+The ``Model Parameters``, in contrast, directly influence the behavior of the inverter model. 
+
+The ``Initial Conditions`` can be used to define the initial values applied up to the specified ``TRelease`` time. 
+However, these settings are of limited relevance for the application described in this document.
+
+The example model is provided with an initial set of parameters derived from the Simulink model presented in this document.
+
+Simulation using the IEC 61400-27 DLL Block 
+------------------------------------------------------
