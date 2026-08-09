@@ -1,0 +1,45 @@
+<Meta name="DLL_Builder">
+  <messagelist>
+    <message status="normal" label="build" groupid="400002" scope="DLL_Builder" id="141189009" classid="MessageObj"><![CDATA[Begin compiling with PSCAD Version 5.0.2]]></message>
+    <message status="normal" label="build" groupid="100006" link="582558620" id="582558620" classid="FileNavigator"><![CDATA[Generating 'C:\Users\si89weva\Documents\02_Forschung\DLL_Software_Paper\simulink_dll_builder\PSCAD\DLL_Builder.if18\DLL_Builder.map'.]]><file scope="DLL_Builder">C:\Users\si89weva\Documents\02_Forschung\DLL_Software_Paper\simulink_dll_builder\PSCAD\DLL_Builder.if18\DLL_Builder.map</file></message>
+    <message status="normal" label="build" groupid="100015" scope="DLL_Builder" id="1127895976" classid="MessageObj"><![CDATA[The total number of live nodes: 18]]></message>
+    <message status="normal" label="build" groupid="0" link="1222277541" id="1222277541" classid="FileNavigator"><![CDATA[Coding .mak file: 'C:\Users\si89weva\Documents\02_Forschung\DLL_Software_Paper\simulink_dll_builder\PSCAD\DLL_Builder.if18\\DLL_Builder.mak']]><file scope="DLL_Builder">C:\Users\si89weva\Documents\02_Forschung\DLL_Software_Paper\simulink_dll_builder\PSCAD\DLL_Builder.if18\\DLL_Builder.mak</file></message>
+    <message status="normal" label="build" groupid="400000" scope="DLL_Builder" id="656086938" classid="MessageObj"><![CDATA[Time for Compile: 0ms  Make: 0ms]]></message>
+    <message status="normal" label="build" groupid="400000" scope="DLL_Builder" id="1355141100" classid="MessageObj"><![CDATA[Solve Time = 62ms]]></message>
+    <message status="normal" label="build" groupid="100016" scope="DLL_Builder" id="116958237" classid="MessageObj"><![CDATA[Will execute (1): call C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2019.4.245\windows\bin\ifortvars.bat  intel64]]></message>
+    <message status="normal" label="build" groupid="100016" scope="DLL_Builder" id="393773515" classid="MessageObj"><![CDATA[Will execute (1): call "C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2019.4.245\windows\bin\ifortvars.bat"  intel64]]></message>
+    <message status="normal" label="build" groupid="100016" scope="DLL_Builder" id="645414508" classid="MessageObj"><![CDATA[Will execute (2): nmake -f DLL_Builder.mak]]></message>
+    <message status="normal" label="build" groupid="100016" scope="DLL_Builder" id="2081185470" classid="MessageObj"><![CDATA[Will execute (2): "C:\Users\si89weva\Documents\02_Forschung\DLL_Software_Paper\simulink_dll_builder\PSCAD\DLL_Builder.if18\DLL_Builder_mak.bat"]]></message>
+    <message status="normal" label="build" groupid="100005" scope="DLL_Builder" id="2135065061" classid="MessageObj"><![CDATA[Creating EMTDC executable...]]></message>
+    <message status="normal" label="build" groupid="0" scope="DLL_Builder" id="1127155351" classid="MessageObj"><![CDATA[C:\Users\si89weva\Documents\02_Forschung\DLL_Software_Paper\simulink_dll_builder\PSCAD\DLL_Builder.if18>call "C:\Program Files (x86)\IntelSWTools\compilers_and_libraries_2019.4.245\windows\bin\ifortvars.bat"  intel64 ]]></message>
+    <message status="normal" label="build" groupid="0" scope="DLL_Builder" id="115275407" classid="MessageObj"><![CDATA[Intel(R) MPI Library 2019 Update 4 for Windows* Target Build Environment for Intel(R) 64 applications]]></message>
+    <message status="normal" label="build" groupid="0" scope="DLL_Builder" id="1285157589" classid="MessageObj"><![CDATA[Copyright 2007-2019 Intel Corporation.]]></message>
+    <message status="normal" label="build" groupid="0" scope="DLL_Builder" id="50701856" classid="MessageObj"><![CDATA[Copyright (C) 1985-2019 Intel Corporation. All rights reserved.]]></message>
+    <message status="normal" label="build" groupid="0" scope="DLL_Builder" id="2091045028" classid="MessageObj"><![CDATA[Intel(R) Compiler 19.0 Update 4 (package 245)]]></message>
+    <message status="normal" label="build" groupid="0" scope="DLL_Builder" id="1430201083" classid="MessageObj"><![CDATA[Microsoft (R) Program Maintenance Utility, Version 14.00.24247.2]]></message>
+    <message status="normal" label="build" groupid="0" scope="DLL_Builder" id="628036359" classid="MessageObj"><![CDATA[Copyright (C) Microsoft Corporation. Alle Rechte vorbehalten.]]></message>
+    <message status="normal" label="build" groupid="100013" scope="DLL_Builder" id="803090285" classid="MessageObj"><![CDATA[Linking objects and libraries into binary 'DLL_Builder.exe']]></message>
+    <message status="normal" label="build" groupid="400003" scope="DLL_Builder" id="84260141" classid="MessageObj"><![CDATA[Finished compiling with PSCAD Version 5.0.2]]></message>
+  </messagelist>
+  <ViewContext>
+    <Window defn="DLL_Builder:Main" call="0" />
+  </ViewContext>
+  <List classid="View">
+    <View name="Main" zoomscale="2.92969" scrollx="159" scrolly="32" />
+  </List>
+  <Output device="EMTDC" version="2010" date="2026/08/08" time="13:22:23.000000">
+    <Domain name="Time" unit="s" mult="0.0" skew="0.0">
+      <Sample rate="20000.0" end="30000" />
+    </Domain>
+    <List classid="Analog">
+      <Analog name="Main(0):u_PCC_b" index="1" gindex="100663297" id="574340130:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):i_PCC_a" index="2" gindex="100663298" id="530356274:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):u_PCC_a" index="3" gindex="100663299" id="969466450:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):u_PCC_c" index="4" gindex="100663300" id="922439689:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):U_PCC" index="5" gindex="100663301" id="1228181674:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):Q_PCC" index="6" gindex="100663302" id="501339852:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+      <Analog name="Main(0):P_PCC" index="7" gindex="100663303" id="1886906198:0" label="" dim="1" unit="" min="-2.0" max="2.0" />
+    </List>
+    <List classid="Digital" />
+  </Output>
+</Meta>
