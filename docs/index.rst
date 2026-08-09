@@ -57,10 +57,6 @@ European Network of Transmission System Operators for Electricity – ENTSO-E (2
    :caption: Tool
 
    How_to_use
-   DLL_in_PF
-   DLL_in_Netomac
-   DLL_in_PSCAD
-   troubleshooting
 
 .. toctree:: 
    :maxdepth: 3   
@@ -68,4 +64,20 @@ European Network of Transmission System Operators for Electricity – ENTSO-E (2
    :caption: Example
 
    example_usage
+
+.. toctree:: 
+   :maxdepth: 3
+   :hidden:
+   :caption: Integration into power system simulation 
+
+   DLL_in_PF
+   DLL_in_Netomac
+   DLL_in_PSCAD
+
+.. toctree:: 
+   :maxdepth: 3
+   :hidden:
+   :caption: Troubleshooting
+   
+   troubleshooting
 
