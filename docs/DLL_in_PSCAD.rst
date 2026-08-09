@@ -93,6 +93,7 @@ The importer is available in the repository `PSCAD-import-tool-for-IEC-61400-27-
 The executable file `IEC_DLL_PSCAD_Import_Tool.exe` is located in the PSCAD directory.
 
 To start the importer, double-click the executable file. This opens a Python-based Tkinter graphical user interface. 
+
 ..  figure:: ./images/IECImporterPSCAD.png
     :alt: GUI of the PSCAD IEC 61400-27 DLL importer.
 
