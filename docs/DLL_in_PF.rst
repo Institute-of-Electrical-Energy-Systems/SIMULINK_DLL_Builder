@@ -103,17 +103,17 @@ Clickling ``New Project Type`` opens up the next window for the voltage transfor
 
    .. grid-item::
 
-      ..  figure:: ./images/VT_PowerFactory3.png
-            :alt: Pop-up window for the choice of the new generated voltage transformer's type.
+      .. figure:: ./images/VT_PowerFactory3.png
+         :alt: Pop-up window for the choice of the newly generated voltage transformer's type.
 
-            Figure 6: Pop-up window for the choice of the new generated voltage transformer's type.
+         Figure 6: Pop-up window for the choice of the newly generated voltage transformer's type.
 
    .. grid-item::
 
-       ..  figure:: ./images/VT_PowerFactory4.png
-            :alt: Pop-up window for the definition of a voltage transformer type.
+      .. figure:: ./images/VT_PowerFactory4.png
+         :alt: Pop-up window for the definition of a voltage transformer type.
 
-            Figure 7: Pop-up window for the definition of a voltage transformer type.
+         Figure 7: Pop-up window for the definition of a voltage transformer type.
 
 The voltage transformer is now connected to the PCC and can be used to obtain the three phase-to-ground voltage signals required by the DLL (see Figure 8 - 10).
 
@@ -124,7 +124,7 @@ The voltage transformer is now connected to the PCC and can be used to obtain th
       ..  figure:: ./images/VT_PowerFactory5.png
             :alt: Pop-up window after right-clicking the new voltage transformer.
             :align: center
-            :width: 75%
+            :width: 50%
 
             Figure 8: Pop-up window after right-clicking the new voltage transformer.
 
