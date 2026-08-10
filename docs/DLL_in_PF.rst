@@ -92,12 +92,11 @@ Select Voltage Transformer from the list of available components (see Figure 4) 
       ..  figure:: ./images/VT_PowerFactory2.png
             :alt: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
 
-            Figure 5:Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
+            Figure 5: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
 
 After creating the voltage transformer, open its configuration by double-clicking the component. 
 In the transformer configuration dialog, create a new transformer type (see Figure 6) and select Ideal Voltage Transformer (see Figure 7). 
 The ideal transformer is sufficient for the present application because the purpose of the component is to provide the required voltage measurements rather than to model the physical behavior of a transformer.
-Clickling ``New Project Type`` opens up the next window for the voltage transformer type definition.
 
 .. grid:: 2
 
@@ -143,3 +142,83 @@ The voltage transformer is now connected to the PCC and can be used to obtain th
             :align: center
 
             Figure 10: Adding the necessary voltage measurements to the result log.
+
+Adding the current transformer
+""""""""""""""""""""""""""""""
+The current transformer is used to measure the three phase currents at the PCC and provide them as input signals to the IEC 61400-27 DLL. 
+An ideal current transformer is used for this purpose, as no transformer losses or other transformer-specific effects need to be considered in the present example.
+
+To add the current transformer, select the cubicle of the PCC busbar connected to the thevenin impedance (see Figure 11) and create a new object using the New Object button in the upper-right corner of the window. 
+Select Current Transformer from the list of available components (see Figure 12) and assign a suitable name to the new component (see Figure 13).
+
+.. grid:: 3
+
+   .. grid-item::
+
+      ..  figure:: ./images/PCC_Cub1_PowerFactory.png
+            :alt: Choice of the cubicle of the PCC busbar connected to the thevenin impedance in the PowerFactory model menu.
+
+            Figure 11: Choice of the cubicle of the PCC busbar connected to the thevenin impedance in the PowerFactory model menu.
+
+   .. grid-item::
+
+       ..  figure:: ./images/CT_PowerFactory.png
+            :alt: Adding a new current transformer to the cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
+
+            Figure 12: Adding a new current transformer to the cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
+
+   .. grid-item::
+
+      ..  figure:: ./images/CT_PowerFactory2.png
+            :alt: Pop-up window of the new generated current transformer at cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
+
+            Figure 13: Pop-up window of the new generated current transformer at cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
+
+After creating the current transformer, open its configuration by double-clicking the component. 
+In the transformer configuration dialog, create a new transformer type and select Current Transformer Type (TypCt) (see Figure 14) and select Ideal Current Transformer (see Figure 15). 
+The ideal transformer is sufficient for the present application because the purpose of the component is to provide the required current measurements rather than to model the physical behavior of a transformer.
+
+.. grid:: 2
+
+   .. grid-item::
+
+      .. figure:: ./images/CT_PowerFactory3.png
+         :alt: Pop-up window for the choice of the newly generated current transformer's type.
+
+         Figure 14: Pop-up window for the choice of the newly generated current transformer's type.
+
+   .. grid-item::
+
+      .. figure:: ./images/CT_PowerFactory4.png
+         :alt: Pop-up window for the definition of a current transformer type.
+
+         Figure 15: Pop-up window for the definition of a current transformer type.
+
+The voltage transformer is now connected to the cubicle of the PCC and can be used to obtain the three phase current signals required by the DLL (see Figure 16 - 18).
+
+.. grid:: 3
+
+   .. grid-item::
+
+      ..  figure:: ./images/CT_PowerFactory5.png
+            :alt: Pop-up window after right-clicking the new current transformer.
+            :align: center
+            :width: 50%
+
+            Figure 8: Pop-up window after right-clicking the new current transformer.
+
+   .. grid-item::
+
+      ..  figure:: ./images/CT_PowerFactory6.png
+            :alt: Opening the current transformer result variable window by double-clicking.
+            :align: center
+
+            Figure 9: Opening the current transformer result variable window by double-clicking.
+
+   .. grid-item::
+
+      ..  figure:: ./images/CT_PowerFactory7.png
+            :alt: Adding the necessary current measurements to the result log.
+            :align: center
+
+            Figure 10: Adding the necessary current measurements to the result log.
