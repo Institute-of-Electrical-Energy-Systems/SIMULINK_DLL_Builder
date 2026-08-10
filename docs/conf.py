@@ -22,6 +22,7 @@ extensions = [
     "sphinx.ext.imgmath",
     "sphinx.ext.doctest",
     "sphinx.ext.napoleon",
+    "sphinx_design",
 ]
 source_suffix = ".rst"
 master_doc = "index"
