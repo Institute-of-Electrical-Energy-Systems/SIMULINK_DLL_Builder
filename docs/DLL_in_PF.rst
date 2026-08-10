@@ -100,24 +100,21 @@ Clickling ``New Project Type`` opens up the next window for the voltage transfor
 
     Figure 7: Pop-up window for the definition of a voltage transformer type.
 
-The voltage transformer is now connected to the PCC and can be used to obtain the three phase-to-ground voltage signals required by the DLL (see Figure 8 - 11).
+The voltage transformer is now connected to the PCC and can be used to obtain the three phase-to-ground voltage signals required by the DLL (see Figure 8 - 10).
 
-..  figure:: ./images/VT_PowerFactory5.png
-    :alt: Pop-up window after right-clicking the new voltage transformer.
+.. list-table:: 
 
-    Figure 8: Pop-up window after right-clicking the new voltage transformer.
+    * - ..  figure:: ./images/VT_PowerFactory5.png
+            :alt: Pop-up window after right-clicking the new voltage transformer.
 
-..  figure:: ./images/VT_PowerFactory6.png
-    :alt: Choosing Simulation RMS/EMT result variables.
+            Figure 8: Pop-up window after right-clicking the new voltage transformer.
 
-    Figure 9: Choosing Simulation RMS/EMT result variables.
+    * - ..  figure:: ./images/VT_PowerFactory7.png
+            :alt: Opening the voltage transformer result variable window by double-clicking.
 
-..  figure:: ./images/VT_PowerFactory7.png
-    :alt: Opening the voltage transformer result variable window by double-clicking.
+            Figure 9: Opening the voltage transformer result variable window by double-clicking.
 
-    Figure 10: Opening the voltage transformer result variable window by double-clicking.
+    * - ..  figure:: ./images/VT_PowerFactory8.png
+            :alt: Adding the necessary voltage measurements to the result log.
 
-..  figure:: ./images/VT_PowerFactory8.png
-    :alt: Adding the necessary voltage measurements to the result log.
-
-    Figure 11: Adding the necessary voltage measurements to the result log.
+            Figure 10: Adding the necessary voltage measurements to the result log.
