@@ -55,3 +55,65 @@ Since the voltage sources have the same voltage, no current flows between them.
 The control of the IBR voltage source will be addressed in a subsequent step. 
 Nevertheless, a simulation can be performed at this stage to verify the correct operation of the model and the signal connections.
 
+3. Adding the necessary measurements for the DLL
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+The next step is to measure the PCC signals (line-to-ground voltages and current) that will subsequently be used by the DLL for control purposes. 
+To achieve this, a voltage transformer as well as a current transformer are added to the model.
+
+Adding the voltage transformer
+""""""""""""""""""""""""""""""
+The measurement names for the phase-to-ground voltage and current are then defined for each phase.
+
+..  figure:: ./images/PCCPowerFactory.png
+    :alt: Choice of the PCC busbar in the PowerFactory model menu.
+
+    Choice of the PCC busbar in the PowerFactory model menu.
+
+Add a new component to the PCC busbar by clicking ``New Object`` in the top right corner of the window.
+
+..  figure:: ./images/VT_PowerFactory.png
+    :alt: Adding a new voltage transformer to the PCC busbar in PowerFactory.
+
+    Adding a new voltage transformer to the PCC busbar in PowerFactory.
+
+Clicking ``Ok`` brings up a new menu containing the voltage transformer data. Define the voltage transformers name and click the menu beside ``Type`` afterwards.
+
+..  figure:: ./images/VT_PowerFactory2.png
+    :alt: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
+
+    Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
+
+Clickling ``New Project Type`` opens up the next window for the voltage transformer type definition.
+
+..  figure:: ./images/VT_PowerFactory3.png
+    :alt: Pop-up window for the choice of the new generated voltage transformer's type.
+
+    Pop-up window for the choice of the new generated voltage transformer's type.
+
+Within the next upcoming Pop-up one is able to define the voltage transformer type data. The easiest but most unrealistic one is a ideal measure using ``Ideal Voltage Transformer``.
+
+..  figure:: ./images/VT_PowerFactory4.png
+    :alt: Pop-up window for the definition of a voltage transformer type.
+
+    Pop-up window for the definition of a voltage transformer type.
+
+At this point no measurement data of the voltage transformer is captured. Therefore one needs to right-click the new generated voltage transformer and click ``Result Variables`` afterwards.
+
+..  figure:: ./images/VT_PowerFactory5.png
+    :alt: Pop-up window after right-clicking the new voltage transformer.
+
+    Pop-up window after right-clicking the new voltage transformer.
+
+Within the next Pop-up one might choose the ``Simulation RMS/EMT...`` button. 
+
+..  figure:: ./images/VT_PowerFactory6.png
+    :alt: Choosing Simulation RMS/EMT result variables.
+
+    Choosing Simulation RMS/EMT result variables.
+
+Finally the signals of the secondary line to ground voltages need to be captured.
+
+..  figure:: ./images/VT_PowerFactory7.png
+    :alt: Adding the necessary voltage measurements to the result log.
+
+    Adding the necessary voltage measurements to the result log.
