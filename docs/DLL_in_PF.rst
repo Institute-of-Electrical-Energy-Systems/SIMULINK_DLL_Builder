@@ -108,7 +108,7 @@ Clickling ``New Project Type`` opens up the next window for the voltage transfor
 
             Figure 6: Pop-up window for the choice of the new generated voltage transformer's type.
 
-    .. grid-item::
+   .. grid-item::
 
        ..  figure:: ./images/VT_PowerFactory4.png
             :alt: Pop-up window for the definition of a voltage transformer type.
