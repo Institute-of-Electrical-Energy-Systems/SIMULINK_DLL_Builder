@@ -102,19 +102,28 @@ Clickling ``New Project Type`` opens up the next window for the voltage transfor
 
 The voltage transformer is now connected to the PCC and can be used to obtain the three phase-to-ground voltage signals required by the DLL (see Figure 8 - 10).
 
-.. list-table:: 
+.. grid:: 3
 
-    * - ..  figure:: ./images/VT_PowerFactory5.png
+   .. grid-item::
+
+      ..  figure:: ./images/VT_PowerFactory5.png
             :alt: Pop-up window after right-clicking the new voltage transformer.
+            :align: center
 
             Figure 8: Pop-up window after right-clicking the new voltage transformer.
 
-    * - ..  figure:: ./images/VT_PowerFactory7.png
+   .. grid-item::
+
+      ..  figure:: ./images/VT_PowerFactory7.png
             :alt: Opening the voltage transformer result variable window by double-clicking.
+            :align: center
 
             Figure 9: Opening the voltage transformer result variable window by double-clicking.
 
-    * - ..  figure:: ./images/VT_PowerFactory8.png
+   .. grid-item::
+
+      ..  figure:: ./images/VT_PowerFactory8.png
             :alt: Adding the necessary voltage measurements to the result log.
+            :align: center
 
             Figure 10: Adding the necessary voltage measurements to the result log.
