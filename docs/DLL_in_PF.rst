@@ -111,9 +111,15 @@ Within the next Pop-up one might choose the ``Simulation RMS/EMT...`` button.
 
     Choosing Simulation RMS/EMT result variables.
 
+Double clicking the voltage transformer in the result variable window brings up the choosen and choosable signals.
+..  figure:: ./images/VT_PowerFactory7.png
+    :alt: Opening the voltage transformer result variable window by double-clicking.
+
+    Opening the voltage transformer result variable window by double-clicking.
+
 Finally the signals of the secondary line to ground voltages need to be captured.
 
-..  figure:: ./images/VT_PowerFactory7.png
+..  figure:: ./images/VT_PowerFactory8.png
     :alt: Adding the necessary voltage measurements to the result log.
 
     Adding the necessary voltage measurements to the result log.
