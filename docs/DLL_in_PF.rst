@@ -205,7 +205,7 @@ The voltage transformer is now connected to the cubicle of the PCC and can be us
             :align: center
             :width: 50%
 
-            Figure 8: Pop-up window after right-clicking the new current transformer.
+            Figure 16: Pop-up window after right-clicking the new current transformer.
 
    .. grid-item::
 
@@ -213,7 +213,7 @@ The voltage transformer is now connected to the cubicle of the PCC and can be us
             :alt: Opening the current transformer result variable window by double-clicking.
             :align: center
 
-            Figure 9: Opening the current transformer result variable window by double-clicking.
+            Figure 17: Opening the current transformer result variable window by double-clicking.
 
    .. grid-item::
 
@@ -221,4 +221,122 @@ The voltage transformer is now connected to the cubicle of the PCC and can be us
             :alt: Adding the necessary current measurements to the result log.
             :align: center
 
-            Figure 10: Adding the necessary current measurements to the result log.
+            Figure 18: Adding the necessary current measurements to the result log.
+
+DLL integration using a dynamic model in PowerFactory
+-----------------------------------------------------
+
+.. grid:: 3
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame.png
+            :alt: Creating a new empty composite model frame.
+            :align: center
+
+            Figure 19: Creating a new empty composite model frame.
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame1.png
+            :alt: Input mask of the composite model frame definition.
+            :align: center
+
+            Figure 20: Input mask of the composite model frame definition.
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame2.png
+            :alt: Empty composite model frame defintion.
+            :align: center
+
+            Figure 21: Empty composite model frame defintion.
+
+.. grid:: 3
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame3.png
+            :alt: Creating a voltage transformer slot in the composite model frame.
+            :align: center
+
+            Figure 22: Creating a voltage transformer slot in the composite model frame.
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame4.png
+            :alt: Creating a current transformer slot in the composite model frame.
+            :align: center
+
+            Figure 23: Creating a current transformer slot in the composite model frame.
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame5.png
+            :alt: Composite model frame containing the measurement slots for three phase voltage and current.
+            :align: center
+
+            Figure 24: Composite model frame containing the measurement slots for three phase voltage and current.
+
+.. grid:: 3
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame6.png
+            :alt: Creating a DLL slot in the composite model frame.
+            :align: center
+
+            Figure 25: Creating a DLL slot in the composite model frame.
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame7.png
+            :alt: Imported DLL as compiled model in the DLL slot of the composite model frame.
+            :align: center
+
+            Figure 26: Imported DLL as compiled model in the DLL slot of the composite model frame.
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame8.png
+            :alt: Composite model frame containing the DLL slot.
+            :align: center
+
+            Figure 27: Composite model frame containing the DLL slot.
+
+.. grid:: 3
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame9.png
+            :alt: Creating a conversion slot in the composite model frame.
+            :align: center
+
+            Figure 28: Creating a conversion slot in the composite model frame.
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame10.png
+            :alt: Equations of the conversion slot in the composite model frame.
+            :align: center
+
+            Figure 29: Equations of the conversion slot in the composite model frame.
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame11.png
+            :alt: Composite model frame containing the conversion slot.
+            :align: center
+
+            Figure 30: Composite model frame containing the conversion slot.
+
+.. grid:: 3
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame12.png
+            :alt: Creating a voltage source slot in the composite model frame.
+            :align: center
+
+            Figure 31: Creating a voltage source slot in the composite model frame.
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame13.png
+            :alt: Composite model frame containing the voltage source slot.
+            :align: center
+
+            Figure 32: Composite model frame containing the voltage source slot.
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame14.png
+            :alt: Composite model frame containing the signal connection of the slots.
+            :align: center
+
+            Figure 33: Composite model frame containing the signal connection of the slots.
