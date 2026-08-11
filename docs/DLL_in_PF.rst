@@ -519,7 +519,7 @@ To implement this workaround, the composite model frame (the block definition of
 The first step is to disconnect the signal path between the volt-to-kilovolt conversion block and the controlled voltage source (see Figure 43). 
 Signal switches are then inserted at this point. 
 These switches select either input ``yi1`` or input ``y2``, depending on the value of the variable ``sw``. 
-When ``sw`` changes from 0 to 1, the switch changes from ``yi1`` to ``y2`` (see Figure 44).
+When ``sw`` changes from 0 to 1, the switch changes from ``yi1`` to ``yi2`` (see Figure 44).
 
 The corresponding logic for selecting the signal based on the ``sw`` variable is shown in Figure 45. 
 This switching mechanism allows the initialization values from the ideal AC voltage source to be applied during the first two simulation samples before the signal path is switched to the output of the DLL.
