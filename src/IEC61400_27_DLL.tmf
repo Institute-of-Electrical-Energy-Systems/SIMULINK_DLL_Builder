@@ -1,4 +1,4 @@
-# Copyright 1994-2026 The MathWorks, Inc.
+# Copyright 1994-2014 The MathWorks, Inc.
 #
 # File    : IEC61400_27_DLL.tmf   $Revision: 1.71.4.31 $
 #
@@ -176,11 +176,39 @@ INCLUDE = .;$(RELATIVE_PATH_TO_ANCHOR);$(MATLAB_INCLUDES);$(INCLUDE)
 ###############################################################################
 # To add a new transport layer, see the comments in
 #   <matlabroot>/toolbox/simulink/simulink/extmode_transports.m
-
+#
+#!if $(EXT_MODE) == 1
+#
+# Uncomment -DVERBOSE to have information printed to stdout
+#EXT_CC_OPTS = -DEXT_MODE # -DVERBOSE
+#
+#!if $(EXTMODE_TRANSPORT) == 0 #tcpip
+#EXT_SRC = ext_svr.c updown.c ext_work.c rtiostream_interface.c rtiostream_tcpip.c
+#EXT_LIB = wsock32.lib
+#!endif
+#
+#!if $(EXTMODE_TRANSPORT) == 1 #serial_win32
+#EXT_SRC = ext_svr.c updown.c ext_work.c ext_svr_serial_transport.c
+#EXT_SRC = $(EXT_SRC) ext_serial_pkt.c rtiostream_serial_interface.c rtiostream_serial.c
+#EXT_LIB =
+#!endif
+#
+#!if $(TMW_EXTMODE_TESTING) == 1
+#EXT_SRC     = $(EXT_SRC) ext_test.c
+#EXT_CC_OPTS = $(EXT_CC_OPTS) -DTMW_EXTMODE_TESTING
+#!endif
+#
+#!if $(EXTMODE_STATIC) == 1
+#EXT_SRC     = $(EXT_SRC) mem_mgr.c
+#EXT_CC_OPTS = $(EXT_CC_OPTS) -DEXTMODE_STATIC -DEXTMODE_STATIC_SIZE=$(EXTMODE_STATIC_SIZE)
+#!endif
+#
+#!else
 EXT_SRC     =
 EXT_CC_OPTS =
 EXT_LIB     =
-
+#!endif
+#
 ###############################################################################
 #------------------------ rtModel --------------------------------------------#
 ###############################################################################
@@ -201,7 +229,12 @@ DBG_FLAG =
 DBG_FLAG = -Zi
 !endif
 
+
+!if "$(OPTIMIZATION_FLAGS)" != ""
+CC_OPTS = $(OPTS) $(EXT_CC_OPTS) $(RTM_CC_OPTS) $(OPTIMIZATION_FLAGS)
+!else
 CC_OPTS = $(OPT_OPTS) $(OPTS) $(EXT_CC_OPTS) $(RTM_CC_OPTS)
+!endif
 
 CPP_REQ_DEFINES = -DMODEL=$(MODEL) -DRT -DNUMST=$(NUMST) \
 		          -DTID01EQ=$(TID01EQ) -DNCSTATES=$(NCSTATES) \
@@ -212,6 +245,7 @@ CPP_REQ_DEFINES = -DMODEL=$(MODEL) -DRT -DNUMST=$(NUMST) \
 		          -DALLOCATIONFCN=$(ALLOCATIONFCN)
 
 CFLAGS   = $(cflags) $(cvarsmt) $(CFLAGS_VERSPECIFIC) $(DBG_FLAG) $(CC_OPTS) $(CPP_REQ_DEFINES) $(USER_INCLUDES)
+CPPFLAGS = $(cflags) $(cvarsmt) $(CPPFLAGS_VERSPECIFIC) $(DBG_FLAG) $(CPP_OPTS) $(CC_OPTS) $(CPP_REQ_DEFINES) $(USER_INCLUDES)
 LDFLAGS  = $(ldebug) $(conflags) $(EXT_LIB) $(conlibsmt) libcpmt.lib $(ADDITIONAL_LDFLAGS)
 
 # libcpmt.lib is the multi-threaded, static lib version of the C++ standard lib
@@ -220,11 +254,17 @@ LDFLAGS  = $(ldebug) $(conflags) $(EXT_LIB) $(conlibsmt) libcpmt.lib $(ADDITIONA
 #----------------------------- Source Files ----------------------------------#
 ###############################################################################
 
-# definition of the storage path of the to be created DLL
+# Dynamic library
+!if "$(MODELREF_TARGET_TYPE)" == "NONE"
 PRODUCT   = $(RELATIVE_PATH_TO_ANCHOR)\$(MODEL).dll
 
-# definition of the required source files for the DLL creation
 REQ_SRCS  = $(MODEL).$(TARGET_LANG_EXT) $(MODULES) IEC61400_27_DLL.c rt_sim.c $(EXT_SRC)
+    
+# Model Reference Target
+!else
+PRODUCT   = $(MODELLIB)
+REQ_SRCS  = $(MODULES)
+!endif
 
 USER_SRCS =
 
@@ -263,6 +303,7 @@ GEN_LNK_SCRIPT = $(MATLAB_ROOT)\rtw\c\tools\mkvc_lnk.pl
 ###############################################################################
 all: set_environment_variables $(PRODUCT)
 
+!if "$(MODELREF_TARGET_TYPE)" == "NONE"
 #--- Stand-alone model ---
 $(PRODUCT) : $(OBJS) $(LIBS) $(MODELREF_LINK_LIBS)
 	@cmd /C "echo ### Linking ..."
@@ -270,10 +311,24 @@ $(PRODUCT) : $(OBJS) $(LIBS) $(MODELREF_LINK_LIBS)
 	$(LD) /DLL $(LDFLAGS) $(S_FUNCTIONS_LIB) $(LIBS) $(MAT_LIBS) @$(CMD_FILE) @$(MODELREF_LINK_RSPFILE) -out:$@
 	@del $(CMD_FILE)
 	@cmd /C "echo ### Created dynamic library $(MODEL).dll"
+!else
+#--- Model reference Coder Target ---
+$(PRODUCT) : $(OBJS) 
+	@cmd /C "echo ### Linking ..."
+	$(PERL) $(GEN_LNK_SCRIPT) $(CMD_FILE) $(OBJS)
+	$(LD) -lib /OUT:$(MODELLIB) @$(CMD_FILE) $(S_FUNCTIONS_LIB)
+	@cmd /C "echo ^#^#^# Created static library $(MODELLIB)"
+!endif
 
+!if "$(TARGET_LANG_EXT)" ==  "cpp"
+{$(MATLAB_ROOT)\rtw\c\grt}.c.obj :
+    @cmd /C "echo ### Compiling $<"
+    $(CC) /TP $(CPPFLAGS) $<
+!else
 {$(MATLAB_ROOT)\rtw\c\grt}.c.obj :
     @cmd /C "echo ### Compiling $<"
     $(CC) $(CFLAGS) $<
+!endif
 
 {$(MATLAB_ROOT)\rtw\c\src}.c.obj :
 	@cmd /C "echo ### Compiling $<"
@@ -303,11 +358,21 @@ $(PRODUCT) : $(OBJS) $(LIBS) $(MODELREF_LINK_LIBS)
 
 |>END_EXPAND_RULES<|
 
+|>START_EXPAND_RULES<|{|>EXPAND_DIR_NAME<|}.cpp.obj :
+	@cmd /C "echo ### Compiling $<"
+	$(CC) $(CPPFLAGS) $<
+
+|>END_EXPAND_RULES<|
+
 # Look in simulink/src helper files
 
 {$(MATLAB_ROOT)\simulink\src}.c.obj :
 	@cmd /C "echo ### Compiling $<"
 	$(CC) $(CFLAGS) $<
+
+{$(MATLAB_ROOT)\simulink\src}.cpp.obj :
+	@cmd /C "echo ### Compiling $<"
+	$(CC) $(CPPFLAGS) $<
 
 # Put these rule last, otherwise nmake will check toolboxes first
 
@@ -315,9 +380,18 @@ $(PRODUCT) : $(OBJS) $(LIBS) $(MODELREF_LINK_LIBS)
 	@cmd /C "echo ### Compiling $<"
 	$(CC) $(CFLAGS) $<
 
+{$(RELATIVE_PATH_TO_ANCHOR)}.cpp.obj :
+	@cmd /C "echo ### Compiling $<"
+	$(CC) $(CPPFLAGS) $<
+
 .c.obj :
 	@cmd /C "echo ### Compiling $<"
 	$(CC) $(CFLAGS) $<
+
+.cpp.obj :
+	@cmd /C "echo ### Compiling $<"
+	$(CC) $(CPPFLAGS) $<
+
 
 set_environment_variables:
 	@set INCLUDE=$(INCLUDE)

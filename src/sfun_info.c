@@ -15,7 +15,7 @@
  * (i.e. replace sfuntmpl_basic with the name of your S-function).
  */
 
-#define S_FUNCTION_NAME  IEC61400_27_wrapper_builder
+#define S_FUNCTION_NAME  sfun_info
 #define S_FUNCTION_LEVEL 2
 
 /*
@@ -23,6 +23,7 @@
  * its associated macro definitions.
  */
 #include "simstruc.h"
+#include "mex.h"
 
 
 

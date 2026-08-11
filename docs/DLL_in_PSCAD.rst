@@ -21,7 +21,7 @@ The individual components are added and configured step by step, starting from t
 
 1. Builing a thevenin equivalent
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-..  figure:: ./images/TheveninPSCAD.png
+..  figure:: ./images/PSCAD/TheveninPSCAD.png
     :alt: Thevenin equivalent connect to PCC in PSCAD.
 
     Thevenin equivalent connect to PCC in PSCAD.
@@ -38,7 +38,7 @@ However, such a simulation is of limited significance, as the Thevenin equivalen
 
 2. Building the external controlled voltage source (Grid following IBR)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-..  figure:: ./images/SMIB_IBR_PSCAD.png
+..  figure:: ./images/PSCAD/SMIB_IBR_PSCAD.png
     :alt: IBR in a SMIB configuraiton in PSCAD.
 
     IBR in a SMIB configuraiton in PSCAD.
@@ -58,7 +58,7 @@ These signals will be introduced in a subsequent step.
 
 3. Adding the necessary measurements for the DLL
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-..  figure:: ./images/PSCADMeasurementmodel.png
+..  figure:: ./images/PSCAD/PSCADMeasurementmodel.png
     :alt: IBR in a SMIB configuraiton containing the DLL relevant measurements in PSCAD.
 
     IBR in a SMIB configuraiton containing the DLL relevant measurements in PSCAD.
@@ -67,13 +67,13 @@ The next step is to measure the PCC signals (line-to-ground voltages and current
 To achieve this, three single-phase multimeters are added to the model, one for each phase. 
 The measurement names for the phase-to-ground voltage and current are then defined for each phase.
 
-..  figure:: ./images/Multimeter.png
+..  figure:: ./images/PSCAD/Multimeter.png
     :alt: PSCAD multimeter configuration pane of the phase a measurement at the PCC.
 
     PSCAD multimeter configuration pane of the phase a measurement at the PCC.
 
     
-..  figure:: ./images/Multimeter2.png
+..  figure:: ./images/PSCAD/Multimeter2.png
     :alt: PSCAD multimeter signal names pane of the phase a measurement at the PCC.
 
     PSCAD multimeter signal names pane of the phase a measurement at the PCC.
@@ -94,7 +94,7 @@ The executable file `IEC_DLL_PSCAD_Import_Tool.exe` is located in the PSCAD dire
 
 To start the importer, double-click the executable file. This opens a Python-based Tkinter graphical user interface. 
 
-..  figure:: ./images/IECImporterPSCAD.png
+..  figure:: ./images/PSCAD/IECImporterPSCAD.png
     :alt: GUI of the PSCAD IEC 61400-27 DLL importer.
 
     GUI of the PSCAD IEC 61400-27 DLL importer.
@@ -107,14 +107,14 @@ Alternatively, the DLL can be integrated into an existing PSCAD project. When th
 
 In this example, the existing PSCAD project is selected, as the required model has already been created in the previous steps.
 
-..  figure:: ./images/IECImporterPSCAD2.png
+..  figure:: ./images/PSCAD/IECImporterPSCAD2.png
     :alt: Filled GUI of the PSCAD IEC 61400-27 DLL importer.
 
     Filled GUI of the PSCAD IEC 61400-27 DLL importer.
 
 By clicking ``Generate PSCAD Model`` the IEC Block generation process is triggered and results in a new block in your PSCAD model as well as a f90 wrapper within your projects resources. 
 
-..  figure:: ./images/IECImporterPSCAD3.png
+..  figure:: ./images/PSCAD/IECImporterPSCAD3.png
     :alt: IEC DLL Model Block for the control of the IBR in a SMIB configuraiton containing the DLL relevant measurements in PSCAD.
 
     IEC DLL Model Block for the control of the IBR in a SMIB configuraiton containing the DLL relevant measurements in PSCAD.
@@ -125,7 +125,7 @@ The next step is therefore to establish the required signal connections between 
 
 2. Binding to the model 
 ^^^^^^^^^^^^^^^^^^^^^^^
-..  figure:: ./images/IECImporterPSCAD4.png
+..  figure:: ./images/PSCAD/IECImporterPSCAD4.png
     :alt: Connection of the PSCAD signals to the IEC DLL Model Block in PSCAD.
 
     Connection of the PSCAD signals to the IEC DLL Model Block in PSCAD.    
@@ -141,17 +141,17 @@ Consequently, the voltage signals must also be converted before being connected 
 
 3. Optional: Changing parameters and initial values. 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-..  figure:: ./images/IECBlockConfiguration.png
+..  figure:: ./images/PSCAD/IECBlockConfiguration.png
     :alt: Configuration pane of the IEC 61400-27 DLL PSCAD block.
 
     Configuration pane of the IEC 61400-27 DLL PSCAD block.
 
-..  figure:: ./images/IECBlockModelparameter.png
+..  figure:: ./images/PSCAD/IECBlockModelparameter.png
     :alt: Model Parameters pane of the IEC 61400-27 DLL PSCAD block.
 
     Model Parameters pane of the IEC 61400-27 DLL PSCAD block.
 
-..  figure:: ./images/IECBlockInitialconditions.png
+..  figure:: ./images/PSCAD/IECBlockInitialconditions.png
     :alt: Initial Conditions pane of the IEC 61400-27 DLL PSCAD block.
 
     Initial Conditions pane of the IEC 61400-27 DLL PSCAD block.
