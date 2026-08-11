@@ -558,9 +558,9 @@ It generates the three-phase sinusoidal signals with the specified amplitude and
 .. math::
    :name: three phase voltage sine wave
 
-   U_\mathrm{LF,A} = \frac{(\sqrt(2) \cdot U_\mathrm{LF,RMS})}{\sqrt(3)} \cdot cos(\phi_\mathrm{LF} \cdot \frac{\pi}{180} + 2 \cdot \pi \cdot 50 \cdot t)
-   U_\mathrm{LF,B} = \frac{(\sqrt(2) \cdot U_\mathrm{LF,RMS})}{\sqrt(3)} \cdot cos((\phi_\mathrm{LF}-120) \cdot \frac{\pi}{180} + 2 \cdot \pi \cdot 50 \cdot t)
-   U_\mathrm{LF,C} = \frac{(\sqrt(2) \cdot U_\mathrm{LF,RMS})}{\sqrt(3)} \cdot cos((\phi_\mathrm{LF}-240) \cdot \frac{\pi}{180} + 2 \cdot \pi \cdot 50 \cdot t)
+   U_\mathrm{LF,A} = \frac{(\sqrt(2) \cdot U_\mathrm{LF,RMS})}{\sqrt(3)} \cdot cos(\phi_\mathrm{LF} \cdot \frac{\pi}{180} + 2 \cdot \pi \cdot 50 \cdot t) \\
+   U_\mathrm{LF,B} = \frac{(\sqrt(2) \cdot U_\mathrm{LF,RMS})}{\sqrt(3)} \cdot cos((\phi_\mathrm{LF}-120) \cdot \frac{\pi}{180} + 2 \cdot \pi \cdot 50 \cdot t) \\
+   U_\mathrm{LF,C} = \frac{(\sqrt(2) \cdot U_\mathrm{LF,RMS})}{\sqrt(3)} \cdot cos((\phi_\mathrm{LF}-240) \cdot \frac{\pi}{180} + 2 \cdot \pi \cdot 50 \cdot t) \\
 
 This provides the three-phase voltage signals required for the initialization of the controlled IBR voltage source.
 
