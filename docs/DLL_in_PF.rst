@@ -225,7 +225,12 @@ The voltage transformer is now connected to the cubicle of the PCC and can be us
 
 DLL integration using a dynamic model in PowerFactory
 -----------------------------------------------------
+After setting up the electrical components of the grid model along with the required voltage and current measurements at the PCC, the next step is to integrate the DLL itself into the model. 
+This integration is performed via a so-called Composite Model Frame, which defines the signal connections between the measured quantities, the DLL, and the controlled voltage source.
 
+First, a new, empty Composite Model Frame is created (see Figure 19). 
+In the corresponding input window, the name and basic settings of the frame are defined (see Figure 20). 
+The graphical editing interface of the still-empty frame then opens, in which the individual slots (blocks) and their signal connections are defined in the subsequent steps (see Figure 21).
 .. grid:: 3
 
    .. grid-item::
@@ -248,6 +253,11 @@ DLL integration using a dynamic model in PowerFactory
             :align: center
 
             Figure 21: Empty composite model frame defintion.
+
+The first slots to be created are those for the measured quantities. 
+A slot for the voltage transformer is created to feed the three phase-to-ground voltages at the PCC into the frame (see Figure 22). 
+Similarly, a slot for the current transformer is added, through which the three phase currents are provided (see Figure 23). 
+Figure 24 shows the frame after both measurement slots have been added.
 
 .. grid:: 3
 
@@ -272,6 +282,10 @@ DLL integration using a dynamic model in PowerFactory
 
             Figure 24: Composite model frame containing the measurement slots for three phase voltage and current.
 
+Next, a slot for the DLL itself is created (see Figure 25). 
+The previously compiled IEC 61400-27 DLL is loaded into this slot as a Compiled Model (see Figure 26). 
+Figure 27 shows the frame with the integrated DLL slot, whose inputs and outputs are now available for further signal wiring.
+
 .. grid:: 3
 
    .. grid-item::
@@ -295,6 +309,10 @@ DLL integration using a dynamic model in PowerFactory
 
             Figure 27: Composite model frame containing the DLL slot.
 
+Since the output quantities of the DLL do not directly match the unit required by the controlled voltage source (kilovolts), in PowerFactory, an additional conversion slot is inserted (see Figure 28). 
+This slot contains the corresponding conversion equations, which transform the DLL output signals into the format required by the voltage source (see Figure 29). 
+Figure 30 shows the frame after the conversion slot has been added.
+
 .. grid:: 3
 
    .. grid-item::
@@ -317,6 +335,13 @@ DLL integration using a dynamic model in PowerFactory
             :align: center
 
             Figure 30: Composite model frame containing the conversion slot.
+
+Finally, a slot is created for the regulated ideal voltage source, which was previously introduced as part of the IBR equivalent circuit (see Figure 31). 
+Figure 32 shows the complete frame containing all four slots: voltage measurement, current measurement, DLL, and voltage source.
+
+In the last step, the inputs and outputs of the individual slots are connected to one another: the measured voltages and currents are fed into the DLL slot as input signals, the DLL's output quantities are converted into the required format via the conversion slot, and the result is then passed to the controlled voltage source as its setpoint. 
+Figure 33 shows the fully wired Composite Model Frame. 
+This completes the integration of the DLL into the PowerFactory model, and simulations with dynamic behavior according to IEC 61400-27 can now be carried out.
 
 .. grid:: 3
 
