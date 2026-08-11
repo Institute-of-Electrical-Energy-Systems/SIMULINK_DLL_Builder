@@ -228,9 +228,13 @@ DLL integration using a dynamic model in PowerFactory
 After setting up the electrical components of the grid model along with the required voltage and current measurements at the PCC, the next step is to integrate the DLL itself into the model. 
 This integration is performed via a so-called Composite Model Frame, which defines the signal connections between the measured quantities, the DLL, and the controlled voltage source.
 
+1. Creating an empty composite model frame definition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 First, a new, empty Composite Model Frame is created (see Figure 19). 
 In the corresponding input window, the name and basic settings of the frame are defined (see Figure 20). 
 The graphical editing interface of the still-empty frame then opens, in which the individual slots (blocks) and their signal connections are defined in the subsequent steps (see Figure 21).
+
 .. grid:: 3
 
    .. grid-item::
@@ -253,6 +257,10 @@ The graphical editing interface of the still-empty frame then opens, in which th
             :align: center
 
             Figure 21: Empty composite model frame defintion.
+
+
+2. Adding measurment slots to the composite model frame definition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The first slots to be created are those for the measured quantities. 
 A slot for the voltage transformer is created to feed the three phase-to-ground voltages at the PCC into the frame (see Figure 22). 
@@ -282,6 +290,9 @@ Figure 24 shows the frame after both measurement slots have been added.
 
             Figure 24: Composite model frame containing the measurement slots for three phase voltage and current.
 
+3. Adding the DLL as compiled model to the composite model frame definition
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Next, a slot for the DLL itself is created (see Figure 25). 
 The previously compiled IEC 61400-27 DLL is loaded into this slot as a Compiled Model (see Figure 26). 
 Figure 27 shows the frame with the integrated DLL slot, whose inputs and outputs are now available for further signal wiring.
@@ -309,6 +320,9 @@ Figure 27 shows the frame with the integrated DLL slot, whose inputs and outputs
 
             Figure 27: Composite model frame containing the DLL slot.
 
+4. Convert the DLL outputs to the PowerFactory required units
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 Since the output quantities of the DLL do not directly match the unit required by the controlled voltage source (kilovolts), in PowerFactory, an additional conversion slot is inserted (see Figure 28). 
 This slot contains the corresponding conversion equations, which transform the DLL output signals into the format required by the voltage source (see Figure 29). 
 Figure 30 shows the frame after the conversion slot has been added.
@@ -335,6 +349,9 @@ Figure 30 shows the frame after the conversion slot has been added.
             :align: center
 
             Figure 30: Composite model frame containing the conversion slot.
+
+5. Adding the voltage source input slot and wiring of the slots
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Finally, a slot is created for the regulated ideal voltage source, which was previously introduced as part of the IBR equivalent circuit (see Figure 31). 
 Figure 32 shows the complete frame containing all four slots: voltage measurement, current measurement, DLL, and voltage source.
@@ -365,3 +382,64 @@ This completes the integration of the DLL into the PowerFactory model, and simul
             :align: center
 
             Figure 33: Composite model frame containing the signal connection of the slots.
+
+Up to this point, only the required block definitions have been created. 
+These definitions do not affect the simulation results until they are instantiated and integrated into the network topology. 
+The next step is therefore to integrate the created components into the simulation model.
+
+6. Creating the two DSL Model required by the composite model Frame
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. grid:: 2
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame15.png
+            :alt: Navigating to the grid topology of the considered PowerFactory model.
+            :align: center
+
+            Figure 34: Navigating to the grid topology of the considered PowerFactory model.
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame16.png
+            :alt: Adding a new DSL model to the model.
+            :align: center
+
+            Figure 35: Adding a new DSL model to the model.
+
+7. Filling the two DSL Model required by the composite model Frame
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. grid:: 2
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame17.png
+            :alt: Conversion DSL model of the composite model frame.
+            :align: center
+
+            Figure 36: Conversion DSL model of the composite model frame.
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame18.png
+            :alt: DLL interface DSL model of the composite model frame.
+            :align: center
+
+            Figure 37: DLL interface DSL model of the composite model frame.
+
+8. Adding the IBR Control composite model frame as network component
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+.. grid:: 2
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame19.png
+            :alt: Adding a new composite model to the model.
+            :align: center
+
+            Figure 38: Adding a new composite model to the model.
+
+   .. grid-item::
+      ..  figure:: ./images/CompositeModelFrame20.png
+            :alt: Filling the composite model.
+            :align: center
+
+            Figure 39: Filling the composite model.
