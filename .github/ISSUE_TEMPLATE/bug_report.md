@@ -27,9 +27,8 @@ A clear and concise description of what you expected to happen.
 If applicable, add screenshots to help explain your problem.
 
 **Desktop (please complete the following information):**
- - OS: [e.g. Windows 11]
- - SIMULINK_DLL_Builder Version [e.g. v1.0.0]
- - MATLAB Simulink Version [e.g. 2024b]
+ - OS: [e.g. MacOS 13.5.1]
+ - Simulink DLL Builder [e.g. v1.0.0]
 
 **Additional context**
 Add any other context about the problem here.
