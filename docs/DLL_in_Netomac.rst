@@ -21,7 +21,7 @@ For this example, the ``Sections`` template is used.
 The empty project file (.net) is shown below:
 
 .. code-block:: netomac
-   :lineos:
+   :linenos:
 
    $-------------------------------------------------------------------------------|
    ****                                                                            |
@@ -75,7 +75,7 @@ The impedance of the Thevenin equivalent is defined by a resistance (#Re) of 10.
 The resulting part of the parameter section is shown below:
 
 .. code-block:: netomac
-   :lineos:
+   :linenos:
 
    $-------------------------------------------------------------------------------| Grid data  
    $                                                                               |
@@ -117,7 +117,7 @@ The impedances and nominal voltage are specified in the global parameters.
 The resulting ``[[Network]]`` section is shown below:
 
 .. code-block:: netomac
-   :lineos:
+   :linenos:
 
    $-------------------------------------------------------------------------------| 
    [[Network]]                                                                     |
