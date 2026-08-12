@@ -8,6 +8,8 @@ from netomac_lexer import NetomacLexer
 
 sys.path.insert(0, os.path.abspath(".."))
 
+from pygments.styles import STYLE_MAP  # not required, just for reference
+pygments_style = "netomac_style.NetomacStyle"   # dotted path to your class
 
 extensions = [
     "sphinx.ext.autodoc",
