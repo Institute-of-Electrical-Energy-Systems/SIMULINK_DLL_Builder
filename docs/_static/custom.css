@@ -5,3 +5,19 @@ white-space: normal;
 .wy-nav-content {
     max-width: 100% !important;
 }
+
+/* Column-ruled background for netomac code blocks only, mimicking the
+   PSS(R)NETOMAC editor's fixed-width column grid.
+   Scoped to .highlight-netomac so other code-block languages
+   (fortran, python, etc.) are unaffected. */
+.highlight-netomac pre {
+    font-variant-ligatures: none;
+    background-image: repeating-linear-gradient(
+        to right,
+        transparent 0,
+        transparent calc(10ch - 1px),
+        rgba(0, 0, 0, 0.12) calc(10ch - 1px),
+        rgba(0, 0, 0, 0.12) 10ch
+    );
+    background-position: 0 0;
+}
