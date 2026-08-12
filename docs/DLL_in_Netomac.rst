@@ -224,27 +224,29 @@ The behavior of the model depends only on the defined model variables; therefore
 The model variables are defined as inputs to the models. 
 By selecting ``Insert Input``, a ``Constant`` input block can be added (see Figure 6).
 The ``Output`` name of the block is specified in the topology section (see Figure 7), while the corresponding variable is specified as the ``Constant Value`` in the ``Data`` section of the block (see Figure 8).
-By creating one block for each variable, the model contains five input blocks (see Figure 9).
 
-..  figure:: ./images/NETOMAC/_06_Defining_Constant_Input.png
-    :alt: Defining Constant Input in model files 
+.. grid:: 3
 
-    Figure 6: Defining Constant Input in model files (.xmac).
+   .. grid-item::
 
-..  figure:: ./images/NETOMAC/_07_Defining_Name_Constant_Input.png
-    :alt: Define signal name of Constant Input in model file
+       ..  figure:: ./images/NETOMAC/_06_Defining_Constant_Input.png
+            :alt: Creating a constant input block in model files (.xmac).
 
-    Figure 7: Define signal name of Constant Input in model file (.xmac).
+            Figure 6: Creating a constant input block in model files (.xmac).
 
-..  figure:: ./images/NETOMAC/_08_Defining_Variable_Constant_Input.png
-    :alt: Defining Variable in Constant Input in model files
+   .. grid-item::
 
-    Figure 8: Defining Variable in Constant Input in model files  (.xmac).
+        ..  figure:: ./images/NETOMAC/_07_Defining_Topology_Of_Constant_Input.png
+            :alt: Define topology of constant input block in model files (.xmac).
 
-..  figure:: ./images/NETOMAC/_09_Result_Inputs.png
-    :alt: Resulting Constant Inputs in ideal voltage source model
+            Figure 7: Define topology constant input block in model files (.xmac).
 
-    Figure 9: Resulting Constant Inputs in ideal voltage source model (.xmac).
+    .. grid-item::
+
+        ..  figure:: ./images/NETOMAC/_08_Defining_Data_Of_Constant_Input.png
+            :alt: Define data of constant input block in model files (.xmac).
+
+            Figure 8: Define data of constant input block in model files (.xmac).     
 
 Defining the Fault Definition
 """"""""""""""""""""""""""""""
