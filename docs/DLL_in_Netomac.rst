@@ -63,14 +63,12 @@ The empty project file (.net) is shown below:
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Before defining the power system in the .net file, the global parameters are defined in the first section of the empty project. 
-These global parameters can subsequently be used for the power system and the associated models.
-
-The relevant power system parameters are defined ad global parameters. 
+These global parameters can subsequently be used for the power system and the associated models. The relevant power system parameters are defined as global parameters. 
 These include the nominal voltage, the converter impedance, and the impedance of the Thevenin equivalent.
 
-A nominal voltage (#Vn) of 400 kV is used. 
-The converter impedance is defined by a resistance (#Rc) of 0.7820 Ω and an inductance (#Lc) of 154.7 mH.
-The impedance of the Thevenin equivalent is defined by a resistance (#Re) of 10.613730029 Ω and an inductance (#Le) of 337.845519749 mH.
+A nominal voltage ``#Vn`` of 400 kV is used. 
+The converter impedance is defined by a resistance ``#Rc`` of 0.7820 Ω and an inductance ``#Lc`` of 154.7 mH.
+The impedance of the Thevenin equivalent is defined by a resistance ``#Re`` of 10.613730029 Ω and an inductance ``#Le`` of 337.845519749 mH.
 
 The resulting part of the parameter section is shown below:
 
@@ -102,16 +100,13 @@ The resulting part of the parameter section is shown below:
     Figure 4: Defining the power system.
 
 The power system consists of a Thevenin equivalent and a controlled voltage source, as described above.
-
 In PSS®NETOMAC, the power system is defined in the ``[[Network]]`` section. 
 A voltage source is modeled by an ``R``-line with neglibily small resistance. 
-The voltage source is subsequently defined for this branch using a ``Source`` model in the ``[[Models_during_Loadflow]`` section.
+The voltage source is subsequently defined for this branch using a ``SOURCE-V`` or ``GNE-V`` model in the ``[[Models_during_Loadflow]`` section.
 An impedance is modeled by an ``A``-line with the corresponding resistance in Ω and inductance in mH. 
-
 For this power system, two ``R``-lines and two ``A``-lines are therefore required. 
 One ``R``-line and one ``A``-line represent the Thevenin equivalent, using the parameters ``#Rc`` and ``#Lc``.
 The second ``R``-line and one ``A``-line represent the converter and its impedance, using the parameters ``#Rc`` and ``#Lc``.
-
 The impedances and nominal voltage are specified in the global parameters.
 
 The resulting ``[[Network]]`` section is shown below:
@@ -139,38 +134,36 @@ The resulting ``[[Network]]`` section is shown below:
    [[End Network]]                                                                 |
    $-------------------------------------------------------------------------------| 
 
-3. Defining the Control Model for the Ideal Voltage Source
+3. Defining the Model for the Ideal Voltage Source
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
-The first model in the ``[[Models_during_Loadflow]]`` section is created.
 
 The voltage source of the Thevenin equivalent is intended to operate as an ideal voltage source with a constant RMS voltage corresponding to the nominal voltage ``#Vn`` under steady-state conditions.
 For the fault scenario, a voltage dip is implemented, allowing the RMS voltage to be reduced to, for example, 0.7 pu at a specified time and restored to the nominal voltage at another specified time.
 The voltage source is modeled as a three-phase voltage source. 
-For this purpose, a ``GNE-V`` control model is created.
+For this purpose, a ``GNE-V`` model is created.
 The ``GNE-V`` model requires the voltage output to be specified as the real and imaginary parts of the voltage phasor.
 The voltage phasor is represented in a rotating reference frame rotating at the nominal frequency. 
-Therefore the output values are defined as constant signals in the rotating reference frame rather than as time-varying quantities. 
+Therefore the output values are defined as constant quantities in the rotating reference frame rather than as time-varying quantities. 
 
-To create a new ``GNE-V`` control model, a new model file is created (see Figure 1). 
+To create a new ``GNE-V`` model, a new model file is created (see Figure 1). 
 The model properties, such as ``Name``, ``Author`` and ``Description``, are then specified (see Figure 2).
 With the ``Add model file to project`` option enabled, the model file is saved in the ``.\MAC`` subdirectory.
 In the next step, the page settings for the model file are defined (see Figure 3).
 
-..  figure:: .\images\NETOMAC\_01_Create_new_model_file.png"
-    :alt: Creating a new empty model file
+..  figure:: .\images\NETOMAC\_01_Create_new_model_file.png
+    :alt: Creating a new empty model file (.xmac) in PSS®Netomac.
 
-    Figure 1: Creating a new empty model file (.xmac).
+    Figure 1: Creating a new empty model file (.xmac) in PSS®Netomac.
 
-..  figure:: .\images\NETOMAC\_02_Create_Ideal_Voltage_Source_xmac.png"
-    :alt: Define settings of new empty model file
+..  figure:: .\images\NETOMAC\_02_Create_Ideal_Voltage_Source_xmac.png
+    :alt: Define settings of new empty model file (.xmac) in PSS®Netomac.
 
-    Figure 2: Define settings of new empty model file (.xmac).
+    Figure 2: Define settings of new empty model file (.xmac) in PSS®Netomac.
 
-..  figure:: .\images\NETOMAC\_03_Define_Page_Size_Ideal_Voltage_Source_xmac.png"
-    :alt: Define page settings of new empty model file
+..  figure:: .\images\NETOMAC\_03_Define_Page_Size_Ideal_Voltage_Source_xmac.png
+    :alt: Define page settings of new empty model file (.xmac) in PSS®Netomac.
 
-    Figure 3: Define page settings of new empty model file (.xmac).
+    Figure 3: Define page settings of new empty model file (.xmac) in PSS®Netomac.
 
 Defining the Model Variables
 """"""""""""""""""""""""""""""
