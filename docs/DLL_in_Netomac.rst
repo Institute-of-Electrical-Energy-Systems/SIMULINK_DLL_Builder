@@ -20,7 +20,7 @@ The individual components are added and configured step by step, starting from t
 For this example, the ``Sections`` template is used. 
 The empty project file (.net) is shown below:
 
-.. code-block:: fortran
+.. code-block:: text
     $-------------------------------------------------------------------------------|
     ****                                                                            |
     $-------------------------------------------------------------------------------|
@@ -56,3 +56,35 @@ The empty project file (.net) is shown below:
     $-------------------------------------------------------------------------------|
     [[End Models]]                                                                  |
     $-------------------------------------------------------------------------------|
+
+1. Defining the Global Parameters
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+Before defining the power system in the .net file, the global parameters are defined in the first section of the empty project. 
+These global parameters can subsequently be used for the power system and the associated models.
+
+The relevant power system parameters are defined ad global parameters. 
+These include the nominal voltage, the converter impedance, and the impedance of the Thevenin equivalent.
+
+A nominal voltage (#Vn) of 400 kV is used. 
+The converter impedance is defined by a resistance (#Rc) of 0.7820 Ω and an inductance (#Lc) of 154.7 mH.
+The impedance of the Thevenin equivalent is defined by a resistance (#Re) of 10.613730029 Ω and an inductance (#Le) of 337.845519749 mH.
+
+The resulting part of the parameter section is shown below:
+
+.. code-block:: text
+    $-------------------------------------------------------------------------------| Grid data  
+    $                                                                               |
+    @@ #Vn    = 400            ! Nominal voltage [kV]                               |
+    $                                                                               |
+    $-------------------------------------------------------------------------------| Converter model data  
+    $                                                                               |
+    @@ #Rc    = 0.7820         ! Converter resistance [Ohm]                         |
+    @@ #Lc    = 154.7          ! Converter reactance [mH]                           | 
+    $                                                                               |
+    $-------------------------------------------------------------------------------| Thevenin equivalent data 
+    $                                                                               |
+    @@ #Re    =  10.613730029  ! Thevenin equivalent resistance [Ohm]               |
+    @@ #Le    = 337.845519749  ! Thevenin equivalent reactane [mH]                  |
+    $                                                                               |
+    $-------------------------------------------------------------------------------| 
