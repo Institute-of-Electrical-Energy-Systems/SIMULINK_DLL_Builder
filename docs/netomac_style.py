@@ -10,7 +10,7 @@ class NetomacStyle(Style):
 
     styles = {
         Text:            "#000000",
-        Comment:         "italic #007a00",   # $ ... and ! ... lines
+        Comment:         "#7ea74d",   # $ ... and ! ... lines
         Keyword:         "bold #a31515",     # [[Section]] headers
         Operator:        "bold #a31515",     # @ and @@
         Name.Variable:   "#267f99",          # #Vn, #Rc, #\MAC\...
