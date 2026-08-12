@@ -20,7 +20,7 @@ The individual components are added and configured step by step, starting from t
 For this example, the ``Sections`` template is used. 
 The empty project file (.net) is shown below:
 
-.. code-block:: text
+.. code-block:: fortran
    $-------------------------------------------------------------------------------|
    ****                                                                            |
    $-------------------------------------------------------------------------------|
@@ -72,7 +72,7 @@ The impedance of the Thevenin equivalent is defined by a resistance (#Re) of 10.
 
 The resulting part of the parameter section is shown below:
 
-.. code-block:: text
+.. code-block:: fortran
 
    $-------------------------------------------------------------------------------| Grid data  
    $                                                                               |
@@ -90,7 +90,7 @@ The resulting part of the parameter section is shown below:
    $                                                                               |
    $-------------------------------------------------------------------------------| 
 
-1. Defining the power system
+2. Defining the power system
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 ..  figure:: 
@@ -113,7 +113,7 @@ The impedances and nominal voltage are specified in the global parameters.
 
 The resulting ``[[Network]]`` section is shown below:
 
-.. code-block:: text
+.. code-block:: fortran
 
    $-------------------------------------------------------------------------------| 
    [[Network]]                                                                     |
@@ -134,3 +134,4 @@ The resulting ``[[Network]]`` section is shown below:
    $-------------------------------------------------------------------------------| 
    [[End Network]]                                                                 |
    $-------------------------------------------------------------------------------| 
+
