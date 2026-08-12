@@ -147,20 +147,20 @@ Therefore the output values are defined as constant quantities in the rotating r
 
 To create a new ``GNE-V`` model, a new model file is created (see Figure 1). 
 The model properties, such as ``Name``, ``Author`` and ``Description``, are then specified (see Figure 2).
-With the ``Add model file to project`` option enabled, the model file is saved in the ``.\MAC`` subdirectory.
+With the ``Add model file to project`` option enabled, the model file is saved in the ``./MAC`` subdirectory.
 In the next step, the page settings for the model file are defined (see Figure 3).
 
-..  figure:: .\images\NETOMAC\_01_Create_new_model_file.png
+..  figure:: ./images/NETOMAC/_01_Create_new_model_file.png
     :alt: Creating a new empty model file (.xmac) in PSS®Netomac.
 
     Figure 1: Creating a new empty model file (.xmac) in PSS®Netomac.
 
-..  figure:: .\images\NETOMAC\_02_Create_Ideal_Voltage_Source_xmac.png
+..  figure:: ./images/NETOMAC/_02_Create_Ideal_Voltage_Source_xmac.png
     :alt: Define settings of new empty model file (.xmac) in PSS®Netomac.
 
     Figure 2: Define settings of new empty model file (.xmac) in PSS®Netomac.
 
-..  figure:: .\images\NETOMAC\_03_Define_Page_Size_Ideal_Voltage_Source_xmac.png
+..  figure:: ./images/NETOMAC/_03_Define_Page_Size_Ideal_Voltage_Source_xmac.png
     :alt: Define page settings of new empty model file (.xmac) in PSS®Netomac.
 
     Figure 3: Define page settings of new empty model file (.xmac) in PSS®Netomac.
@@ -194,12 +194,12 @@ The model variables are shown in following table:
 
 By selecting ``Variables``, the parameters described above can be defined as new model variables (see Figure 4 and 5). 
 
-..  figure:: .\images\NETOMAC\_04_Defining_Variables_in_xmac.png"
+..  figure:: ./images/NETOMAC/_04_Defining_Variables_in_xmac.png
     :alt: Defining Variables in model files
 
     Figure 4: Defining Variables in model files (.xmac).
 
-..  figure:: .\images\NETOMAC\_05_Defining_Variables_Ideal_Voltage_Source.png"
+..  figure:: ./images/NETOMAC/_05_Defining_Variables_Ideal_Voltage_Source.png
     :alt: Define variables for ideal voltage source model
 
     Figure 5: Define variables for ideal voltage source model (.xmac).
@@ -213,22 +213,22 @@ By selecting ``Insert Input``, a ``Constant`` input block can be added (see Figu
 The ``Output`` name of the block is specified in the topology section (see Figure 7), while the corresponding variable is specified as the ``Constant Value`` in the ``Data`` section of the block (see Figure 8).
 By creating one block for each variable, the model contains five input blocks (see Figure 9).
 
-..  figure:: .\images\NETOMAC\_06_Defining_Constant_Input.png"
+..  figure:: ./images/NETOMAC/_06_Defining_Constant_Input.png
     :alt: Defining Constant Input in model files 
 
     Figure 6: Defining Constant Input in model files (.xmac).
 
-..  figure:: .\images\NETOMAC\_07_Defining_Name_Constant_Input.png"
+..  figure:: ./images/NETOMAC/_07_Defining_Name_Constant_Input.png
     :alt: Define signal name of Constant Input in model file
 
     Figure 7: Define signal name of Constant Input in model file (.xmac).
 
-..  figure:: .\images\NETOMAC\_08_Defining_Variable_Constant_Input.png"
+..  figure:: ./images/NETOMAC/_08_Defining_Variable_Constant_Input.png
     :alt: Defining Variable in Constant Input in model files
 
     Figure 8: Defining Variable in Constant Input in model files  (.xmac).
 
-..  figure:: .\images\NETOMAC\_09_Result_Inputs.png"
+..  figure:: ./images/NETOMAC/_09_Result_Inputs.png
     :alt: Resulting Constant Inputs in ideal voltage source model
 
     Figure 9: Resulting Constant Inputs in ideal voltage source model (.xmac).
@@ -257,17 +257,17 @@ The implemented logic is shown below :
 For the ``FORTRAN`` block, the output signal names ``Vr`` and ``Vi`` has to be defined (see Figure 10).
 Figure 11 shows the resulting control model.
 
-..  figure:: .\images\NETOMAC\_10_Insert_FORTRAN_Block.png"
+..  figure:: ./images/NETOMAC/_10_Insert_FORTRAN_Block.png
     :alt: Define signal name of Constant Input in model file
 
     Figure 9: Define signal name of Constant Input in model file (.xmac).
 
-..  figure:: .\images\NETOMAC\_11_Voltage_Dip_Logic.png"
+..  figure:: ./images/NETOMAC/_11_Voltage_Dip_Logic.png
     :alt: Defining Variable in Constant Input in model files
 
     Figure 10: Defining Variable in Constant Input in model files  (.xmac).
 
-..  figure:: .\images\NETOMAC\_12_Result_Fault_Logic.png"
+..  figure:: ./images/NETOMAC/_12_Result_Fault_Logic.png
     :alt: Resulting Constant Inputs in ideal voltage source model
 
     Figure 11: Resulting Constant Inputs in ideal voltage source model (.xmac).
@@ -285,22 +285,22 @@ In the ``Data`` section the ``Integration type`` is set to ``During network iter
 Figure 15 shows the finalized model file for the ideal voltage source of the Thevenin equivalent.
 
 
-..  figure:: .\images\NETOMAC\_17_Insert_GNE_V_Output.png"
+..  figure:: ./images/NETOMAC/_17_Insert_GNE_V_Output.png
     :alt: Define signal name of Constant Input in model file
 
     Figure 12: Define signal name of Constant Input in model file (.xmac).
 
-..  figure:: .\images\NETOMAC\_18_GNE_V_Output_Topology.png"
+..  figure:: ./images/NETOMAC/_18_GNE_V_Output_Topology.png
     :alt: Defining Variable in Constant Input in model files
 
     Figure 13: Defining Variable in Constant Input in model files  (.xmac).
 
-..  figure:: .\images\NETOMAC\_19_GNE_V_Output_Data.png"
+..  figure:: ./images/NETOMAC/_19_GNE_V_Output_Data.png
     :alt: Resulting Constant Inputs in ideal voltage source model
 
     Figure 14: Resulting Constant Inputs in ideal voltage source model (.xmac).
 
-..  figure:: .\images\NETOMAC\_20_GNE_V_Results.png"
+..  figure:: ./images/NETOMAC/_20_GNE_V_Results.png
     :alt: Resulting Constant Inputs in ideal voltage source model
 
     Figure 15: Resulting Constant Inputs in ideal voltage source model (.xmac).    
@@ -313,7 +313,7 @@ By right-clicking and selecting ``Insert Model``, the model can be added by spec
 PSS®NETOMAC automatically creates the variable list for the model.
 The Parameter ``#NAME`` must be set to the same name as the branch of the voltage source, ``VSrc``.
 
-..  figure:: .\images\NETOMAC\_17_Insert_GNE_V.png"
+..  figure:: ./images/NETOMAC/_17_Insert_GNE_V.png
     :alt: Define signal name of Constant Input in model file
 
     Figure 16: Define signal name of Constant Input in model file (.xmac).
@@ -349,7 +349,7 @@ They receive the output value of the ``EVALUATE`` model and inject the correspon
 
 The model file for the ``EVALUATE`` model is similar created as the model before (see Figure 17, 18 and 19)
 
-..  figure:: .\images\NETOMAC\_18_Create_IBR_DLL_Model.png"
+..  figure:: ./images/NETOMAC/_18_Create_IBR_DLL_Model.png
     :alt: Creating a new empty model file
 
     Figure 17: Creating a new empty model file (.xmac).
@@ -367,32 +367,32 @@ By enabling the ``Individual phase definition`` option, the measurement can be a
 One input block is created for each measurement. 
 Therefore, the model contains six input blocks (see Figure 24).
 
-..  figure:: .\images\NETOMAC\_19_Create_Input_IBR_DLL_Model.png"
+..  figure:: ./images/NETOMAC/_19_Create_Input_IBR_DLL_Model.png
     :alt: Defining Constant Input in model files 
 
     Figure 20: Defining Constant Input in model files (.xmac).
 
-..  figure:: .\images\NETOMAC\_20_Create_Input_IBR_DLL_Model_Voltage_Output.png"
+..  figure:: ./images/NETOMAC/_20_Create_Input_IBR_DLL_Model_Voltage_Output.png
     :alt: Define signal name of Constant Input in model file
 
     Figure 21: Define signal name of Constant Input in model file (.xmac).
 
-..  figure:: .\images\NETOMAC\_21_Create_Input_IBR_DLL_Model_Voltage_Function.png"
+..  figure:: ./images/NETOMAC/_21_Create_Input_IBR_DLL_Model_Voltage_Function.png
     :alt: Defining Variable in Constant Input in model files
 
     Figure 22: Defining Variable in Constant Input in model files  (.xmac).
 
-..  figure:: .\images\NETOMAC\_22_Create_Input_IBR_DLL_Model_Current_Output.png"
+..  figure:: ./images/NETOMAC/_22_Create_Input_IBR_DLL_Model_Current_Output.png
     :alt: Resulting Constant Inputs in ideal voltage source model
 
     Figure 23: Resulting Constant Inputs in ideal voltage source model (.xmac).
 
-..  figure:: .\images\NETOMAC\_23_Create_Input_IBR_DLL_Model_Current_Function.png"
+..  figure:: ./images/NETOMAC/_23_Create_Input_IBR_DLL_Model_Current_Function.png
     :alt: Creating a new empty model file
 
     Figure 24: Creating a new empty model file (.xmac).
 
-..  figure:: .\images\NETOMAC\_24_Result_Inputs_IBR_DLL_Model.png"
+..  figure:: ./images/NETOMAC/_24_Result_Inputs_IBR_DLL_Model.png
     :alt: Creating a new empty model file
 
     Figure 24: Creating a new empty model file (.xmac).
@@ -433,7 +433,7 @@ The automatically created variables can be configured under ``Variables`` using 
 | #Ic_MVA.P  | 'T'     |         |         | 'T'         | Phase for Current measurement - phase c       |
 +--------------------------------------------------------------------------------------------------------|
 
-..  figure:: .\images\NETOMAC\_25_Variables_IBR_DLL_Model.png"
+..  figure:: ./images/NETOMAC/_25_Variables_IBR_DLL_Model.png
     :alt: Creating a new empty model file
 
     Figure 25: Creating a new empty model file (.xmac).
@@ -454,12 +454,12 @@ The equations are shown below:
    $ Factor for conversion voltage from MVA to A 
     #IMVA2A   = SQRT(2) / SQRT(3) / #Vn * 1e3  
 
-..  figure:: .\images\NETOMAC\_26_Equations.png"
+..  figure:: ./images/NETOMAC/_26_Equations.png
     :alt: Creating a new empty model file
 
     Figure 26: Creating a new empty model file (.xmac).
 
-..  figure:: .\images\NETOMAC\_27_Equations_Fortran.png"
+..  figure:: ./images/NETOMAC/_27_Equations_Fortran.png
     :alt: Creating a new empty model file
 
     Figure 27: Creating a new empty model file (.xmac).
@@ -468,39 +468,39 @@ The parameters ``#Vpu2V`` and ``#IMVA2A`` are applied using ``Gain`` blocks, whi
 The parameter ``#Vpu2V`` is used for all voltage inputs (see Figure 29, 30 and 31).
 The parameter ``#IMVA2A`` is used for all current inputs (see Figure 32, 33).
 
-..  figure:: .\images\NETOMAC\_28_Create_Gain.png"
+..  figure:: ./images/NETOMAC/_28_Create_Gain.png
     :alt: Creating a new empty model file
 
     Figure 28: Creating a new empty model file (.xmac).
 
-..  figure:: .\images\NETOMAC\_29_Create_Gain_Voltage_topology.png"
+..  figure:: ./images/NETOMAC/_29_Create_Gain_Voltage_topology.png
     :alt: Creating a new empty model file
 
     Figure 29: Creating a new empty model file (.xmac).
 
-..  figure:: .\images\NETOMAC\_30_Create_Gain_Voltage_data.png"
+..  figure:: ./images/NETOMAC/_30_Create_Gain_Voltage_data.png
     :alt: Creating a new empty model file
 
     Figure 30: Creating a new empty model file (.xmac).
 
-..  figure:: .\images\NETOMAC\_31_Create_Gain_Voltage_limit.png"
+..  figure:: ./images/NETOMAC/_31_Create_Gain_Voltage_limit.png
     :alt: Creating a new empty model file
 
     Figure 31: Creating a new empty model file (.xmac).
 
-..  figure:: .\images\NETOMAC\_32_Create_Gain_Current_topology.png"
+..  figure:: ./images/NETOMAC/_32_Create_Gain_Current_topology.png
     :alt: Creating a new empty model file
 
     Figure 32: Creating a new empty model file (.xmac).
     
-..  figure:: .\images\NETOMAC\_33_Create_Gain_Current_data.png"
+..  figure:: ./images/NETOMAC/_33_Create_Gain_Current_data.png
     :alt: Creating a new empty model file
 
     Figure 33: Creating a new empty model file (.xmac).
 
 Figure 34 shows the model including the ``Gain`` blocks.
 
-..  figure:: .\images\NETOMAC\_34_Create_Gain_Result.png"
+..  figure:: ./images/NETOMAC/_34_Create_Gain_Result.png
     :alt: Creating a new empty model file
 
     Figure 34: Creating a new empty model file (.xmac).
@@ -510,22 +510,22 @@ Integration of the DLL model
 
 The DLL model is integrated into the model by selecting ``Insert Special Block`` and then selecting the ``DLL IEC`` block (see Figure 35).
 The path to the DLL file (.dll) must be specified. 
-PSS®Netomac automatically creates an additional model file for the DLL interface in the project subdirectory ``.\MAC``. 
+PSS®Netomac automatically creates an additional model file for the DLL interface in the project subdirectory ``./MAC``. 
 In the ``Topology`` section the output names are defined (see Figure 36).
 The DLL parameters are listed in the ``Data`` section (see Figure 37).
 These parameters are already assigned default values.
 
-..  figure:: .\images\NETOMAC\_35_Create_DLL_Block.png"
+..  figure:: ./images/NETOMAC/_35_Create_DLL_Block.png
     :alt: Creating a new empty model file
 
     Figure 35: Creating a new empty model file (.xmac).
 
-..  figure:: .\images\NETOMAC\_36_Create_DLL_Block_topology.png"
+..  figure:: ./images/NETOMAC/_36_Create_DLL_Block_topology.png
     :alt: Creating a new empty model file
 
     Figure 36: Creating a new empty model file (.xmac).
 
-..  figure:: .\images\NETOMAC\_37_Create_DLL_Block_data.png"
+..  figure:: ./images/NETOMAC/_37_Create_DLL_Block_data.png
     :alt: Creating a new empty model file
 
     Figure 37: Creating a new empty model file (.xmac).
@@ -534,12 +534,12 @@ The output signals of the DLL must be converted to the PSS®NETOMAC format requi
 Therefore, ``Gain`` blocks are added to apply the required conversion factors (see Figure 38). 
 The resulting model is shown in Figure 39.
 
-..  figure:: .\images\NETOMAC\_38_Create_DLL_Block_topology.png"
+..  figure:: ./images/NETOMAC/_38_Create_DLL_Block_topology.png
     :alt: Creating a new empty model file
 
     Figure 38: Creating a new empty model file (.xmac).
 
-..  figure:: .\images\NETOMAC\_39_Create_DLL_Block_topology.png"
+..  figure:: ./images/NETOMAC/_39_Create_DLL_Block_topology.png
     :alt: Creating a new empty model file
 
     Figure 39: Creating a new empty model file (.xmac).
@@ -553,22 +553,22 @@ In the ``Data`` section the ``Integration type`` is set to ``During network iter
 Figure 43 shows the finalized model file for the ideal voltage source of the Thevenin equivalent.
 
 
-..  figure:: .\images\NETOMAC\_17_Insert_GNE_V_Output.png"
+..  figure:: ./images/NETOMAC/_17_Insert_GNE_V_Output.png
     :alt: Define signal name of Constant Input in model file
 
     Figure 40: Define signal name of Constant Input in model file (.xmac).
 
-..  figure:: .\images\NETOMAC\_18_GNE_V_Output_Topology.png"
+..  figure:: ./images/NETOMAC/_18_GNE_V_Output_Topology.png
     :alt: Defining Variable in Constant Input in model files
 
     Figure 41: Defining Variable in Constant Input in model files  (.xmac).
 
-..  figure:: .\images\NETOMAC\_19_GNE_V_Output_Data.png"
+..  figure:: ./images/NETOMAC/_19_GNE_V_Output_Data.png
     :alt: Resulting Constant Inputs in ideal voltage source model
 
     Figure 42: Resulting Constant Inputs in ideal voltage source model (.xmac).
 
-..  figure:: .\images\NETOMAC\_20_GNE_V_Results.png"
+..  figure:: ./images/NETOMAC/_20_GNE_V_Results.png
     :alt: Resulting Constant Inputs in ideal voltage source model
 
     Figure 43: Resulting Constant Inputs in ideal voltage source model (.xmac).    
