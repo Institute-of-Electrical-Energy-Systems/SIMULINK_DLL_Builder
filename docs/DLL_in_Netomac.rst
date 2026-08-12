@@ -155,16 +155,22 @@ In the next step, the page settings for the model file are defined (see Figure 3
 
     Figure 1: Creating a new empty model file (.xmac) in PSS®Netomac.
 
-..  figure:: ./images/NETOMAC/_02_Create_Ideal_Voltage_Source_xmac.png
-    :alt: Define settings of new empty model file (.xmac) in PSS®Netomac.
+.. grid:: 2
 
-    Figure 2: Define settings of new empty model file (.xmac) in PSS®Netomac.
+   .. grid-item::
 
-..  figure:: ./images/NETOMAC/_03_Define_Page_Size_Ideal_Voltage_Source_xmac.png
-    :alt: Define page settings of new empty model file (.xmac) in PSS®Netomac.
+      ..  figure:: ./images/NETOMAC/_02_Create_Ideal_Voltage_Source_xmac.png
+            :alt: Define settings of new empty model file (.xmac) in PSS®Netomac.
 
-    Figure 3: Define page settings of new empty model file (.xmac) in PSS®Netomac.
+            Figure 2: Define settings of new empty model file (.xmac) in PSS®Netomac.
 
+   .. grid-item::
+
+       ..  figure:: ./images/NETOMAC/_03_Define_Page_Size_Ideal_Voltage_Source_xmac.png
+            :alt: Define page settings of new empty model file (.xmac) in PSS®Netomac.
+
+            Figure 3: Define page settings of new empty model file (.xmac) in PSS®Netomac.
+   
 Defining the Model Variables
 """"""""""""""""""""""""""""""
 
@@ -172,37 +178,44 @@ Five variables are required to implement the described behavior of the ideal vol
 The variables ``#Vreal`` and ``#Vimag`` represent the real and imaginary parts of the ideal voltage source under steady-state conditions. 
 During the load-flow calculation, the ideal voltage source operates as a slack bus.
 Therefore, the voltage magnitude and phase angle are defined by the voltage source.
-Accordingly, the values ``#Vreal`` = 1.0 pu and ``#Vimag`` = 0.0 pu correspont to a voltage magnitude of 1.0 pu and a phase angle of 0° during the load-flow calculation.
+Accordingly, the values ``#Vreal`` = 1.0 pu and ``#Vimag`` = 0.0 pu correspond to a voltage magnitude of 1.0 pu and a phase angle of 0° during the load-flow calculation.
 
 For the fault condition, the parameter ``#Vdip`` specifies the voltage magnitude during the voltage dip.
 The parameter ``#Tdip1`` specifies the time at which the voltage dip occurs, while ``#Tdip2`` specifies the time at which the voltage is restored to ist nominal value.
 
 The model variables are shown in following table:
 
++-----------+--------+---------+---------+-------------+-------------------------------------------------+
 | Variables | Value  | Minimum | Maximum | Debug Value | Description                                     |
-+========================================================================================================|
++===========+========+=========+=========+=============+=================================================+
 | #Vreal    | 1.0    | 0.0     | 1E6     | 1.0         | Real part of the ideal voltage source [pu]      |
-+--------------------------------------------------------------------------------------------------------|
++-----------+--------+---------+---------+-------------+-------------------------------------------------+
 | #Vimag    | 0.0    | 0.0     | 1E6     | 0.0         | Imaginary part of the ideal voltage source [pu] |
-+--------------------------------------------------------------------------------------------------------|
-| #Vdip    | 0.7     | 0.0     | 1E6     | 0.7         | Voltage magnitude during the voltage dip [pu]   |
-+--------------------------------------------------------------------------------------------------------|
++-----------+--------+---------+---------+-------------+-------------------------------------------------+
+| #Vdip     | 0.7    | 0.0     | 1E6     | 0.7         | Voltage magnitude during the voltage dip [pu]   |
++-----------+--------+---------+---------+-------------+-------------------------------------------------+
 | #Tdip1    | 0.1    | 0.0     | 1E6     | 0.1         | Time at which the voltage dip occurs [s]        |
-+--------------------------------------------------------------------------------------------------------|
++-----------+--------+---------+---------+-------------+-------------------------------------------------+
 | #Tdip2    | 0.2    | 0.0     | 1E6     | 0.1         | Time at which the voltage is restored [s]       |
-+--------------------------------------------------------------------------------------------------------|
++-----------+--------+---------+---------+-------------+-------------------------------------------------+
 
-By selecting ``Variables``, the parameters described above can be defined as new model variables (see Figure 4 and 5). 
+By selecting ``Variables``, the parameters described above can be defined as new model variables (see Figure 4 and Figure 5). 
 
-..  figure:: ./images/NETOMAC/_04_Defining_Variables_in_xmac.png
-    :alt: Defining Variables in model files
+.. grid:: 2
 
-    Figure 4: Defining Variables in model files (.xmac).
+   .. grid-item::
 
-..  figure:: ./images/NETOMAC/_05_Defining_Variables_Ideal_Voltage_Source.png
-    :alt: Define variables for ideal voltage source model
+      ..  figure:: ./images/NETOMAC/_04_Defining_Variables_in_xmac.png
+            :alt: Defining variables in model files (.xmac).
 
-    Figure 5: Define variables for ideal voltage source model (.xmac).
+            Figure 4: Defining variables in model files (.xmac).
+
+   .. grid-item::
+
+       ..  figure:: ./images/NETOMAC/_05_Defining_Variables_Ideal_Voltage_Source.png
+            :alt: Define variables for ideal voltage source model.
+
+            Figure 5: Define variables for ideal voltage source model..
 
 Defining the Inputs
 """"""""""""""""""""""""""""""
