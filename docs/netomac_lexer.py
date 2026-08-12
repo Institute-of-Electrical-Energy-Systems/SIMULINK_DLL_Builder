@@ -1,5 +1,5 @@
 from pygments.lexer import RegexLexer
-from pygments.token import Comment, Keyword, Name, Number, Text
+from pygments.token import Comment, Keyword, Name, Number, Operator, String, Text
 
 
 class NetomacLexer(RegexLexer):
@@ -11,8 +11,11 @@ class NetomacLexer(RegexLexer):
         "root": [
             (r"\$.*?$", Comment),
             (r"!.*?$", Comment),
-            (r"@@", Keyword),
-            (r"#[A-Za-z_][A-Za-z0-9_]*", Name.Variable),
+            (r"\[\[.*?\]\]", Keyword),          # [[Feeder]], [[End Network]] ...
+            (r"@@", Operator),                   # global-parameter assignment
+            (r"@", Operator),                    # local/model parameter assignment
+            (r"#[A-Za-z_][A-Za-z0-9_.\\]*", Name.Variable),  # #Vn, #\MAC\..., etc.
+            (r"'[^']*'", String),                # 'VSrc', 'IBR', ...
             (r"\b\d+(\.\d+)?([eE][+-]?\d+)?\b", Number),
             (r"\s+", Text),
             (r".", Text),
