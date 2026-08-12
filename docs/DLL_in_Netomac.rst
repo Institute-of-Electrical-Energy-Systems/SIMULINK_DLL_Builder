@@ -341,7 +341,7 @@ The resulting ``[[Models_during_Loadflow]]`` section with the integrated model i
    $-------------------------------------------------------------------------------| 
    [[End Models_during_Loadflow]]                                                  |
 
-4. Defining the Control Model for Integration of the DLL
+4. Defining the Control Models for Integration of the DLL
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The second model in the ``[[Models_during_Loadflow]]`` section is created.
@@ -584,7 +584,7 @@ Integration of the model into the power system
 """"""""""""""""""""""""""""""
 
 To integrate the created model into the power system, the model must be added to the ``.net`` file in the ``[[Models_during_Loadflow]]`` section.
-By right-clicking and selecting ``Insert Model``, the model can be added by specifying the path to the model file.
+By right-clicking and selecting ``Insert Model``, the model can be added by specifying the path to the model file (see Figure 44).
 PSS®NETOMAC automatically creates the variable list for the model.
 The Parameter ``#NAME`` can be set individually.
 
@@ -622,5 +622,76 @@ The resulting ``[[Models_during_Loadflow]]`` section with the integrated model i
    $-------------------------------------------------------------------------------|
    [[End Models_during_Loadflow]]                                                  |
 
+5. Defining the Models for the Controlled Voltage Source
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+The remaining three models in the ``[[Models_during_Loadflow]]`` section can be implemented using a single model definition. 
+A ``SOURCE-V`` model is created, which can be instantiated seperately for each phase.
+The model should generally give the output from the DLL model to the voltage source.
+While the load-flow calculation a voltage phasor should be the output and at the beginning of the dynamic simulations the output of the voltage source is defined by the load-flow values until the DLL is ready.
+The model file for the ``SOURCE-V`` model is created in a similar way to the models describes in the previous sections (see Figure ??).
 
+Defining the Model Parameters
+""""""""""""""""""""""""""""""
+
+For the Implementation of the described behavior of the voltage source, following parameters with default values are required.
+
+| Variables | Value   | Minimum | Maximum | Debug Value | Description                                       |
++===========================================================================================================|
+| #Model    | 'IBR'   |         |         | 'IBR        | Model Name of the IBR Control Model               |
++-----------------------------------------------------------------------------------------------------------|
+| #Signal   | 'Ea_pu' |         |         | 'Ea_pu'     | Signal Name of the IBR Control Model              |
++-----------------------------------------------------------------------------------------------------------|
+| #Vmag     | 1.08753 | 0.0     | 1E3     | 1.08753     | Load-flow voltage magnitude [pu]                  |
++-----------------------------------------------------------------------------------------------------------|
+| #Vang     | 25.8966 | 0.0     | 360     | 25.8966     | Load-flow voltage angle [°]                       |
++-----------------------------------------------------------------------------------------------------------|
+| #Tfrz     | 1.5e-5  | 0.0     | 1E6     | 0.1         | Freezing Time at dynamic start for bypass DLL [s] |
++-----------------------------------------------------------------------------------------------------------|
+ 
+Defining the Inputs
+""""""""""""""""""""""""""""""
+
+The model requires the output of the DLL model, which describes the voltage signal for the voltage source.
+By selecting ``Insert Input``, a ``Model Variable`` input block is created (see Figure 44).
+The  ``Output`` name of the block is specified in the topology section, while the ``Model type``, ``Model name`` and ``Output name`` is specified in the ``Data`` section (see Figure 45).
+
+Defining the bypass at dynamic start
+""""""""""""""""""""""""""""""
+The logic for bypass the DLL at dynamic start is implemented using an IF statement in FORTRAN code. 
+As described above, the voltage source operates with the output values of ``#Vmag`` and ``#Vang`` in load-flow calculation (``BOSL_MODE`` = 1) and at beginning of dynamic simulation until time ``#Tfrz`` is reached.
+
+By selecting the ``FORTRAN`` block via ``Insert Special Block``, a user-defined IF statement can be implemented. 
+The implemented logic is shown below : 
+
+.. code-block:: netomac
+    :linenos:
+
+   IF ((BOSL_MODE.EQ.1).OR.(TIME.LE.Tfrz)) THEN
+    wt = #Vang + 360 * FNOM * TIME
+    Er = #Vmag * COS(wt)
+    Ei = #Vmag * SIN(wt)   
+   ELSE 
+    Er = Er_pu
+    Ei = 0
+   ENDIF
+
+Defining the Output
+""""""""""""""""""""""""""""""
+
+As described above, the ``SOURCE-V`` output block is used.
+By selecting ``Insert Output``, the ``SOURCE-V`` output block is created (see Figure ...).
+In the topology section of the block, the ``Branch for applied voltage``, i.e., the ``R``-line created in the ``[[Network]]`` section, is specified (see Figure 13). 
+In this example, the variable ``#NAME`` is used, which represents automatically the name of the model. 
+Therefore, the model name must be identical to the corresponding branch name.
+In the ``Data`` section the ``Integration type`` is set to ``During network iteration`` (see Figure 14).
+Figure 15 shows the finalized model file for the ideal voltage source of the Thevenin equivalent.
+
+Integration of the model into the power system
+""""""""""""""""""""""""""""""
+
+.. code-block:: netomac
+    :linenos:
+
+   
+6. 
