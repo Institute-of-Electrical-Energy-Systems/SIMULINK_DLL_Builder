@@ -12,12 +12,28 @@ white-space: normal;
    (fortran, python, etc.) are unaffected. */
 .highlight-netomac pre {
     font-variant-ligatures: none;
-    background-image: repeating-linear-gradient(
+    background-image: linear-gradient(
         to right,
-        transparent 0,
-        transparent calc(10ch - 1px),
-        rgba(0, 0, 0, 0.12) calc(10ch - 1px),
-        rgba(0, 0, 0, 0.12) 10ch
+        transparent calc(0ch),
+        rgba(0,0,0,0.25) calc(0ch),
+        rgba(0,0,0,0.25) calc(0ch + 1px),
+        transparent calc(0ch + 1px),
+        transparent calc(17ch),
+        rgba(0,0,0,0.25) calc(17ch),
+        rgba(0,0,0,0.25) calc(17ch + 1px),
+        transparent calc(17ch + 1px),
+        transparent calc(27ch),
+        rgba(0,0,0,0.25) calc(27ch),
+        rgba(0,0,0,0.25) calc(27ch + 1px),
+        transparent calc(27ch + 1px),
+        transparent calc(33ch),
+        rgba(0,0,0,0.25) calc(33ch),
+        rgba(0,0,0,0.25) calc(33ch + 1px),
+        transparent calc(33ch + 1px),
+        transparent calc(57ch),
+        rgba(0,0,0,0.25) calc(57ch),
+        rgba(0,0,0,0.25) calc(57ch + 1px),
+        transparent calc(57ch + 1px)
     );
-    background-position: 0 0;
+    background-repeat: no-repeat;
 }
