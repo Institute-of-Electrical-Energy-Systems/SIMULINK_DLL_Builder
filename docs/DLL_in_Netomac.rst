@@ -341,3 +341,286 @@ The resulting ``[[Models_during_Loadflow]]`` section with the integrated model i
    $-------------------------------------------------------------------------------| 
    [[End Models_during_Loadflow]]                                                  |
 
+4. Defining the Control Model for Integration of the DLL
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+The second model in the ``[[Models_during_Loadflow]]`` section is created.
+
+The controlled voltage source is operated by an IBR control system implemented in the IEC 62400-27 DLL. 
+Four models are required to integrate the DLL into the power system. 
+One model represents the upper-level model in which the DLL is integrated. 
+The model containing the DLL is represented by an ``EVALUATE`` model.
+The other three models represent the interface to the power system for phased a, b and c, respectively.
+The other three models are represented by ``SOURCE`` models.
+They receive the output value of the ``EVALUATE`` model and inject the corresponding signals into the power system.
+
+The model file for the ``EVALUATE`` model is similar created as the model before (see Figure 17, 18 and 19)
+
+..  figure:: .\images\NETOMAC\_18_Create_IBR_DLL_Model.png"
+    :alt: Creating a new empty model file
+
+    Figure 17: Creating a new empty model file (.xmac).
+
+Defining the Inputs
+""""""""""""""""""""""""""""""
+
+The DLL requires the phase voltages at the point of common coupling (PCC) and the phase currents injected into the PCC. 
+Therefore, three voltage measurements and three current measurements are required.
+By selecting ``Insert Input``, a ``Network Signal Remote`` block is created (see Figure 20).
+The ``Output`` name of the block is specified in the topology section (see Figure 21), while the type of measurement type is specified as ``Function`` in the ``Data`` section of the block (see Figure 22).
+For the voltage measurent the function ``Voltage magnitude [pu]`` is required (see Figure 22). For the current measurement, the function ``Current magnitude [kA]`` is required (see Figure 23).
+By enabling the ``Individual phase definition`` option, the measurement can be assigned to an individual phase.
+
+One input block is created for each measurement. 
+Therefore, the model contains six input blocks (see Figure 24).
+
+..  figure:: .\images\NETOMAC\_19_Create_Input_IBR_DLL_Model.png"
+    :alt: Defining Constant Input in model files 
+
+    Figure 20: Defining Constant Input in model files (.xmac).
+
+..  figure:: .\images\NETOMAC\_20_Create_Input_IBR_DLL_Model_Voltage_Output.png"
+    :alt: Define signal name of Constant Input in model file
+
+    Figure 21: Define signal name of Constant Input in model file (.xmac).
+
+..  figure:: .\images\NETOMAC\_21_Create_Input_IBR_DLL_Model_Voltage_Function.png"
+    :alt: Defining Variable in Constant Input in model files
+
+    Figure 22: Defining Variable in Constant Input in model files  (.xmac).
+
+..  figure:: .\images\NETOMAC\_22_Create_Input_IBR_DLL_Model_Current_Output.png"
+    :alt: Resulting Constant Inputs in ideal voltage source model
+
+    Figure 23: Resulting Constant Inputs in ideal voltage source model (.xmac).
+
+..  figure:: .\images\NETOMAC\_23_Create_Input_IBR_DLL_Model_Current_Function.png"
+    :alt: Creating a new empty model file
+
+    Figure 24: Creating a new empty model file (.xmac).
+
+..  figure:: .\images\NETOMAC\_24_Result_Inputs_IBR_DLL_Model.png"
+    :alt: Creating a new empty model file
+
+    Figure 24: Creating a new empty model file (.xmac).
+
+For the inputs, PSS®Netomac automatically creates variables for defining the measurement data (see Figure 25). 
+The automatically created variables can be configured under ``Variables`` using the values specified in the following table: 
+
+| Variables | Value    | Minimum | Maximum | Debug Value | Description                                   |
++========================================================================================================|
+| #Va_pu.N  | 'Bus2'   |         |         | 'Bus2'      | Node for Voltage measurement - phase a        |
++--------------------------------------------------------------------------------------------------------|
+| #Va_pu.P  | 'R'      |         |         | 'R'         | Phase for Voltage measurement - phase a       |
++--------------------------------------------------------------------------------------------------------|
+| #Vb_pu.N  | 'Bus2'   |         |         | 'Bus2'      | Node for Voltage measurement - phase b        |
++--------------------------------------------------------------------------------------------------------|
+| #Vb_pu.P  | 'S'      |         |         | 'S'         | Phase for Voltage measurement - phase b       |
++--------------------------------------------------------------------------------------------------------|
+| #Vc_pu.N  | 'Bus2'   |         |         | 'Bus2'      | Node for Voltage measurement - phase c        |
++--------------------------------------------------------------------------------------------------------|
+| #Vc_pu.P  | 'T'      |         |         | 'T'         | Phase for Voltage measurement - phase c       |
++--------------------------------------------------------------------------------------------------------|
+| #Ia_MVA.N | 'Bus2'   |         |         | 'Bus2'      | Node for Current measurement - phase a        |
++--------------------------------------------------------------------------------------------------------|
+| #Ia_MVA.B  | 'Z_IBR' |         |         | 'Z_IBR'     | Branch for Current measurement - phase a      |
++--------------------------------------------------------------------------------------------------------|
+| #Ia_MVA.P  | 'R'     |         |         | 'R'         | Phase for Current measurement - phase a       |
++--------------------------------------------------------------------------------------------------------|
+| #Ib_MVA.N | 'Bus2'   |         |         | 'Bus2'      | Node for Current measurement - phase b        |
++--------------------------------------------------------------------------------------------------------|
+| #Ib_MVA.B  | 'Z_IBR' |         |         | 'Z_IBR'     | Branch for Current measurement - phase b      |
++--------------------------------------------------------------------------------------------------------|
+| #Ib_MVA.P  | 'S'     |         |         | 'S'         | Phase for Current measurement - phase b       |
++--------------------------------------------------------------------------------------------------------|
+| #Ic_MVA.N | 'Bus2'   |         |         | 'Bus2'      | Node for Current measurement - phase c        |
++--------------------------------------------------------------------------------------------------------|
+| #Ic_MVA.B  | 'Z_IBR' |         |         | 'Z_IBR'     | Branch for Current measurement - phase c      |
++--------------------------------------------------------------------------------------------------------|
+| #Ic_MVA.P  | 'T'     |         |         | 'T'         | Phase for Current measurement - phase c       |
++--------------------------------------------------------------------------------------------------------|
+
+..  figure:: .\images\NETOMAC\_25_Variables_IBR_DLL_Model.png"
+    :alt: Creating a new empty model file
+
+    Figure 25: Creating a new empty model file (.xmac).
+
+Defining the conversion factors
+""""""""""""""""""""""""""""""
+
+Since the IBR control implented in the DLL uses volts (V) for votlage and amperes (A) for current, the input values must be converter from pu and MVA to V and A, respectively.
+The conversion factors are defined under ``Equations...`` (see Figure 26 and 27). 
+The equations are shown below:
+
+.. code-block:: netomac
+    :linenos:
+
+   $ Factor for conversion voltage from pu to V                                    
+    #Vpu2V    = SQRT(2) / SQRT(3) * #Vn * 1e3                                      
+
+   $ Factor for conversion voltage from MVA to A 
+    #IMVA2A   = SQRT(2) / SQRT(3) / #Vn * 1e3  
+
+..  figure:: .\images\NETOMAC\_26_Equations.png"
+    :alt: Creating a new empty model file
+
+    Figure 26: Creating a new empty model file (.xmac).
+
+..  figure:: .\images\NETOMAC\_27_Equations_Fortran.png"
+    :alt: Creating a new empty model file
+
+    Figure 27: Creating a new empty model file (.xmac).
+
+The parameters ``#Vpu2V`` and ``#IMVA2A`` are applied using ``Gain`` blocks, which are added via ``Insert Block`` (see Figure 28).
+The parameter ``#Vpu2V`` is used for all voltage inputs (see Figure 29, 30 and 31).
+The parameter ``#IMVA2A`` is used for all current inputs (see Figure 32, 33).
+
+..  figure:: .\images\NETOMAC\_28_Create_Gain.png"
+    :alt: Creating a new empty model file
+
+    Figure 28: Creating a new empty model file (.xmac).
+
+..  figure:: .\images\NETOMAC\_29_Create_Gain_Voltage_topology.png"
+    :alt: Creating a new empty model file
+
+    Figure 29: Creating a new empty model file (.xmac).
+
+..  figure:: .\images\NETOMAC\_30_Create_Gain_Voltage_data.png"
+    :alt: Creating a new empty model file
+
+    Figure 30: Creating a new empty model file (.xmac).
+
+..  figure:: .\images\NETOMAC\_31_Create_Gain_Voltage_limit.png"
+    :alt: Creating a new empty model file
+
+    Figure 31: Creating a new empty model file (.xmac).
+
+..  figure:: .\images\NETOMAC\_32_Create_Gain_Current_topology.png"
+    :alt: Creating a new empty model file
+
+    Figure 32: Creating a new empty model file (.xmac).
+    
+..  figure:: .\images\NETOMAC\_33_Create_Gain_Current_data.png"
+    :alt: Creating a new empty model file
+
+    Figure 33: Creating a new empty model file (.xmac).
+
+Figure 34 shows the model including the ``Gain`` blocks.
+
+..  figure:: .\images\NETOMAC\_34_Create_Gain_Result.png"
+    :alt: Creating a new empty model file
+
+    Figure 34: Creating a new empty model file (.xmac).
+
+Integration of the DLL model
+""""""""""""""""""""""""""""""
+
+The DLL model is integrated into the model by selecting ``Insert Special Block`` and then selecting the ``DLL IEC`` block (see Figure 35).
+The path to the DLL file (.dll) must be specified. 
+PSS®Netomac automatically creates an additional model file for the DLL interface in the project subdirectory ``.\MAC``. 
+In the ``Topology`` section the output names are defined (see Figure 36).
+The DLL parameters are listed in the ``Data`` section (see Figure 37).
+These parameters are already assigned default values.
+
+..  figure:: .\images\NETOMAC\_35_Create_DLL_Block.png"
+    :alt: Creating a new empty model file
+
+    Figure 35: Creating a new empty model file (.xmac).
+
+..  figure:: .\images\NETOMAC\_36_Create_DLL_Block_topology.png"
+    :alt: Creating a new empty model file
+
+    Figure 36: Creating a new empty model file (.xmac).
+
+..  figure:: .\images\NETOMAC\_37_Create_DLL_Block_data.png"
+    :alt: Creating a new empty model file
+
+    Figure 37: Creating a new empty model file (.xmac).
+
+The output signals of the DLL must be converted to the PSS®NETOMAC format required for integration with the voltage source. 
+Therefore, ``Gain`` blocks are added to apply the required conversion factors (see Figure 38). 
+The resulting model is shown in Figure 39.
+
+..  figure:: .\images\NETOMAC\_38_Create_DLL_Block_topology.png"
+    :alt: Creating a new empty model file
+
+    Figure 38: Creating a new empty model file (.xmac).
+
+..  figure:: .\images\NETOMAC\_39_Create_DLL_Block_topology.png"
+    :alt: Creating a new empty model file
+
+    Figure 39: Creating a new empty model file (.xmac).
+
+
+Defining the Output
+""""""""""""""""""""""""""""""
+
+By selecting ``Insert Output``, the ``EVALUATE`` output block is created (see Figure 40 and 41).
+In the ``Data`` section the ``Integration type`` is set to ``During network iteration`` (see Figure 42).
+Figure 43 shows the finalized model file for the ideal voltage source of the Thevenin equivalent.
+
+
+..  figure:: .\images\NETOMAC\_17_Insert_GNE_V_Output.png"
+    :alt: Define signal name of Constant Input in model file
+
+    Figure 40: Define signal name of Constant Input in model file (.xmac).
+
+..  figure:: .\images\NETOMAC\_18_GNE_V_Output_Topology.png"
+    :alt: Defining Variable in Constant Input in model files
+
+    Figure 41: Defining Variable in Constant Input in model files  (.xmac).
+
+..  figure:: .\images\NETOMAC\_19_GNE_V_Output_Data.png"
+    :alt: Resulting Constant Inputs in ideal voltage source model
+
+    Figure 42: Resulting Constant Inputs in ideal voltage source model (.xmac).
+
+..  figure:: .\images\NETOMAC\_20_GNE_V_Results.png"
+    :alt: Resulting Constant Inputs in ideal voltage source model
+
+    Figure 43: Resulting Constant Inputs in ideal voltage source model (.xmac).    
+
+Integration of the model into the power system
+""""""""""""""""""""""""""""""
+
+To integrate the created model into the power system, the model must be added to the ``.net`` file in the ``[[Models_during_Loadflow]]`` section.
+By right-clicking and selecting ``Insert Model``, the model can be added by specifying the path to the model file.
+PSS®NETOMAC automatically creates the variable list for the model.
+The Parameter ``#NAME`` can be set individually.
+
+The resulting ``[[Models_during_Loadflow]]`` section with the integrated model is shown below:
+
+.. code-block:: netomac
+    :linenos:
+
+   [[Models_during_Loadflow]]                                                      |
+   $-------------------------------------------------------------------------------| 
+   @ #NAME      = 'VSrc'                                                           |
+   @ #Vreal     = 1.0                 ! Real part of ideal voltage source [pu]     |
+   @ #Vimag     = 0.0                 ! Imaginary part of id. volt. source [pu]    |
+   @ #Vstep     = 0.7                 ! Step of real part of id. volt. source [pu] |
+   @ #Tstep     = 0.1                 ! Time of voltage step [pu]                  |
+   #.\MAC\Ideal_Voltage_Source.xmac                                                |
+   $-------------------------------------------------------------------------------| 
+   @ #NAME      = 'IBR'                                                            |
+   @ #Va_pu.N   = 'Bus2'              ! Node for Voltage measurement - phase a     |
+   @ #Va_pu.P   = 'R'                 ! Phase for Voltage measurement - phase a    |
+   @ #Vb_pu.N   = 'Bus2'              ! Node for Voltage measurement - phase b     |
+   @ #Vb_pu.P   = 'S'                 ! Phase for Voltage measurement - phase b    |
+   @ #Vc_pu.N   = 'Bus2'              ! Node for Voltage measurement - phase c     |
+   @ #Vc_pu.P   = 'T'                 ! Phase for Voltage measurement - phase c    |
+   @ #Ia_MVA.N  = 'Bus2'              ! Node for Current measurement - phase a     |
+   @ #Ia_MVA.B  = 'Z_IBR'             ! Branch for Current measurement - phase a   |
+   @ #Ia_MVA.P  = 'R'                 ! Phase for Current measurement - phase a    |
+   @ #Ib_MVA.N  = 'Bus2'              ! Node for Current measurement - phase b     |
+   @ #Ib_MVA.B  = 'Z_IBR'             ! Branch for Current measurement - phase b   |
+   @ #Ib_MVA.P  = 'S'                 ! Phase for Current measurement - phase b    |
+   @ #Ic_MVA.N  = 'Bus2'              ! Node for Current measurement - phase c     |
+   @ #Ic_MVA.B  = 'Z_IBR'             ! Branch for Current measurement - phase c   |
+   @ #Ic_MVA.P  = 'T'                 ! Phase for Current measurement - phase c    |
+   #.\MAC\IBR_Control_DLL.xmac                                                     |
+   $-------------------------------------------------------------------------------|
+   [[End Models_during_Loadflow]]                                                  |
+
+
+
