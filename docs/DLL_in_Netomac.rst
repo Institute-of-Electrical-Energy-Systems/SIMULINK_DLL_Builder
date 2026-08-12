@@ -72,7 +72,7 @@ The impedance of the Thevenin equivalent is defined by a resistance (#Re) of 10.
 
 The resulting part of the parameter section is shown below:
 
-.. code-block:: fortran
+.. code-block:: netomac
 
    $-------------------------------------------------------------------------------| Grid data  
    $                                                                               |

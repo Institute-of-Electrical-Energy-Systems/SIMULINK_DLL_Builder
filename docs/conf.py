@@ -4,6 +4,8 @@ from __future__ import unicode_literals
 import os
 import sys
 
+from netomac_lexer import NetomacLexer
+
 sys.path.insert(0, os.path.abspath(".."))
 
 
@@ -23,6 +25,7 @@ extensions = [
     "sphinx.ext.doctest",
     "sphinx.ext.napoleon",
     "sphinx_design",
+    "netomac_lexer",
 ]
 source_suffix = ".rst"
 master_doc = "index"
