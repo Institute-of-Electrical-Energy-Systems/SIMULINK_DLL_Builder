@@ -5,35 +5,3 @@ white-space: normal;
 .wy-nav-content {
     max-width: 100% !important;
 }
-
-/* Column-ruled background for netomac code blocks only, mimicking the
-   PSS(R)NETOMAC editor's fixed-width column grid.
-   Scoped to .highlight-netomac so other code-block languages
-   (fortran, python, etc.) are unaffected. */
-.highlight-netomac pre {
-    font-variant-ligatures: none;
-    background-image: linear-gradient(
-        to right,
-        transparent calc(0ch),
-        rgba(0,0,0,0.25) calc(0ch),
-        rgba(0,0,0,0.25) calc(0ch + 1px),
-        transparent calc(0ch + 1px),
-        transparent calc(17ch),
-        rgba(0,0,0,0.25) calc(17ch),
-        rgba(0,0,0,0.25) calc(17ch + 1px),
-        transparent calc(17ch + 1px),
-        transparent calc(27ch),
-        rgba(0,0,0,0.25) calc(27ch),
-        rgba(0,0,0,0.25) calc(27ch + 1px),
-        transparent calc(27ch + 1px),
-        transparent calc(33ch),
-        rgba(0,0,0,0.25) calc(33ch),
-        rgba(0,0,0,0.25) calc(33ch + 1px),
-        transparent calc(33ch + 1px),
-        transparent calc(57ch),
-        rgba(0,0,0,0.25) calc(57ch),
-        rgba(0,0,0,0.25) calc(57ch + 1px),
-        transparent calc(57ch + 1px)
-    );
-    background-repeat: no-repeat;
-}
