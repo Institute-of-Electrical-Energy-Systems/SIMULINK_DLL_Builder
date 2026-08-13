@@ -287,20 +287,20 @@
     /* static_model_info */
     StaticExtSimEnvCapi static_model_info = {
 	    {0, 8, 1, 5},	                                                   // const uint8_T APIRelease[4]: Release number of the API used during code generation
-	    "IEC DLL of a Matlab Simulink Model",	                           // const char_T * const ModelName: Model name
-	    "R01-V01",			                                               // const char_T * const ModelVersion: Model version
-	    "IEC DLL of a Matlab Simulink Model",	                           // const char_T * const ModelDescription: Model description
+	    "%<ModelName>",	                                                   // const char_T * const ModelName: Model name
+	    "%<ModelVersionStr>",			                                   // const char_T * const ModelVersion: Model version
+	    "%<ModelDescriptionStr>",	                                       // const char_T * const ModelDescription: Model description
 	    "",				                                                   // const char_T * const VersionControlInfo: Version control information
-	    "-PFPrecise",	                                                               // const char_T * const GeneralInformation: General info 
-	    "2026-02-18",	                                                   // const char_T * const ModelCreated: Model created on
-	    "G. Becker",	                                                   // const char_T * const ModelCreator: Model created by
-	    "2026-02-18",	                                                   // const char_T * const ModelLastModifiedDate:  Model last modified on
-	    "G. Becker",	                                                   // const char_T * const ModelLastModifiedBy: Model last modified by
+	    "-PFPrecise",	                                                   // const char_T * const GeneralInformation: General info 
+	    "%<ModelCreation>",	                                               // const char_T * const ModelCreated: Model created on
+	    "%<ModelCreationAuthor>",	                                       // const char_T * const ModelCreator: Model created by
+	    "%<ModelModification>",                                            // const char_T * const ModelLastModifiedDate:  Model last modified on
+	    "%<ModelModificationAuthor>",	                                   // const char_T * const ModelLastModifiedBy: Model last modified by
 	    "",	                                                               // const char_T * const ModelModifiedComment: Model modified comment
 	    "",				                                                   // const char_T * const ModelModifiedHistory: Model modified history
-	    "2026-02-18",                                                      // const char_T * const CodeGeneratedOn: Code generated on
+	    "%<CodeGeneration>",                                               // const char_T * const CodeGeneratedOn: Code generated on
 	    "",				                                                   // const char_T * const IncludedSolver: Solver name (can be empty)
-	    0.00005,			                                               // const real64_T FixedStepBaseSampleTime: Base sample time hardcoded sample time size
+	    %<BaseSampleTime>,	                                               // const real64_T FixedStepBaseSampleTime: Base sample time size
 	    sizeof(static_inputs)/sizeof(static_inputs[0]),	                   // const int32_T NumInputPorts: Number of inputs
 	    &static_inputs[0],	                                               // const StaticESEInputSignal * const InputPortsInfo: Pointer to input signal description array
 	    sizeof(static_outputs)/sizeof(static_inputs[0]),	               // const int32_T NumOutputPorts: Number of outputs
@@ -311,9 +311,9 @@
 	    0,	                                                               // const int32_T SizeofMiscStates: Size of work variables / misc states
 	    {0, 0, 0, 0},	                                                   // const uint32_T ModelChecksum[4]:  Model checksum (user defined)
 	    NULL,			                                                   // const char_T *LastErrorMessage: Error string pointer
-	    3,				                                                   // const uint8_T EMT_RMS_Mode: Mode: EMT = 1, RMS = 2, EMT & RMS = 3, otherwise: 0
+	    %<EMTRMSMode>,				                                       // const uint8_T EMT_RMS_Mode: Mode: EMT = 1, RMS = 2, EMT & RMS = 3, otherwise: 0
 	    0,				                                                   // const uint8_T LoadflowFlag: Model contains a loadflow function: 0 = no, 1 = yes
-	    0				                                                   // ESEExtension Extension: Provided for extensions
+	    0,				                                                   // ESEExtension Extension: Provided for extensions
     };
     
     

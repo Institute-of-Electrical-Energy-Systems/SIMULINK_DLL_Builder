@@ -32,3 +32,87 @@
 %% Code generation is then initiated by the call to codegenentry.tlc,
 %% the main entry point for code generation.
 %include "codegenentry.tlc"
+
+/%
+  BEGIN_RTW_OPTIONS
+
+  rtwoptions(1).prompt        = 'Simulink DLL Builder';
+  rtwoptions(1).type          = 'Category';
+  rtwoptions(1).enable        = 'on';
+  rtwoptions(1).default       = 10;   % Anzahl der Folge-Elemente
+  rtwoptions(1).popupstrings  = '';
+  rtwoptions(1).tlcvariable   = '';
+  rtwoptions(1).tooltip       = '';
+  rtwoptions(1).callback      = '';
+  rtwoptions(1).makevariable  = '';
+
+  rtwoptions(2).prompt        = 'Model Name';
+  rtwoptions(2).type          = 'Edit';
+  rtwoptions(2).default       = 'IEC_DLL_of_Matlab_Simulink_Model';
+  rtwoptions(2).tlcvariable   = 'ModelName';
+  rtwoptions(2).tooltip       = 'Model Name';
+
+  rtwoptions(3).prompt        = 'Model Version';
+  rtwoptions(3).type          = 'Edit';
+  rtwoptions(3).default       = 'R01-V01';
+  rtwoptions(3).tooltip  = 'Model Version';
+  rtwoptions(3).tlcvariable   = 'ModelVersionStr';
+
+  rtwoptions(4).prompt        = 'Model created on';
+  rtwoptions(4).type          = 'Edit';
+  rtwoptions(4).default       = '2026-02-18';
+  rtwoptions(4).tooltip  = 'Model created on';
+  rtwoptions(4).tlcvariable   = 'ModelCreation';
+
+  rtwoptions(5).prompt        = 'Model created by';
+  rtwoptions(5).type          = 'Edit';
+  rtwoptions(5).default       = 'Becker G., Frauenknecht, D.';
+  rtwoptions(5).tooltip  = 'Model created by';
+  rtwoptions(5).tlcvariable   = 'ModelCreationAuthor';
+
+  rtwoptions(6).prompt        = 'Model last modified on';
+  rtwoptions(6).type          = 'Edit';
+  rtwoptions(6).default       = '2026-08-13';
+  rtwoptions(6).tooltip  = 'Model last modified on';
+  rtwoptions(6).tlcvariable   = 'ModelModification';
+
+  rtwoptions(7).prompt        = 'Model last modified by';
+  rtwoptions(7).type          = 'Edit';
+  rtwoptions(7).default       = 'Becker G., Frauenknecht, D.';
+  rtwoptions(7).tooltip  = 'Model last modified by';
+  rtwoptions(7).tlcvariable   = 'ModelModificationAuthor';
+
+  rtwoptions(8).prompt        = 'Code generated on';
+  rtwoptions(8).type          = 'Edit';
+  rtwoptions(8).default       = '2026-08-13';
+  rtwoptions(8).tooltip  = 'Code generated on';
+  rtwoptions(8).tlcvariable   = 'CodeGeneration';
+    
+  rtwoptions(9).prompt        = 'Base sample time size';
+  rtwoptions(9).type          = 'Edit';
+  rtwoptions(9).default       = '0.00005';
+  rtwoptions(9).tooltip  = 'Base sample time size';
+  rtwoptions(9).tlcvariable   = 'BaseSampleTime';
+
+  rtwoptions(10).prompt        = 'EMT_RMS_Mode';
+  rtwoptions(10).type          = 'Edit';
+  rtwoptions(10).default       = '3';
+  rtwoptions(10).tooltip  = 'Mode: EMT = 1, RMS = 2, EMT & RMS = 3, otherwise: 0';
+  rtwoptions(10).tlcvariable   = 'EMTRMSMode';
+
+  rtwoptions(11).prompt        = 'Model description';
+  rtwoptions(11).type          = 'Edit';
+  rtwoptions(11).default       = 'Description of IEC_DLL_of_Matlab_Simulink_Model';
+  rtwoptions(11).tooltip  = 'Model description';
+  rtwoptions(11).tlcvariable   = 'ModelDescriptionStr';
+  
+   
+  %----------------------------------------%
+  % Configure RTW code generation settings %
+  %----------------------------------------%
+  rtwgensettings.BuildDirSuffix = '_my_grt_target_rtw';
+  rtwgensettings.DerivedFrom    = 'grt.tlc';   
+  rtwgensettings.Version        = '1';
+
+  END_RTW_OPTIONS
+%/
