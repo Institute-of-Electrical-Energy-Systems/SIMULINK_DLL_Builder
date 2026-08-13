@@ -12,7 +12,7 @@ The overall workflow performed by the script is illustrated below:
 
 .. _fig_parameter_workflow:
 
-.. figure:: images/IBR_Control_Parameters_workflow_2rows_EN.png
+.. figure:: ./images/IBR_Control_Parameters_workflow_2rows_EN.png
    :align: center
    :width: 100%
 
@@ -52,7 +52,7 @@ These quantities define the operating point used for controller initialization.
 
 .. _fig_phasor_diagram:
 
-.. figure:: images/ibr_steady_state_phasor_diagram_high_contrast.png
+.. figure:: ./images/ibr_steady_state_phasor_diagram_high_contrast.png
    :align: center
    :width: 50%
 
@@ -206,7 +206,7 @@ The DLL build process is started from the Simulink toolbar by Opening the App **
 
 .. _simulinkcoder:
 
-.. figure:: images/SimulinkCoder.png
+.. figure:: ./images/SimulinkCoder.png
    :align: center
    :width: 50% 
 
@@ -222,7 +222,7 @@ To check this, open **Settings** in the Simulink Coder App and navigate to **Cod
 
 .. _simulinkcodersetting:
 
-.. figure:: images/SimulinkCoderSettings.png
+.. figure:: ./images/SimulinkCoderSettings.png
    :align: center  
    :width: 50% 
 
@@ -230,7 +230,7 @@ To check this, open **Settings** in the Simulink Coder App and navigate to **Cod
 
 .. _simulinkcodersettingcodegeneration:
 
-.. figure:: images/SimulinkCoderSettingsCodeGeneration.png
+.. figure:: ./images/SimulinkCoderSettingsCodeGeneration.png
    :align: center  
    :width: 50% 
 
@@ -242,7 +242,7 @@ This ensures that the model is built using the correct code generation process.
 Selecting this system target file adds a new menu item, ``Simulink DLL Builder``, to the Simulink menu bar. 
 Clicking this menu item opens the metadata dialog, which is pre-populated with the default values of the example. 
 
-.. figure:: _images/SimulinkCoderSettingsMetaData.png
+.. figure:: ./images/SimulinkCoderSettingsMetaData.png
    :alt: Code Generation Simulink DLL Builder tab
 
    Filling the Model/DLL Metadata necessary for the DLL Code generation process.
@@ -256,7 +256,7 @@ If you encounter an error, please refer to :doc:`troubleshooting` for a list of 
 
 .. _simulinkcodersettingcodegenerationbuild:
 
-.. figure:: images/SimulinkCoderBuild.png
+.. figure:: ./images/SimulinkCoderBuild.png
    :align: center  
    :width: 50% 
 
