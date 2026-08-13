@@ -464,12 +464,29 @@ The automatically created variables can be configured under ``Variables`` using 
 Defining the conversion factors
 """"""""""""""""""""""""""""""
 
-Since the IBR control implented in the DLL uses volts (V) for votlage and amperes (A) for current, the input values must be converter from pu and MVA to V and A, respectively.
-The conversion factors are defined under ``Equations...`` (see Figure 26 and 27). 
+Since the IBR control implemented in the DLL uses volts (V) for voltage and amperes (A) for current, the input values must be converted from pu and MVA to V and A, respectively.
+The conversion factors are defined under ``Equations...`` (see Figure 22 and 23). 
+
+.. grid:: 2
+
+   .. grid-item::
+
+       ..  figure:: ./images/NETOMAC/Equations.png
+            :alt: Creating equations in model files (.xmac).
+
+            Figure 22: Creating equations in model files (.xmac).
+
+   .. grid-item::
+
+        ..  figure:: ./images/NETOMAC/Equations_Fortran.png
+            :alt: Defining the parameters for voltage and current unit conversion in FORTRAN.
+
+            Figure 23: Defining the parameters for voltage and current unit conversion in FORTRAN.
+
 The equations are shown below:
 
 .. code-block:: netomac
-    :linenos:
+   :linenos:
 
    $ Factor for conversion voltage from pu to V                                    
     #Vpu2V    = SQRT(2) / SQRT(3) * #Vn * 1e3                                      
@@ -477,134 +494,129 @@ The equations are shown below:
    $ Factor for conversion voltage from MVA to A 
     #IMVA2A   = SQRT(2) / SQRT(3) / #Vn * 1e3  
 
-..  figure:: ./images/NETOMAC/_26_Equations.png
-    :alt: Creating a new empty model file
+The parameters ``#Vpu2V`` and ``#IMVA2A`` are applied using ``Gain`` blocks, which are added via ``Insert Block`` (see Figure 24).
+The parameter ``#Vpu2V`` is used for all voltage inputs (see Figure 25), while ``#IMVA2A`` is used for all current inputs (see Figure 26).
 
-    Figure 26: Creating a new empty model file (.xmac).
+.. grid:: 2
 
-..  figure:: ./images/NETOMAC/_27_Equations_Fortran.png
-    :alt: Creating a new empty model file
+   .. grid-item::
 
-    Figure 27: Creating a new empty model file (.xmac).
+        ..  figure:: ./images/NETOMAC/Create_Gain.png
+            :alt: Creating a new ``Gain`` block in model files (.xmac).
 
-The parameters ``#Vpu2V`` and ``#IMVA2A`` are applied using ``Gain`` blocks, which are added via ``Insert Block`` (see Figure 28).
-The parameter ``#Vpu2V`` is used for all voltage inputs (see Figure 29, 30 and 31).
-The parameter ``#IMVA2A`` is used for all current inputs (see Figure 32, 33).
+            Figure 24: Creating a new ``Gain`` block in model files (.xmac).
 
-..  figure:: ./images/NETOMAC/_28_Create_Gain.png
-    :alt: Creating a new empty model file
+    .. grid-item::
 
-    Figure 28: Creating a new empty model file (.xmac).
+        ..  figure:: ./images/NETOMAC/Create_Gain_Voltage_data.png
+            :alt: Define the gain value for voltage conversion.
 
-..  figure:: ./images/NETOMAC/_29_Create_Gain_Voltage_topology.png
-    :alt: Creating a new empty model file
+            Figure 25: Define the gain value for voltage conversion.
 
-    Figure 29: Creating a new empty model file (.xmac).
+    .. grid-item::
 
-..  figure:: ./images/NETOMAC/_30_Create_Gain_Voltage_data.png
-    :alt: Creating a new empty model file
+        ..  figure:: ./images/NETOMAC/Create_Gain_Current_data.png
+            :alt: Define the gain value for current conversion.
 
-    Figure 30: Creating a new empty model file (.xmac).
-
-..  figure:: ./images/NETOMAC/_31_Create_Gain_Voltage_limit.png
-    :alt: Creating a new empty model file
-
-    Figure 31: Creating a new empty model file (.xmac).
-
-..  figure:: ./images/NETOMAC/_32_Create_Gain_Current_topology.png
-    :alt: Creating a new empty model file
-
-    Figure 32: Creating a new empty model file (.xmac).
-    
-..  figure:: ./images/NETOMAC/_33_Create_Gain_Current_data.png
-    :alt: Creating a new empty model file
-
-    Figure 33: Creating a new empty model file (.xmac).
-
-Figure 34 shows the model including the ``Gain`` blocks.
-
-..  figure:: ./images/NETOMAC/_34_Create_Gain_Result.png
-    :alt: Creating a new empty model file
-
-    Figure 34: Creating a new empty model file (.xmac).
+            Figure 26: Define the gain value for current conversion.
 
 Integration of the DLL model
 """"""""""""""""""""""""""""""
 
-The DLL model is integrated into the model by selecting ``Insert Special Block`` and then selecting the ``DLL IEC`` block (see Figure 35).
+The DLL model is integrated into the model by selecting ``Insert Special Block`` and then selecting the ``DLL IEC`` block (see Figure 27).
 The path to the DLL file (.dll) must be specified. 
-PSS®Netomac automatically creates an additional model file for the DLL interface in the project subdirectory ``./MAC``. 
-In the ``Topology`` section the output names are defined (see Figure 36).
-The DLL parameters are listed in the ``Data`` section (see Figure 37).
-These parameters are already assigned default values.
+PSS®NETOMAC automatically creates an additional model file for the DLL interface in the project subdirectory ``./MAC``. 
+In the ``Topology`` section, the output signal names are defined (see Figure 28).
+The DLL parameters are listed in the ``Data`` section (see Figure 29).
+These parameters are assigned default values automatically.
 
-..  figure:: ./images/NETOMAC/_35_Create_DLL_Block.png
-    :alt: Creating a new empty model file
+.. grid:: 3
 
-    Figure 35: Creating a new empty model file (.xmac).
+   .. grid-item::
 
-..  figure:: ./images/NETOMAC/_36_Create_DLL_Block_topology.png
-    :alt: Creating a new empty model file
+        ..  figure:: ./images/NETOMAC/Create_DLL_Block.png
+            :alt: Creating a ``DLL IEC`` block in model files (.xmac).
 
-    Figure 36: Creating a new empty model file (.xmac).
+            Figure 27: Creating a ``DLL IEC`` block in model files (.xmac).
 
-..  figure:: ./images/NETOMAC/_37_Create_DLL_Block_data.png
-    :alt: Creating a new empty model file
+    .. grid-item::
 
-    Figure 37: Creating a new empty model file (.xmac).
+        ..  figure:: ./images/NETOMAC/Create_DLL_Block_topology.png
+            :alt: Defining the output signal names of the ``DLL IEC`` block.
+
+            Figure 28: Defining the output signal names of the ``DLL IEC`` block.
+
+    .. grid-item::
+
+        ..  figure:: ./images/NETOMAC/Create_DLL_Block_data.png
+            :alt: Defining the parameters of the ``DLL IEC``.
+
+            Figure 29: Defining the parameters of the ``DLL IEC``.
 
 The output signals of the DLL must be converted to the PSS®NETOMAC format required for integration with the voltage source. 
-Therefore, ``Gain`` blocks are added to apply the required conversion factors (see Figure 38). 
-The resulting model is shown in Figure 39.
+Therefore, ``Gain`` blocks are added to apply the required conversion factors (see Figure 30). 
+For this conversion, the reciprocal value of ``#Vpu2V`` is required (see Figure 31).
 
-..  figure:: ./images/NETOMAC/_38_Create_DLL_Block_topology.png
-    :alt: Creating a new empty model file
+.. grid:: 2
 
-    Figure 38: Creating a new empty model file (.xmac).
+   .. grid-item::
 
-..  figure:: ./images/NETOMAC/_39_Create_DLL_Block_topology.png
-    :alt: Creating a new empty model file
+        ..  figure:: 
+            :alt: Creating the ``Gain`` block for reciprocal voltage conversion.
 
-    Figure 39: Creating a new empty model file (.xmac).
+            Figure 30: Creating the ``Gain`` block for reciprocal voltage conversion.
+
+    .. grid-item::
+
+        ..  figure:: 
+            :alt: Define the gain value for reciprocal voltage conversion.
+
+            Figure 31: Define the gain value for reciprocal voltage conversion.
 
 
 Defining the Output
 """"""""""""""""""""""""""""""
 
-By selecting ``Insert Output``, the ``EVALUATE`` output block is created (see Figure 40 and 41).
-In the ``Data`` section the ``Integration type`` is set to ``During network iteration`` (see Figure 42).
-Figure 43 shows the finalized model file for the ideal voltage source of the Thevenin equivalent.
+By selecting ``Insert Output``, the ``EVALUATE`` output block is created (see Figure 32).
+In the ``Data`` section, the ``Integration type`` is set to ``During network iteration`` (see Figure 33).
 
+.. grid:: 2
 
-..  figure:: ./images/NETOMAC/_17_Insert_GNE_V_Output.png
-    :alt: Define signal name of Constant Input in model file
+   .. grid-item::
 
-    Figure 40: Define signal name of Constant Input in model file (.xmac).
+        ..  figure:: ./images/NETOMAC/Create_Output_DLL_Block.png
+            :alt: Creating a ``EVALUATE`` output block in model files (.xmac).
 
-..  figure:: ./images/NETOMAC/_18_GNE_V_Output_Topology.png
-    :alt: Defining Variable in Constant Input in model files
+            Figure 32: Creating a ``EVALUATE`` output block in model files (.xmac).
 
-    Figure 41: Defining Variable in Constant Input in model files  (.xmac).
+    .. grid-item::
 
-..  figure:: ./images/NETOMAC/_19_GNE_V_Output_Data.png
-    :alt: Resulting Constant Inputs in ideal voltage source model
+        ..  figure:: ./images/NETOMAC/Create_Output_DLL_Data.png
+            :alt: Defining the data of the ``EVALUATE`` output block.  
 
-    Figure 42: Resulting Constant Inputs in ideal voltage source model (.xmac).
+            Figure 33: Defining the data of the ``EVALUATE`` output block.  
 
-..  figure:: ./images/NETOMAC/_20_GNE_V_Results.png
-    :alt: Resulting Constant Inputs in ideal voltage source model
+Figure 34 shows the finalized model file for the DLL integration.
 
-    Figure 43: Resulting Constant Inputs in ideal voltage source model (.xmac).    
+..  figure:: ./images/NETOMAC/Resulting_IBR_DLL_Model.png
+    :alt: Resulting IBR control model (.xmac) with integrated DLL.
+
+    Figure 34: Resulting IBR control model (.xmac) with integrated DLL.
 
 Integration of the model into the power system
 """"""""""""""""""""""""""""""
 
 To integrate the created model into the power system, the model must be added to the ``.net`` file in the ``[[Models_during_Loadflow]]`` section.
-By right-clicking and selecting ``Insert Model``, the model can be added by specifying the path to the model file (see Figure 44).
+By right-clicking and selecting ``Insert Model``, the model can be added by specifying the path to the model file (see Figure 35).
 PSS®NETOMAC automatically creates the variable list for the model.
-The Parameter ``#NAME`` can be set individually.
+The Parameter ``#NAME`` can be freely chosen and does not need to match a specific branch name.
 
-The resulting ``[[Models_during_Loadflow]]`` section with the integrated model is shown below:
+..  figure:: ./images/NETOMAC/Integration_IBR_DLL_Model.png
+    :alt: Integration of the IBR control model (.xmac) into the power system.
+
+    Figure 35: Integration of the IBR control model (.xmac) into the power system.
+
+The resulting ``[[Models_during_Loadflow]]`` section with the integrated models is shown below:
 
 .. code-block:: netomac
     :linenos:
@@ -638,7 +650,7 @@ The resulting ``[[Models_during_Loadflow]]`` section with the integrated model i
    $-------------------------------------------------------------------------------|
    [[End Models_during_Loadflow]]                                                  |
 
-1. Defining the Models for the Controlled Voltage Source
+5. Defining the Models for the Controlled Voltage Source
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The remaining three models in the ``[[Models_during_Loadflow]]`` section can be implemented using a single model definition. 
