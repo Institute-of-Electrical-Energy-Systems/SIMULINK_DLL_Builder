@@ -1,9 +1,9 @@
 %% TLC file to automatically create the wrapper for IEC 61400-27 DLL 
 %% creation.
 %%
-%% Creator: Gregor Becker
-%% Email: gregor.becker@fau.de
-%% Last modified: 18.02.2026
+%% Creator: Gregor Becker, Dominik Frauenknecht
+%% Email: gregor.becker@fau.de, dominik.frauenknecht@fau.de
+%% Last modified: 13.08.2026
 %%
 
 %implements sfun_info "C"
@@ -22,7 +22,6 @@
 %%
 %function FcnStructInputOutput() Output
   %include "ParameterMetadata.tlc"
-  #include <debugapi.h>
 
   %% create the empty source file which will be filled afterwards
   %assign fileh = LibCreateSourceFile("Source", "Custom", "IEC61400_27_DLL")
@@ -358,7 +357,7 @@
 	    pInstanceCapi->P_DISCON_Empty_T = (real64_T *)malloc(
 		    static_model_info.NumParameters*sizeof(real64_T));
 	    
-	    /* TODO GB  ContinuousStates, not used in current version, set NULL */
+	    /* ContinuousStates, not used in current version, set NULL */
         pInstanceCapi->ContinuousStates = NULL;
     
 	    /* StateDerivatives, not used in current version, set NULL */
@@ -437,12 +436,6 @@
     /* Model_Initialize */
     __declspec(dllexport) const char* __cdecl Model_Initialize(InstanceExtSimEnvCapi *pInstanceCapi)
     {
-        OutputDebugStringA("TEST VON MODELINITIALIZE");
-	    // Initialise outputs foreach output found in the compiled simulink model 
-        //for (int i=0; i<%<numExtOutputs>; i++)
-        //{
-	     //   pInstanceCapi->ExtY_DISCON_Empty_T[i] = pInstanceCapi->ExtU_DISCON_Empty_T[i];
-        //}
     %closefile tmpBuf
     %<LibSetSourceFileSection(fileh, "Defines", tmpBuf)>
 
@@ -584,9 +577,6 @@
     %openfile tmpBuf
         
         MdlUpdate(0);
-        char buf[256];
-        sprintf(buf, "Model_Update: usa=%f ia=%f\n", SIG_MODEL(Y, out_voltage_a), SIG_MODEL(U, in_current_a));
-        OutputDebugStringA(buf);
 	    return NULL;
     }
     %closefile tmpBuf
@@ -600,12 +590,8 @@
 
 %assign text = FcnStructInputOutput()
 
-
 %% Function: Outputs ==========================================================
 %%
 %function Outputs(block, system) Output
 
 %endfunction %% Outputs
-
- 
-%% EOF step.tlc

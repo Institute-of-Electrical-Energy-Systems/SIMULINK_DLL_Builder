@@ -228,6 +228,15 @@ target file is selected, it must be changed accordingly before
 proceeding — otherwise the build will not produce a DLL compatible with
 the IEC 61400-27 external model interface.
 
+Selecting this system target file adds a new menu item, ``Simulink DLL Builder``, to the Simulink menu bar. 
+Clicking this menu item opens the metadata dialog, which is pre-populated with the default values of the example. 
+These values must be reviewed and adjusted as required for the specific model.
+
+.. figure:: _images/SimulinkCoderSettingsMetaData.png
+   :alt: Code Generation Simulink DLL Builder tab
+
+   Filling the Model/DLL Metadata necessary for the DLL Code generation process.
+
 
 5. Starting the Creation Process
 ------------------------------------

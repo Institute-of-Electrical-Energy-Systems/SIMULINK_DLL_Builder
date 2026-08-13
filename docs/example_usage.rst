@@ -239,6 +239,14 @@ To check this, open **Settings** in the Simulink Coder App and navigate to **Cod
 If the selected **System Target File** is not ``IEC61400_27_DLL.tlc``, please change it accordingly. 
 This ensures that the model is built using the correct code generation process.
 
+Selecting this system target file adds a new menu item, ``Simulink DLL Builder``, to the Simulink menu bar. 
+Clicking this menu item opens the metadata dialog, which is pre-populated with the default values of the example. 
+
+.. figure:: _images/SimulinkCoderSettingsMetaData.png
+   :alt: Code Generation Simulink DLL Builder tab
+
+   Filling the Model/DLL Metadata necessary for the DLL Code generation process.
+
 Build
 ~~~~~
 
