@@ -414,10 +414,21 @@ By enabling the ``Individual phase definition`` option, the measurement can be a
 One input block is created for each measurement. 
 Therefore, the model contains six input blocks (see Figure 20).
 
-..  figure:: ./images/NETOMAC/Result_Inputs_IBR_DLL_Model.png
-    :alt: ``EVALUATE`` model with six measurement input blocks.
+.. grid:: 2
 
-    Figure 20: ``EVALUATE`` model with six measurement input blocks.
+    .. grid-item::
+
+        ..  figure:: ./images/NETOMAC/Result_Inputs_IBR_DLL_Model.png
+            :alt: ``EVALUATE`` model with six measurement input blocks.
+
+            Figure 20: ``EVALUATE`` model with six measurement input blocks.
+
+    .. grid-item::
+
+        ..  figure:: ./images/NETOMAC/Variables_IBR_DLL_Model.png
+            :alt: Defining the measurement data in variables in model files (.xmac).
+
+            Figure 21: Defining the measurement data in variables in model files (.xmac).
 
 For the inputs, PSS®Netomac automatically creates variables for defining the measurement data (see Figure 21). 
 The automatically created variables can be configured under ``Variables`` using the values specified in the following table: 
@@ -456,10 +467,7 @@ The automatically created variables can be configured under ``Variables`` using 
 | #Ic_MVA.P | 'T'      |         |         | 'T'         | Phase for Current measurement - phase c       |
 +-----------+----------+---------+---------+-------------+-----------------------------------------------+
 
-..  figure:: ./images/NETOMAC/Variables_IBR_DLL_Model.png
-    :alt: Defining the measurement data in variables in model files (.xmac).
 
-    Figure 21: Defining the measurement data in variables in model files (.xmac).
 
 Defining the conversion factors
 """"""""""""""""""""""""""""""
@@ -497,7 +505,7 @@ The equations are shown below:
 The parameters ``#Vpu2V`` and ``#IMVA2A`` are applied using ``Gain`` blocks, which are added via ``Insert Block`` (see Figure 24).
 The parameter ``#Vpu2V`` is used for all voltage inputs (see Figure 25), while ``#IMVA2A`` is used for all current inputs (see Figure 26).
 
-.. grid:: 2
+.. grid:: 3
 
    .. grid-item::
 
@@ -619,7 +627,7 @@ The Parameter ``#NAME`` can be freely chosen and does not need to match a specif
 The resulting ``[[Models_during_Loadflow]]`` section with the integrated models is shown below:
 
 .. code-block:: netomac
-    :linenos:
+   :linenos:
 
    [[Models_during_Loadflow]]                                                      |
    $-------------------------------------------------------------------------------| 
@@ -650,76 +658,189 @@ The resulting ``[[Models_during_Loadflow]]`` section with the integrated models 
    $-------------------------------------------------------------------------------|
    [[End Models_during_Loadflow]]                                                  |
 
-5. Defining the Models for the Controlled Voltage Source
+5. Defining the Model for the Controlled Voltage Source
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The remaining three models in the ``[[Models_during_Loadflow]]`` section can be implemented using a single model definition. 
-A ``SOURCE-V`` model is created, which can be instantiated seperately for each phase.
-The model should generally give the output from the DLL model to the voltage source.
-While the load-flow calculation a voltage phasor should be the output and at the beginning of the dynamic simulations the output of the voltage source is defined by the load-flow values until the DLL is ready.
-The model file for the ``SOURCE-V`` model is created in a similar way to the models describes in the previous sections (see Figure ??).
+A ``MIMO`` model (Mulitple Input, Multiple Output) is created to provide the interface betwwen the DLL model and the voltage source.
+Three ``SOURCE-V`` output blocks are used to implement the the ``MIMO`` model.
+Each output block represents one phase (a, b, or c).
+During the load-flow calculation, a voltage phasor with real and imaginary part is given to each output block. 
+Initially, the DLL output is bypassed, and the rotating load-flow voltage values are directly applied to the voltage source until the DLL is ready for operation.
+The ``MIMO`` model file is created in a similar way to the models described in the previous sections (see Figure 36).
+
+..  figure:: 
+    :alt: Define settings of new ``MIMO`` model file (.xmac) in PSS®Netomac.
+
+    Figure 36: Define settings of new ``MIMO`` model file (.xmac) in PSS®Netomac.
 
 Defining the Model Parameters
 """"""""""""""""""""""""""""""
 
-For the Implementation of the described behavior of the voltage source, following parameters with default values are required.
+To implement the described behavior of the voltage source, the following parameters with default values are required.
 
++-----------+---------+---------+---------+-------------+---------------------------------------------------+
 | Variables | Value   | Minimum | Maximum | Debug Value | Description                                       |
-+===========================================================================================================|
++===========+=========+=========+=========+=============+===================================================+
 | #Model    | 'IBR'   |         |         | 'IBR        | Model Name of the IBR Control Model               |
-+-----------------------------------------------------------------------------------------------------------|
-| #Signal   | 'Ea_pu' |         |         | 'Ea_pu'     | Signal Name of the IBR Control Model              |
-+-----------------------------------------------------------------------------------------------------------|
++-----------+---------+---------+---------+-------------+---------------------------------------------------+
+| #Sig_a    | 'Ea_pu' |         |         | 'Ea_pu'     | Signal Name of phase a of the IBR Control Model   |
++-----------+---------+---------+---------+-------------+---------------------------------------------------+
+| #Sig_b    | 'Eb_pu' |         |         | 'Eb_pu'     | Signal Name of phase b of the IBR Control Model   |
++-----------+---------+---------+---------+-------------+---------------------------------------------------+
+| #Sig_c    | 'Ec_pu' |         |         | 'Ec_pu'     | Signal Name of phase c of the IBR Control Model   |
++-----------+---------+---------+---------+-------------+---------------------------------------------------+
 | #Vmag     | 1.08753 | 0.0     | 1E3     | 1.08753     | Load-flow voltage magnitude [pu]                  |
-+-----------------------------------------------------------------------------------------------------------|
++-----------+---------+---------+---------+-------------+---------------------------------------------------+
 | #Vang     | 25.8966 | 0.0     | 360     | 25.8966     | Load-flow voltage angle [°]                       |
-+-----------------------------------------------------------------------------------------------------------|
++-----------+---------+---------+---------+-------------+---------------------------------------------------+
 | #Tfrz     | 1.5e-5  | 0.0     | 1E6     | 0.1         | Freezing Time at dynamic start for bypass DLL [s] |
-+-----------------------------------------------------------------------------------------------------------|
++-----------+---------+---------+---------+-------------+---------------------------------------------------+ 
  
+By selecting ``Variables``, the parameters described above can be defined as new model variables (see Figure 37). 
+
 Defining the Inputs
 """"""""""""""""""""""""""""""
 
-The model requires the output of the DLL model, which describes the voltage signal for the voltage source.
-By selecting ``Insert Input``, a ``Model Variable`` input block is created (see Figure 44).
-The  ``Output`` name of the block is specified in the topology section, while the ``Model type``, ``Model name`` and ``Output name`` is specified in the ``Data`` section (see Figure 45).
+The model requires the output of the IBR control model, which provide the voltage signals for the voltage source.
+By selecting ``Insert Input``, a ``Model Variable`` input block is created (see Figure 38 and 39).
+The  ``Output`` name of the block is specified in the topology section, while the ``Model type``, ``Model name`` and ``Output name`` is specified in the ``Data`` section (see Figure 40).
+The ``Model Type`` is set to ``EVALUATE``.
+For the ``Model name``, the parameter ``#Model`` is used.
+The parameters ``#Sig_a``, ``#Sig_b`` and ``#Sig_c`` are used for the ``Output name`` of phases a, b, and c, respectively.
 
-Defining the bypass at dynamic start
+.. grid:: 3
+
+   .. grid-item::
+
+        ..  figure:: 
+            :alt: Creating a ``Model Variable`` input block in model files (.xmac)
+
+            Figure 38: Creating a ``Model Variable`` input block in model files (.xmac)
+
+    .. grid-item::
+
+        ..  figure:: 
+            :alt: Defining a ``Model Variable`` input block for each phase.
+
+            Figure 39: Defining a ``Model Variable`` input block for each phase.
+
+    .. grid-item::
+
+        ..  figure:: 
+            :alt: Defining the data of the ``Model Variable`` input block.
+
+            Figure 40: Defining the data of the ``Model Variable`` input block.
+
+Defining the bypass of the DLL
 """"""""""""""""""""""""""""""
-The logic for bypass the DLL at dynamic start is implemented using an IF statement in FORTRAN code. 
-As described above, the voltage source operates with the output values of ``#Vmag`` and ``#Vang`` in load-flow calculation (``BOSL_MODE`` = 1) and at beginning of dynamic simulation until time ``#Tfrz`` is reached.
 
-By selecting the ``FORTRAN`` block via ``Insert Special Block``, a user-defined IF statement can be implemented. 
+The DLL is bypassed during the load-flow calculation and at the beginning of the dynamic simulation until the time ``#Tfrz`` is reached.
+During the load-flow calculation, the voltage phasor for each phase is required as an output, inculding its real and imaginary components. 
+Therefore, the load-flow voltage phasor is calculated from the magnitude and angle specified by the parameters ``#Vmag`` and ``#Vang``.
+
+At the beginning of the dynamic simulation, the load-flow voltage phasors are rotated to generate the corresponding EMT signals. 
+The imaginary part of the output block is not used during the dynamic simulation. 
+
+This behavior is implemented using an IF statement in FORTRAN code.
+As described above, the voltage source uses the values specified by ``#Vmag`` and ``#Vang`` during the load-flow calculation (``BOSL_MODE`` = 1) and at the beginning of dynamic simulation until ``#Tfrz`` is reached.
+
+By selecting the ``FORTRAN`` block via ``Insert Special Block``, a user-defined IF statement can be implemented (see Figure 41). 
 The implemented logic is shown below : 
 
 .. code-block:: netomac
     :linenos:
 
    IF ((BOSL_MODE.EQ.1).OR.(TIME.LE.Tfrz)) THEN
-    wt = #Vang + 360 * FNOM * TIME
-    Er = #Vmag * COS(wt)
-    Ei = #Vmag * SIN(wt)   
+    wta = #Vang + 360 * FNOM * TIME
+    wtb = #Vang + 360 * FNOM * TIME - 120
+    wtc = #Vang + 360 * FNOM * TIME - 240
+    
+    Ea_r = #Vmag * COS(wt)
+    Ea_i = #Vmag * SIN(wt)  
+    Eb_r = #Vmag * COS(wt)
+    Eb_i = #Vmag * SIN(wt)  
+    Ec_r = #Vmag * COS(wt)
+    Ec_i = #Vmag * SIN(wt)      
    ELSE 
-    Er = Er_pu
-    Ei = 0
+    Ea_r = Ea
+    Eb_r = Eb
+    Ec_r = Ec
    ENDIF
+
+..  figure:: 
+    :alt: Define the DLL bypass logic as IF statement in FORTRAN.
+
+    Figure 41: Define DLL bypass logic as IF statement in FORTRAN. 
 
 Defining the Output
 """"""""""""""""""""""""""""""
 
-As described above, the ``SOURCE-V`` output block is used.
-By selecting ``Insert Output``, the ``SOURCE-V`` output block is created (see Figure ...).
-In the topology section of the block, the ``Branch for applied voltage``, i.e., the ``R``-line created in the ``[[Network]]`` section, is specified (see Figure 13). 
-In this example, the variable ``#NAME`` is used, which represents automatically the name of the model. 
+By selecting ``Insert Output``, the ``SOURCE-V`` output block is created (see Figure 42).
+In the ``Topology`` section of the block, the ``Branch for applied voltage``, i.e., the ``R``-line created in the ``[[Network]]`` section, is specified (see Figure 43). 
+In this example, the variable ``#NAME`` is used, which automatically represents the name of the model. 
 Therefore, the model name must be identical to the corresponding branch name.
-In the ``Data`` section the ``Integration type`` is set to ``During network iteration`` (see Figure 14).
-Figure 15 shows the finalized model file for the ideal voltage source of the Thevenin equivalent.
+In the ``Data`` section the ``Integration type`` is set to ``During network iteration`` (see Figure 44).
+
+.. grid:: 3
+
+   .. grid-item::
+
+       ..  figure:: 
+            :alt: Creating a ``SOURCE-V`` output block in model files (.xmac).
+
+            Figure 42: Creating a ``SOURCE-V`` output block in model files (.xmac).
+
+   .. grid-item::
+
+        ..  figure:: 
+            :alt: Defining the topology data of the ``SOURCE-V`` output block.
+
+            Figure 43: Defining the topology of the ``SOURCE-V`` output block.
+
+    .. grid-item::
+
+        ..  figure:: 
+            :alt: Defining the data of the ``SOURCE-V`` output block.
+
+            Figure 44: Defining the data of the ``SOURCE-V`` output block.    
+
+Figure 45 shows the finalized model file for the ideal voltage source of the Thevenin equivalent.
+
+..  figure:: 
+    :alt: Resulting ideal voltage source model (.xmac) with bypass function.
+
+    Figure 45: Resulting voltage source model (.xmac) with bypass function.
+
+
 
 Integration of the model into the power system
 """"""""""""""""""""""""""""""
 
-.. code-block:: netomac
-    :linenos:
+To integrate the created model into the power system, the model must be added to the ``.net`` file in the ``[[Models_during_Loadflow]]`` section.
+By right-clicking and selecting ``Insert Model``, the model can be added by specifying the path to the model file (see Figure 46).
+PSS®NETOMAC automatically creates the variable list for the model.
+The Parameter ``#NAME`` must be set to the same name as the branch of the voltage source, ``IBR``.
 
-   
-6. 
+..  figure:: ./images/NETOMAC/Insert_GNE_V.png
+    :alt: Integration of the voltage source model (.xmac) into the power system.
+
+    Figure 46: Integration of the voltage source model (.xmac) into the power system.
+
+The resulting ``[[Models_during_Loadflow]]`` section with the integrated model is shown below:
+
+.. code-block:: netomac
+   :linenos:
+
+   [[Models_during_Loadflow]]                                                      |
+   $-------------------------------------------------------------------------------| 
+   @ #NAME      = 'VSrc'                                                           |
+   @ #Vreal     = 1.0                 ! Real part of ideal voltage source [pu]     |
+   @ #Vimag     = 0.0                 ! Imaginary part of id. volt. source [pu]    |
+   @ #Vstep     = 0.7                 ! Step of real part of id. volt. source [pu] |
+   @ #Tstep     = 0.1                 ! Time of voltage step [pu]                  |
+   #.\MAC\Ideal_Voltage_Source.xmac                                                |
+   $-------------------------------------------------------------------------------| 
+   [[End Models_during_Loadflow]]                                                  |
+
+Simulation using the IEC 61400-27 DLL
+-------------------------------------------------------
