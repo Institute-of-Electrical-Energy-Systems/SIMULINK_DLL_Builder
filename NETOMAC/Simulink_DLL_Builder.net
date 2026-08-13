@@ -1,0 +1,93 @@
+$-------------------------------------------------------------------------------|
+****                                                                            |
+$-------------------------------------------------------------------------------| Grid data
+$                                                                               |
+@@ #Vn    = 400            ! Nominal voltage [kV]                               |
+$                                                                               |
+$-------------------------------------------------------------------------------| Converter model data
+$                                                                               |
+@@ #Rc    = 0.7820         ! Converter resistance [Ohm]                         |
+@@ #Lc    = 157.4          ! Converter reactance [mH]                           |
+$                                                                               |
+$-------------------------------------------------------------------------------| Thevenin equivalent data
+$                                                                               |
+@@ #Re    =  10.613730029  ! Thevenin equivalent resistance [Ohm]               |
+@@ #Le    = 337.845519749  ! Thevenin equivalent reactane [mH]                  |
+$                                                                               |
+$-------------------------------------------------------------------------------|
+[[Feeder]]                                                                      |
+$-------------------------------------------------------------------------------|
+$                                                                               |
+$-------------------------------------------------------------------------------|
+[[End Feeder]]                                                                  |
+$-------------------------------------------------------------------------------|
+[[Machines]]                                                                    |
+$-------------------------------------------------------------------------------|
+$                                                                               |
+$-------------------------------------------------------------------------------|
+[[End Machines]]                                                                |
+$-------------------------------------------------------------------------------|
+[[Network]]                                                                     |
+$-------------------------------------------------------------------------------|
+$ Voltage Sources                                                               |
+$-------------------------------------------------------------------------------|
+$ Node 1         ID        km    R'                      Vn                     |
+$-------------------------------------------------------------------------------|
+RBus1            VSrc     11     1e-6                    #Vn                    | Thevenin equivalent
+RBus3            IBR      11     1e-6                    #Vn                    | IBR
+$-------------------------------------------------------------------------------|
+$ Impedances                                                                    |
+$-------------------------------------------------------------------------------|
+$ Node 1 Node 2  ID        km    R'                L'    Vn                     |
+$-------------------------------------------------------------------------------|
+ABus2    Bus1    Z_Th      1     #Re               #Le   #Vn                    | Thevenin equivalent
+ABus3    Bus2    Z_IBR     1.    #Rc               #Lc   #Vn                    | IBR
+$-------------------------------------------------------------------------------|
+[[End Network]]                                                                 |
+$-------------------------------------------------------------------------------|
+[[Models_during_Loadflow]]                                                      |
+$-------------------------------------------------------------------------------|
+@ #NAME      = 'VSrc'                                                           |
+@ #Vreal     = 1.0                 ! Real part of the voltage source [pu]       |
+@ #Vimag     = 0.0                 ! Imaginary part of the voltage source [pu]  |
+@ #Vdip      = 0.7                 ! Voltage magnitude during voltage dip [pu]  |
+@ #Tdip1     = 1.0                 ! Time at which the voltage dip occurs [s]   |
+@ #Tdip2     = 1.2                 ! Time at which the voltage is restored [s]  |
+#.\MAC\Ideal_Voltage_Source.xmac                                                |
+$-------------------------------------------------------------------------------|
+@ #NAME      = 'IBR_DLL'                                                        |
+@ #Va_pu.N   = 'Bus2'              ! Node for Voltage measurement - phase a     |
+@ #Va_pu.P   = 'R'                 ! Phase for Voltage measurement - phase a    |
+@ #Vb_pu.N   = 'Bus2'              ! Node for Voltage measurement - phase b     |
+@ #Vb_pu.P   = 'S'                 ! Phase for Voltage measurement - phase b    |
+@ #Vc_pu.N   = 'Bus2'              ! Node for Voltage measurement - phase c     |
+@ #Vc_pu.P   = 'T'                 ! Phase for Voltage measurement - phase c    |
+@ #Ia_MVA.N  = 'Bus2'              ! Node for Current measurement - phase a     |
+@ #Ia_MVA.B  = 'Z_IBR'             ! Branch for Current measurement - phase a   |
+@ #Ia_MVA.P  = 'R'                 ! Phase for Current measurement - phase a    |
+@ #Ib_MVA.N  = 'Bus2'              ! Node for Current measurement - phase b     |
+@ #Ib_MVA.B  = 'Z_IBR'             ! Branch for Current measurement - phase b   |
+@ #Ib_MVA.P  = 'S'                 ! Phase for Current measurement - phase b    |
+@ #Ic_MVA.N  = 'Bus2'              ! Node for Current measurement - phase c     |
+@ #Ic_MVA.B  = 'Z_IBR'             ! Branch for Current measurement - phase c   |
+@ #Ic_MVA.P  = 'T'                 ! Phase for Current measurement - phase c    |
+#.\MAC\IBR_Control_DLL.xmac                                                     |
+$-------------------------------------------------------------------------------|
+@ #NAME      = 'IBR'                                                            |
+@ #Model     = 'IBR_DLL'           ! Model Name of the IBR Control Model        |
+@ #Sig_a     = 'Ea'                ! Signal Name for phase a                    |
+@ #Sig_b     = 'Eb'                ! Signal Name for phase b                    |
+@ #Sig_c     = 'Ec'                ! Signal Name for phase c                    |
+@ #Vmag      = 1.087535184         ! Load-flow voltage magnitude [pu]           |
+@ #Vang      = 25.896609936        ! Load-flow voltage angle [°]                |
+@ #Tfrz      = 50e-6               ! Freezing time at dynamic start [s]         |
+#.\MAC\Controlled_Voltage_Source.xmac                                           |
+$-------------------------------------------------------------------------------|
+[[End Models_during_Loadflow]]                                                  |
+$-------------------------------------------------------------------------------|
+[[Models]]                                                                      |
+$-------------------------------------------------------------------------------|
+$                                                                               |
+$-------------------------------------------------------------------------------|
+[[End Models]]                                                                  |
+$-------------------------------------------------------------------------------|

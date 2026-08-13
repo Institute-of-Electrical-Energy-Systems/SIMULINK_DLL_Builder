@@ -1,0 +1,25 @@
+$
+$ Header lines
+
+E        NEWFORM
+$
+$ Data output definition
+$1......12......23......3AA1....12....23....34....45....56....67...78...89...9ZZ
+ Bus1                    R Bus1.R - V [pu]                                     1
+ Bus1                    S Bus1.S - V [pu]                                     2
+ Bus1                    T Bus1.T - V [pu]                                     3
+ Bus2                    R Bus2.R - V [pu]                                     4
+ Bus2                    S Bus2.S - V [pu]                                     5
+ Bus2                    T Bus2.T - V [pu]                                     6
+ Bus3                    R Bus3.R - V [pu]                                     7
+ Bus3                    S Bus3.S - V [pu]                                     8
+ Bus3                    T Bus3.T - V [pu]                                     9
+ Bus2            Z_IBR    RZ_IBR.R, Bus2 - I [MVA]                            10
+ Bus2            Z_IBR    SZ_IBR.S, Bus2 - I [MVA]                            11
+ Bus2            Z_IBR    TZ_IBR.T, Bus2 - I [MVA]                            12
+PBus2            Z_IBR   1 Z_IBR, Bus2.1 - P [MW]                             13
+QBus2            Z_IBR   1 Z_IBR, Bus2.1 - Q [Mvar]                           14
+BBus1                    1 Bus1.1 - V [pu]                                    15
+BBus2                    1 Bus2.1 - V [pu]                                    16
+BBus3                    1 Bus3.1 - V [pu]                                    17
+BBus2            Z_IBR    1Z_IBR.1, Bus2 - I [MVA]                            18
