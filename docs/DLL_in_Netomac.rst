@@ -711,7 +711,7 @@ During the load-flow calculation, a voltage phasor with real and imaginary part 
 Initially, the DLL output is bypassed, and the rotating load-flow voltage values are directly applied to the voltage source until the DLL is ready for operation.
 The ``MIMO`` model file is created in a similar way to the models described in the previous sections (see Figure 36).
 
-..  figure:: 
+..  figure:: ./images/NETOMAC/Create_MIMO_Model.png
     :alt: Define settings of new ``MIMO`` model file (.xmac) in PSS®Netomac.
 
     Figure 36: Define settings of new ``MIMO`` model file (.xmac) in PSS®Netomac.
@@ -741,6 +741,11 @@ To implement the described behavior of the voltage source, the following paramet
  
 By selecting ``Variables``, the parameters described above can be defined as new model variables (see Figure 37). 
 
+..  figure:: ./images/NETOMAC/Create_Variables_of_MIMO.png
+    :alt: Define settings of new ``MIMO`` model file (.xmac) in PSS®Netomac.
+
+    Figure 36: Define settings of new ``MIMO`` model file (.xmac) in PSS®Netomac.
+
 Defining the Inputs
 """"""""""""""""""""""""""""""
 
@@ -755,24 +760,24 @@ The parameters ``#Sig_a``, ``#Sig_b`` and ``#Sig_c`` are used for the ``Output n
 
    .. grid-item::
 
-        ..  figure:: 
-            :alt: Creating a ``Model Variable`` input block in model files (.xmac)
+      ..  figure:: ./images/NETOMAC/Create_Model_Variable_Block.png
+         :alt: Creating a ``Model Variable`` input block in model files (.xmac)
 
-            Figure 38: Creating a ``Model Variable`` input block in model files (.xmac)
+         Figure 38: Creating a ``Model Variable`` input block in model files (.xmac)
 
-    .. grid-item::
+      .. grid-item::
 
-        ..  figure:: 
-            :alt: Defining a ``Model Variable`` input block for each phase.
+        ..  figure:: ./images/NETOMAC/Create_Model_Variable_Block.png
+         :alt: Defining a ``Model Variable`` input block for each phase.
 
-            Figure 39: Defining a ``Model Variable`` input block for each phase.
+         Figure 39: Defining a ``Model Variable`` input block for each phase.
 
-    .. grid-item::
+      .. grid-item::
 
-        ..  figure:: 
-            :alt: Defining the data of the ``Model Variable`` input block.
+        ..  figure:: ./images/NETOMAC/Result_Inputs_of_MIMO.png
+         :alt: Defining the data of the ``Model Variable`` input block.
 
-            Figure 40: Defining the data of the ``Model Variable`` input block.
+         Figure 40: Defining the data of the ``Model Variable`` input block.
 
 Defining the bypass of the DLL
 """"""""""""""""""""""""""""""
@@ -793,24 +798,28 @@ The implemented logic is shown below :
 .. code-block:: netomac
     :linenos:
 
-   IF ((BOSL_MODE.EQ.1).OR.(TIME.LE.Tfrz)) THEN
-    wta = #Vang + 360 * FNOM * TIME
-    wtb = #Vang + 360 * FNOM * TIME - 120
-    wtc = #Vang + 360 * FNOM * TIME - 240
-    
-    Ea_r = #Vmag * COS(wt)
-    Ea_i = #Vmag * SIN(wt)  
-    Eb_r = #Vmag * COS(wt)
-    Eb_i = #Vmag * SIN(wt)  
-    Ec_r = #Vmag * COS(wt)
-    Ec_i = #Vmag * SIN(wt)      
-   ELSE 
-    Ea_r = Ea
-    Eb_r = Eb
-    Ec_r = Ec
-   ENDIF
+   $-------------------------------------------------------------------------------|
+    IF ((BOSL_MODE.EQ.1).OR.(TIME.LT.Tfrz)) THEN                                   |   
+     wt_a    = Vang + FNOM * 360 * TIME                                            |
+     wt_b    = Vang + FNOM * 360 * TIME - 120                                      |
+     wt_c    = Vang + FNOM * 360 * TIME - 240                                      |
+   $                                                                               |
+     Va_r    = Vmag * COS(wt_a)                                                    |    
+     Va_i    = Vmag * SIN(wt_a)                                                    |
+   $                                                                               |
+     Vb_r    = Vmag * COS(wt_b)                                                    |    
+     Vb_i    = Vmag * SIN(wt_b)                                                    |
+   $                                                                               |
+     Vc_r    = Vmag * COS(wt_c)                                                    |    
+     Vc_i    = Vmag * SIN(wt_c)                                                    |  
+    ELSE                                                                           | 
+     Va_r = Ea                                                                     |                    
+     Vb_r = Eb                                                                     |
+     Vc_r = Ec                                                                     |
+    ENDIF                                                                          |
+   $-------------------------------------------------------------------------------|
 
-..  figure:: 
+..  figure:: ./images/NETOMAC/Bypass_Logic_in_MIMO.png
     :alt: Define the DLL bypass logic as IF statement in FORTRAN.
 
     Figure 41: Define DLL bypass logic as IF statement in FORTRAN. 
@@ -824,32 +833,45 @@ In this example, the variable ``#NAME`` is used, which automatically represents 
 Therefore, the model name must be identical to the corresponding branch name.
 In the ``Data`` section the ``Integration type`` is set to ``During network iteration`` (see Figure 44).
 
-.. grid:: 3
+.. grid:: 5
 
    .. grid-item::
 
-       ..  figure:: 
+      ..  figure:: ./images/NETOMAC/Create_MIMO_Output.png
             :alt: Creating a ``SOURCE-V`` output block in model files (.xmac).
 
             Figure 42: Creating a ``SOURCE-V`` output block in model files (.xmac).
 
    .. grid-item::
 
-        ..  figure:: 
-            :alt: Defining the topology data of the ``SOURCE-V`` output block.
-
-            Figure 43: Defining the topology of the ``SOURCE-V`` output block.
-
-    .. grid-item::
-
-        ..  figure:: 
+      ..  figure:: ./images/NETOMAC/Create_MIMO_Output_Data.png
             :alt: Defining the data of the ``SOURCE-V`` output block.
 
-            Figure 44: Defining the data of the ``SOURCE-V`` output block.    
+            Figure 43: Defining the of the ``SOURCE-V`` output block.
+
+   .. grid-item::
+
+      ..  figure:: ./images/NETOMAC/Create_MIMO_Output_Topology_R.png
+            :alt: Defining the topology for phase R of the ``SOURCE-V`` output block.
+
+            Figure 44: efining the topology for phase R of the ``SOURCE-V`` output block.
+
+   .. grid-item::
+      ..  figure:: ./images/NETOMAC/Create_MIMO_Output_Topology_S.png
+            :alt: Defining the topology for phase S of the ``SOURCE-V`` output block.
+
+            Figure 44: Defining the topology for phase S of the ``SOURCE-V`` output block.
+
+   .. grid-item:: 
+      ..  figure:: ./images/NETOMAC/Create_MIMO_Output_Topology_T.png
+            :alt: Defining the topology for phase T of the ``SOURCE-V`` output block.
+
+            Figure 44: Defining the topology for phase T of the ``SOURCE-V`` output block.
+
 
 Figure 45 shows the finalized model file for the ideal voltage source of the Thevenin equivalent.
 
-..  figure:: 
+..  figure:: ./images/NETOMAC/Resulting_MIMO_Model.png
     :alt: Resulting ideal voltage source model (.xmac) with bypass function.
 
     Figure 45: Resulting voltage source model (.xmac) with bypass function.
@@ -864,7 +886,7 @@ By right-clicking and selecting ``Insert Model``, the model can be added by spec
 PSS®NETOMAC automatically creates the variable list for the model.
 The Parameter ``#NAME`` must be set to the same name as the branch of the voltage source, ``IBR``.
 
-..  figure:: ./images/NETOMAC/Insert_GNE_V.png
+..  figure:: ./images/NETOMAC/Insert_MIMO.png
     :alt: Integration of the voltage source model (.xmac) into the power system.
 
     Figure 46: Integration of the voltage source model (.xmac) into the power system.
@@ -876,12 +898,15 @@ The resulting ``[[Models_during_Loadflow]]`` section with the integrated model i
 
    [[Models_during_Loadflow]]                                                      |
    $-------------------------------------------------------------------------------| 
-   @ #NAME      = 'VSrc'                                                           |
-   @ #Vreal     = 1.0                 ! Real part of ideal voltage source [pu]     |
-   @ #Vimag     = 0.0                 ! Imaginary part of id. volt. source [pu]    |
-   @ #Vstep     = 0.7                 ! Step of real part of id. volt. source [pu] |
-   @ #Tstep     = 0.1                 ! Time of voltage step [pu]                  |
-   #.\MAC\Ideal_Voltage_Source.xmac                                                |
+   @ #NAME      = 'IBR'                                                            |
+   @ #Model     = 'IBR_DLL'           ! Model Name of the IBR Control Model        |
+   @ #Sig_a     = 'Ea'                ! Signal Name for phase a                    |
+   @ #Sig_b     = 'Eb'                ! Signal Name for phase b                    |
+   @ #Sig_c     = 'Ec'                ! Signal Name for phase c                    |
+   @ #Vmag      = 1.087535184         ! Load-flow voltage magnitude [pu]           |
+   @ #Vang      = 25.896609936        ! Load-flow voltage angle [°]                |
+   @ #Tfrz      = 50e-6               ! Freezing time at dynamic start [s]         |
+   #.\MAC\Controlled_Voltage_Source.xmac                                           |
    $-------------------------------------------------------------------------------| 
    [[End Models_during_Loadflow]]                                                  |
 
