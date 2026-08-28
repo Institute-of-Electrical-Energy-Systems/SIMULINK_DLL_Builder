@@ -529,6 +529,23 @@ The parameter ``#Vpu2V`` is used for all voltage inputs (see Figure 25), while `
 
             Figure 26: Define the gain value for current conversion.
 
+For performance reasons additional a time delay of one timestep is included into the model.
+
+.. grid:: 2
+
+   .. grid-item::
+
+      ..  figure:: ./images/NETOMAC/Create_DeadTime_block.png
+            :alt: Creating a new ``Deadtime`` block in model files (.xmac).
+
+            Figure 27: Creating a new ``Deadtime`` block in model files (.xmac).
+
+   .. grid-item::
+
+      ..  figure:: ./images/NETOMAC/Create_DeadTime_data.png
+            :alt: Define the deadtime value for voltage conversion.
+
+            Figure 28: Define the deadtime value for voltage conversion.   
 
 2. Integration of the IEC DLL
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -544,21 +561,21 @@ These parameters are assigned default values automatically.
 
    .. grid-item::
 
-        ..  figure:: ./images/NETOMAC/Create_DLL_Block.png
+      ..  figure:: ./images/NETOMAC/Create_DLL_Block.png
             :alt: Creating a ``DLL IEC`` block in model files (.xmac).
 
             Figure 27: Creating a ``DLL IEC`` block in model files (.xmac).
 
-    .. grid-item::
+   .. grid-item::
 
-        ..  figure:: ./images/NETOMAC/Create_DLL_Block_topology.png
+      ..  figure:: ./images/NETOMAC/Create_DLL_Block_topology.png
             :alt: Defining the output signal names of the ``DLL IEC`` block.
 
             Figure 28: Defining the output signal names of the ``DLL IEC`` block.
 
-    .. grid-item::
+   .. grid-item::
 
-        ..  figure:: ./images/NETOMAC/Create_DLL_Block_data.png
+      ..  figure:: ./images/NETOMAC/Create_DLL_Block_data.png
             :alt: Defining the parameters of the ``DLL IEC``.
 
             Figure 29: Defining the parameters of the ``DLL IEC``.
@@ -584,8 +601,8 @@ For this conversion, the reciprocal value of ``#Vpu2V`` is required (see Figure 
             Figure 31: Define the gain value for reciprocal voltage conversion.
 
 
-Defining the Output
-""""""""""""""""""""""""""""""
+4. Defining the back conversion factors
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 By selecting ``Insert Output``, the ``EVALUATE`` output block is created (see Figure 32).
 In the ``Data`` section, the ``Integration type`` is set to ``During network iteration`` (see Figure 33).
