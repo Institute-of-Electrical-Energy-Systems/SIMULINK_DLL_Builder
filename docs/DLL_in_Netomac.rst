@@ -150,12 +150,13 @@ The model properties, such as ``Name``, ``Author`` and ``Description``, are then
 With the ``Add model file to project`` option enabled, the model file is saved in the ``./MAC`` subdirectory.
 In the next step, the page settings for the model file are defined (see Figure 3).
 
-..  figure:: ./images/NETOMAC/Create_new_model_file.png
-    :alt: Creating a new empty model file (.xmac) in PSS®Netomac.
+.. grid:: 3
 
-    Figure 1: Creating a new empty model file (.xmac) in PSS®Netomac.
+   .. grid-item::
+      ..  figure:: ./images/NETOMAC/Create_new_model_file.png
+            :alt: Creating a new empty model file (.xmac) in PSS®Netomac.
 
-.. grid:: 2
+            Figure 1: Creating a new empty model file (.xmac) in PSS®Netomac.
 
    .. grid-item::
 
