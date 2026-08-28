@@ -10,7 +10,7 @@ The complete process consists of six consecutive steps, which build on one
 another and are described in detail in the corresponding chapters of this
 documentation.
 
-.. figure:: _images/iec61400_27_builder_workflow.png
+.. figure:: ./images/iec61400_27_builder_workflow.png
    :alt: Overview of the six-step workflow
 
    Overview of the six-step workflow of the IEC 61400-27 Builder.
@@ -204,7 +204,7 @@ Once the model structure has been finalized, the Simulink Coder App is
 opened from the Simulink toolbar in order to configure the code
 generation process.
 
-.. figure:: _images/SimulinkCoder.png
+.. figure:: ./images/SimulinkCoder.png
    :alt: Opening the Simulink Coder App
 
    Opening the Simulink Coder App.
@@ -212,12 +212,12 @@ generation process.
 The key configuration step is verifying the **System Target File**
 selected under *Settings → Code Generation*:
 
-.. figure:: _images/SimulinkCoderSettings.png
+.. figure:: ./images/SimulinkCoderSettings.png
    :alt: Simulink Coder settings dialog
 
    Opening the Simulink Coder settings.
 
-.. figure:: _images/SimulinkCoderSettingsCodeGeneration.png
+.. figure:: ./images/SimulinkCoderSettingsCodeGeneration.png
    :alt: Code Generation tab
 
    Selecting the Code Generation tab.
@@ -228,6 +228,15 @@ target file is selected, it must be changed accordingly before
 proceeding — otherwise the build will not produce a DLL compatible with
 the IEC 61400-27 external model interface.
 
+Selecting this system target file adds a new menu item, ``Simulink DLL Builder``, to the Simulink menu bar. 
+Clicking this menu item opens the metadata dialog, which is pre-populated with the default values of the example. 
+These values must be reviewed and adjusted as required for the specific model.
+
+.. figure:: ./images/SimulinkCoderSettingsMetaData.png
+   :alt: Code Generation Simulink DLL Builder tab
+
+   Filling the Model/DLL Metadata necessary for the DLL Code generation process.
+
 
 5. Starting the Creation Process
 ------------------------------------
@@ -235,7 +244,7 @@ the IEC 61400-27 external model interface.
 With the correct target file selected, the build process is started by
 clicking **Build** in the Simulink Coder App.
 
-.. figure:: _images/SimulinkCoderBuild.png
+.. figure:: ./images/SimulinkCoderBuild.png
    :alt: Starting the code generation process
 
    Starting the code generation process.

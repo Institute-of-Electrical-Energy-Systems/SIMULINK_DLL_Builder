@@ -110,7 +110,7 @@
   %----------------------------------------%
   % Configure RTW code generation settings %
   %----------------------------------------%
-  rtwgensettings.BuildDirSuffix = '_my_grt_target_rtw';
+  rtwgensettings.BuildDirSuffix = '_IEC_61400_27_DLL';
   rtwgensettings.DerivedFrom    = 'grt.tlc';   
   rtwgensettings.Version        = '1';
 
