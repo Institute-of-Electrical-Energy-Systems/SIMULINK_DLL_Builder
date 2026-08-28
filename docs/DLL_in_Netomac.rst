@@ -237,14 +237,14 @@ The ``Output`` name of the block is specified in the topology section (see Figur
 
    .. grid-item::
 
-        ..  figure:: ./images/NETOMAC/Defining_Topology_Of_Constant_Input.png
+       ..  figure:: ./images/NETOMAC/Defining_Topology_Of_Constant_Input.png
             :alt: Define topology of constant input block in model files (.xmac).
 
             Figure 7: Define topology constant input block in model files (.xmac).
 
-    .. grid-item::
+   .. grid-item::
 
-        ..  figure:: ./images/NETOMAC/Defining_Data_Of_Constant_Input.png
+       ..  figure:: ./images/NETOMAC/Defining_Data_Of_Constant_Input.png
             :alt: Define data of constant input block in model files (.xmac).
 
             Figure 8: Define data of constant input block in model files (.xmac).     
