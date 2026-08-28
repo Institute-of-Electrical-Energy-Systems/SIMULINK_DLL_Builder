@@ -372,6 +372,9 @@ The second model represents the interface to the power system for each phase a, 
 It is represented by a ``MIMO`` model (Mulitple Inupt, Mulitple Output), which is implemented using three ``SOURCE-V`` output blocks within a signle model file.
 The ``MIMO`` model receives the outpus signals from the upper-level model and applies the corresponding signals to the voltage sources.
 
+1. Defining the Model for Integration of the IEC DLL
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 The model file for the ``EVALUATE`` model is created in a similar way toe the model described in the previous section (see Figure 16).
 
 ..  figure:: ./images/NETOMAC/Create_IBR_DLL_Model.png
@@ -379,8 +382,8 @@ The model file for the ``EVALUATE`` model is created in a similar way toe the mo
 
     Figure 16: Define settings of new ``EVALUATE`` model file (.xmac) in PSS®Netomac.
 
-1. Defining the Inputs
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Defining the Inputs
+""""""""""""""""""""""""""""""
 
 The DLL requires the phase voltages at the point of common coupling (PCC) and the phase currents injected into the PCC. 
 Therefore, three voltage measurements and three current measurements are required.
@@ -470,8 +473,8 @@ The automatically created variables can be configured under ``Variables`` using 
 | #Ic_MVA.P | 'T'      |         |         | 'T'         | Phase for Current measurement - phase c       |
 +-----------+----------+---------+---------+-------------+-----------------------------------------------+
 
-1. Defining the conversion factors
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Defining the conversion factors
+""""""""""""""""""""""""""""""
 
 Since the IBR control implemented in the DLL uses volts (V) for voltage and amperes (A) for current, the input values must be converted from pu and MVA to V and A, respectively.
 The conversion factors are defined under ``Equations...`` (see Figure 22 and 23). 
@@ -547,8 +550,8 @@ For performance reasons additional a time delay of one timestep is included into
 
             Figure 28: Define the deadtime value for voltage conversion.   
 
-2. Integration of the IEC DLL
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Integration of the IEC DLL
+""""""""""""""""""""""""""""""
 
 The DLL model is integrated into the model by selecting ``Insert Special Block`` and then selecting the ``DLL IEC`` block (see Figure 27).
 The path to the DLL file (.dll) must be specified. 
@@ -601,8 +604,28 @@ For this conversion, the reciprocal value of ``#Vpu2V`` is required (see Figure 
             Figure 31: Define the gain value for reciprocal voltage conversion.
 
 
-4. Defining the back conversion factors
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Defining the back conversion factors
+""""""""""""""""""""""""""""""
+
+.. grid:: 2
+
+   .. grid-item::
+
+        ..  figure:: ./images/NETOMAC/Create_Gain_Voltage_data_return.png
+            :alt: Creating a ``Gain`` output block in model files (.xmac).
+
+            Figure 32: Creating a ``Gain`` output block in model files (.xmac).
+
+    .. grid-item::
+
+        ..  figure:: ./images/NETOMAC/Create_Gain_Voltage_data_return.png
+            :alt: Defining the data of the ``Gain`` blocks.  
+
+            Figure 33: Defining the data of the ``Gain`` blocks.
+
+
+Defining the output
+""""""""""""""""""""""""""""""
 
 By selecting ``Insert Output``, the ``EVALUATE`` output block is created (see Figure 32).
 In the ``Data`` section, the ``Integration type`` is set to ``During network iteration`` (see Figure 33).
@@ -629,6 +652,7 @@ Figure 34 shows the finalized model file for the DLL integration.
     :alt: Resulting IBR control model (.xmac) with integrated DLL.
 
     Figure 34: Resulting IBR control model (.xmac) with integrated DLL.
+
 
 Integration of the model into the power system
 """"""""""""""""""""""""""""""
@@ -677,7 +701,7 @@ The resulting ``[[Models_during_Loadflow]]`` section with the integrated models 
    $-------------------------------------------------------------------------------|
    [[End Models_during_Loadflow]]                                                  |
 
-5. Defining the Model for the Controlled Voltage Source
+2. Defining the Interface model to the power system
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A ``MIMO`` model (Mulitple Input, Multiple Output) is created to provide the interface betwwen the DLL model and the voltage source.
