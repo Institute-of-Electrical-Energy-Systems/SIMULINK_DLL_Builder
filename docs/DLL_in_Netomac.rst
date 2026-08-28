@@ -311,14 +311,14 @@ In the ``Data`` section the ``Integration type`` is set to ``During network iter
 
    .. grid-item::
 
-        ..  figure:: ./images/NETOMAC/GNE_V_Output_Topology.png
+       ..  figure:: ./images/NETOMAC/GNE_V_Output_Topology.png
             :alt: Defining the topology data of the ``GNE-V`` output block.
 
             Figure 12: Defining the topology of the ``GNE-V`` output block.
 
-    .. grid-item::
+   .. grid-item::
 
-        ..  figure:: ./images/NETOMAC/GNE_V_Output_Data.png
+       ..  figure:: ./images/NETOMAC/GNE_V_Output_Data.png
             :alt: Defining the data of the ``GNE-V`` output block.
 
             Figure 13: Defining the data of the ``GNE-V`` output block.    
@@ -351,15 +351,20 @@ The resulting ``[[Models_during_Loadflow]]`` section with the integrated model i
    [[Models_during_Loadflow]]                                                      |
    $-------------------------------------------------------------------------------| 
    @ #NAME      = 'VSrc'                                                           |
-   @ #Vreal     = 1.0                 ! Real part of ideal voltage source [pu]     |
-   @ #Vimag     = 0.0                 ! Imaginary part of id. volt. source [pu]    |
-   @ #Vstep     = 0.7                 ! Step of real part of id. volt. source [pu] |
-   @ #Tstep     = 0.1                 ! Time of voltage step [pu]                  |
+   @ #Vreal     = 1.0                 ! Real part of the voltage source [pu]       |
+   @ #Vimag     = 0.0                 ! Imaginary part of the voltage source [pu]  |
+   @ #Vdip      = 0.7                 ! Voltage magnitude during voltage dip [pu]  |
+   @ #Tdip1     = 1.0                 ! Time at which the voltage dip occurs [s]   |
+   @ #Tdip2     = 1.2                 ! Time at which the voltage is restored [s]  |
    #.\MAC\Ideal_Voltage_Source.xmac                                                |
    $-------------------------------------------------------------------------------| 
    [[End Models_during_Loadflow]]                                                  |
 
-4. Defining the Models for Integration of the DLL
+
+DLL intefration using the graphical model builder in PSS NETOMAC 
+-------------------------------------------------------
+
+1. Defining the Models for Integration of the DLL
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The controlled voltage source is operated by an IBR control system implemented in the IEC 62400-27 DLL. 
