@@ -974,6 +974,7 @@ Before starting the transient simulation, a load-flow calculation can be perform
 By Selecting ``Calculate`` → ``Power Flow``, the load-flow calculation is performed. 
 The calculation results can be viewed in the ``Tabular View``.
 The node results are shown in following table:
+
 +------+-------+---------+-----------+
 | Node | Phase | V in pu | phi in °  | 
 +======+=======+=========+===========+
@@ -997,7 +998,8 @@ The node results are shown in following table:
 +------+-------+---------+-----------+
 
 The branch results are shown in following table:
-+--------+--------+--------+-------+---------+
+
++--------+--------+--------+-------+---------+-----------+---------+-----------+
 | Branch | Node 1 | Node 2 | Phase | I in kA | phi in °  | P in MW | Q in Mvar | 
 +========+========+========+=======+=========+===========+=========+===========+
 | Z_TH   | Bus1   | Bus2   | R     | 0.7039  | 6.8014    | -166.67 | -33.33    |
