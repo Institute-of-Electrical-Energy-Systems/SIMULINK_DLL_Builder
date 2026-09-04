@@ -68,7 +68,7 @@ European Network of Transmission System Operators for Electricity – ENTSO-E (2
 .. toctree:: 
    :maxdepth: 3
    :hidden:
-   :caption: Integration into power
+   :caption: Integration into power<br>
              system simulation 
 
    DLL_in_PF
