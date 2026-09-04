@@ -123,7 +123,8 @@ The voltage transformer is now connected to the PCC and can be used to obtain th
        ..  figure:: ./images/PowerFactory/VT_PowerFactory7.png
             :alt: Opening the voltage transformer result variable window by double-clicking.
             :height: 40vh
-            :width: 120%
+            :width: 200%
+            :center:
 
             Figure 9: Opening the voltage transformer result variable window by double-clicking.
 
