@@ -90,6 +90,7 @@ Select Voltage Transformer from the list of available components (see Figure 4) 
 
       ..  figure:: ./images/PowerFactory/VT_PowerFactory2.png
             :alt: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
+            :width: 50%
 
             Figure 5: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
 
