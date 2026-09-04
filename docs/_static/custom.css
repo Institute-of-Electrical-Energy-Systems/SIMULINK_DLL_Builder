@@ -6,6 +6,6 @@ white-space: normal;
     max-width: 100% !important;
 }
 
-.toctree-wrapper .caption {
-    max-width: 150px;
+.wy-menu .caption {
+    max-width: 100%;
 }
