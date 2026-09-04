@@ -110,9 +110,9 @@ The voltage transformer is now connected to the PCC and can be used to obtain th
 .. raw:: html
 
    <div style="display: flex; gap: 10px; align-items: flex-start;">
-       <img src="./images/PowerFactory/VT_PowerFactory7.png" style="height: 400px; width: auto;" alt="Pop-up window after right-clicking the new voltage transformer.">
-       <img src="./images/PowerFactory/VT_PowerFactory8.png" style="height: 400px; width: auto;" alt="Opening the voltage transformer result variable window by double-clicking.">
-       <img src="./images/PowerFactory/VT_PowerFactory5.png" style="height: 400px; width: auto;" alt="Adding the necessary voltage measurements to the result log.">
+       <img src="./images/PowerFactory/VT_PowerFactory7.png" style="height: 20em; width: auto;" alt="Pop-up window after right-clicking the new voltage transformer.">
+       <img src="./images/PowerFactory/VT_PowerFactory8.png" style="height: 20em; width: auto;" alt="Opening the voltage transformer result variable window by double-clicking.">
+       <img src="./images/PowerFactory/VT_PowerFactory5.png" style="height: 20em; width: auto;" alt="Adding the necessary voltage measurements to the result log.">
    </div>
 
             Figure 8: Pop-up window after right-clicking the new voltage transformer.
