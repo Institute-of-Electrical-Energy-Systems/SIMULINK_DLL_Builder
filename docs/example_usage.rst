@@ -222,6 +222,7 @@ generation process.
 
 .. figure:: ./images/GeneralWorkflow/SimulinkCoder.png
    :alt: Opening the Simulink Coder App
+   :width: 50%
 
    Opening the Simulink Coder App.
 
@@ -230,11 +231,13 @@ selected under *Settings → Code Generation*:
 
 .. figure:: ./images/GeneralWorkflow/SimulinkCoderSettings.png
    :alt: Simulink Coder settings dialog
+   :width: 50%
 
    Opening the Simulink Coder settings.
 
 .. figure:: ./images/GeneralWorkflow/SimulinkCoderSettingsCodeGeneration.png
    :alt: Code Generation tab
+   :width: 50%
 
    Selecting the Code Generation tab.
 
@@ -248,6 +251,7 @@ These values must be reviewed and adjusted as required for the specific model.
 
 .. figure:: ./images/GeneralWorkflow/SimulinkCoderSettingsMetaData.png
    :alt: Code Generation Simulink DLL Builder tab
+   :width: 50%
 
    Filling the Model/DLL Metadata necessary for the DLL Code generation process.
 
@@ -259,6 +263,7 @@ With the correct target file selected, the build process is started by clicking 
 
 .. figure:: ./images/GeneralWorkflow/SimulinkCoderBuild.png
    :alt: Starting the code generation process
+   :width: 50%
 
    Starting the code generation process.
 
