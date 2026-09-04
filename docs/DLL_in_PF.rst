@@ -23,7 +23,6 @@ The individual components are added and configured step by step, starting from t
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ..  figure:: ./images/PowerFactory/TheveninPowerFactory.png
     :alt: Thevenin equivalent connect to PCC in PowerFactory.
-    :width: 50%
 
     Figure 1: Thevenin equivalent connect to PCC in PowerFactory.
 
@@ -77,7 +76,7 @@ Select Voltage Transformer from the list of available components (see Figure 4) 
 
       ..  figure:: ./images/PowerFactory/PCCPowerFactory.png
             :alt: Choice of the PCC busbar in the PowerFactory model menu.
-            :width: 25%
+            :width: 50%
 
             Figure 3: Choice of the PCC busbar in the PowerFactory model menu.
 
