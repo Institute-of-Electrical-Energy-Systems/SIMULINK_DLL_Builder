@@ -211,7 +211,7 @@ Once the model structure has been finalized, the Simulink Coder App is
 opened from the Simulink toolbar in order to configure the code
 generation process.
 
-.. figure:: ./images/SimulinkCoder.png
+.. figure:: ./images/GeneralWorkflow/SimulinkCoder.png
    :alt: Opening the Simulink Coder App
 
    Opening the Simulink Coder App.
@@ -219,12 +219,12 @@ generation process.
 The key configuration step is verifying the **System Target File**
 selected under *Settings → Code Generation*:
 
-.. figure:: ./images/SimulinkCoderSettings.png
+.. figure:: ./images/GeneralWorkflow/SimulinkCoderSettings.png
    :alt: Simulink Coder settings dialog
 
    Opening the Simulink Coder settings.
 
-.. figure:: ./images/SimulinkCoderSettingsCodeGeneration.png
+.. figure:: ./images/GeneralWorkflow/SimulinkCoderSettingsCodeGeneration.png
    :alt: Code Generation tab
 
    Selecting the Code Generation tab.
@@ -237,7 +237,7 @@ Selecting this system target file adds a new menu item, ``Simulink DLL Builder``
 Clicking this menu item opens the metadata dialog, which is pre-populated with the default values of the example. 
 These values must be reviewed and adjusted as required for the specific model.
 
-.. figure:: ./images/SimulinkCoderSettingsMetaData.png
+.. figure:: ./images/GeneralWorkflow/SimulinkCoderSettingsMetaData.png
    :alt: Code Generation Simulink DLL Builder tab
 
    Filling the Model/DLL Metadata necessary for the DLL Code generation process.
@@ -248,7 +248,7 @@ These values must be reviewed and adjusted as required for the specific model.
 
 With the correct target file selected, the build process is started by clicking **Build** in the Simulink Coder App.
 
-.. figure:: ./images/SimulinkCoderBuild.png
+.. figure:: ./images/GeneralWorkflow/SimulinkCoderBuild.png
    :alt: Starting the code generation process
 
    Starting the code generation process.
