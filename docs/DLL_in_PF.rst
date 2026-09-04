@@ -114,7 +114,7 @@ The voltage transformer is now connected to the PCC and can be used to obtain th
       ..  figure:: ./images/PowerFactory/VT_PowerFactory5.png
             :alt: Pop-up window after right-clicking the new voltage transformer.
             :align: center
-            :height: 30em
+            :width: 20%
 
             Figure 8: Pop-up window after right-clicking the new voltage transformer.
 
