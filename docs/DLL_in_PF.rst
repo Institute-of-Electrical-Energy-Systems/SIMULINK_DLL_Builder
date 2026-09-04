@@ -68,8 +68,12 @@ The voltage transformer is used to measure the three phase-to-ground voltages at
 An ideal voltage transformer is used for this purpose, as no transformer losses or other transformer-specific effects need to be considered in the present example.
 To add the voltage transformer, select the PCC busbar (see Figure 3) and create a new object using the New Object button in the upper-left corner of the window. 
 Select Voltage Transformer from the list of available components (see Figure 4) and assign a suitable name to the new component (see Figure 5).
+After creating the voltage transformer, open its configuration by double-clicking the component. 
+In the transformer configuration dialog, create a new transformer type (see Figure 5) and select Ideal Voltage Transformer (see Figure 6). 
+The ideal transformer is sufficient for the present application because the purpose of the component is to provide the required voltage measurements rather than to model the physical behavior of a transformer.
 
-.. grid:: 3
+
+.. grid:: 4
 
    .. grid-item::
 
@@ -95,15 +99,13 @@ Select Voltage Transformer from the list of available components (see Figure 4) 
 
             Figure 5: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
 
-After creating the voltage transformer, open its configuration by double-clicking the component. 
-In the transformer configuration dialog, create a new transformer type (see Figure 5) and select Ideal Voltage Transformer (see Figure 6). 
-The ideal transformer is sufficient for the present application because the purpose of the component is to provide the required voltage measurements rather than to model the physical behavior of a transformer.
+   .. grid-item:: 
 
-   .. figure:: ./images/PowerFactory/VT_PowerFactory4.png
-      :alt: Pop-up window for the definition of a voltage transformer type.
-      :height: 30em
+      .. figure:: ./images/PowerFactory/VT_PowerFactory4.png
+            :alt: Pop-up window for the definition of a voltage transformer type.
+            :height: 30em
 
-      Figure 6: Pop-up window for the definition of a voltage transformer type.
+            Figure 6: Pop-up window for the definition of a voltage transformer type.
 
 The voltage transformer is now connected to the PCC and can be used to obtain the three phase-to-ground voltage signals required by the DLL (see Figure 8 - 10).
 
