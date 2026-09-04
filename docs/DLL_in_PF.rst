@@ -23,13 +23,13 @@ The individual components are added and configured step by step, starting from t
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ..  figure:: ./images/PowerFactory/TheveninPowerFactory.png
     :alt: Thevenin equivalent connect to PCC in PowerFactory.
+    :width: 50%
 
     Figure 1: Thevenin equivalent connect to PCC in PowerFactory.
 
 By definition, a Thevenin equivalent consists of an ideal voltage source and a series-connected internal impedance. 
-In this model, the ideal voltage source applies a voltage of 1 p.u. to the bus at its terminals (“InnerThevenin”). 
+In this model, the ideal voltage source applies a voltage of 1 p.u. to the bus at its terminal (“InnerThevenin”). 
 For the example considered here, this corresponds to a line-to-line RMS voltage of 400 kV with a phase angle of 0°.
-
 The internal impedance determines the short-circuit power, and therefore the strength, of the upstream grid. 
 In the present example, the impedance is defined by a resistance of R = 10.6137 Ω and an inductance of L = 0.3378455 H.
 
@@ -41,12 +41,12 @@ However, the simulation is of limited significance at this stage, as the Theveni
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ..  figure:: ./images/PowerFactory/SMIB_IBR_PowerFactory.png
     :alt: IBR in a SMIB configuraiton in DIgSILENT PowerFactory.
+    :width: 50%
 
     Figure 2: IBR in a SMIB configuraiton in DIgSILENT PowerFactory.
 
 The regulated ideal voltage source is now connected to the PCC through a series impedance, thereby forming the equivalent circuit of a grid-following IBR. 
 The voltage source will subsequently be controlled by the dynamic model provided by the IEC 61400-27 DLL.
-
 In the present example, the DLL provides a line-to-line RMS voltage of 400 kV. 
 Therefore, no additional transformer is required, and only the internal impedance of the IBR needs to be represented. 
 The impedance is defined by a resistance of R = 0.782 Ω and an inductance of L = 0.1574 H.
@@ -64,7 +64,7 @@ These quantities are measured using voltage and current transformers and are sub
 
 
 Adding the voltage transformer
-""""""""""""""""""""""""""""""
+''''''''''''''''''''''''''''''
 The voltage transformer is used to measure the three phase-to-ground voltages at the PCC and provide them as input signals to the IEC 61400-27 DLL. 
 An ideal voltage transformer is used for this purpose, as no transformer losses or other transformer-specific effects need to be considered in the present example.
 
@@ -77,6 +77,7 @@ Select Voltage Transformer from the list of available components (see Figure 4) 
 
       ..  figure:: ./images/PowerFactory/PCCPowerFactory.png
             :alt: Choice of the PCC busbar in the PowerFactory model menu.
+            :width: 25%
 
             Figure 3: Choice of the PCC busbar in the PowerFactory model menu.
 
