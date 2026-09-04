@@ -5,3 +5,7 @@ white-space: normal;
 .wy-nav-content {
     max-width: 100% !important;
 }
+
+.toctree-wrapper .caption {
+    max-width: 100%;
+}
