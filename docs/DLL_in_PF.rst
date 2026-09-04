@@ -105,6 +105,7 @@ The ideal transformer is sufficient for the present application because the purp
 
       .. figure:: ./images/PowerFactory/VT_PowerFactory3.png
          :alt: Pop-up window for the choice of the newly generated voltage transformer's type.
+         :height: 30em
 
          Figure 6: Pop-up window for the choice of the newly generated voltage transformer's type.
 
@@ -112,6 +113,7 @@ The ideal transformer is sufficient for the present application because the purp
 
       .. figure:: ./images/PowerFactory/VT_PowerFactory4.png
          :alt: Pop-up window for the definition of a voltage transformer type.
+         :height: 30em
 
          Figure 7: Pop-up window for the definition of a voltage transformer type.
 
