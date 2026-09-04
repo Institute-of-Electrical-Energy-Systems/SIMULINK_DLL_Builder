@@ -6,6 +6,12 @@ white-space: normal;
     max-width: 100% !important;
 }
 
+.wy-menu-vertical p.caption {
+    height: auto;
+    min-height: 0;
+    margin-bottom: 5px;
+}
+
 .wy-menu-vertical p.caption .caption-text {
     white-space: normal;
     overflow-wrap: break-word;
