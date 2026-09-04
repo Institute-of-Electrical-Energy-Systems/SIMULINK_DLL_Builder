@@ -107,32 +107,17 @@ The ideal transformer is sufficient for the present application because the purp
 
 The voltage transformer is now connected to the PCC and can be used to obtain the three phase-to-ground voltage signals required by the DLL (see Figure 8 - 10).
 
-.. grid:: 3
+.. raw:: html
 
-   .. grid-item::
-
-      ..  figure:: ./images/PowerFactory/VT_PowerFactory5.png
-            :alt: Pop-up window after right-clicking the new voltage transformer.
-            :align: center
-            :width: 20%
+   <div style="display: flex; gap: 10px; align-items: flex-start;">
+       <img src="./images/PowerFactory/VT_PowerFactory7.png" style="height: 400px; width: auto;" alt="Pop-up window after right-clicking the new voltage transformer.">
+       <img src="./images/PowerFactory/VT_PowerFactory8.png" style="height: 400px; width: auto;" alt="Opening the voltage transformer result variable window by double-clicking.">
+       <img src="./images/PowerFactory/VT_PowerFactory5.png" style="height: 400px; width: auto;" alt="Adding the necessary voltage measurements to the result log.">
+   </div>
 
             Figure 8: Pop-up window after right-clicking the new voltage transformer.
 
-   .. grid-item::
-
-      ..  figure:: ./images/PowerFactory/VT_PowerFactory7.png
-            :alt: Opening the voltage transformer result variable window by double-clicking.
-            :align: center
-            :height: 30em
-
             Figure 9: Opening the voltage transformer result variable window by double-clicking.
-
-   .. grid-item::
-
-      ..  figure:: ./images/PowerFactory/VT_PowerFactory8.png
-            :alt: Adding the necessary voltage measurements to the result log.
-            :align: center
-            :height: 30em
 
             Figure 10: Adding the necessary voltage measurements to the result log.
 
