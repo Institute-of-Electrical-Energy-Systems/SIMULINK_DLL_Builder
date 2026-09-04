@@ -6,6 +6,7 @@ white-space: normal;
     max-width: 100% !important;
 }
 
-.wy-menu .caption {
-    max-width: 100%;
+.wy-menu-vertical p.caption .caption-text {
+    white-space: normal;
+    overflow-wrap: break-word;
 }
