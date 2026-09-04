@@ -134,6 +134,7 @@ The voltage transformer is now connected to the PCC and can be used to obtain th
 
             Figure 10: Adding the necessary voltage measurements to the result log.
 
+
 Adding the current transformer
 """"""""""""""""""""""""""""""
 The current transformer is used to measure the three phase currents at the PCC and provide them as input signals to the IEC 61400-27 DLL. 
