@@ -76,7 +76,7 @@ Select Voltage Transformer from the list of available components (see Figure 4) 
 
       ..  figure:: ./images/PowerFactory/PCCPowerFactory.png
             :alt: Choice of the PCC busbar in the PowerFactory model menu.
-            :width: 50%
+            :width: 45%
 
             Figure 3: Choice of the PCC busbar in the PowerFactory model menu.
 
