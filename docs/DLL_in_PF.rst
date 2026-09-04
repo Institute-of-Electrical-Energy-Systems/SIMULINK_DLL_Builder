@@ -69,7 +69,7 @@ An ideal voltage transformer is used for this purpose, as no transformer losses 
 To add the voltage transformer, select the PCC busbar (see Figure 3) and create a new object using the New Object button in the upper-left corner of the window. 
 Select Voltage Transformer from the list of available components (see Figure 4) and assign a suitable name to the new component (see Figure 5).
 
-.. grid:: 4
+.. grid:: 3
 
    .. grid-item::
 
@@ -114,7 +114,7 @@ The voltage transformer is now connected to the PCC and can be used to obtain th
       ..  figure:: ./images/PowerFactory/VT_PowerFactory5.png
             :alt: Pop-up window after right-clicking the new voltage transformer.
             :align: center
-            :width: 50%
+            :height: 30em
 
             Figure 8: Pop-up window after right-clicking the new voltage transformer.
 
@@ -123,6 +123,7 @@ The voltage transformer is now connected to the PCC and can be used to obtain th
       ..  figure:: ./images/PowerFactory/VT_PowerFactory7.png
             :alt: Opening the voltage transformer result variable window by double-clicking.
             :align: center
+            :height: 30em
 
             Figure 9: Opening the voltage transformer result variable window by double-clicking.
 
@@ -131,6 +132,7 @@ The voltage transformer is now connected to the PCC and can be used to obtain th
       ..  figure:: ./images/PowerFactory/VT_PowerFactory8.png
             :alt: Adding the necessary voltage measurements to the result log.
             :align: center
+            :height: 30em
 
             Figure 10: Adding the necessary voltage measurements to the result log.
 
