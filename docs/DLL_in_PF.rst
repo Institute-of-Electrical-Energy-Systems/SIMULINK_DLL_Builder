@@ -66,8 +66,7 @@ Adding the voltage transformer
 ''''''''''''''''''''''''''''''
 The voltage transformer is used to measure the three phase-to-ground voltages at the PCC and provide them as input signals to the IEC 61400-27 DLL. 
 An ideal voltage transformer is used for this purpose, as no transformer losses or other transformer-specific effects need to be considered in the present example.
-
-To add the voltage transformer, select the PCC busbar (see Figure 3) and create a new object using the New Object button in the upper-right corner of the window. 
+To add the voltage transformer, select the PCC busbar (see Figure 3) and create a new object using the New Object button in the upper-left corner of the window. 
 Select Voltage Transformer from the list of available components (see Figure 4) and assign a suitable name to the new component (see Figure 5).
 
 .. grid:: 3
@@ -76,7 +75,7 @@ Select Voltage Transformer from the list of available components (see Figure 4) 
 
       ..  figure:: ./images/PowerFactory/PCCPowerFactory.png
             :alt: Choice of the PCC busbar in the PowerFactory model menu.
-            :width: 45%
+            :width: 40%
 
             Figure 3: Choice of the PCC busbar in the PowerFactory model menu.
 
