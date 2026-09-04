@@ -75,7 +75,7 @@ Select Voltage Transformer from the list of available components (see Figure 4) 
 
       ..  figure:: ./images/PowerFactory/PCCPowerFactory.png
             :alt: Choice of the PCC busbar in the PowerFactory model menu.
-            :height: 30vh
+            :height: 40vh
 
             Figure 3: Choice of the PCC busbar in the PowerFactory model menu.
 
@@ -83,7 +83,7 @@ Select Voltage Transformer from the list of available components (see Figure 4) 
 
        ..  figure:: ./images/PowerFactory/VT_PowerFactory.png
             :alt: Adding a new voltage transformer to the PCC busbar in PowerFactory.
-            :height: 30vh
+            :height: 40vh
 
             Figure 4: Adding a new voltage transformer to the PCC busbar in PowerFactory.
 
@@ -91,7 +91,7 @@ Select Voltage Transformer from the list of available components (see Figure 4) 
 
       ..  figure:: ./images/PowerFactory/VT_PowerFactory2.png
             :alt: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
-            :height: 30vh
+            :height: 40vh
 
             Figure 5: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
 
@@ -108,18 +108,29 @@ The ideal transformer is sufficient for the present application because the purp
 
 The voltage transformer is now connected to the PCC and can be used to obtain the three phase-to-ground voltage signals required by the DLL (see Figure 8 - 10).
 
+.. grid:: 3
 
-.. raw:: html
+   .. grid-item::
 
-   <div style="display: flex; gap: 10px; align-items: flex-start;">
-       <img src="./images/PowerFactory/VT_PowerFactory7.png" style="height: 20em; width: auto;" alt="Pop-up window after right-clicking the new voltage transformer.">
-       <img src="./images/PowerFactory/VT_PowerFactory8.png" style="height: 20em; width: auto;" alt="Opening the voltage transformer result variable window by double-clicking.">
-       <img src="./images/PowerFactory/VT_PowerFactory5.png" style="height: 20em; width: auto;" alt="Adding the necessary voltage measurements to the result log.">
-   </div>
+      ..  figure:: ./images/PowerFactory/VT_PowerFactory5.png
+            :alt: Pop-up window after right-clicking the new voltage transformer.
+            :height: 40vh
 
             Figure 8: Pop-up window after right-clicking the new voltage transformer.
 
+   .. grid-item::
+
+       ..  figure:: ./images/PowerFactory/VT_PowerFactory7.png
+            :alt: Opening the voltage transformer result variable window by double-clicking.
+            :height: 40vh
+
             Figure 9: Opening the voltage transformer result variable window by double-clicking.
+
+   .. grid-item::
+
+      ..  figure:: ./images/PowerFactory/VT_PowerFactory8.png
+            :alt: Adding the necessary voltage measurements to the result log.
+            :height: 40vh
 
             Figure 10: Adding the necessary voltage measurements to the result log.
 
