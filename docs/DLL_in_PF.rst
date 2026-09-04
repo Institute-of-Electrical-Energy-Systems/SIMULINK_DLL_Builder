@@ -101,19 +101,19 @@ Select Voltage Transformer from the list of available components (see Figure 4) 
 
    * - ..  figure:: ./images/PowerFactory/PCCPowerFactory.png
             :alt: Choice of the PCC busbar in the PowerFactory model menu.
-            :height: 20vh
+            :height: 40vh
 
             Figure 3: Choice of the PCC busbar in the PowerFactory model menu.
 
      - ..  figure:: ./images/PowerFactory/VT_PowerFactory.png
             :alt: Adding a new voltage transformer to the PCC busbar in PowerFactory.
-            :height: 20vh
+            :height: 40vh
 
             Figure 4: Adding a new voltage transformer to the PCC busbar in PowerFactory.
 
      - ..  figure:: ./images/PowerFactory/VT_PowerFactory2.png
             :alt: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
-            :height: 20vh
+            :height: 40vh
 
             Figure 5: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
 
