@@ -96,26 +96,14 @@ Select Voltage Transformer from the list of available components (see Figure 4) 
             Figure 5: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
 
 After creating the voltage transformer, open its configuration by double-clicking the component. 
-In the transformer configuration dialog, create a new transformer type (see Figure 6) and select Ideal Voltage Transformer (see Figure 7). 
+In the transformer configuration dialog, create a new transformer type (see Figure 5) and select Ideal Voltage Transformer (see Figure 6). 
 The ideal transformer is sufficient for the present application because the purpose of the component is to provide the required voltage measurements rather than to model the physical behavior of a transformer.
 
-.. grid:: 2
+   .. figure:: ./images/PowerFactory/VT_PowerFactory4.png
+      :alt: Pop-up window for the definition of a voltage transformer type.
+      :height: 30em
 
-   .. grid-item::
-
-      .. figure:: ./images/PowerFactory/VT_PowerFactory3.png
-         :alt: Pop-up window for the choice of the newly generated voltage transformer's type.
-         :height: 30em
-
-         Figure 6: Pop-up window for the choice of the newly generated voltage transformer's type.
-
-   .. grid-item::
-
-      .. figure:: ./images/PowerFactory/VT_PowerFactory4.png
-         :alt: Pop-up window for the definition of a voltage transformer type.
-         :height: 30em
-
-         Figure 7: Pop-up window for the definition of a voltage transformer type.
+      Figure 6: Pop-up window for the definition of a voltage transformer type.
 
 The voltage transformer is now connected to the PCC and can be used to obtain the three phase-to-ground voltage signals required by the DLL (see Figure 8 - 10).
 
