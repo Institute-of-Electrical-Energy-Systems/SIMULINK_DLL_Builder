@@ -146,17 +146,11 @@ After creating the current transformer, open its configuration by double-clickin
 In the transformer configuration dialog, create a new transformer type and select Current Transformer Type (TypCt) (see Figure 14) and select Ideal Current Transformer (see Figure 15). 
 The ideal transformer is sufficient for the present application because the purpose of the component is to provide the required current measurements rather than to model the physical behavior of a transformer.
 
-.. container:: image-row
+.. figure:: ./images/PowerFactory/CT_PowerFactory4.png
+   :alt: Pop-up window for the definition of a current transformer type.
+   :height: 40vh
 
-   .. figure:: ./images/PowerFactory/CT_PowerFactory3.png
-      :alt: Pop-up window for the choice of the newly generated current transformer's type.
-
-      Figure 13: Pop-up window for the choice of the newly generated current transformer's type.
-
-   .. figure:: ./images/PowerFactory/CT_PowerFactory4.png
-      :alt: Pop-up window for the definition of a current transformer type.
-
-      Figure 14: Pop-up window for the definition of a current transformer type.
+   Figure 14: Pop-up window for the definition of a current transformer type.
 
 The voltage transformer is now connected to the cubicle of the PCC and can be used to obtain the three phase current signals required by the DLL (see Figure 16 - 18).
 
