@@ -11,7 +11,7 @@ The model is built from an empty DIgSILENT PowerFactory project.
 Prerequisites
 -------------
 - DIgSILENT PowerFactory (tested for 2024 SP4)
-- IEC 61400-27 DLL (e.g. the one from the `example <FEHLT>`)
+- IEC 61400-27 DLL (e.g. the one from the `example <https://simulink-dll-builder.readthedocs.io/en/latest/example_usage.html#example-usage>`_)
 
 Building a model for later DLL integration from scratch 
 -------------------------------------------------------
@@ -611,5 +611,6 @@ In particular, the parameters related to phase correction and the freeze functio
 ..  figure:: ./images/PowerFactory/CompositeModelFrame34.png
       :alt: Adding the five DSL Model blocks to the IBR Control composite model.
       :target: _images/CompositeModelFrame34.png
+      :height: 40vh
 
       Figure 54: Adding the five DSL Model blocks to the IBR Control composite model.
