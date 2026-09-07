@@ -91,10 +91,9 @@ After creating the voltage transformer, open its configuration by double-clickin
 In the transformer configuration dialog, create a new transformer type (see Figure 5) and select Ideal Voltage Transformer (see Figure 6). 
 The ideal transformer is sufficient for the present application because the purpose of the component is to provide the required voltage measurements rather than to model the physical behavior of a transformer.
 
-.. container:: image-row
-
    .. figure:: ./images/PowerFactory/VT_PowerFactory4.png
       :alt: Pop-up window for the definition of a voltage transformer type.
+      :height: 40vh
 
       Figure 6: Pop-up window for the definition of a voltage transformer type.
 
