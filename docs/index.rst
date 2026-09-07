@@ -69,11 +69,18 @@ European Network of Transmission System Operators for Electricity – ENTSO-E (2
    :maxdepth: 3
    :hidden:
    :caption: Integration into power
-             system simulation 
+             system simulation software
 
    DLL_in_PF
    DLL_in_Netomac
    DLL_in_PSCAD
+
+.. toctree:: 
+   :maxdepth: 3
+   :hidden:
+   :caption: Simulation in power system simulation software
+   
+   Benchmark
 
 .. toctree:: 
    :maxdepth: 3
