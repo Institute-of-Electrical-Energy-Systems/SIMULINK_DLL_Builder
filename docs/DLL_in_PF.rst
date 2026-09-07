@@ -118,84 +118,66 @@ The voltage transformer is now connected to the PCC and can be used to obtain th
 
 
 Adding the current transformer
-""""""""""""""""""""""""""""""
+''''''''''''''''''''''''''''''
 The current transformer is used to measure the three phase currents at the PCC and provide them as input signals to the IEC 61400-27 DLL. 
 An ideal current transformer is used for this purpose, as no transformer losses or other transformer-specific effects need to be considered in the present example.
 
-To add the current transformer, select the cubicle of the PCC busbar connected to the thevenin impedance (see Figure 11) and create a new object using the New Object button in the upper-right corner of the window. 
-Select Current Transformer from the list of available components (see Figure 12) and assign a suitable name to the new component (see Figure 13).
+To add the current transformer, select the cubicle of the PCC busbar connected to the thevenin impedance (see Figure 10) and create a new object using the New Object button in the upper-right corner of the window. 
+Select Current Transformer from the list of available components (see Figure 11) and assign a suitable name to the new component (see Figure 12).
 
-.. grid:: 3
+.. container:: image-row
 
-   .. grid-item::
+   ..  figure:: ./images/PowerFactory/PCC_Cub1_PowerFactory.png
+         :alt: Choice of the cubicle of the PCC busbar connected to the thevenin impedance in the PowerFactory model menu.
 
-      ..  figure:: ./images/PowerFactory/PCC_Cub1_PowerFactory.png
-            :alt: Choice of the cubicle of the PCC busbar connected to the thevenin impedance in the PowerFactory model menu.
+         Figure 10: Choice of the cubicle of the PCC busbar connected to the thevenin impedance in the PowerFactory model menu.
 
-            Figure 11: Choice of the cubicle of the PCC busbar connected to the thevenin impedance in the PowerFactory model menu.
+   ..  figure:: ./images/PowerFactory/CT_PowerFactory.png
+         :alt: Adding a new current transformer to the cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
 
-   .. grid-item::
+         Figure 11: Adding a new current transformer to the cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
 
-       ..  figure:: ./images/PowerFactory/CT_PowerFactory.png
-            :alt: Adding a new current transformer to the cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
+   ..  figure:: ./images/PowerFactory/CT_PowerFactory2.png
+         :alt: Pop-up window of the new generated current transformer at cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
 
-            Figure 12: Adding a new current transformer to the cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
-
-   .. grid-item::
-
-      ..  figure:: ./images/PowerFactory/CT_PowerFactory2.png
-            :alt: Pop-up window of the new generated current transformer at cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
-
-            Figure 13: Pop-up window of the new generated current transformer at cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
+         Figure 12: Pop-up window of the new generated current transformer at cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
 
 After creating the current transformer, open its configuration by double-clicking the component. 
 In the transformer configuration dialog, create a new transformer type and select Current Transformer Type (TypCt) (see Figure 14) and select Ideal Current Transformer (see Figure 15). 
 The ideal transformer is sufficient for the present application because the purpose of the component is to provide the required current measurements rather than to model the physical behavior of a transformer.
 
-.. grid:: 2
+.. container:: image-row
 
-   .. grid-item::
+   .. figure:: ./images/PowerFactory/CT_PowerFactory3.png
+      :alt: Pop-up window for the choice of the newly generated current transformer's type.
 
-      .. figure:: ./images/PowerFactory/CT_PowerFactory3.png
-         :alt: Pop-up window for the choice of the newly generated current transformer's type.
+      Figure 13: Pop-up window for the choice of the newly generated current transformer's type.
 
-         Figure 14: Pop-up window for the choice of the newly generated current transformer's type.
+   .. figure:: ./images/PowerFactory/CT_PowerFactory4.png
+      :alt: Pop-up window for the definition of a current transformer type.
 
-   .. grid-item::
-
-      .. figure:: ./images/PowerFactory/CT_PowerFactory4.png
-         :alt: Pop-up window for the definition of a current transformer type.
-
-         Figure 15: Pop-up window for the definition of a current transformer type.
+      Figure 14: Pop-up window for the definition of a current transformer type.
 
 The voltage transformer is now connected to the cubicle of the PCC and can be used to obtain the three phase current signals required by the DLL (see Figure 16 - 18).
 
-.. grid:: 3
+.. container:: image-row
 
-   .. grid-item::
+   ..  figure:: ./images/PowerFactory/CT_PowerFactory5.png
+         :alt: Pop-up window after right-clicking the new current transformer.
 
-      ..  figure:: ./images/PowerFactory/CT_PowerFactory5.png
-            :alt: Pop-up window after right-clicking the new current transformer.
-            :align: center
-            :width: 50%
+         Figure 16: Pop-up window after right-clicking the new current transformer.
 
-            Figure 16: Pop-up window after right-clicking the new current transformer.
 
-   .. grid-item::
+   ..  figure:: ./images/PowerFactory/CT_PowerFactory6.png
+         :alt: Opening the current transformer result variable window by double-clicking.
 
-      ..  figure:: ./images/PowerFactory/CT_PowerFactory6.png
-            :alt: Opening the current transformer result variable window by double-clicking.
-            :align: center
+         Figure 17: Opening the current transformer result variable window by double-clicking.
 
-            Figure 17: Opening the current transformer result variable window by double-clicking.
 
-   .. grid-item::
+   ..  figure:: ./images/PowerFactory/CT_PowerFactory7.png
+         :alt: Adding the necessary current measurements to the result log.
 
-      ..  figure:: ./images/PowerFactory/CT_PowerFactory7.png
-            :alt: Adding the necessary current measurements to the result log.
-            :align: center
-
-            Figure 18: Adding the necessary current measurements to the result log.
+         Figure 18: Adding the necessary current measurements to the result log.
 
 DLL integration using a dynamic model in PowerFactory
 -----------------------------------------------------
