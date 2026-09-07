@@ -9,9 +9,9 @@ The example considers the power system shown in the following figure.
 
 .. figure:: ./images/Power_System_Scheme.png
    :align: center
-   :width: 100%
+   :width: 50%
 
-   Scheme of the power system and the interface between the external power system simulation tool and the IEC 61400-27 controller model.
+   Figure 1: Scheme of the power system and the interface between the external power system simulation tool and the IEC 61400-27 controller model.
 
 On one side, the system consists of a Thevenin equivalent comprising an ideal three-phase voltage source ``vth,abc`` and an internal impedance represented by the resistance ``Rth`` and the inductance ``Lth``. 
 On the other side, three controllable voltage sources are connected to the point of common coupling (PCC) through an internal impedance represented by the resistance ``Rc`` and the inductance ``Lc``.
@@ -80,17 +80,39 @@ and its parameter script, which are created in step 2.
 
 2. Building a Simulink Model
 ----------------------------
-.. error::
 
-    Hier noch eine kurze Einleitung
-    
-Designing the Simulink model
+The IBR converter control is developed in MATLAB®/Simulink® and integrated into a power system simulation tool as an IEC 61400-27 DLL. 
+In the following example is divided in 2 steps:
+
+- Designing the MATLAB®/Simulink® model
+- Parameterizing the MATLAB®/Simulink® model
+
+   
+Designing the MATLAB®/Simulink® model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-.. error::
 
-    @Domi kannst du das ergänzen also ne kleine Beschreibung der Regelung
-    WICHITG: es braucht eine Erklärung, dass das eine das Beispiel und das andere der Benchmark ist. 
-    Geben wir noch ein "leeres" Modell raus?
+The block diagram of the IBR control is shown in following figure:
+
+.. figure:: ./images/IBR_Control.png
+   :align: center
+   :width: 50%
+
+   Figure 2: Block diagram of the IBR control system.
+
+The cascaded control system is based on a dq-vector control scheme.
+A phase-locked loop (PLL) defines the synchronous reference frame, in which the voltages and currents are represented by their d- and q-axis components. 
+The active and reactive power controller determine the reference currents ``idref`` and ``iqref``. 
+These reference currents serve as the setpoints for the lower-level current controller.
+The current controller includes decoupling terms for the q- and q-axis components, enabling the active and reactive power to be controlled independently.
+The controller outputs the voltage references in d- and q-axis components. 
+An inverse Park transformation is then used to convert these voltage references into the corresponding three-phase voltage signals.
+
+The MATLAB®/Simulink® model is provided as the file ``IBR_Control_2024b.slx``.
+
+   
+Parameterizing the MATLAB®/Simulink® model
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
 
 Creating the Parameter Script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -191,7 +213,7 @@ Finally, all generated parameters are stored in ``IBR_Control_Parameters.mat``.
    Execute ``IBR_Control_Parameters.m`` whenever a model parameter has been modified. 
 
 
-3. Adjusting the Simulink Model Structure for the Export Process
+1. Adjusting the Simulink Model Structure for the Export Process
 ----------------------------------------------------------------
 
 A dynamic model that simulates correctly in Simulink is not automatically ready to be exported as a DLL. 
