@@ -10,7 +10,7 @@ An empty PSCAD™ project is used as the starting point for the model implementa
 Prerequisites
 -------------
 - PSCAD™ Version 5.x (tested for PSCAD™ v5.0.2)
-- Intel Fortran Compiler (Installation instruction can be found `here <FEHLT>`)
+- Intel Fortran Compiler (Installation instruction can be found `here <https://www.pscad.com/knowledge-base/topic-401/v->`_)
 - IEC 61400-27 DLL (e.g. the one from the `example <https://simulink-dll-builder.readthedocs.io/en/latest/example_usage.html#example-usage>`_)
 
 Builing a model for later DLL integration from scratch 
