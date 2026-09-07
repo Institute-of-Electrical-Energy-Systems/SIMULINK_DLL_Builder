@@ -69,6 +69,14 @@ An ideal voltage transformer is used for this purpose, as no transformer losses 
 To add the voltage transformer, select the PCC busbar (see Figure 3) and create a new object using the New Object button in the upper-left corner of the window. 
 Select Voltage Transformer from the list of available components (see Figure 4) and assign a suitable name to the new component (see Figure 5).
 
+.. raw:: html
+
+   <div class="image-row">
+       <img src="./images/PowerFactory/PCCPowerFactory.png" alt="Choice of the PCC busbar in the PowerFactory model menu.">
+       <img src="./images/PowerFactory/VT_PowerFactory.png" alt="Adding a new voltage transformer to the PCC busbar in PowerFactory.">
+       <img src="./images/PowerFactory/VT_PowerFactory2.png" alt="Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.">
+   </div>
+
 .. grid:: 3
 
    .. grid-item::
