@@ -17,9 +17,9 @@ The remaining parameters can be left at their default values.
         Figure 1: Opening the ``Calculation of Initial Conditions`` in DIgSILENT PowerFactory.
 
     ..  figure:: ./images/PowerFactory/SimulationSettingsStepsize.png
-        :alt: Defining the ``Simulation Stepsize`` in the ``Calculation of Initial Conditions``.
+        :alt: Defining the ``Integration step size`` in the ``Calculation of Initial Conditions``.
 
-        Figure 2: Defining the ``Simulation Stepsize`` in the ``Calculation of Initial Conditions``.
+        Figure 2: Defining the ``Integration step size`` in the ``Calculation of Initial Conditions``.
 
 After running the ``Calculation of Initial Conditions`` one has to define the simulation event (voltage dip) which is used within the upcoming 
 benchmark. Therefore one has to open the ``Edit Simulation Events`` menu (see Figure 3) and add a new ``Parameter Event`` by clicking ``New Object`` 
@@ -121,9 +121,9 @@ The active and reactive power are calculated afterwards
 ..  figure:: ./images/PowerFactory/ResultVariableSelection.png
     :alt: Defining the ``Result Variables``of the dynamic simulations.
     :target: _images/ResultVariableSelection.png
-    :height: 40vh
+    :width: 50%
 
-    Figure 7: Defining the ``Result Variables``of the dynamic simulations.
+    Figure 7: Defining the ``Result Variables`` of the dynamic simulations.
 
 The EMT simulation can then be started by clicking ``Execute`` in ``Run Simulation`` menu.
 After the simulation has been completed, the results can be analyzed in a ``Plot Page``.
