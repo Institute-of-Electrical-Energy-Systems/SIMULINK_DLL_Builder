@@ -91,41 +91,31 @@ After creating the voltage transformer, open its configuration by double-clickin
 In the transformer configuration dialog, create a new transformer type (see Figure 5) and select Ideal Voltage Transformer (see Figure 6). 
 The ideal transformer is sufficient for the present application because the purpose of the component is to provide the required voltage measurements rather than to model the physical behavior of a transformer.
 
+.. container:: image-row
+
    .. figure:: ./images/PowerFactory/VT_PowerFactory4.png
       :alt: Pop-up window for the definition of a voltage transformer type.
-      :height: 30em
 
       Figure 6: Pop-up window for the definition of a voltage transformer type.
 
-The voltage transformer is now connected to the PCC and can be used to obtain the three phase-to-ground voltage signals required by the DLL (see Figure 8 - 10).
+The voltage transformer is now connected to the PCC and can be used to obtain the three phase-to-ground voltage signals required by the DLL (see Figure 7 - 9).
 
-.. grid:: 3
+.. container:: image-row
 
-   .. grid-item::
+   ..  figure:: ./images/PowerFactory/VT_PowerFactory5.png
+         :alt: Pop-up window after right-clicking the new voltage transformer.
 
-      ..  figure:: ./images/PowerFactory/VT_PowerFactory5.png
-            :alt: Pop-up window after right-clicking the new voltage transformer.
-            :height: 40vh
+         Figure 7: Pop-up window after right-clicking the new voltage transformer.
 
-            Figure 8: Pop-up window after right-clicking the new voltage transformer.
+   ..  figure:: ./images/PowerFactory/VT_PowerFactory7.png
+         :alt: Opening the voltage transformer result variable window by double-clicking.
 
-   .. grid-item::
+         Figure 8: Opening the voltage transformer result variable window by double-clicking.
 
-       ..  figure:: ./images/PowerFactory/VT_PowerFactory7.png
-            :alt: Opening the voltage transformer result variable window by double-clicking.
-            :height: 40vh
-            :width: 200%
-            :center:
+   ..  figure:: ./images/PowerFactory/VT_PowerFactory8.png
+         :alt: Adding the necessary voltage measurements to the result log.
 
-            Figure 9: Opening the voltage transformer result variable window by double-clicking.
-
-   .. grid-item::
-
-      ..  figure:: ./images/PowerFactory/VT_PowerFactory8.png
-            :alt: Adding the necessary voltage measurements to the result log.
-            :height: 40vh
-
-            Figure 10: Adding the necessary voltage measurements to the result log.
+         Figure 9: Adding the necessary voltage measurements to the result log.
 
 
 Adding the current transformer
