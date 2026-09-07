@@ -72,9 +72,9 @@ Select Voltage Transformer from the list of available components (see Figure 4) 
 .. raw:: html
 
    <div class="image-row">
-       <img src="_images/PowerFactory/PCCPowerFactory.png" alt="Choice of the PCC busbar in the PowerFactory model menu.">
-       <img src="_images/PowerFactory/VT_PowerFactory.png" alt="Adding a new voltage transformer to the PCC busbar in PowerFactory.">
-       <img src="_images/PowerFactory/VT_PowerFactory2.png" alt="Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.">
+       <img src="_images/PCCPowerFactory.png" alt="Choice of the PCC busbar in the PowerFactory model menu.">
+       <img src="_images/VT_PowerFactory.png" alt="Adding a new voltage transformer to the PCC busbar in PowerFactory.">
+       <img src="_images/VT_PowerFactory2.png" alt="Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.">
    </div>
 
 .. grid:: 3
