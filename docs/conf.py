@@ -36,7 +36,7 @@ year = "2026"
 author = "Gregor Becker, Dominik Frauenknecht"
 version = release = "0.0.1"
 
-pygments_style = "trac"
+# pygments_style = "trac"
 templates_path = ["."]
 
 # on_rtd is whether we are on readthedocs.org
