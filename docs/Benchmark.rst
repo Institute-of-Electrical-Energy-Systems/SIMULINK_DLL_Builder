@@ -21,33 +21,8 @@ The remaining parameters can be left at their default values.
 
         Figure 2: Defining the ``Integration step size`` in the ``Calculation of Initial Conditions``.
 
-After running the ``Calculation of Initial Conditions`` one has to define the simulation event (voltage dip) which is used within the upcoming 
-benchmark. Therefore one has to open the ``Edit Simulation Events`` menu (see Figure 3) and add a new ``Parameter Event`` by clicking ``New Object`` 
-in the upper-left corner and ``Parameter Event`` afterwards (see Figure 4). In the new upcoming window (see Figure 5) the influenced element (the TheveninSource)
-as well as the timestamp of the events occation need to be defined. Finally the event creation is finished by clicking ``OK`` and ``Close``.
-
-.. container:: image-row
-
-    ..  figure:: ./images/PowerFactory/EditSimulationEvents.png
-        :alt: Opening the ``Edit Simulation Events`` menu.
-        :target: _images/EditSimulationEvents.png
-
-        Figure 3: Opening the ``Edit Simulation Events`` menu.
-
-    ..  figure:: ./images/PowerFactory/NewEvent.png
-        :alt: Create a new Simulation Event.
-        :target: _images/NewEvent.png
-
-        Figure 4: Create a new Simulation Event.
-    
-    ..  figure:: ./images/PowerFactory/SetupVoltageDip.png
-        :alt: Settings of the voltage dip event on the Thevenin Source.
-        :target: _images/SetupVoltageDip.png
-
-        Figure 5: Settings of the voltage dip event on the Thevenin Source.
-
 By clicking the ``Run Simulation`` menu one needs to define the ``Stop time`` of the considered simulation.
-In this example, it is set to 1 s, as shown in Figure 6.
+In this example, it is set to 1 s, as shown in Figure 3.
 A EMT simulation can then be carried out by clicking ``Execute``.
 
 ..  figure:: ./images/PowerFactory/RunSimulation.png
@@ -55,7 +30,7 @@ A EMT simulation can then be carried out by clicking ``Execute``.
     :target: _images/SetupVoltageDip.png
     :height: 40vh
 
-    Figure 6: Final settings of the EMT simulation before simulation execution.
+    Figure 3: Final settings of the EMT simulation before simulation execution.
 
 1. Load-Flow Calculation
 ^^^^^^^^^^^^^^^^^^^^^^^^
@@ -109,10 +84,10 @@ The load-flow results confirm that these reference values are represented by the
 The active and reactive power values of the individual phasses add up to approximately 500 MW and 100 Mvar, respectively. 
 
 2. Transient Simulation (EMT)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 After the load-flow calculation has been succesfully completed, the transient simulation can be performed.
 To analyze the simulation results, the signals to be recorded during the simulation must be defined.
-By selecting ``Edit Result Variables``, the signals to be recorded can be configured, as shown in Figure 7.
+By selecting ``Edit Result Variables``, the signals to be recorded can be configured, as shown in Figure 4.
 In this example, the following signals are selected:
 - the three phase voltages at the PCC (``PCC``)
 - the three phase currents of branch ``IBR_Impedance`` at the PCC.
@@ -123,14 +98,14 @@ The active and reactive power are calculated afterwards
     :target: _images/ResultVariableSelection.png
     :width: 50%
 
-    Figure 7: Defining the ``Result Variables`` of the dynamic simulations.
+    Figure 4: Defining the ``Result Variables`` of the dynamic simulations.
 
 The EMT simulation can then be started by clicking ``Execute`` in ``Run Simulation`` menu.
 After the simulation has been completed, the results can be analyzed in a ``Plot Page``.
 
-Figure 8 shows the three phase voltages at the PCC together with the amplitude of the voltage space vector. 
-Figure 9 shows the three phase currents of branch ``IBR_Impedance`` together with the amplitude of the current space vector. 
-Figure 10 shows the active and reactive power at the PCC.
+Figure 5 shows the three phase voltages at the PCC together with the amplitude of the voltage space vector. 
+Figure 6 shows the three phase currents of branch ``IBR_Impedance`` together with the amplitude of the current space vector. 
+Figure 7 shows the active and reactive power at the PCC.
 
 .. container:: image-row
 
@@ -138,35 +113,35 @@ Figure 10 shows the active and reactive power at the PCC.
         :alt: Phase voltages at the PCC and the amplitude of the voltage space vector.
         :target: _images/PowerFactory_voltages.png
 
-        Figure 8: Phase voltages at the PCC and the amplitude of the voltage space vector.
+        Figure 5: Phase voltages at the PCC and the amplitude of the voltage space vector.
 
     
     ..  figure:: ./images/PowerFactory/PowerFactory_currents.png
         :alt: Phase currents of branch Z_IBR and the amplitude of the current space vector.
         :target: _images/PowerFactory_currents.png
 
-        Figure 9: Phase currents of branch Z_IBR and the amplitude of the current space vector.
+        Figure 6: Phase currents of branch Z_IBR and the amplitude of the current space vector.
 
     ..  figure:: ./images/PowerFactory/PowerFactory_power.png
         :alt: Active and reactive power at the PCC.
         :target: _images/PowerFactory_power.png
 
-        Figure 10: Active and reactive power at the PCC.
+        Figure 7: Active and reactive power at the PCC.
 
-The simulation results shows that the simulation starts directly from the load-flow operation point with a small intial transient oscillation. 
-During the fault condition, the voltage dip leads to an increase in the current.
-This behavior is expected because the IBR control system attempts to control the active and reactive power during the voltage disturbance.
-After the fault is cleared, the voltage, current, and power signals return to their initial steady-state operation point.
+The simulation results show that the simulation starts directly from the load-flow operating point with a small initial transient oscillation.
+During the fault, the voltage dip leads to an increase in current. This behavior is expected, as the IBR control system attempts to regulate active and reactive power during the voltage disturbance.
+After the fault is cleared, the voltage, current, and power signals return to their initial steady-state operating points.
 
-These results demonstrate that the IEC 61400-27 DLL has been successfully integrated into the DIgSILENT PowerFactory model and that the communication between the power system model and the DLL is working as intended.
+These results demonstrate that the IEC 61400-27 DLL has been successfully integrated into the DIgSILENT PowerFactory model and that communication between the power system model and the DLL is functioning as intended.
+
 
 PSS®NETOMAC
 -----------
 After the power system with the integrated IEC 61400-27 DLL has been set up, the dynamic simulation can be performed.
 Before starting the calculation, the approproate calculation settings must be configured.
-By Selecting ``Calculate`` and ``Settings...`` the ``Calculation Settings`` dialog is opened, as shown in Figure 12.
+By Selecting ``Calculate`` and ``Settings...`` the ``Calculation Settings`` dialog is opened, as shown in Figure 8.
 For the dynamic simulation , the relevant settings are located in the sections ``Common`` → ``Basic Settings`` and ``Calculation`` → ``Dynamics``.
-In the ``Basic Settings`` section, the parameter ``Network Representation`` must be set to ``Unbalanced without Coup.``, as shown in Figure 12.
+In the ``Basic Settings`` section, the parameter ``Network Representation`` must be set to ``Unbalanced without Coup.``, as shown in Figure 9.
 With this setting, each phase of the power system is considered individually. 
 This is required because the controlled voltage source in the model is implemented using individually controlled voltage sources for each phase.
 The remaining parameters can be left at their default values.
@@ -177,21 +152,21 @@ The remaining parameters can be left at their default values.
         :alt: Opening the ``Calculation Settings`` in PSS®NETOMAC.
         :target: _images/Calculation_Settings_Open.png
 
-        Figure 11: Opening the ``Calculation Settings`` in PSS®NETOMAC.
+        Figure 8: Opening the ``Calculation Settings`` in PSS®NETOMAC.
 
     ..  figure:: ./images/NETOMAC/Calculation_Settings_Basic_Settings.png
         :alt: Defining the ``Basic Settings`` in the ``Calculation Settings``.
         :target: _images/Calculation_Settings_Basic_Settings.png
 
-        Figure 12: Defining the ``Basic Settings`` in the ``Calculation Settings``.
+        Figure 9: Defining the ``Basic Settings`` in the ``Calculation Settings``.
 
 In the ``Dynamics`` settings, the type of simulation is selected using the parameter ``Program Section`` in the ``Control`` section. 
-For an EMT simulation, the parameter must be set to ``Transient``, as shown in Figure 13.
+For an EMT simulation, the parameter must be set to ``Transient``, as shown in Figure 10.
 The remaining parameters can be left at their devault valued.
 In the ``Time`` section, the integration time step is defined. 
 In this example, an integration time step of 50 µs is used. 
 The ``Simulation Stop Time`` must also be specified. 
-In this example, it is set to 1 s, as shown in Figure 14.
+In this example, it is set to 1 s, as shown in Figure 11.
 The remaining parameters can be left at their default values.
 
 .. container:: image-row
@@ -200,13 +175,13 @@ The remaining parameters can be left at their default values.
         :alt: Defining the ``Control`` settings for dynamic simulations.
         :target: _images/Calculation_Settings_Dynamics_Control.png
 
-        Figure 13: Defining the ``Control`` settings for dynamic simulations.
+        Figure 10: Defining the ``Control`` settings for dynamic simulations.
 
     ..  figure:: ./images/NETOMAC/Calculation_Settings_Dyamic_Time.png
         :alt: Defining the ``Time`` settings for dynamic simulations.
         :target: _images/Calculation_Settings_Dyamic_Time.png
 
-        Figure 14: Defining the ``Time`` settings for dynamic simulations.
+        Figure 11: Defining the ``Time`` settings for dynamic simulations.
 
 
 1. Load-Flow Calculation
@@ -261,10 +236,10 @@ The load-flow results confirm that these reference values are represented by the
 The active and reactive power values of the individual phasses add up to approximately 500 MW and 100 Mvar, respectively. 
 
 2. Transient Simulation (EMT)
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 After the load-flow calculation has been succesfully completed, the transient simulation can be performed.
 To analyze the simulation results, the signals to be recorded during the simulation must be defined.
-By selecting ``Calculate`` → ``Plot Definition``, the signals to be recorded can be configured, as shown in Figure 15.
+By selecting ``Calculate`` → ``Plot Definition``, the signals to be recorded can be configured, as shown in Figure 12.
 In this example, the following signals are selected:
 - the three phase voltages at the PCC (``Bus2``)
 - the three phase currents of branch ``Z_IBR`` at the PCC, 
@@ -299,21 +274,21 @@ The resulting ``.plo`` file is shown below:
         :alt: Defining the ``Control`` settings for dynamic simulations.
         :target: _images/Plot_Signals.png
 
-        Figure 15: Defining the ``Control`` settings for dynamic simulations.
+        Figure 12: Defining the ``Control`` settings for dynamic simulations.
 
     ..  figure:: ./images/NETOMAC/Dynamic_Simulation.png
         :alt: Defining the ``Time`` settings for dynamic simulations.
         :target: _images/Dynamic_Simulation.png
 
-        Figure 16: Defining the ``Time`` settings for dynamic simulations.
+        Figure 13: Defining the ``Time`` settings for dynamic simulations.
 
 The EMT simulation can then be started by selecting ``Calculate`` → ``Dynamics (RMS/EMT)``.
 After the simulation has been completed, the results can be analyzed in the ``Diagram View``.
 New diagram pages can be created, and the recorded signals can be added from the ``Signal Explorer`` using drag and drop.
 
-Figure 17 shows the three phase voltages at the PCC together with the amplitude of the voltage space vector. 
-Figure 18 shows the three phase currents of branch ``Z_IBR`` together with the amplitude of the current space vector. 
-Figure 19 shows the active and reactive power at the PCC.
+Figure 14 shows the three phase voltages at the PCC together with the amplitude of the voltage space vector. 
+Figure 15 shows the three phase currents of branch ``Z_IBR`` together with the amplitude of the current space vector. 
+Figure 16 shows the active and reactive power at the PCC.
 
 .. container:: image-row
 
@@ -321,43 +296,110 @@ Figure 19 shows the active and reactive power at the PCC.
         :alt: Phase voltages at the PCC and the amplitude of the voltage space vector.
         :target: _images/PSSNETOMAC_voltages.png
 
-        Figure 17: Phase voltages at the PCC and the amplitude of the voltage space vector.
+        Figure 14: Phase voltages at the PCC and the amplitude of the voltage space vector.
 
     
     ..  figure:: ./images/NETOMAC/PSSNETOMAC_currents.png
         :alt: Phase currents of branch Z_IBR and the amplitude of the current space vector.
         :target: _images/PSSNETOMAC_currents.png
 
-        Figure 18: Phase currents of branch Z_IBR and the amplitude of the current space vector.
+        Figure 15: Phase currents of branch Z_IBR and the amplitude of the current space vector.
 
     ..  figure:: ./images/NETOMAC/PSSNETOMAC_power.png
         :alt: Active and reactive power at the PCC.
         :target: _images/PSSNETOMAC_power.png
 
-        Figure 19: Active and reactive power at the PCC.
+        Figure 16: Active and reactive power at the PCC.
 
-The simulation results shows that the simulation starts directly from the load-flow operation point without significant oscillations. 
-During the fault condition, the voltage dip leads to an increase in the current.
-This behavior is expected because the IBR control system attempts to control the active and reactive power during the voltage disturbance.
-After the fault is cleared, the voltage, current, and power signals return to their initial steady-state operation point.
+The simulation results show that the simulation starts directly from the load-flow operating point without significant oscillations.
+During the fault, the voltage dip leads to an increase in current. This behavior is expected, as the IBR control system attempts to regulate active and reactive power during the voltage disturbance.
+After the fault is cleared, the voltage, current, and power signals return to their initial steady-state operating points.
 
-These results demonstrate that the IEC 61400-27 DLL has been successfully integrated into the PSS®NETOMAC model and that the communication between the power system model and the DLL is working as intended.
+These results demonstrate that the IEC 61400-27 DLL has been successfully integrated into the PSS®NETOMAC model and that communication between the power system model and the DLL is functioning as intended.
+
 
 PSCAD™ 
 ------
+After the power system with the integrated IEC 61400-27 DLL has been set up, the dynamic simulation can be performed.
+Before starting the calculation, the approproate calculation settings must be configured.
+By Selecting ``Project`` the simulation settings menu opens, as shown in Figure 17.
+Therein one has to set the ``Duration of Run`` (in this case 1 s) and the ``Solution Time Step`` (in this case 50 µs).
+Afterwards the simulation can be started by returning to the ``Home`` menu and click ``Run`` (see Figure 18).
 
-..  figure:: ./images/PSCAD/PSCAD_voltages.png
-      :alt: Phase voltages at the PCC and the amplitude of the voltage space vector.
+.. container:: image-row
 
-      Figure 56: Phase voltages at the PCC and the amplitude of the voltage space vector.
+    ..  figure:: ./images/PSCAD/ProjectSettings.png
+        :alt: Opening the ``Project Settings`` in PSCAD™.
+        :target: _images/ProjectSettings.png
 
-   
-..  figure:: ./images/PSCAD/PSCAD_currents.png
-      :alt: Phase currents of branch Z_IBR and the amplitude of the current space vector.
+        Figure 17: Opening the ``Project Settings`` in PSCAD™.
+    
+    ..  figure:: ./images/PSCAD/RunSimulation.png
+        :alt: Opening the ``Home`` menu to run Simulation in PSCAD™.
+        :target: _images/RunSimulation.png
 
-      Figure 57: Phase currents of branch Z_IBR and the amplitude of the current space vector.
+        Figure 18: Opening the ``Home`` menu to run Simulation in PSCAD™.
 
-..  figure:: ./images/PSCAD/PSCAD_power.png
-      :alt: Active and reactive power at the PCC.
+1. Load-Flow Calculation
+^^^^^^^^^^^^^^^^^^^^^^^^
+Since PSCAD™ is purely an EMT simulation tool, it does not support load flow calculations. Therefore, this section is left blank.
 
-      Figure 58: Active and reactive power at the PCC.
+2. Transient Simulation (EMT)
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Since PSCAD™ does not perform load-flow calculations, the voltage source starts at 0 kV at time 0 or at −1 simulation time step, depending on the source settings, and then ramps them up to their rated voltages.
+To analyze the simulation results, the signals to be recorded during the simulation must be defined.
+By adding ``master:pgb`` components to the PSCAD™ model and connecting signal names to them, the signals to be recorded can be configured, as shown in Figure 19.
+Within the ``Project`` menu one can define that these recorded signals shall be exported as a file (e.g. as a .out), as shown in Figure 20.
+In this example, the following signals are selected:
+- the three phase voltages at the PCC (``PCC``)
+- the three phase currents of branch ``Z_IBR`` at the PCC, 
+- the active power of branch ``Z_IBR`` at the PCC, and 
+- the reactive power of branch ``Z_IBR`` at the PCC.
+  
+.. container:: image-row
+
+    ..  figure:: ./images/PSCAD/ResultMonitoring.png
+        :alt: Defining the signals to be recorded in PSCAD™.
+        :target: _images/ResultMonitoring.png
+
+        Figure 19: Defining the signals to be recorded in PSCAD™.
+
+    ..  figure:: ./images/PSCAD/ProjectSettings.png
+        :alt: Setting up the result export in the ``Project Settings`` in PSCAD™.
+        :target: _images/ProjectSettings.png
+
+        Figure 20: Setting up the result export in the ``Project Settings`` in PSCAD™.
+
+The EMT simulation can then be started
+After the simulation has been completed, the results can be analyzed in the ``Polymeters`` or within the exported ``.out``-file.
+
+Figure 21 shows the three phase voltages at the PCC together with the amplitude of the voltage space vector. 
+Figure 22 shows the three phase currents of branch ``Z_IBR`` together with the amplitude of the current space vector. 
+Figure 23 shows the active and reactive power at the PCC.
+
+.. container:: image-row
+
+    ..  figure:: ./images/PSCAD/PSCAD_voltages.png
+        :alt: Phase voltages at the PCC and the amplitude of the voltage space vector.
+        :target: _images/PSCAD_voltages.png
+
+        Figure 21: Phase voltages at the PCC and the amplitude of the voltage space vector.
+
+    
+    ..  figure:: ./images/PSCAD/PSCAD_currents.png
+        :alt: Phase currents of branch Z_IBR and the amplitude of the current space vector.
+        :target: _images/PSCAD_currents.png
+
+        Figure 22: Phase currents of branch Z_IBR and the amplitude of the current space vector.
+
+    ..  figure:: ./images/PSCAD/PSCAD_power.png
+        :alt: Active and reactive power at the PCC.
+        :target: _images/PSCAD_power.png
+
+        Figure 19: Active and reactive power at the PCC.
+
+The simulation results show that the simulation starts at an initial voltage of 0 kV, causing a transient oscillation. However, the system reaches steady state within a short period of time.
+During the fault, the voltage dip leads to an increase in current. This behavior is expected, as the IBR control system attempts to regulate active and reactive power during the voltage disturbance.
+After the fault is cleared, the voltage, current, and power signals return to their initial steady-state operating points.
+
+These results demonstrate that the IEC 61400-27 DLL has been successfully integrated into the PSCAD™ model and that communication between the power system model and the DLL is functioning as intended.
