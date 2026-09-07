@@ -109,10 +109,61 @@ An inverse Park transformation is then used to convert these voltage references 
 
 The MATLAB®/Simulink® model is provided as the file ``IBR_Control_2024b.slx``.
 
-   
 Parameterizing the MATLAB®/Simulink® model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
+The parameterization of the MATLAB®/Simulink® model is divided into 5 sections:
+- Simulation and grid data
+- Converter model data
+- Thevenin equivalent data
+- Initialization by load-flow calculation
+
+For the converting to a DLL and the afterwards changing of the model parameters it is required that the parameter are defined as simulink parameters.
+
+Simulation and grid data
+'''''''''''''''''''''''''''''''''''
+
+In this section the general data for power system simulation are set. 
+These are on the one hande the simulation time step ``Ts`` and the nominal frequency ``Fn``.
+The parameter are described in the following table: 
+
++-----------+--------+-----------+---------+---------+------+------------+----------------------+
+| Parameter | Value  | Data type | Minimum | Maximum | Unit | Complexity | Description          |
++===========+========+===========+=========+=========+==========================================+
+| Ts        | 50e-6  | double    | 1E-6    | 100E6   | s    | real       | Simulation time step |
++-----------+--------+-----------+---------+---------+------------------------------------------+
+| Fn        | 50     | double    | 1E-6    | 1E6     | Hz   | real       | Nominal frequency    |
++-----------+--------+-----------+---------+-------- +------------------------------------------+
+
+Converter model data
+'''''''''''''''''''''''''''''''''''
+
++-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
+| Parameter | Value  | Data type | Minimum | Maximum | Unit | Complexity | Description                                          |
++===========+========+===========+=========+=========+==========================================================================+
+| Sn        | 500E6  | double    | 1       | 100E12  | MVA  | real       | Rated power of converter                             |
++-----------+--------+-----------+---------+---------+--------------------------------------------------------------------------+
+| Rc        | 0.7820 | double    | 1E-6    | 1E6     | Hz   | real       | Converter resistance                                 |
++-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
+| Lc        | 0.1574 | double    | 1E-6    | 1E6     | Hz   | real       | Converter inductance                                 |
++-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
+| Pref      | 500e6  | double    | 1E-6    | 1E6     | Hz   | real       | Active power set-point                               |
++-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
+| Qref      | 100e6  | double    | 1E-6    | 1E6     | Hz   | real       | Reactive power set-point                             |
++-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
+| Tf_S      | 0.1    | double    | 1E-6    | 1E6     | Hz   | real       | Filter time constant of power control (continuous)   |
++-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
+| Kp_I      | 400    | double    | 1E-6    | 1E6     | Hz   | real       | Proportional gain of current controller (continuous) |
++-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
+| Ki_I      | 8000   | double    | 1E-6    | 1E6     | Hz   | real       | Integral gain of current controller (continuous)     |
++-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
+| Kp_PLL    | 0.0002 | double    | 1E-6    | 1E6     | Hz   | real       | Proportional gain of phase-locked loop (continous)   |
++-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
+| Ki_PLL    | 0.02   | double    | 1E-6    | 1E6     | Hz   | real       | Integral gain of phase-locked loop (continous)       |
++-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
+
+Thevenin equivalent data
+'''''''''''''''''''''''''''''''''''
 
 Creating the Parameter Script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
