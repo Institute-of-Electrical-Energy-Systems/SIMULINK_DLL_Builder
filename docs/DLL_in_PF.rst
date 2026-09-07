@@ -23,7 +23,7 @@ The individual components are added and configured step by step, starting from t
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ..  figure:: ./images/PowerFactory/TheveninPowerFactory.png
     :alt: Thevenin equivalent connect to PCC in PowerFactory.
-    :target: ./images/PowerFactory/TheveninPowerFactory.png
+    :target: _images/TheveninPowerFactory.png
 
     Figure 1: Thevenin equivalent connect to PCC in PowerFactory.
 
@@ -42,7 +42,7 @@ However, the simulation is of limited significance at this stage, as the Theveni
 ..  figure:: ./images/PowerFactory/SMIB_IBR_PowerFactory.png
     :alt: IBR in a SMIB configuraiton in DIgSILENT PowerFactory.
     :width: 50%
-    :target: ./images/PowerFactory/SMIB_IBR_PowerFactory.png
+    :target: _images/SMIB_IBR_PowerFactory.png
 
     Figure 2: IBR in a SMIB configuraiton in DIgSILENT PowerFactory.
 
@@ -75,13 +75,13 @@ Select Voltage Transformer from the list of available components (see Figure 4).
 
    ..  figure:: ./images/PowerFactory/PCCPowerFactory.png
          :alt: Choice of the PCC busbar in the PowerFactory model menu.
-         :target: ./images/PowerFactory/PCCPowerFactory.png
+         :target: _images/PCCPowerFactory.png
 
          Figure 3: Choice of the PCC busbar in the PowerFactory model menu.
          
    ..  figure:: ./images/PowerFactory/VT_PowerFactory.png
          :alt: Adding a new voltage transformer to the PCC busbar in PowerFactory.
-         :target: ./images/PowerFactory/VT_PowerFactory.png
+         :target: _images/VT_PowerFactory.png
 
          Figure 4: Adding a new voltage transformer to the PCC busbar in PowerFactory.
 
@@ -93,11 +93,13 @@ The ideal transformer is sufficient for the present application because the purp
 
    ..  figure:: ./images/PowerFactory/VT_PowerFactory2.png
       :alt: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
+      :target: _images/VT_PowerFactory2.png
 
       Figure 5: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
 
    .. figure:: ./images/PowerFactory/VT_PowerFactory4.png
       :alt: Pop-up window for the definition of a voltage transformer type.
+      :target: _images/VT_PowerFactory4.png
 
       Figure 6: Pop-up window for the definition of a voltage transformer type.
 
@@ -111,16 +113,19 @@ The measured variables **U2r_A**, **U2r_B**, and **U2r_C** can then be selected 
 
    ..  figure:: ./images/PowerFactory/VT_PowerFactory5.png
          :alt: Pop-up window after right-clicking the new voltage transformer.
+         :target: _images/VT_PowerFactory5.png
 
          Figure 7: Pop-up window after right-clicking the new voltage transformer.
 
    ..  figure:: ./images/PowerFactory/VT_PowerFactory7.png
          :alt: Opening the voltage transformer result variable window by double-clicking.
+         :target: _images/VT_PowerFactory7.png
 
          Figure 8: Opening the voltage transformer result variable window by double-clicking.
 
    ..  figure:: ./images/PowerFactory/VT_PowerFactory8.png
          :alt: Adding the necessary voltage measurements to the result log.
+         :target: _images/VT_PowerFactory8.png
 
          Figure 9: Adding the necessary voltage measurements to the result log.
 
@@ -137,11 +142,13 @@ Select Current Transformer from the list of available components (see Figure 11)
 
    ..  figure:: ./images/PowerFactory/PCC_Cub1_PowerFactory.png
          :alt: Choice of the cubicle of the PCC busbar connected to the thevenin impedance in the PowerFactory model menu.
+         :target: _images/PCC_Cub1_PowerFactory.png
 
          Figure 10: Choice of the cubicle of the PCC busbar connected to the thevenin impedance in the PowerFactory model menu.
 
    ..  figure:: ./images/PowerFactory/CT_PowerFactory.png
          :alt: Adding a new current transformer to the cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
+         :target: _images/CT_PowerFactory.png
 
          Figure 11: Adding a new current transformer to the cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
 
@@ -153,11 +160,13 @@ The ideal transformer is sufficient for the present application because the purp
 
    ..  figure:: ./images/PowerFactory/CT_PowerFactory2.png
          :alt: Pop-up window of the new generated current transformer at cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
+         :target: _images/CT_PowerFactory2.png
 
          Figure 12: Pop-up window of the new generated current transformer at cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
 
    .. figure:: ./images/PowerFactory/CT_PowerFactory4.png
          :alt: Pop-up window for the definition of a current transformer type.
+         :target: _images/CT_PowerFactory4.png
 
          Figure 13: Pop-up window for the definition of a current transformer type.
 
@@ -170,18 +179,21 @@ The measured variables **I2r_A**, **I2r_B**, and **I2r_C** can then be selected 
 
    ..  figure:: ./images/PowerFactory/CT_PowerFactory5.png
          :alt: Pop-up window after right-clicking the new current transformer.
+         :target: _images/CT_PowerFactory5.png
 
          Figure 14: Pop-up window after right-clicking the new current transformer.
 
 
    ..  figure:: ./images/PowerFactory/CT_PowerFactory6.png
          :alt: Opening the current transformer result variable window by double-clicking.
+         :target: _images/CT_PowerFactory6.png
 
          Figure 15: Opening the current transformer result variable window by double-clicking.
 
 
    ..  figure:: ./images/PowerFactory/CT_PowerFactory7.png
          :alt: Adding the necessary current measurements to the result log.
+         :target: _images/CT_PowerFactory7.png
 
          Figure 16: Adding the necessary current measurements to the result log.
 
@@ -192,99 +204,91 @@ This integration is performed via a so-called Composite Model Frame, which defin
 
 1. Creating an empty composite model frame definition
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+First, a new, empty Composite Model Frame is created (see Figure 17). 
+In the corresponding input window, the name and basic settings of the frame are defined (see Figure 18). 
+The graphical editing interface of the still-empty frame then opens, in which the individual slots (blocks) and their signal connections are defined in the subsequent steps (see Figure 19).
 
-First, a new, empty Composite Model Frame is created (see Figure 19). 
-In the corresponding input window, the name and basic settings of the frame are defined (see Figure 20). 
-The graphical editing interface of the still-empty frame then opens, in which the individual slots (blocks) and their signal connections are defined in the subsequent steps (see Figure 21).
+.. container:: image-row
 
-.. grid:: 3
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame.png
+         :alt: Creating a new empty composite model frame.
+         :target: _images/CompositeModelFrame.png
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame.png
-            :alt: Creating a new empty composite model frame.
-            :align: center
+         Figure 17: Creating a new empty composite model frame.
 
-            Figure 19: Creating a new empty composite model frame.
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame1.png
+         :alt: Input mask of the composite model frame definition.
+         :target: _images/CompositeModelFrame1.png
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame1.png
-            :alt: Input mask of the composite model frame definition.
-            :align: center
+         Figure 18: Input mask of the composite model frame definition.
 
-            Figure 20: Input mask of the composite model frame definition.
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame2.png
+         :alt: Empty composite model frame defintion.
+         :target: _images/CompositeModelFrame2.png
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame2.png
-            :alt: Empty composite model frame defintion.
-            :align: center
-
-            Figure 21: Empty composite model frame defintion.
+         Figure 19: Empty composite model frame defintion.
 
 
 2. Adding measurment slots to the composite model frame definition
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 The first slots to be created are those for the measured quantities. 
-A slot for the voltage transformer is created to feed the three phase-to-ground voltages at the PCC into the frame (see Figure 22). 
-Similarly, a slot for the current transformer is added, through which the three phase currents are provided (see Figure 23). 
-Figure 24 shows the frame after both measurement slots have been added.
+A slot for the voltage transformer is created to feed the three phase-to-ground voltages at the PCC into the frame (see Figure 20). 
+Similarly, a slot for the current transformer is added, through which the three phase currents are provided (see Figure 21). 
+Figure 22 shows the frame after both measurement slots have been added.
 
-.. grid:: 3
+.. container:: image-row
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame3.png
-            :alt: Creating a voltage transformer slot in the composite model frame.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame3.png
+         :alt: Creating a voltage transformer slot in the composite model frame.
+         :target: _images/CompositeModelFrame3.png
 
-            Figure 22: Creating a voltage transformer slot in the composite model frame.
+         Figure 20: Creating a voltage transformer slot in the composite model frame.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame4.png
-            :alt: Creating a current transformer slot in the composite model frame.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame4.png
+         :alt: Creating a current transformer slot in the composite model frame.
+         :target: _images/CompositeModelFrame4.png
 
-            Figure 23: Creating a current transformer slot in the composite model frame.
+         Figure 21: Creating a current transformer slot in the composite model frame.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame5.png
-            :alt: Composite model frame containing the measurement slots for three phase voltage and current.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame5.png
+         :alt: Composite model frame containing the measurement slots for three phase voltage and current.
+         :target: _images/CompositeModelFrame5.png
 
-            Figure 24: Composite model frame containing the measurement slots for three phase voltage and current.
+         Figure 22: Composite model frame containing the measurement slots for three phase voltage and current.
 
 3. Adding the DLL as compiled model to the composite model frame definition
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Next, a slot for the DLL itself is created (see Figure 23). 
+The previously compiled IEC 61400-27 DLL is loaded into this slot as a Compiled Model (see Figure 24). 
+Figure 25 shows the frame with the integrated DLL slot, whose inputs and outputs are now available for further signal wiring.
 
-Next, a slot for the DLL itself is created (see Figure 25). 
-The previously compiled IEC 61400-27 DLL is loaded into this slot as a Compiled Model (see Figure 26). 
-Figure 27 shows the frame with the integrated DLL slot, whose inputs and outputs are now available for further signal wiring.
+.. container:: image-row
 
-.. grid:: 3
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame6.png
+         :alt: Creating a DLL slot in the composite model frame.
+         :target: _images/CompositeModelFrame6.png
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame6.png
-            :alt: Creating a DLL slot in the composite model frame.
-            :align: center
+         Figure 23: Creating a DLL slot in the composite model frame.
 
-            Figure 25: Creating a DLL slot in the composite model frame.
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame7.png
+         :alt: Imported DLL as compiled model in the DLL slot of the composite model frame.
+         :target: _images/CompositeModelFrame7.png
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame7.png
-            :alt: Imported DLL as compiled model in the DLL slot of the composite model frame.
-            :align: center
+         Figure 24: Imported DLL as compiled model in the DLL slot of the composite model frame.
 
-            Figure 26: Imported DLL as compiled model in the DLL slot of the composite model frame.
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame8.png
+         :alt: Composite model frame containing the DLL slot.
+         :target: _images/CompositeModelFrame8.png
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame8.png
-            :alt: Composite model frame containing the DLL slot.
-            :align: center
+         Figure 25: Composite model frame containing the DLL slot.
 
-            Figure 27: Composite model frame containing the DLL slot.
+.. attention:: 
+
+   Within this step, the path to the DLL file is entered. Make sure that the specified path is correct and corresponds to the location of the DLL file.
+
 
 4. Convert the DLL outputs to the PowerFactory required units
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-
 Since the output quantities of the DLL do not directly match the unit required by the controlled voltage source (kilovolts), in PowerFactory, an additional conversion slot is inserted (see Figure 28). 
 This slot contains the corresponding conversion equations, which transform the DLL output signals into the format required by the voltage source (see Figure 29). 
 Figure 30 shows the frame after the conversion slot has been added.
