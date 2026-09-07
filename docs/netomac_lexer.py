@@ -18,10 +18,10 @@ class NetomacLexer(RegexLexer):
             (r"#[A-Za-z_][A-Za-z0-9_.\\]*", Name.Variable),  # #Vn, #\MAC\..., etc.
             (r"'[^']*'", String),                # 'VSrc', 'IBR', ...
             (r"\b\d+(\.\d+)?([eE][+-]?\d+)?\b", Number),
-            (r"\s+", Text),
-            (r".", Text),
             (r"\b(?:TIME|BOSL_MODE|SIMDT)\b", String),
             (r"\b(?:IF|EQ|LT|LE|GT|THEN|COS|SIN|ELSE|ENDIF)\b", Name.Builtin),
+            (r"\s+", Text),
+            (r".", Text),            
         ]
     }
 
