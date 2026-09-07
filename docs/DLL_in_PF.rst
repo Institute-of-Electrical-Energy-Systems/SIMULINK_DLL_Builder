@@ -614,3 +614,30 @@ In particular, the parameters related to phase correction and the freeze functio
       :height: 40vh
 
       Figure 54: Adding the five DSL Model blocks to the IBR Control composite model.
+
+Adding a voltage dip event for the simulation benchmark
+-------------------------------------------------------
+To include a voltage dip simulation event which is used within the upcoming `benchmark <https://simulink-dll-builder.readthedocs.io/en/latest/Benchmark.html#>`_ one has to open the ``Edit Simulation Events`` menu (see Figure 57).
+Therin one has to add a new ``Parameter Event`` by clicking ``New Object`` in the upper-left corner and ``Parameter Event`` afterwards (see Figure 58). 
+In the new upcoming window (see Figure 59) the influenced element (the TheveninSource) as well as the timestamp of the events occation need to be defined. 
+Finally the event creation is finished by clicking ``OK`` and ``Close``.
+
+.. container:: image-row
+
+    ..  figure:: ./images/PowerFactory/EditSimulationEvents.png
+        :alt: Opening the ``Edit Simulation Events`` menu.
+        :target: _images/EditSimulationEvents.png
+
+        Figure 57: Opening the ``Edit Simulation Events`` menu.
+
+    ..  figure:: ./images/PowerFactory/NewEvent.png
+        :alt: Create a new Simulation Event.
+        :target: _images/NewEvent.png
+
+        Figure 58: Create a new Simulation Event.
+    
+    ..  figure:: ./images/PowerFactory/SetupVoltageDip.png
+        :alt: Settings of the voltage dip event on the Thevenin Source.
+        :target: _images/SetupVoltageDip.png
+
+        Figure 59: Settings of the voltage dip event on the Thevenin Source.
