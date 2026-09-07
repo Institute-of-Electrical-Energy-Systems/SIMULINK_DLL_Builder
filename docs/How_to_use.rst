@@ -11,8 +11,9 @@ described in detail in the corresponding chapters of this documentation.
 
 .. figure:: ./images/GeneralWorkflow/iec61400_27_builder_workflow.png
    :alt: Overview of the six-step workflow
+   :target: _images/iec61400_27_builder_workflow.png
 
-   Overview of the six-step workflow of the IEC 61400-27 Builder.
+   Figure 1: Overview of the six-step workflow of the IEC 61400-27 Builder.
 
 .. note::
 
@@ -214,8 +215,9 @@ generation process.
 .. figure:: ./images/GeneralWorkflow/SimulinkCoder.png
    :alt: Opening the Simulink Coder App
    :width: 50%
+   :target: _images/SimulinkCoder.png
 
-   Opening the Simulink Coder App.
+   Figure 2: Opening the Simulink Coder App.
 
 The key configuration step is verifying the **System Target File**
 selected under *Settings → Code Generation*:
@@ -223,14 +225,16 @@ selected under *Settings → Code Generation*:
 .. figure:: ./images/GeneralWorkflow/SimulinkCoderSettings.png
    :alt: Simulink Coder settings dialog
    :width: 50%
+   :target: _images/SimulinkCoderSettings.png
 
-   Opening the Simulink Coder settings.
+   Figure 3: Opening the Simulink Coder settings.
 
 .. figure:: ./images/GeneralWorkflow/SimulinkCoderSettingsCodeGeneration.png
    :alt: Code Generation tab
    :width: 50%
+   :target: _images SimulinkCoderSettingsCodeGeneration.png
 
-   Selecting the Code Generation tab.
+   Figure 4: Selecting the Code Generation tab.
 
 The System Target File must be set to ``IEC61400_27_DLL.tlc``, which must be available in the working directory prepared in 
 step 1. If a different target file is selected, it must be changed accordingly before proceeding — otherwise the build will 
@@ -243,8 +247,9 @@ These values must be reviewed and adjusted as required for the specific model.
 .. figure:: ./images/GeneralWorkflow/SimulinkCoderSettingsMetaData.png
    :alt: Code Generation Simulink DLL Builder tab
    :width: 50%
+   :target: _images/SimulinkCoderSettingsMetaData.png
 
-   Filling the Model/DLL Metadata necessary for the DLL Code generation process.
+   Figure 5: Filling the Model/DLL Metadata necessary for the DLL Code generation process.
 
 
 5. Starting the Creation Process
@@ -255,8 +260,9 @@ With the correct target file selected, the build process is started by clicking 
 .. figure:: ./images/GeneralWorkflow/SimulinkCoderBuild.png
    :alt: Starting the code generation process
    :width: 50%
+   :target: _images/SimulinkCoderBuild.png
 
-   Starting the code generation process.
+   Figure 6: Starting the code generation process.
 
 Depending on the size of the model and the performance of the local system, the build may take anywhere from a few seconds 
 to several minutes. During this process, the compiler and linker — configured via ``IEC61400_27_DLL.tmf`` — generate the 
