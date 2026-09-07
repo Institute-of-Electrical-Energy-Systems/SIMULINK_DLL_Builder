@@ -352,7 +352,7 @@ To begin integrating the previously defined blocks, the required DSL models must
 In the ``Add New Object`` dialog, select ``DSL Model`` (see Figure 33). 
 This starts the process of creating the DSL components required for the subsequent integration of the previously defined blocks.
 
-..container:: image-row
+.. container:: image-row
 
    ..  figure:: ./images/PowerFactory/CompositeModelFrame15.png
          :alt: Navigating to the grid topology of the considered DIgSILENT PowerFactory model.
@@ -425,38 +425,35 @@ The initialization measures developed for this purpose are described in more det
 1. Loadflow conditions (Sample 0)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 First, the network topology is analyzed with respect to the power flow, as this provides the basis for determining the initial conditions and, consequently, for the subsequent dynamic simulation. 
-Without any modifications to the network topology, the voltage magnitude and phase angle at every bus of the investigated topology remains 1 p.u. and 0°. Due to the fact of zero current (see Figure 40).
+Without any modifications to the network topology, the voltage magnitude and phase angle at every bus of the investigated topology remains 1 p.u. and 0°. Due to the fact of zero current (see Figure 38).
 
 The objective, however, is to ensure that the IBR supplies the specified active and reactive power from the beginning of the simulation, with only minor power deviations requiring subsequent balancing. 
 To achieve this, the voltage magnitude and phase angle at the IBR terminals must first be determined. 
-These values are then entered into the load-flow settings of the AC voltage source (see Figure 41). 
+These values are then entered into the load-flow settings of the AC voltage source (see Figure 39). 
 
-By specifying the corresponding voltage magnitude and phase angle, the desired power flow can be established at the PCC (see Figure 42).
+By specifying the corresponding voltage magnitude and phase angle, the desired power flow can be established at the PCC (see Figure 40).
 In the example considered, the target operating point at the PCC is P = 500 MW and Q = 100 MVAr. 
 This ensures that the initial operating condition of the IBR is consistent with the intended power-flow conditions before the EMT simulation is started.
 
-.. grid:: 3
+.. container:: image-row
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/Loadflow_wo_adaptions.png
-            :alt: Calculation of unbalance power flow without adpating the IBR voltage source conditions.
-            :align: center
+   ..  figure:: ./images/PowerFactory/Loadflow_wo_adaptions.png
+         :alt: Calculation of unbalance power flow without adpating the IBR voltage source conditions.
+         :target: _images/Loadflow_wo_adaptions.png
 
-            Figure 40: Calculation of unbalance power flow without adpating the IBR voltage source conditions.
+         Figure 38: Calculation of unbalance power flow without adpating the IBR voltage source conditions.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/IBR_voltage_source_LF.png
-            :alt: Filling the load flow conditions (voltage magnitude and angle) in the IBR voltage source.
-            :align: center
+   ..  figure:: ./images/PowerFactory/IBR_voltage_source_LF.png
+         :alt: Filling the load flow conditions (voltage magnitude and angle) in the IBR voltage source.
+         :target: _images/IBR_voltage_source_LF.png
 
-            Figure 41: Filling the load flow conditions (voltage magnitude and angle) in the IBR voltage source.
+         Figure 39: Filling the load flow conditions (voltage magnitude and angle) in the IBR voltage source.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/Loadflow_after_adaptions.png
-            :alt: Calculation of unbalance power flow after adpating the IBR voltage source conditions.
-            :align: center
+   ..  figure:: ./images/PowerFactory/Loadflow_after_adaptions.png
+         :alt: Calculation of unbalance power flow after adpating the IBR voltage source conditions.
+         :target: _images/Loadflow_after_adaptions.png
 
-            Figure 42: Calculation of unbalance power flow after adpating the IBR voltage source conditions.
+         Figure 40: Calculation of unbalance power flow after adpating the IBR voltage source conditions.
 
 2. Start of the dynamic simulation using a DLL (Sample 1 & 2)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -466,46 +463,44 @@ At this point, the input values have already been assigned, while the correspond
 This can be regarded as a zero sample. 
 In the second sample, these initially calculated zero values are propagated to the subsequent simulation step, resulting in an undesired deviation from the expected voltage.
 
-To overcome this initialization effect, a workaround is implemented in which the output values of an ideal symmetrical AC voltage source, corresponding to the values determined during the load-flow calculation, are applied directly to the controlled IBR voltage source during the first two samples of the dynamic simulation.
+To overcome this initialization effect, a workaround is implemented in which the output values of an ideal symmetrical AC voltage source, corresponding to the values determined
+ during the load-flow calculation, are applied directly to the controlled IBR voltage source during the first two samples of the dynamic simulation.
 
 To implement this workaround, the composite model frame (the block definition of ``IBR_Control``), must first be extended accordingly. 
-The first step is to disconnect the signal path between the volt-to-kilovolt conversion block and the controlled voltage source (see Figure 43). 
+The first step is to disconnect the signal path between the volt-to-kilovolt conversion block and the controlled voltage source (see Figure 41). 
 Signal switches are then inserted at this point. 
-These switches select either input ``yi1`` or input ``y2``, depending on the value of the variable ``sw``. 
-When ``sw`` changes from 0 to 1, the switch changes from ``yi1`` to ``yi2`` (see Figure 44).
+These switches select either input ``yi1`` or input ``yi2``, depending on the value of the variable ``sw``. 
+When ``sw`` changes from 0 to 1, the switch changes from ``yi1`` to ``yi2`` (see Figure 42).
 
-The corresponding logic for selecting the signal based on the ``sw`` variable is shown in Figure 45. 
+The corresponding logic for selecting the signal based on the ``sw`` variable is shown in Figure 43. 
 This switching mechanism allows the initialization values from the ideal AC voltage source to be applied during the first two simulation samples before the signal path is switched to the output of the DLL.
 
-.. grid:: 3
+.. container:: image-row
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame21.png
-            :alt: Cutting the signal between the conversion block and the controlled voltage source in the composite model frame.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame21.png
+         :alt: Cutting the signal between the conversion block and the controlled voltage source in the composite model frame.
+         :target: _images/CompositeModelFrame21.png
 
-            Figure 43: Cutting the signal between the conversion block and the controlled voltage source in the composite model frame.
+         Figure 41: Cutting the signal between the conversion block and the controlled voltage source in the composite model frame.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame22.png
-            :alt: Adding the signal switches for each phase to the composite model frame.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame22.png
+         :alt: Adding the signal switches for each phase to the composite model frame.
+         :target: _images/CompositeModelFrame22.png
 
-            Figure 44: Adding the signal switches for each phase to the composite model frame.
+         Figure 42: Adding the signal switches for each phase to the composite model frame.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame23.png
-            :alt: Logic of the signal switches in the composite model frame.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame23.png
+         :alt: Logic of the signal switches in the composite model frame.
+         :target: _images/CompositeModelFrame23.png
 
-            Figure 45: Logic of the signal switches in the composite model frame. ``sw`` is the switch attribute, ``yi1`` and ``yi2`` are the two input signal streams while ``yo`` is the output signal stream.
+         Figure 43: Logic of the signal switches in the composite model frame. ``sw`` is the switch attribute, ``yi1`` and ``yi2`` are the two input signal streams while ``yo`` is the output signal stream.
 
 Building an ideal three phase AC voltage signal with a user defined magnitude and angle
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+'''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 DIgSILENT PowerFactory does not provide a signal generator for sine and cosine functions with user-defined amplitude and phase angle. 
-Therefore, the required signal generation is implemented directly within the composite model frame as a dedicated slot (see Figure 46).
+Therefore, the required signal generation is implemented directly within the composite model frame as a dedicated slot (see Figure 44).
 
-The corresponding logic is shown in Figure 47 while the parameter and output labels are presented in Figure 48. 
+The corresponding logic is shown in Figure 45 while the parameter and output labels are presented in Figure 46. 
 It generates the three-phase sinusoidal signals with the specified amplitude and phase angle, with each phase shifted by 120° relative to the others. 
 
 .. math::
@@ -517,131 +512,104 @@ It generates the three-phase sinusoidal signals with the specified amplitude and
 
 This provides the three-phase voltage signals required for the initialization of the controlled IBR voltage source.
 
-.. grid:: 3
+.. container:: image-row
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame24.png
-            :alt: Adding the user defined sine wave generator to the composite model frame.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame24.png
+         :alt: Adding the user defined sine wave generator to the composite model frame.
+         :target: _images/CompositeModelFrame24.png
 
-            Figure 46: Adding the user defined sine wave generator to the composite model frame.
+         Figure 44: Adding the user defined sine wave generator to the composite model frame.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame25.png
-            :alt: Logical/Mathematical definition of the sine wave generator of an ideal three phase AC voltage source.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame25.png
+         :alt: Logical/Mathematical definition of the sine wave generator of an ideal three phase AC voltage source.
+         :target: _images/CompositeModelFrame25.png
 
-            Figure 47: Logical/Mathematical definition of the sine wave generator of an ideal three phase AC voltage source.
+         Figure 45: Logical/Mathematical definition of the sine wave generator of an ideal three phase AC voltage source.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame26.png
-            :alt: Output/Parameter definition of the three phase voltage sine wave generator.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame26.png
+         :alt: Output/Parameter definition of the three phase voltage sine wave generator.
+         :target: _images/CompositeModelFrame26.png
 
-            Figure 48: Output/Parameter definition of the three phase voltage sine wave generator.
+         Figure 46: Output/Parameter definition of the three phase voltage sine wave generator.
 
 Switch signal generator 
-"""""""""""""""""""""""
+'''''''''''''''''''''''
 A signal generator is required to switch the initialization logic from the predefined voltage signal to the DLL output after a specified simulation time. 
 The signal generator changes its state from 0 to 1 once the simulation time defined by the parameter ``Time_of_Switch`` has elapsed.
 
-The signal generator is added to the composite model frame as shown in Figure 49. 
-The corresponding switching logic is defined in Figure 50, while Figure 51 shows the configuration of the output signal and the `SwitchOperation` parameter. 
+The signal generator is added to the composite model frame as shown in Figure 47. 
+The corresponding switching logic is defined in Figure 48, while Figure 49 shows the configuration of the output signal and the `SwitchOperation` parameter. 
 This parameter determines the duration for which the initialization signal is applied before the DLL-generated voltage signals are passed to the controlled IBR voltage source.
 
-.. grid:: 3
+.. container:: image-row
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame27.png
-            :alt: Adding the switch signal generator to the composite model frame.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame27.png
+         :alt: Adding the switch signal generator to the composite model frame.
+         :target: _images/CompositeModelFrame27.png
 
-            Figure 49: Adding the switch signal generator to the composite model frame.
+         Figure 47: Adding the switch signal generator to the composite model frame.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame28.png
-            :alt: Logical/Mathematical definition of the switch signal generator.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame28.png
+         :alt: Logical/Mathematical definition of the switch signal generator.
+         :target: _images/CompositeModelFrame28.png
 
-            Figure 50: Logical/Mathematical definition of the switch signal generator
+         Figure 48: Logical/Mathematical definition of the switch signal generator
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame26.png
-            :alt: Output/Parameter definition of the switch signal generator.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame26.png
+         :alt: Output/Parameter definition of the switch signal generator.
+         :target: _images/CompositeModelFrame29.png
 
-            Figure 51: Output/Parameter definition of the switch signal generator.
+         Figure 49: Output/Parameter definition of the switch signal generator.
 
 3. Connecting the new created signals as well as the DLL output to the signal switches
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Finally, all newly added blocks and functions must be interconnected using the appropriate signal paths. 
-The resulting structure is shown in Figure 52 and represents the final definition of the ``IBR_Control`` Composite Model Frame. 
+The resulting structure is shown in Figure 50 and represents the final definition of the ``IBR_Control`` Composite Model Frame. 
 This configuration combines the initialization logic, the signal generation, the switching mechanism, and the DLL-based control into a single composite model frame, providing the complete signal flow required for the subsequent EMT simulation.
 
 ..  figure:: ./images/PowerFactory/CompositeModelFrame30.png
       :alt: Signal wiring in the composite model frame after adding the new slots.
-      :align: center
+      :target: _images/CompositeModelFrame30.png
+      :height: 40vh
 
-      Figure 52: Signal wiring in the composite model frame after adding the new slots.
+      Figure 50: Signal wiring in the composite model frame after adding the new slots.
 
 4. Creating the DSL Models from the Block definitions and add them to the composite model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-To use the newly designed functionality, five additional DSL models must first be created, following the same procedure used for the original functionality (see Figure 53). 
+To use the newly designed functionality, five additional DSL models must first be created, following the same procedure used for the original functionality (see Figure 51). 
 These models include three DSL models implementing the signal-switching logic, one for each phase, as well as two DSL models for the signal generators.
 
 The signal-switch DSL models do not require any additional parameters, as their operation is fully defined by the switching logic. 
-In contrast, the two signal-generator models require parameter inputs to define their respective behavior. The corresponding parameter input dialogs are shown in Figures 54 and 55.
+In contrast, the two signal-generator models require parameter inputs to define their respective behavior. The corresponding parameter input dialogs are shown in Figures 52 and 53.
 
-.. grid:: 3
+.. container:: image-row
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame31.png
-            :alt: Adding five DSL Models to the investigated network model.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame31.png
+         :alt: Adding five DSL Models to the investigated network model.
+         :target: _images/CompositeModelFrame31.png
 
-            Figure 53: Adding five DSL Models to the investigated network model.
+         Figure 51: Adding five DSL Models to the investigated network model.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame32.png
-            :alt: Parameter input mask of the switching signal generator.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame32.png
+         :alt: Parameter input mask of the switching signal generator.
+         :target: _images/CompositeModelFrame32.png
 
-            Figure 54: Parameter input mask of the switching signal generator.
+         Figure 52: Parameter input mask of the switching signal generator.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame33.png
-            :alt: Parameter input mask of the three phase sine wave signal generator.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame33.png
+         :alt: Parameter input mask of the three phase sine wave signal generator.
+         :target: _images/CompositeModelFrame33.png
 
-            Figure 55: Parameter input mask of the three phase sine wave signal generator.
+         Figure 53: Parameter input mask of the three phase sine wave signal generator.
 
-The final step is to integrate the newly created DSL models into the ``IBR_Control`` composite model (see Figure 56). 
+The final step is to integrate the newly created DSL models into the ``IBR_Control`` composite model (see Figure 54). 
 This completes the initialization setup in DIgSILENT PowerFactory and ensures that the required switching and signal-generation functions are incorporated into the overall model.
 
 The remaining configuration is performed within the control parameters of the Simulink model implemented in the IEC 61400-27 DLL. 
-In particular, the parameters related to phase correction and the freeze functionality must be configured accordingly. These settings are described in more detail in the section **DESCRIPTION OF PHASE CORRECTION AND FREEZE.**
+In particular, the parameters related to phase correction and the freeze functionality must be configured accordingly. 
 
 ..  figure:: ./images/PowerFactory/CompositeModelFrame34.png
       :alt: Adding the five DSL Model blocks to the IBR Control composite model.
-      :align: center
+      :target: _images/CompositeModelFrame34.png
 
-      Figure 56: Adding the five DSL Model blocks to the IBR Control composite model.
-
-Simulation using the IEC 61400-27 DLL 
--------------------------------------
-
-..  figure:: ./images/PowerFactory/PowerFactory_voltages.png
-      :alt: Phase voltages at the PCC and the amplitude of the voltage space vector.
-
-      Figure 56: Phase voltages at the PCC and the amplitude of the voltage space vector.
-
-   
-..  figure:: ./images/PowerFactory/PowerFactory_currents.png
-      :alt: Phase currents of branch Z_IBR and the amplitude of the current space vector.
-
-      Figure 57: Phase currents of branch Z_IBR and the amplitude of the current space vector.
-
-..  figure:: ./images/PowerFactory/PowerFactory_power.png
-      :alt: Active and reactive power at the PCC.
-
-      Figure 58: Active and reactive power at the PCC.
+      Figure 54: Adding the five DSL Model blocks to the IBR Control composite model.
