@@ -19,15 +19,24 @@ white-space: normal;
 
 .image-row {
     display: flex;
-    align-items: center;
-    justify-content: space-between;
     gap: 1rem;
+    align-items: flex-start;
 }
 
-.image-row img {
-    height: 40vh;
-    width: auto;
-    object-fit: contain;
+.image-row figure {
     flex: 1;
-    min-width: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+}
+
+.image-row figure img {
+    width: 100%;
+    height: 40vh;
+    object-fit: contain;
+}
+
+.image-row figcaption {
+    text-align: center;
+    margin-top: 0.5rem;
 }
