@@ -2,9 +2,25 @@
 Example Usage
 #############
 
-.. error::
+This chapter presents an example of how the IEC 61400-27 DLL Builder converts a Simulink-based converter model into a standardized, self-contained DLL. 
+The resulting DLL can be integrated into power system simulation tools such as PSS®NETOMAC, DigSILENT PowerFactory, or PSCAD.
 
-    Hier noch eine kurze Einleitung
+The example considers the power system shown in the following figure.
+
+.. figure:: ./images/Power_System_Scheme.png
+   :align: center
+   :width: 100%
+
+   Scheme of the power system and the interface between the external power system simulation tool and the IEC 61400-27 controller model.
+
+On one side, the system consists of a Thevenin equivalent comprising an ideal three-phase voltage source ``vth,abc`` and an internal impedance represented by the resistance ``Rth`` and the inductance ``Lth``. 
+On the other side, three controllable voltage sources are connected to the point of common coupling (PCC) through an internal impedance represented by the resistance ``Rc`` and the inductance ``Lc``.
+The electrcial power system, including the voltage sources and passive network elements, is modeled in an external power systeim simulation tool, such as PSS®NETOMAC, DigSILENT PowerFactory, or PSCAD.
+The controller is modelled seperataly in MATLAB®/Simulink®.
+The controller model is then converted into an IEC 61400-27 DLL and integrated into the selected power system simulation tools through the corresponding DLL interface.
+
+The following sections describe the individual steps required to prepare the controller parameters, build the model, and integrate the resulting DLL into the power system simulation.
+
 
 Prerequisites
 -------------
