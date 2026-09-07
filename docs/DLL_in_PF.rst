@@ -1,6 +1,6 @@
-#############################
-DLL in DIgSILENT PowerFactory
-#############################
+######################
+DIgSILENT PowerFactory
+######################
 
 This chapter describes the step-by-step integration of an IEC 61400-27 DLL into DIgSILENT PowerFactory. 
 It first introduces the required software and prerequisites, followed by the setup of the example grid model. 

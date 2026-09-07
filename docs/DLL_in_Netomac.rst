@@ -1,6 +1,6 @@
-##################
-DLL Integration in PSS®NETOMAC
-##################
+###########
+PSS®NETOMAC
+###########
 
 This chapter describes the step-by-step integration of an IEC 61400-27 DLL into PSS®NETOMAC. 
 It introduces the required software and prerequisites, explains how to create the example power-system model, 
@@ -12,7 +12,7 @@ Prerequisites
 -------------
 The following software and components are required:
 - PSS®NETOMAC (tested for version 22.0)
-- IEC 61400-27 DLL (e.g. the one from the `example <FEHLT>`)
+- IEC 61400-27 DLL (e.g. the one from the `example <https://simulink-dll-builder.readthedocs.io/en/latest/example_usage.html#example-usage>`_)
 
 Building a Model for Subsequent DLL Integraion  
 -------------------------------------------------------

@@ -1,6 +1,6 @@
-#############
-DLL in PSCAD™
-#############
+######
+PSCAD™
+######
 
 This chapter provides a step-by-step description of the integration and use of an IEC 61400-27 DLL in PSCAD™. 
 The required prerequisites, including the necessary software and supported software versions, are presented first. 
