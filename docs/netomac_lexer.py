@@ -11,6 +11,7 @@ class NetomacLexer(RegexLexer):
         "root": [
             (r"\$.*?$", Comment),
             (r"!.*?$", Comment),
+            (r"\|[^\n]*", Comment),
             (r"\[\[.*?\]\]", Keyword),          # [[Feeder]], [[End Network]] ...
             (r"@@", Operator),                   # global-parameter assignment
             (r"@", Operator),                    # local/model parameter assignment
@@ -19,6 +20,8 @@ class NetomacLexer(RegexLexer):
             (r"\b\d+(\.\d+)?([eE][+-]?\d+)?\b", Number),
             (r"\s+", Text),
             (r".", Text),
+            (r"\b(?:TIME|BOSL_MODE|SIMDT)\b", String),
+            (r"\b(?:IF|EQ|LT|LE|GT|THEN|COS|SIN|ELSE|ENDIF)\b", Name.Builtin),
         ]
     }
 
