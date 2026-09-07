@@ -69,28 +69,23 @@ An ideal voltage transformer is used for this purpose, as no transformer losses 
 To add the voltage transformer, select the PCC busbar (see Figure 3) and create a new object using the New Object button in the upper-left corner of the window. 
 Select Voltage Transformer from the list of available components (see Figure 4) and assign a suitable name to the new component (see Figure 5).
 
-.. raw:: html
+.. container:: image-row
 
-   <div class="image-row">
-      <figure>
-         <img src="_images/PCCPowerFactory.png" alt="Choice of the PCC busbar in the PowerFactory model menu.">
-         <figcaption>
-            Figure 3: Choice of the PCC busbar in the PowerFactory model menu.
-         </figcaption>
-      </figure>
-      <figure>
-         <img src="_images/VT_PowerFactory.png" alt="Adding a new voltage transformer to the PCC busbar in PowerFactory.">
-         <figcaption>
-            Figure 4: Adding a new voltage transformer to the PCC busbar in PowerFactory.
-         </figcaption>
-      </figure>
-      <figure>
-         <img src="_images/VT_PowerFactory2.png" alt="Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.">
-         <figcaption>
-            Figure 5: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
-         </figcaption>
-      </figure>
-   </div>
+   ..  figure:: ./images/PowerFactory/PCCPowerFactory.png
+         :alt: Choice of the PCC busbar in the PowerFactory model menu.
+
+         Figure 3: Choice of the PCC busbar in the PowerFactory model menu.
+         
+      ..  figure:: ./images/PowerFactory/VT_PowerFactory.png
+         :alt: Adding a new voltage transformer to the PCC busbar in PowerFactory.
+
+         Figure 4: Adding a new voltage transformer to the PCC busbar in PowerFactory.
+
+   ..  figure:: ./images/PowerFactory/VT_PowerFactory2.png
+         :alt: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
+
+         Figure 5: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
+
 
 After creating the voltage transformer, open its configuration by double-clicking the component. 
 In the transformer configuration dialog, create a new transformer type (see Figure 5) and select Ideal Voltage Transformer (see Figure 6). 
