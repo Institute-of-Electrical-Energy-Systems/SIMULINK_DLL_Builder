@@ -22,10 +22,10 @@ The individual components are added and configured step by step, starting from t
 1. Building a thevenin equivalent
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ..  figure:: ./images/PowerFactory/TheveninPowerFactory.png
-    :alt: Thevenin equivalent connect to PCC in PowerFactory.
+    :alt: Thevenin equivalent connect to PCC in DIgSILENT PowerFactory.
     :target: _images/TheveninPowerFactory.png
 
-    Figure 1: Thevenin equivalent connect to PCC in PowerFactory.
+    Figure 1: Thevenin equivalent connect to PCC in DIgSILENT PowerFactory.
 
 By definition, a Thevenin equivalent consists of an ideal voltage source and a series-connected internal impedance. 
 In this model, the ideal voltage source applies a voltage of 1 p.u. to the bus at its terminal (“InnerThevenin”). 
@@ -74,16 +74,16 @@ Select Voltage Transformer from the list of available components (see Figure 4).
 .. container:: image-row
 
    ..  figure:: ./images/PowerFactory/PCCPowerFactory.png
-         :alt: Choice of the PCC busbar in the PowerFactory model menu.
+         :alt: Choice of the PCC busbar in the DIgSILENT PowerFactory model menu.
          :target: _images/PCCPowerFactory.png
 
-         Figure 3: Choice of the PCC busbar in the PowerFactory model menu.
+         Figure 3: Choice of the PCC busbar in the DIgSILENT PowerFactory model menu.
          
    ..  figure:: ./images/PowerFactory/VT_PowerFactory.png
-         :alt: Adding a new voltage transformer to the PCC busbar in PowerFactory.
+         :alt: Adding a new voltage transformer to the PCC busbar in DIgSILENT PowerFactory.
          :target: _images/VT_PowerFactory.png
 
-         Figure 4: Adding a new voltage transformer to the PCC busbar in PowerFactory.
+         Figure 4: Adding a new voltage transformer to the PCC busbar in DIgSILENT PowerFactory.
 
 After creating the voltage transformer, open its configuration by double-clicking the component. Assign a suitable name to the new component and create a new transformer type (see Figure 5).
 Select Ideal Voltage Transformer in the upcoming Voltage Transformer Type menu (see Figure 6). 
@@ -92,10 +92,10 @@ The ideal transformer is sufficient for the present application because the purp
 .. container:: image-row
 
    ..  figure:: ./images/PowerFactory/VT_PowerFactory2.png
-      :alt: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
+      :alt: Pop-up window of the new generated voltage transformer at the PCC busbar in DIgSILENT PowerFactory.
       :target: _images/VT_PowerFactory2.png
 
-      Figure 5: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
+      Figure 5: Pop-up window of the new generated voltage transformer at the PCC busbar in DIgSILENT PowerFactory.
 
    .. figure:: ./images/PowerFactory/VT_PowerFactory4.png
       :alt: Pop-up window for the definition of a voltage transformer type.
@@ -141,16 +141,16 @@ Select Current Transformer from the list of available components (see Figure 11)
 .. container:: image-row
 
    ..  figure:: ./images/PowerFactory/PCC_Cub1_PowerFactory.png
-         :alt: Choice of the cubicle of the PCC busbar connected to the thevenin impedance in the PowerFactory model menu.
+         :alt: Choice of the cubicle of the PCC busbar connected to the thevenin impedance in the DIgSILENT PowerFactory model menu.
          :target: _images/PCC_Cub1_PowerFactory.png
 
-         Figure 10: Choice of the cubicle of the PCC busbar connected to the thevenin impedance in the PowerFactory model menu.
+         Figure 10: Choice of the cubicle of the PCC busbar connected to the thevenin impedance in the DIgSILENT PowerFactory model menu.
 
    ..  figure:: ./images/PowerFactory/CT_PowerFactory.png
-         :alt: Adding a new current transformer to the cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
+         :alt: Adding a new current transformer to the cubicle of the PCC busbar connected to the thevenin impedance in DIgSILENT PowerFactory.
          :target: _images/CT_PowerFactory.png
 
-         Figure 11: Adding a new current transformer to the cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
+         Figure 11: Adding a new current transformer to the cubicle of the PCC busbar connected to the thevenin impedance in DIgSILENT PowerFactory.
 
 After creating the current transformer, open its configuration by double-clicking the component. Assign a suitable name to the new component, create a new transformer type and select Current Transformer Type (TypCt) (see Figure 12).
 Within the new upcoming Current Transformer Type menu select Ideal Current Transformer (see Figure 13). 
@@ -159,10 +159,10 @@ The ideal transformer is sufficient for the present application because the purp
 .. container:: image-row
 
    ..  figure:: ./images/PowerFactory/CT_PowerFactory2.png
-         :alt: Pop-up window of the new generated current transformer at cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
+         :alt: Pop-up window of the new generated current transformer at cubicle of the PCC busbar connected to the thevenin impedance in DIgSILENT PowerFactory.
          :target: _images/CT_PowerFactory2.png
 
-         Figure 12: Pop-up window of the new generated current transformer at cubicle of the PCC busbar connected to the thevenin impedance in PowerFactory.
+         Figure 12: Pop-up window of the new generated current transformer at cubicle of the PCC busbar connected to the thevenin impedance in DIgSILENT PowerFactory.
 
    .. figure:: ./images/PowerFactory/CT_PowerFactory4.png
          :alt: Pop-up window for the definition of a current transformer type.
@@ -197,8 +197,8 @@ The measured variables **I2r_A**, **I2r_B**, and **I2r_C** can then be selected 
 
          Figure 16: Adding the necessary current measurements to the result log.
 
-DLL integration using a dynamic model in PowerFactory
------------------------------------------------------
+DLL integration using a dynamic model in DIgSILENT PowerFactory
+---------------------------------------------------------------
 After setting up the electrical components of the grid model along with the required voltage and current measurements at the PCC, the next step is to integrate the DLL itself into the model. 
 This integration is performed via a so-called Composite Model Frame, which defines the signal connections between the measured quantities, the DLL, and the controlled voltage source.
 
@@ -287,151 +287,138 @@ Figure 25 shows the frame with the integrated DLL slot, whose inputs and outputs
    Within this step, the path to the DLL file is entered. Make sure that the specified path is correct and corresponds to the location of the DLL file.
 
 
-4. Convert the DLL outputs to the PowerFactory required units
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Since the output quantities of the DLL do not directly match the unit required by the controlled voltage source (kilovolts), in PowerFactory, an additional conversion slot is inserted (see Figure 28). 
-This slot contains the corresponding conversion equations, which transform the DLL output signals into the format required by the voltage source (see Figure 29). 
-Figure 30 shows the frame after the conversion slot has been added.
+4. Convert the DLL outputs to the DIgSILENT PowerFactory required units
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Since the output quantities of the DLL do not directly match the unit required by the controlled voltage source (kilovolts), in DIgSILENT PowerFactory, an additional conversion slot is inserted and a new project DSL Model Tyoe is defined (see Figure 26). 
+This definition contains the corresponding conversion equations, which transform the DLL output signals into the format required by the voltage source (see Figure 27). 
+Figure 28 shows the frame after the conversion slot has been added.
 
-.. grid:: 3
+.. container:: image-row
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame9.png
-            :alt: Creating a conversion slot in the composite model frame.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame9.png
+         :alt: Creating a conversion slot in the composite model frame.
+         :target: _images/CompositeModelFrame9.png
 
-            Figure 28: Creating a conversion slot in the composite model frame.
+         Figure 26: Creating a conversion slot in the composite model frame.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame10.png
-            :alt: Equations of the conversion slot in the composite model frame.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame10.png
+         :alt: Equations of the conversion slot in the composite model frame.
+         :target: _images/CompositeModelFrame10.png
 
-            Figure 29: Equations of the conversion slot in the composite model frame.
+         Figure 27: Equations of the conversion slot in the composite model frame.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame11.png
-            :alt: Composite model frame containing the conversion slot.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame11.png
+         :alt: Composite model frame containing the conversion slot.
+         :target: _images/CompositeModelFrame11.png
 
-            Figure 30: Composite model frame containing the conversion slot.
+         Figure 28: Composite model frame containing the conversion slot.
 
 5. Adding the voltage source input slot and wiring of the slots
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+Finally, a slot for the regulated ideal voltage source is created, which was previously introduced as part of the IBR equivalent circuit (see Figure 29). 
+Figure 30 shows the complete frame containing all five slots: voltage measurement, current measurement, DLL, output concersion and controlled voltage source.
+In the last step, the inputs and outputs of the individual slots are connected to one another: the measured voltages and currents are fed into the DLL slot as input signals, 
+the DLL's output quantities are converted into the required format via the conversion slot, and the result is then passed to the controlled voltage source as its setpoint. 
+Figure 31 shows the fully wired Composite Model Frame. 
+This completes the integration of the DLL into the DIgSILENT PowerFactory model, and simulations with dynamic behavior according to IEC 61400-27 can now be carried out.
 
-Finally, a slot is created for the regulated ideal voltage source, which was previously introduced as part of the IBR equivalent circuit (see Figure 31). 
-Figure 32 shows the complete frame containing all four slots: voltage measurement, current measurement, DLL, and voltage source.
+.. container:: image-row
 
-In the last step, the inputs and outputs of the individual slots are connected to one another: the measured voltages and currents are fed into the DLL slot as input signals, the DLL's output quantities are converted into the required format via the conversion slot, and the result is then passed to the controlled voltage source as its setpoint. 
-Figure 33 shows the fully wired Composite Model Frame. 
-This completes the integration of the DLL into the PowerFactory model, and simulations with dynamic behavior according to IEC 61400-27 can now be carried out.
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame12.png
+         :alt: Creating a voltage source slot in the composite model frame.
+         :target: _images/CompositeModelFrame12.png
 
-.. grid:: 3
+         Figure 29: Creating a voltage source slot in the composite model frame.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame12.png
-            :alt: Creating a voltage source slot in the composite model frame.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame13.png
+         :alt: Composite model frame containing the voltage source slot.
+         :target: _images/CompositeModelFrame13.png
 
-            Figure 31: Creating a voltage source slot in the composite model frame.
+         Figure 30: Composite model frame containing the voltage source slot.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame13.png
-            :alt: Composite model frame containing the voltage source slot.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame14.png
+         :alt: Composite model frame containing the signal connection of the slots.
+         :target: _images/CompositeModelFrame14.png
 
-            Figure 32: Composite model frame containing the voltage source slot.
-
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame14.png
-            :alt: Composite model frame containing the signal connection of the slots.
-            :align: center
-
-            Figure 33: Composite model frame containing the signal connection of the slots.
+         Figure 31: Composite model frame containing the signal connection of the slots.
 
 Up to this point, only the required block definitions have been created. 
 These definitions do not affect the simulation results until they are instantiated and integrated into the network topology. 
 The next step is therefore to integrate the created components into the simulation model.
 
-6. Creating the two DSL Model required by the composite model Frame
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-To begin integrating the previously defined blocks, the required DSL models must first be created. Open the network associated with the current project in the ``Data Manager`` (see Figure 34) and create a new object. 
-In the ``Add New Object`` dialog, select ``DSL Model`` (see Figure 35). 
+6. Creating the two DSL Models required by the Composite Model Frame
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+To begin integrating the previously defined blocks, the required DSL models must first be created. Open the network associated with the current project in the ``Data Manager`` (see Figure 32) and create a new object. 
+In the ``Add New Object`` dialog, select ``DSL Model`` (see Figure 33). 
 This starts the process of creating the DSL components required for the subsequent integration of the previously defined blocks.
 
-.. grid:: 2
+..container:: image-row
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame15.png
-            :alt: Navigating to the grid topology of the considered PowerFactory model.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame15.png
+         :alt: Navigating to the grid topology of the considered DIgSILENT PowerFactory model.
+         :target: _images/CompositeModelFrame15.png
 
-            Figure 34: Navigating to the grid topology of the considered PowerFactory model.
+         Figure 32: Navigating to the grid topology of the considered DIgSILENT PowerFactory model.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame16.png
-            :alt: Adding a new DSL model to the model.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame16.png
+         :alt: Adding a new DSL model to the model.
+         :target: _images/CompositeModelFrame16.png
 
-            Figure 35: Adding a new DSL model to the model.
+         Figure 33: Adding a new DSL model to the model.
 
 7. Filling the two DSL Model required by the composite model Frame
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The next step is to create the two DSL models required by the composite model frame created previously. 
-The first DSL model is used to convert voltage values from volts to kilovolts (see Figure 36). 
-The second DSL model is an instance of the DLL interface, which is responsible for handling the communication between PowerFactory and the IEC 61400-27 DLL (see Figure 37).
+The next step is to fill the two DSL models required by the composite model frame created previously. 
+The first DSL model is used to convert voltage values from volts to kilovolts (see Figure 34). 
+The second DSL model is an instance of the DLL interface, which is responsible for handling the communication between DIgSILENT PowerFactory and the IEC 61400-27 DLL (see Figure 35).
 
-.. grid:: 2
+.. container:: image-row
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame17.png
-            :alt: Conversion DSL model of the composite model frame.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame17.png
+         :alt: Conversion DSL model of the composite model frame.
+         :target: _images/CompositeModelFrame17.png
 
-            Figure 36: Conversion DSL model of the composite model frame.
+         Figure 34: Conversion DSL model of the composite model frame.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame18.png
-            :alt: DLL interface DSL model of the composite model frame.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame18.png
+         :alt: DLL interface DSL model of the composite model frame.
+         :target: _images/CompositeModelFrame18.png
 
-            Figure 37: DLL interface DSL model of the composite model frame.
+         Figure 35: DLL interface DSL model of the composite model frame.
 
 8. Adding the IBR Control composite model frame as network component
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Finally, a ``Composite Model`` object is created in the project network (see Figure 38). 
+Finally, a ``Composite Model`` object is created in the project network (see Figure 36). 
 This object is configured using the previously created composite model frame, ``IBR_Control``. 
-The required measurement points, DSL models, and controlled voltage source are then assigned to the Composite Model object through its user interface (see Figure 39).
+The required measurement points, DSL models, and controlled voltage source are then assigned to the Composite Model object through its user interface (see Figure 37).
 
-.. grid:: 2
+.. container:: image-row
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame19.png
-            :alt: Adding a new composite model to the model.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame19.png
+         :alt: Adding a new composite model to the model.
+         :target: _images/CompositeModelFrame19.png
 
-            Figure 38: Adding a new composite model to the model.
+         Figure 36: Adding a new composite model to the model.
 
-   .. grid-item::
-      ..  figure:: ./images/PowerFactory/CompositeModelFrame20.png
-            :alt: Filling the composite model.
-            :align: center
+   ..  figure:: ./images/PowerFactory/CompositeModelFrame20.png
+         :alt: Filling the composite model.
+         :target: _images/CompositeModelFrame20.png
 
-            Figure 39: Filling the composite model.
+         Figure 37: Filling the composite model.
 
-With this configuration, the IEC 61400-27 DLL is fully integrated into the PowerFactory simulation environment. 
+With this configuration, the IEC 61400-27 DLL is fully integrated into the DIgSILENT PowerFactory simulation environment. 
 The DLL can process the measured electrical quantities during the simulation, while its calculated output signals are fed back into the EMT model through the configured composite model. 
-This enables the dynamic behavior implemented in the DLL to directly influence the EMT simulation performed in PowerFactory.
+This enables the dynamic behavior implemented in the DLL to directly influence the EMT simulation performed in DIgSILENT PowerFactory.
 
-Initialization of a DLL in PowerFactory
----------------------------------------
+Initialization of a DLL in DIgSILENT PowerFactory
+-------------------------------------------------
 EMT simulations of electrical power systems are commonly used to investigate system stability and to validate protection concepts. 
 It is important to note that such simulations are not initiated from an unknown initial state. 
 Instead, the initial operating condition can generally be determined or approximated based on the specified operating point of the system.
 
-During the development of the IEC 61400-27 Builder, the dynamic behavior of the DLL within the PowerFactory simulation environment was investigated in detail. 
+During the development of the IEC 61400-27 Builder, the dynamic behavior of the DLL within the DIgSILENT PowerFactory simulation environment was investigated in detail. 
 Based on these investigations, several measures were derived to achieve an initialization that is as accurate as possible. 
-The objective is to ensure that the DLL starts from an operating point consistent with the surrounding PowerFactory model, thereby minimizing the need for subsequent balancing operations.
+The objective is to ensure that the DLL starts from an operating point consistent with the surrounding DIgSILENT PowerFactory model, thereby minimizing the need for subsequent balancing operations.
 
 The initialization measures developed for this purpose are described in more detail in the following sections.
 
@@ -515,7 +502,7 @@ This switching mechanism allows the initialization values from the ideal AC volt
 
 Building an ideal three phase AC voltage signal with a user defined magnitude and angle
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
-PowerFactory does not provide a signal generator for sine and cosine functions with user-defined amplitude and phase angle. 
+DIgSILENT PowerFactory does not provide a signal generator for sine and cosine functions with user-defined amplitude and phase angle. 
 Therefore, the required signal generation is implemented directly within the composite model frame as a dedicated slot (see Figure 46).
 
 The corresponding logic is shown in Figure 47 while the parameter and output labels are presented in Figure 48. 
@@ -629,7 +616,7 @@ In contrast, the two signal-generator models require parameter inputs to define 
             Figure 55: Parameter input mask of the three phase sine wave signal generator.
 
 The final step is to integrate the newly created DSL models into the ``IBR_Control`` composite model (see Figure 56). 
-This completes the initialization setup in PowerFactory and ensures that the required switching and signal-generation functions are incorporated into the overall model.
+This completes the initialization setup in DIgSILENT PowerFactory and ensures that the required switching and signal-generation functions are incorporated into the overall model.
 
 The remaining configuration is performed within the control parameters of the Simulink model implemented in the IEC 61400-27 DLL. 
 In particular, the parameters related to phase correction and the freeze functionality must be configured accordingly. These settings are described in more detail in the section **DESCRIPTION OF PHASE CORRECTION AND FREEZE.**
