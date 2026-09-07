@@ -188,3 +188,29 @@ The ``Initial Conditions`` can be used to define the initial values applied up t
 However, these settings are of limited relevance for the application described in this document.
 
 The example model is provided with an initial set of parameters derived from the Simulink model presented in this document.
+
+Adding a voltage dip event for the simulation benchmark
+-------------------------------------------------------
+To include a voltage dip simulation event, which is used in the upcoming  `benchmark <https://simulink-dll-builder.readthedocs.io/en/latest/Benchmark.html#>`_, a second voltage source and two switches need to be added (see Figure 13).
+Afterwards, two events handling the switching at the beginning and the end of the voltage dip need to be added for both the healthy and the distorted Thevenin equivalent (see Figure 14).
+Within the input frame of these events, the initial state and the two switching times need to be specified. For the healthy state, the switch is initially on, whereas for the distorted state, the switch is initially off (see Figure 15).
+
+.. container:: image-row
+
+    ..  figure:: ./images/PSCAD/VoltageDip1.png
+        :alt: Creating the components necessary for a voltage dip event.
+        :target: _images/VoltageDip1.png
+
+        Figure 13: Creating the components necessary for a voltage dip event.
+
+    ..  figure:: ./images/PSCAD/VoltageDip2.png
+        :alt: Add the switching events for the voltage dip.
+        :target: _images/VoltageDip2.png
+
+        Figure 14: Add the switching events for the voltage dip.
+    
+    ..  figure:: ./images/PSCAD/VoltageDip3.png
+        :alt: Settings of the switching event of the healthy state thevenin equivalent.
+        :target: _images/VoltageDip3.png
+
+        Figure 15: Settings of the switching event of the healthy state thevenin equivalent.
