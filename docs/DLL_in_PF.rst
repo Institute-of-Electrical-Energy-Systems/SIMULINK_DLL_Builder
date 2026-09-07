@@ -72,37 +72,25 @@ Select Voltage Transformer from the list of available components (see Figure 4) 
 .. raw:: html
 
    <div class="image-row">
-       <img src="_images/PCCPowerFactory.png" alt="Choice of the PCC busbar in the PowerFactory model menu.">
-       <img src="_images/VT_PowerFactory.png" alt="Adding a new voltage transformer to the PCC busbar in PowerFactory.">
-       <img src="_images/VT_PowerFactory2.png" alt="Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.">
-   </div>
-
-.. grid:: 3
-
-   .. grid-item::
-
-      ..  figure:: ./images/PowerFactory/PCCPowerFactory.png
-            :alt: Choice of the PCC busbar in the PowerFactory model menu.
-            :height: 40vh
-
+      <figure>
+         <img src="_images/PCCPowerFactory.png" alt="Choice of the PCC busbar in the PowerFactory model menu.">
+         <figcaption>
             Figure 3: Choice of the PCC busbar in the PowerFactory model menu.
-
-   .. grid-item::
-
-       ..  figure:: ./images/PowerFactory/VT_PowerFactory.png
-            :alt: Adding a new voltage transformer to the PCC busbar in PowerFactory.
-            :height: 40vh
-
+         </figcaption>
+      </figure>
+      <figure>
+         <img src="_images/VT_PowerFactory.png" alt="Adding a new voltage transformer to the PCC busbar in PowerFactory.">
+         <figcaption>
             Figure 4: Adding a new voltage transformer to the PCC busbar in PowerFactory.
-
-   .. grid-item::
-
-      ..  figure:: ./images/PowerFactory/VT_PowerFactory2.png
-            :alt: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
-            :height: 40vh
-
+         </figcaption>
+      </figure>
+      <figure>
+         <img src="_images/VT_PowerFactory2.png" alt="Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.">
+         <figcaption>
             Figure 5: Pop-up window of the new generated voltage transformer at the PCC busbar in PowerFactory.
-
+         </figcaption>
+      </figure>
+   </div>
 
 After creating the voltage transformer, open its configuration by double-clicking the component. 
 In the transformer configuration dialog, create a new transformer type (see Figure 5) and select Ideal Voltage Transformer (see Figure 6). 
