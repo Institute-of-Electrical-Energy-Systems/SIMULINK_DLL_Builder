@@ -23,6 +23,7 @@ The individual components are added and configured step by step, starting from t
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ..  figure:: ./images/PowerFactory/TheveninPowerFactory.png
     :alt: Thevenin equivalent connect to PCC in PowerFactory.
+    :target: ./images/PowerFactory/TheveninPowerFactory.png
 
     Figure 1: Thevenin equivalent connect to PCC in PowerFactory.
 
@@ -41,6 +42,7 @@ However, the simulation is of limited significance at this stage, as the Theveni
 ..  figure:: ./images/PowerFactory/SMIB_IBR_PowerFactory.png
     :alt: IBR in a SMIB configuraiton in DIgSILENT PowerFactory.
     :width: 50%
+    :target: ./images/PowerFactory/SMIB_IBR_PowerFactory.png
 
     Figure 2: IBR in a SMIB configuraiton in DIgSILENT PowerFactory.
 
@@ -73,11 +75,13 @@ Select Voltage Transformer from the list of available components (see Figure 4).
 
    ..  figure:: ./images/PowerFactory/PCCPowerFactory.png
          :alt: Choice of the PCC busbar in the PowerFactory model menu.
+         :target: ./images/PowerFactory/PCCPowerFactory.png
 
          Figure 3: Choice of the PCC busbar in the PowerFactory model menu.
          
    ..  figure:: ./images/PowerFactory/VT_PowerFactory.png
          :alt: Adding a new voltage transformer to the PCC busbar in PowerFactory.
+         :target: ./images/PowerFactory/VT_PowerFactory.png
 
          Figure 4: Adding a new voltage transformer to the PCC busbar in PowerFactory.
 
@@ -97,7 +101,11 @@ The ideal transformer is sufficient for the present application because the purp
 
       Figure 6: Pop-up window for the definition of a voltage transformer type.
 
-The voltage transformer is now connected to the PCC and can be used to obtain the three phase-to-ground voltage signals required by the DLL (see Figure 7 - 9).
+The voltage transformer is now connected to the PCC and can be used to obtain the three phase-to-ground voltage signals required by the DLL. 
+To record the measured variables, right-click on the voltage transformer in the Data Manager. Then, select ``Simulation RMS/EMT`` from the ``Result Variables`` menu (see Figure 7). 
+The voltage transformer will subsequently appear in the ``Variable Selection`` list (see Figure 8). 
+The measured variables **U2r_A**, **U2r_B**, and **U2r_C** can then be selected for recording (see Figure 9).
+
 
 .. container:: image-row
 
@@ -153,7 +161,10 @@ The ideal transformer is sufficient for the present application because the purp
 
          Figure 13: Pop-up window for the definition of a current transformer type.
 
-The current transformer is now connected to the cubicle of the PCC and can be used to obtain the three phase current signals required by the DLL (see Figure 14 - 16).
+The current transformer is now connected to the cubicle of the PCC and can be used to obtain the three phase current signals required by the DLL.
+To record the measured variables, right-click on the current transformer in the Data Manager. Then, select ``Simulation RMS/EMT`` from the ``Result Variables`` menu (see Figure 14). 
+The current transformer will subsequently appear in the ``Variable Selection`` list (see Figure 15). 
+The measured variables **I2r_A**, **I2r_B**, and **I2r_C** can then be selected for recording (see Figure 16).
 
 .. container:: image-row
 
