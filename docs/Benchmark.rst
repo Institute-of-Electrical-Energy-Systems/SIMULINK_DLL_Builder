@@ -396,10 +396,42 @@ Figure 23 shows the active and reactive power at the PCC.
         :alt: Active and reactive power at the PCC.
         :target: _images/PSCAD_power.png
 
-        Figure 19: Active and reactive power at the PCC.
+        Figure 23: Active and reactive power at the PCC.
 
 The simulation results show that the simulation starts at an initial voltage of 0 kV, causing a transient oscillation. However, the system reaches steady state within a short period of time.
 During the fault, the voltage dip leads to an increase in current. This behavior is expected, as the IBR control system attempts to regulate active and reactive power during the voltage disturbance.
 After the fault is cleared, the voltage, current, and power signals return to their initial steady-state operating points.
 
 These results demonstrate that the IEC 61400-27 DLL has been successfully integrated into the PSCAD™ model and that communication between the power system model and the DLL is functioning as intended.
+
+Benchmarking of the Power System Simulation Tools
+------
+
+In this section a comparison between the simulation results with integrated IEC 61400-27 DLL is performed. Additionally a benchmark to the Model in MATLAB/Simulink is performed.
+
+.. container:: image-row
+
+    ..  figure:: ./images/Benchmarking/comparison_voltage_space_vector.png
+        :alt: Amplitude of the voltage space vector.
+        :target: _images/PSCAD_voltages.png
+
+        Figure 24: Amplitude of the voltage space vector.
+
+    
+    ..  figure:: ./images/Benchmarking/comparison_current_space_vector.png
+        :alt: PAmplitude of the current space vector.
+        :target: _images/PSCAD_currents.png
+
+        Figure 25: Amplitude of the current space vector.
+
+    ..  figure:: ./images/Benchmarking/comparison_active_power.png
+        :alt: Active  power at the PCC.
+        :target: _images/PSCAD_power.png
+
+        Figure 26: Active power at the PCC.
+
+    ..  figure:: ./images/Benchmarking/comparison_reactive_power.png
+        :alt: Reactive power at the PCC.
+        :target: _images/PSCAD_power.png
+
+        Figure 27: Reactive power at the PCC.
