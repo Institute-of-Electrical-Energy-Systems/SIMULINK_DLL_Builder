@@ -85,12 +85,13 @@ and its parameter script, which are created in step 2.
    Update for example directory .
 
 
-1. Building a Simulink Model
+2. Building a Simulink Model
 ----------------------------
 
 In this step, the actual MATLAB®/Simulink® model is developed. In this example, an IBR converter control model is created.
 
 The MATLAB®/Simulink® model consists of two main files:
+
 - ``IBR_Control_2024b.slx`` provides the MATLAB®/Simulink® model.
 - ``IBR_Control_Parameters.m`` provides the parameters for the MATLAB®/Simulink® model.
 
@@ -108,7 +109,7 @@ A grid-following IBR control concept is used in this example, as shown in the bl
    :alt: Block diagram of the IBR control system.
    :target: _images/IBR_Control.png
    
-   :width: 25%
+   :width: 50%
 
    Figure 2: Block diagram of the IBR control system.
    
@@ -125,14 +126,15 @@ The MATLAB®/Simulink® model is provided as the file ``IBR_Control_2024b.slx``.
 Creating the Parameter Script (.m)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The MATLAB® script ``IBR_Control_Parameters.m`` represents the parameter script if the given example. Its primary purpose is to generate all controller parameters, compute the required operating point, and initialize the workspace with the data required by the model.
+The MATLAB® script ``IBR_Control_Parameters.m`` is the parameter script for the example. Its primary purpose is to generate all controller parameters, calculate the required operating point, and initialize the workspace with the data required by the model.
 
 The parameterization of the MATLAB®/Simulink® model is divided into the following three sections:
-- Simulation and grid data
-- Converter model data
-- Initialization by load-flow calculation
 
-For the conversion of the model into a DLL and the subsequent modification of its parameters, all parameters must be defined as ``Simulink.Parameter``.
+- Simulation and Grid Data
+- Converter Model Data
+- Initialization by Load-Flow Calculation
+
+For the conversion of the model into an IEC 61400-27 DLL and the subsequent modification of its parameters, all parameters must be defined as ``Simulink.Parameter`` objects.
 
 Simulation and Grid Data
 '''''''''''''''''''''''''''''''''''
@@ -146,7 +148,7 @@ The relevant parameters are liste inf the following table:
 | Ts        | 50e-6  | double    | 1E-6    | 100E6   | s    | real       | Simulation time step |
 +-----------+--------+-----------+---------+---------+------+------------+----------------------+
 | Fn        | 50     | double    | 1E-6    | 1E6     | Hz   | real       | Nominal frequency    |
-+-----------+--------+-----------+---------+-------- +------+------------+----------------------+
++-----------+--------+-----------+---------+---------+------+------------+----------------------+
 
 Converter Model Data
 '''''''''''''''''''''''''''''''''''
@@ -302,7 +304,7 @@ Finally, all generated parameters are stored in ``IBR_Control_Parameters.mat``.
    Execute ``IBR_Control_Parameters.m`` whenever a model parameter has been modified. 
 
 
-1. Adjusting the Simulink Model Structure for the Export Process
+3. Adjusting the Simulink Model Structure for the Export Process
 ----------------------------------------------------------------
 
 A dynamic model that simulates correctly in Simulink is not automatically ready to be exported as a DLL. 
