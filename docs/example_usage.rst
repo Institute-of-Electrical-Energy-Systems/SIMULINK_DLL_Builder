@@ -107,7 +107,7 @@ A grid-following IBR control concept is used in this example, as shown in the bl
 .. figure:: ./images/IBR_Control.png
    :alt: Block diagram of the IBR control system.
    :target: _images/IBR_Control.png
-   :width: 50%  
+   :width: 40%  
 
    Figure 2: Block diagram of the IBR control system.
    
@@ -132,7 +132,7 @@ The parameterization of the MATLAB®/Simulink® model is divided into the follow
 - Converter Model Data
 - Initialization by Load-Flow Calculation
 
-For the conversion of the model into an IEC 61400-27 DLL and the subsequent modification of its parameters, all parameters must be defined as ``Simulink.Parameter`` objects.
+For the conversion of the model into an IEC 61400-27 DLL and the subsequent modification of its parameters, all parameters must be defined as `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_ objects.
 
 Simulation and Grid Data
 '''''''''''''''''''''''''''''''''''
@@ -192,7 +192,7 @@ Initialization means assigning an initial value to every state variable in the c
 Initializing the controller with these values ensures that all internal controller states are consistent with the calculated operating point.
 
 The parameters of the Thevenin equivalent are used only to determine the initial operating point of the converter control states.
-Therefore, these parameters are required for the load-flow calculation but are not defined as ``Simulink.Parameter`` objects of the converter model.
+Therefore, these parameters are required for the load-flow calculation but are not defined as `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_ objects of the converter model.
 The parameters of the Thevenin equivalent are listed in the following table: 
 
 +-----------+---------+------+-----------------------------------+
@@ -241,7 +241,7 @@ According to Kirchhoff`s voltage law, the system can be described by the followi
 
 ``0 = Vn/sqrt(3) - (Vg,r+j*Vg,i) + (Pref-j*Qref)/(3*(Vg,r+j*Vg,i)) * (Re+j*Xe)``
 
-This equation is solved using the MATLAB® function ``fsolve``.
+This equation is solved using the MATLAB® function `fsolve <https://https://de.mathworks.com/help/optim/ug/fsolve.html>`_.
 
 The resulting real and imaginary components of the PCC voltage are ``Vg,r`` and ``Vg,i``.
 
@@ -249,7 +249,7 @@ The current injected by the IBR at the PCC is then calculated as:
 
 ``Ir+j*Ii = (Pref-j*Qref)/(3*((Vg,r+j*Vg,i))``
 
-The resulting ``Simulink.Parameters`` are required for the initialization are listed in the following table:
+The resulting `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_ are required for the initialization are listed in the following table:
 
 +-----------+-----------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Parameter | Value     | Data type | Minimum | Maximum | Unit | Complexity | Description                                          |
@@ -270,7 +270,7 @@ Workspace Export
 
 Once all calculations have been completed, all temporary variables are removed from the MATLAB® workspace.
 
-All remaining parameters required by the controller must be defined as ``Simulink.Parameter`` objects.
+All remaining parameters required by the controller must be defined as `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_ objects.
 This is essential for the subsequent code-generation process. The metadata extraction performed by the IEC 61400-27 DLL Builder recognizes only variables of type `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_.
 Ordinary MATLAB® variables are ignored and therefore cannot be exported as tunable paramers.
 
@@ -281,7 +281,7 @@ Finally, all generated parameters are stored in ``IBR_Control_Parameters.mat``.
    Execute ``IBR_Control_Parameters.m`` whenever a model parameter has been modified. 
 
 
-3. Adjusting the Simulink Model Structure for the Export Process
+1. Adjusting the Simulink Model Structure for the Export Process
 ----------------------------------------------------------------
 
 A dynamic model that simulates correctly in Simulink is not automatically ready to be exported as a DLL. 
