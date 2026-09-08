@@ -164,12 +164,14 @@ In the next step, the page settings for the model file are defined, as shown in 
    ..  figure:: ./images/NETOMAC/Create_Ideal_Voltage_Source_xmac.png
             :alt: Defining the settings of a new empty model file (.xmac) in PSS®NETOMAC.
             :target: _images/Create_Ideal_Voltage_Source_xmac.png
+            :width: 80%
 
             Figure 2: Defining settings of new empty model file (.xmac) in PSS®NETOMAC.
 
    ..  figure:: ./images/NETOMAC/Define_Page_Size_Ideal_Voltage_Source_xmac.png
             :alt: Defining the page settings of new empty model file (.xmac) in PSS®NETOMAC.
             :target: _images/Define_Page_Size_Ideal_Voltage_Source_xmac.png
+            :width: 80%
 
             Figure 3: Defining the page settings of new empty model file (.xmac) in PSS®NETOMAC.
    
