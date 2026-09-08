@@ -3,7 +3,7 @@ Example Usage
 #############
 
 This chapter presents an example of how the IEC 61400-27 DLL Builder converts a Simulink-based converter model into a standardized, self-contained DLL. 
-The resulting DLL can be integrated into power system simulation tools such as PSS®NETOMAC, DigSILENT PowerFactory, or PSCAD.
+The resulting DLL can be integrated into power system simulation tools such as PSS®NETOMAC, DIgSILENT PowerFactory, or PSCAD™.
 
 The example considers the power system shown in Figure 1.
 
@@ -16,9 +16,9 @@ The example considers the power system shown in Figure 1.
 
 On one side, the system consists of a Thevenin equivalent comprising an ideal three-phase voltage source ``vth,abc`` and an internal impedance represented by the resistance ``Rth`` and the inductance ``Lth``. 
 On the other side, three controllable voltage sources are connected to the point of common coupling (PCC) through an internal impedance represented by the resistance ``Rc`` and the inductance ``Lc``.
-The electrcial power system, including the voltage sources and passive network elements, is modeled in an power system simulation tool, such as PSS®NETOMAC, DigSILENT PowerFactory, or PSCAD.
+The electrical power system, including the voltage sources and passive network elements, is modeled in an power system simulation tool, such as PSS®NETOMAC, DIgSILENT PowerFactory, or PSCAD™.
 The controller is modelled seperataly in MATLAB®/Simulink®.
-The controller model is then converted into an IEC 61400-27 DLL and integrated into the selected power system simulation tools through the corresponding DLL interface.
+The controller model is then converted into an IEC 61400-27 DLL and integrated into the selected power system simulation tool through the corresponding IEC 61400-27 DLL interface.
 
 The following sections describe the individual steps required to prepare the controller parameters, build the model, and integrate the resulting DLL into the power system simulation.
 
@@ -133,12 +133,14 @@ The parameterization of the MATLAB®/Simulink® model is divided into the follow
 - Initialization by Load-Flow Calculation
 
 For the conversion of the model into an IEC 61400-27 DLL and the subsequent modification of its parameters, all parameters must be defined as `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_ objects.
+This is essential for the subsequent code-generation process. The metadata extraction performed by the IEC 61400-27 DLL Builder recognizes only variables of type `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_.
+Ordinary MATLAB® variables are ignored and therefore cannot be exported as tunable paramers.
 
 Simulation and Grid Data
 '''''''''''''''''''''''''''''''''''
 
 This section defines the general parameters required for the power system simulation.
-The relevant parameters are liste inf the following table:
+The relevant parameters are listd in the following table:
 
 +-----------+--------+-----------+---------+---------+------+------------+----------------------+
 | Parameter | Value  | Data type | Minimum | Maximum | Unit | Complexity | Description          |
@@ -241,7 +243,7 @@ According to Kirchhoff`s voltage law, the system can be described by the followi
 
 ``0 = Vn/sqrt(3) - (Vg,r+j*Vg,i) + (Pref-j*Qref)/(3*(Vg,r+j*Vg,i)) * (Re+j*Xe)``
 
-This equation is solved using the MATLAB® function `fsolve <https://https://de.mathworks.com/help/optim/ug/fsolve.html>`_.
+This equation is solved using the MATLAB® function `fsolve <https://de.mathworks.com/help/optim/ug/fsolve.html>`_.
 
 The resulting real and imaginary components of the PCC voltage are ``Vg,r`` and ``Vg,i``.
 
@@ -270,10 +272,6 @@ Workspace Export
 
 Once all calculations have been completed, all temporary variables are removed from the MATLAB® workspace.
 
-All remaining parameters required by the controller must be defined as `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_ objects.
-This is essential for the subsequent code-generation process. The metadata extraction performed by the IEC 61400-27 DLL Builder recognizes only variables of type `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_.
-Ordinary MATLAB® variables are ignored and therefore cannot be exported as tunable paramers.
-
 Finally, all generated parameters are stored in ``IBR_Control_Parameters.mat``.
 
 .. note::
@@ -281,7 +279,7 @@ Finally, all generated parameters are stored in ``IBR_Control_Parameters.mat``.
    Execute ``IBR_Control_Parameters.m`` whenever a model parameter has been modified. 
 
 
-1. Adjusting the Simulink Model Structure for the Export Process
+3. Adjusting the Simulink Model Structure for the Export Process
 ----------------------------------------------------------------
 
 A dynamic model that simulates correctly in Simulink is not automatically ready to be exported as a DLL. 
