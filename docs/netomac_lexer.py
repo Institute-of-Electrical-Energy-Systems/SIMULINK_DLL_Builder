@@ -19,7 +19,7 @@ class NetomacLexer(RegexLexer):
             (r"'[^']*'", String),                # 'VSrc', 'IBR', ...
             (r"\b\d+(\.\d+)?([eE][+-]?\d+)?\b", Number),
             (r"\b(?:TIME|BOSL_MODE|SIMDT)\b", String),
-            (r"\b(?:IF|EQ|LT|LE|GT|THEN|COS|SIN|ELSE|ENDIF)\b", Name.Builtin),
+            (r"\b(?:IF|EQ|LT|LE|GT|THEN|COS|SIN|ELSE|ENDIF|OR)\b", Name.Builtin),
             (r"\s+", Text),
             (r".", Text),            
         ]

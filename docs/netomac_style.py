@@ -12,9 +12,9 @@ class NetomacStyle(Style):
         Text:            "#000000",
         Comment:         "#01893a",   # $ ... and ! ... lines
         Keyword:         "#ff2640",     # [[Section]] headers
-        Operator:        "#c0c0c0",     # @ and @@
+        Operator:        "#969696",     # @ and @@
         Name.Variable:   "#000000",          # #Vn, #Rc, #\MAC\...
         String:          "#b64d39",          # 'VSrc', 'IBR'
         Number:          "#000000",
-        Name.Builtin: "#007eb1",
+        Name.Builtin: "#0000ee",
     }

@@ -8,14 +8,16 @@ The resulting DLL can be integrated into power system simulation tools such as P
 The example considers the power system shown in the following figure.
 
 .. figure:: ./images/Power_System_Scheme.png
-   :align: center
+   :alt: Scheme of the power system and the interface between the external power system simulation tool and the IEC 61400-27 controller model.
+   :target: _images/Power_System_Scheme.png
+   
    :width: 50%
 
    Figure 1: Scheme of the power system and the interface between the external power system simulation tool and the IEC 61400-27 controller model.
 
 On one side, the system consists of a Thevenin equivalent comprising an ideal three-phase voltage source ``vth,abc`` and an internal impedance represented by the resistance ``Rth`` and the inductance ``Lth``. 
 On the other side, three controllable voltage sources are connected to the point of common coupling (PCC) through an internal impedance represented by the resistance ``Rc`` and the inductance ``Lc``.
-The electrcial power system, including the voltage sources and passive network elements, is modeled in an external power systeim simulation tool, such as PSS®NETOMAC, DigSILENT PowerFactory, or PSCAD.
+The electrcial power system, including the voltage sources and passive network elements, is modeled in an power system simulation tool, such as PSS®NETOMAC, DigSILENT PowerFactory, or PSCAD.
 The controller is modelled seperataly in MATLAB®/Simulink®.
 The controller model is then converted into an IEC 61400-27 DLL and integrated into the selected power system simulation tools through the corresponding DLL interface.
 
@@ -121,7 +123,7 @@ The parameterization of the MATLAB®/Simulink® model is divided into the follow
 
 For the conversion of the model into a DLL and the subsequent modification of its parameters, all parameters must be defined as ``Simulink.Parameter``.
 
-Simulation and grid data
+Simulation and Grid Data
 '''''''''''''''''''''''''''''''''''
 
 This section defines the general parameters required for the power system simulation.
@@ -135,7 +137,7 @@ The relevant parameters are liste inf the following table:
 | Fn        | 50     | double    | 1E-6    | 1E6     | Hz   | real       | Nominal frequency    |
 +-----------+--------+-----------+---------+-------- +------+------------+----------------------+
 
-Converter model data
+Converter Model Data
 '''''''''''''''''''''''''''''''''''
 
 This section defines the general parameters for the IBR converter, including its rated power, internal impedance, active and reactive setpoints, and control parameters.
@@ -143,27 +145,27 @@ The parameters are listed in the following table:
 
 +-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Parameter | Value  | Data type | Minimum | Maximum | Unit | Complexity | Description                                          |
-+===========+========+===========+=========+=========+==========================================================================+
++===========+========+===========+=========+=========+======+============+======================================================+
 | Sn        | 500E6  | double    | 1       | 100E12  | MVA  | real       | Rated power of converter                             |
-+-----------+--------+-----------+---------+---------+--------------------------------------------------------------------------+
++-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Rc        | 0.7820 | double    | 1E-6    | 1E6     | Hz   | real       | Converter resistance                                 |
-+-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
++-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Lc        | 0.1574 | double    | 1E-6    | 1E6     | Hz   | real       | Converter inductance                                 |
-+-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
++-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Pref      | 500e6  | double    | 1E-6    | 1E6     | Hz   | real       | Active power set-point                               |
-+-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
++-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Qref      | 100e6  | double    | 1E-6    | 1E6     | Hz   | real       | Reactive power set-point                             |
-+-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
++-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Tf_S      | 0.1    | double    | 1E-6    | 1E6     | Hz   | real       | Filter time constant of power control (continuous)   |
-+-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
++-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Kp_I      | 400    | double    | 1E-6    | 1E6     | Hz   | real       | Proportional gain of current controller (continuous) |
-+-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
++-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Ki_I      | 8000   | double    | 1E-6    | 1E6     | Hz   | real       | Integral gain of current controller (continuous)     |
-+-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
++-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Kp_PLL    | 0.0002 | double    | 1E-6    | 1E6     | Hz   | real       | Proportional gain of phase-locked loop (continous)   |
-+-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
++-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Ki_PLL    | 0.02   | double    | 1E-6    | 1E6     | Hz   | real       | Integral gain of phase-locked loop (continous)       |
-+-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
++-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
 
 Initialization by Load-Flow Calculation
 '''''''''''''''''''''''''''''''''''
@@ -179,13 +181,13 @@ The parameters of the Thevenin equivalent are listed in the following table:
 +===========+=========+======+===================================+
 | Vn        | 400e3   | V    | Nominal line-to-line voltage      |
 +-----------+---------+------+-----------------------------------+
-| SCR       | 3       | -    | Short-circuit ratio               |
+| SCR       | 3       |      | Short-circuit ratio               |
 +-----------+---------+------+-----------------------------------+
-| RXratio   | 0.1     | -    | R/X-ratio                         |
+| RXratio   | 0.1     |      | R/X-ratio                         |
 +-----------+---------+------+-----------------------------------+
 | Re        | 10.614  | Ohm  | Resistance of thevenin equivalent |
 +-----------+---------+------+-----------------------------------+
-| Xe        | 106.14  | Ohm  | Inductance of thevenin equivalent |
+| Xe        | 106.14  | Ohm  | Reactance of thevenin equivalent  |
 +-----------+---------+------+-----------------------------------+
 
 The parameter ``Vn`` represents the nominal line-to-line voltage of the high-voltage power system.
@@ -217,56 +219,15 @@ The resulting ``Simulink.Paramers`` are required for the initialization are list
 
 +-----------+-----------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Parameter | Value     | Data type | Minimum | Maximum | Unit | Complexity | Description                                          |
-+===========+===========+===========+=========+=========+==========================================================================+
++===========+===========+===========+=========+=========+======+============+======================================================+
 | Vmag0_pcc | 418.247e3 | double    | 0       | 1E12    | V    | real       | Initial voltage magnitude at PCC                     |
-+-----------+-----------+-----------+---------+---------+--------------------------------------------------------------------------+
++-----------+-----------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Vang0_pcc | 0.316     | double    | 0       | 2*pi    | rad  | real       | Initial voltage angle at PCC                         |
-+-----------+-----------+-----------+---------+-------- +--------------------------------------------------------------------------+
++-----------+-----------+-----------+---------+-------- +------+------------+------------------------------------------------------+
 | Imag0_pcc | 703.872e3 | double    | 0       | 1E12    | A    | real       | Initial current magnitude injected at PCC            |
-+-----------+-----------+-----------+---------+-------- +--------------------------------------------------------------------------+
++-----------+-----------+-----------+---------+-------- +------+------------+------------------------------------------------------+
 | Iang0_pcc | 0.119     | double    | 0       | 2*pi    | rad  | real       | Initial current angle injected at PCC                |
-+-----------+-----------+-----------+---------+---------+--------------------------------------------------------------------------+
-
-
-
-
-
-Creating the Parameter Script
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-The MATLAB script ``IBR_Control_Parameters.m`` represents the parameter script of the given example. 
-Its primary purpose is to generate all controller parameters, compute the required operating point, and initialize the workspace with 
-the data required by the model.
-
-Definition of the Electrical System 
-'''''''''''''''''''''''''''''''''''
-The script first defines the electrical characteristics of the inverter-based resource (IBR) and the external grid.
-
-The following parameters are specified:
-
-* Converter rated apparent power
-* Filter resistance and inductance
-* Active and reactive power setpoints
-* Nominal grid voltage
-* Nominal grid frequency
-* Short-circuit ratio (SCR)
-* Grid resistance-to-reactance (R/X) ratio
-
-From these values, the equivalent Thevenin representation of the external grid is derived. 
-This electrical model forms the basis for all subsequent steady-state calculations.
-
-
-Load-Flow Calculation
-'''''''''''''''''''''
-After the electrical parameters have been defined, the script determines the steady-state operating point of the converter.
-
-The Kirchhoff Voltage Law (KVL) equations implemented in ``KVL_equations`` are solved using MATLAB's ``fsolve`` function. 
-The solution yields the voltage phasor at the Point of Common Coupling (PCC).
-
-Using this voltage, the script calculates
-
-- the converter current phasor,
-- the converter terminal voltage,
-- and all remaining steady-state electrical quantities.
++-----------+-----------+-----------+---------+---------+------+------------+------------------------------------------------------+
 
 These quantities define the operating point used for controller initialization.
 
