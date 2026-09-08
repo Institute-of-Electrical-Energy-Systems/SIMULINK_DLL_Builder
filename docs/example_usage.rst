@@ -109,34 +109,37 @@ An inverse Park transformation is then used to convert these voltage references 
 
 The MATLAB®/Simulink® model is provided as the file ``IBR_Control_2024b.slx``.
 
-Parameterizing the MATLAB®/Simulink® model
+Parameterizing the MATLAB®/Simulink® Model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The parameterization of the MATLAB®/Simulink® model is divided into 5 sections:
+The MATLAB® script ``IBR_Control_Parameters.m`` represents the parameter script if the given example. Its primary purpose is to generate all controller parameters, compute the required operating point, and initialize the workspace with the data required by the model.
+
+The parameterization of the MATLAB®/Simulink® model is divided into the following three sections:
 - Simulation and grid data
 - Converter model data
-- Thevenin equivalent data
 - Initialization by load-flow calculation
 
-For the converting to a DLL and the afterwards changing of the model parameters it is required that the parameter are defined as simulink parameters.
+For the conversion of the model into a DLL and the subsequent modification of its parameters, all parameters must be defined as ``Simulink.Parameter``.
 
 Simulation and grid data
 '''''''''''''''''''''''''''''''''''
 
-In this section the general data for power system simulation are set. 
-These are on the one hande the simulation time step ``Ts`` and the nominal frequency ``Fn``.
-The parameter are described in the following table: 
+This section defines the general parameters required for the power system simulation.
+The relevant parameters are liste inf the following table:
 
 +-----------+--------+-----------+---------+---------+------+------------+----------------------+
 | Parameter | Value  | Data type | Minimum | Maximum | Unit | Complexity | Description          |
-+===========+========+===========+=========+=========+==========================================+
++===========+========+===========+=========+=========+======+============+======================+
 | Ts        | 50e-6  | double    | 1E-6    | 100E6   | s    | real       | Simulation time step |
-+-----------+--------+-----------+---------+---------+------------------------------------------+
++-----------+--------+-----------+---------+---------+------+------------+----------------------+
 | Fn        | 50     | double    | 1E-6    | 1E6     | Hz   | real       | Nominal frequency    |
-+-----------+--------+-----------+---------+-------- +------------------------------------------+
++-----------+--------+-----------+---------+-------- +------+------------+----------------------+
 
 Converter model data
 '''''''''''''''''''''''''''''''''''
+
+This section defines the general parameters for the IBR converter, including its rated power, internal impedance, active and reactive setpoints, and control parameters.
+The parameters are listed in the following table:
 
 +-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Parameter | Value  | Data type | Minimum | Maximum | Unit | Complexity | Description                                          |
@@ -162,8 +165,71 @@ Converter model data
 | Ki_PLL    | 0.02   | double    | 1E-6    | 1E6     | Hz   | real       | Integral gain of phase-locked loop (continous)       |
 +-----------+--------+-----------+---------+-------- +--------------------------------------------------------------------------+
 
-Thevenin equivalent data
+Initialization by Load-Flow Calculation
 '''''''''''''''''''''''''''''''''''
+
+The initial operating point of the power system is required to initialize the converter control model.
+
+The parameters of the Thevenin equivalent are used only to determine the initial operating point of the converter control states.
+Therefore, these parameters are required for the load-flow calculation but are not defined as ``Simulink.Parameter`` of the converter model.
+The parameters of the Thevenin equivalent are listed in the following table: 
+
++-----------+---------+------+-----------------------------------+
+| Parameter | Value   | Unit | Description | Equation            |  
++===========+=========+======+===================================+
+| Vn        | 400e3   | V    | Nominal line-to-line voltage      |
++-----------+---------+------+-----------------------------------+
+| SCR       | 3       | -    | Short-circuit ratio               |
++-----------+---------+------+-----------------------------------+
+| RXratio   | 0.1     | -    | R/X-ratio                         |
++-----------+---------+------+-----------------------------------+
+| Re        | 10.614  | Ohm  | Resistance of thevenin equivalent |
++-----------+---------+------+-----------------------------------+
+| Xe        | 106.14  | Ohm  | Inductance of thevenin equivalent |
++-----------+---------+------+-----------------------------------+
+
+The parameter ``Vn`` represents the nominal line-to-line voltage of the high-voltage power system.
+The Short-circuit ratio ``SCR = 3`` represents a weak power system. 
+The value ``RXratio = 0.1`` is typical for high-voltage power systems.
+
+The resistance and reactance of the Thevenin equivalent are calculated from the nominal voltage, the Short-circuit ratio, and the R/X ratio.
+The resistance is calculated using:
+``Re = Vn^2 / (SCR * Sn) / sqrt(RXratio^2+1) * RXratio``
+The reactance ic calculated using:
+``Xe = Vn^2 / (SCR * Sn) / sqrt(RXratio^2+1)``
+
+Together with the Thevenin equivalent and the active and reactive power setpoints at the point of common coupling (PCC), the voltage and current at the PCC can be determined by a load-flow calculation.
+The inputs to the load-flow calculation are the Thevenin voltage represented as a complex phasor, 
+``cVth = Vn/sqrt(3) + j*0``
+the Thevenin impedance,
+``cZe=Re+j*Xe``
+and the complex power at the PCC,
+``cSc==Pref+j*Qref``
+According to Kirchhoff`s voltage law, the system can be described by the following nonlinear equation:
+``0 = Vn/sqrt(3) - (Vg,r+j*Vg,i) + (Pref-j*Qref)/(3*(Vg,r+j*Vg,i)) * (Re+j*Xe)``
+This equation is solved using the MATLAB function ``fsolve``.
+
+The resulting real and imaginary components of the PCC voltage are ``Vg,r`` and ``Vg,i``.
+The current injected by the IBR at the PCC is then calculated as: 
+``Ir+j*Ii = (Pref-j*Qref)/(3*((Vg,r+j*Vg,i))
+
+The resulting ``Simulink.Paramers`` are required for the initialization are listed in the following table:
+
++-----------+-----------+-----------+---------+---------+------+------------+------------------------------------------------------+
+| Parameter | Value     | Data type | Minimum | Maximum | Unit | Complexity | Description                                          |
++===========+===========+===========+=========+=========+==========================================================================+
+| Vmag0_pcc | 418.247e3 | double    | 0       | 1E12    | V    | real       | Initial voltage magnitude at PCC                     |
++-----------+-----------+-----------+---------+---------+--------------------------------------------------------------------------+
+| Vang0_pcc | 0.316     | double    | 0       | 2*pi    | rad  | real       | Initial voltage angle at PCC                         |
++-----------+-----------+-----------+---------+-------- +--------------------------------------------------------------------------+
+| Imag0_pcc | 703.872e3 | double    | 0       | 1E12    | A    | real       | Initial current magnitude injected at PCC            |
++-----------+-----------+-----------+---------+-------- +--------------------------------------------------------------------------+
+| Iang0_pcc | 0.119     | double    | 0       | 2*pi    | rad  | real       | Initial current angle injected at PCC                |
++-----------+-----------+-----------+---------+---------+--------------------------------------------------------------------------+
+
+
+
+
 
 Creating the Parameter Script
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
