@@ -5,13 +5,13 @@ Example Usage
 This chapter presents an example of how the IEC 61400-27 DLL Builder converts a Simulink-based converter model into a standardized, self-contained DLL. 
 The resulting DLL can be integrated into power system simulation tools such as PSS®NETOMAC, DigSILENT PowerFactory, or PSCAD.
 
-The example considers the power system shown in the following figure.
+The example considers the power system shown in Figure 1.
 
 .. figure:: ./images/Power_System_Scheme.png
    :alt: Scheme of the power system and the interface between the external power system simulation tool and the IEC 61400-27 controller model.
    :target: _images/Power_System_Scheme.png
    
-   :width: 50%
+   :width: 25%
 
    Figure 1: Scheme of the power system and the interface between the external power system simulation tool and the IEC 61400-27 controller model.
 
@@ -80,27 +80,38 @@ any additional files needing to be added manually — with the exception of the 
 and its parameter script, which are created in step 2.
 
 
-2. Building a Simulink Model
+.. error:: 
+
+   Update for example directory .
+
+
+1. Building a Simulink Model
 ----------------------------
 
-The IBR converter control is developed in MATLAB®/Simulink® and integrated into a power system simulation tool as an IEC 61400-27 DLL. 
-In the following example is divided in 2 steps:
+In this step, the actual MATLAB®/Simulink® model is developed. In this example, an IBR converter control model is created.
 
-- Designing the MATLAB®/Simulink® model
-- Parameterizing the MATLAB®/Simulink® model
+The MATLAB®/Simulink® model consists of two main files:
+- ``IBR_Control_2024b.slx`` provides the MATLAB®/Simulink® model.
+- ``IBR_Control_Parameters.m`` provides the parameters for the MATLAB®/Simulink® model.
 
+The following example is divided into two steps:
+
+- Designing the MATLAB®/Simulink® model (.slx)
+- Creating the Parameter Script (.m)
    
-Designing the MATLAB®/Simulink® model
+Designing the MATLAB®/Simulink® Model (.slx)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
-The block diagram of the IBR control is shown in following figure:
+A grid-following IBR control concept is used in this example, as shown in the block diagram in Figure 2. 
 
 .. figure:: ./images/IBR_Control.png
-   :align: center
-   :width: 50%
+   :alt: Block diagram of the IBR control system.
+   :target: _images/IBR_Control.png
+   
+   :width: 25%
 
    Figure 2: Block diagram of the IBR control system.
-
+   
 The cascaded control system is based on a dq-vector control scheme.
 A phase-locked loop (PLL) defines the synchronous reference frame, in which the voltages and currents are represented by their d- and q-axis components. 
 The active and reactive power controller determine the reference currents ``idref`` and ``iqref``. 
@@ -111,7 +122,7 @@ An inverse Park transformation is then used to convert these voltage references 
 
 The MATLAB®/Simulink® model is provided as the file ``IBR_Control_2024b.slx``.
 
-Parameterizing the MATLAB®/Simulink® Model
+Creating the Parameter Script (.m)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The MATLAB® script ``IBR_Control_Parameters.m`` represents the parameter script if the given example. Its primary purpose is to generate all controller parameters, compute the required operating point, and initialize the workspace with the data required by the model.
