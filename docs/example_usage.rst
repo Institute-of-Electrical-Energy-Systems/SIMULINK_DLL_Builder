@@ -10,6 +10,7 @@ The example considers the power system shown in Figure 1.
 .. figure:: ./images/Power_System_Scheme.png
    :alt: Scheme of the power system and the interface between the external power system simulation tool and the IEC 61400-27 controller model.
    :target: _images/Power_System_Scheme.png  
+   :width: 50%
 
    Figure 1: Scheme of the power system and the interface between the external power system simulation tool and the IEC 61400-27 controller model.
 
@@ -105,7 +106,8 @@ A grid-following IBR control concept is used in this example, as shown in the bl
 
 .. figure:: ./images/IBR_Control.png
    :alt: Block diagram of the IBR control system.
-   :target: _images/IBR_Control.png  
+   :target: _images/IBR_Control.png
+   :width: 50%  
 
    Figure 2: Block diagram of the IBR control system.
    
@@ -262,18 +264,6 @@ The resulting ``Simulink.Parameters`` are required for the initialization are li
 +-----------+-----------+-----------+---------+---------+------+------------+------------------------------------------------------+
 
 These quantities define the operating point used for controller initialization.
-
-.. error:: 
-
-   Update the result of the load flow calculation @Domi.
-
-.. _fig_phasor_diagram:
-
-.. figure:: ./images/ibr_steady_state_phasor_diagram_high_contrast.png
-   :align: center
-   :width: 50%
-
-   Figure 3: Steady-state phasor diagram showing the grid voltage, PCC voltage, converter voltage, and converter current.
 
 Workspace Export
 '''''''''''''''''''''''''''''''''''
