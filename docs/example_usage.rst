@@ -78,12 +78,6 @@ Once the directory is prepared, it should contain everything required by the sub
 any additional files needing to be added manually — with the exception of the actual Simulink model 
 and its parameter script, which are created in step 2.
 
-
-.. error:: 
-
-   Update for example directory .
-
-
 2. Building a Simulink Model
 ----------------------------
 
@@ -277,7 +271,6 @@ Finally, all generated parameters are stored in ``IBR_Control_Parameters.mat``.
 .. note::
 
    Execute ``IBR_Control_Parameters.m`` whenever a model parameter has been modified. 
-
 
 3. Adjusting the Simulink Model Structure for the Export Process
 ----------------------------------------------------------------
