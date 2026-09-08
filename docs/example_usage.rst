@@ -176,10 +176,18 @@ The parameters are listed in the following table:
 | Ki_PLL    | 0.02   | double    | 1E-6    | 1E6     | Hz   | real       | Integral gain of phase-locked loop (continous)       |
 +-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
 
+All controller coefficients are calculated using the selected fixed simulation step size ``Ts`` to ensure consistent discrete-time behaviour.
+
 Initialization by Load-Flow Calculation
 '''''''''''''''''''''''''''''''''''
 
-The initial operating point of the power system is required to initialize the converter control model.
+To minimize artificial transients at the beginning of the simulation, the controller is initialized directly at its steady-state operatint point.
+Initialization means assigning an initial value to every state variable in the control model. This includes, for example:
+
+- the integral states of the PI controllers in the current controller and the PLL;
+- the states of all low-pass filters.
+  
+Initializing the controller with these values ensures that all internal controller states are consistent with the calculated operating point.
 
 The parameters of the Thevenin equivalent are used only to determine the initial operating point of the converter control states.
 Therefore, these parameters are required for the load-flow calculation but are not defined as ``Simulink.Parameter`` objects of the converter model.
@@ -247,9 +255,9 @@ The resulting ``Simulink.Parameters`` are required for the initialization are li
 | Vmag0_pcc | 418.247e3 | double    | 0       | 1E12    | V    | real       | Initial voltage magnitude at PCC                     |
 +-----------+-----------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Vang0_pcc | 0.316     | double    | 0       | 2*pi    | rad  | real       | Initial voltage angle at PCC                         |
-+-----------+-----------+-----------+---------+-------- +------+------------+------------------------------------------------------+
++-----------+-----------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Imag0_pcc | 703.872e3 | double    | 0       | 1E12    | A    | real       | Initial current magnitude injected at PCC            |
-+-----------+-----------+-----------+---------+-------- +------+------------+------------------------------------------------------+
++-----------+-----------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Iang0_pcc | 0.119     | double    | 0       | 2*pi    | rad  | real       | Initial current angle injected at PCC                |
 +-----------+-----------+-----------+---------+---------+------+------------+------------------------------------------------------+
 
@@ -265,49 +273,17 @@ These quantities define the operating point used for controller initialization.
    :align: center
    :width: 50%
 
-   Steady-state phasor diagram showing the grid voltage, PCC voltage, converter voltage, and converter current.
-
-Computation of Initial Conditions
-'''''''''''''''''''''''''''''''''
-To minimize artificial transients at the beginning of a simulation, the controller is initialized directly at its steady-state operating point.
-
-The calculated phasors are used to determine the initial values of
-
-- the three-phase (``abc``) currents,
-- the PLL angle,
-- the ``dq`` current components,
-- the current-controller integrator states,
-- and the voltage feed-forward terms.
-
-Initializing the controller with these values ensures that all internal controller states are consistent with the calculated operating point.
-
-Controller Parameter Calculation
-''''''''''''''''''''''''''''''''
-
-After the operating point has been established, the controller parameters are calculated.
-
-The script computes the gains and time constants for
-
-- the active and reactive power controller,
-- the current controller,
-- the phase-locked loop (PLL),
-- and the associated low-pass filters.
-
-All controller coefficients are calculated using the selected fixed simulation step size ``Ts`` to ensure consistent discrete-time behaviour.
-
-Export of ``Simulink.Parameter`` Objects
-''''''''''''''''''''''''''''''''''''''''
-Once all calculations have been completed, temporary variables are removed from the MATLAB workspace.
-
-Only the parameters required by the controller are converted into `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_ 
-objects and placed in the MATLAB base workspace.
-
-This step is essential for the subsequent code-generation process. The metadata extraction performed by the IEC 61400-27 DLL Builder only 
-recognizes variables of type `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_. Ordinary MATLAB variables 
-are ignored and therefore cannot be exported as tunable parameters.
+   Figure 3: Steady-state phasor diagram showing the grid voltage, PCC voltage, converter voltage, and converter current.
 
 Workspace Export
-''''''''''''''''
+'''''''''''''''''''''''''''''''''''
+
+Once all calculations have been completed, all temporary variables are removed from the MATLAB® workspace.
+
+All remaining parameters required by the controller must be defined as ``Simulink.Parameter`` objects.
+This is essential for the subsequent code-generation process. The metadata extraction performed by the IEC 61400-27 DLL Builder recognizes only variables of type `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_.
+Ordinary MATLAB® variables are ignored and therefore cannot be exported as tunable paramers.
+
 Finally, all generated parameters are stored in ``IBR_Control_Parameters.mat``.
 
 .. note::
