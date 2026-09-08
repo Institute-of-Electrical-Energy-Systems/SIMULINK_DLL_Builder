@@ -9,9 +9,7 @@ The example considers the power system shown in Figure 1.
 
 .. figure:: ./images/Power_System_Scheme.png
    :alt: Scheme of the power system and the interface between the external power system simulation tool and the IEC 61400-27 controller model.
-   :target: _images/Power_System_Scheme.png
-   
-   :width: 25%
+   :target: _images/Power_System_Scheme.png  
 
    Figure 1: Scheme of the power system and the interface between the external power system simulation tool and the IEC 61400-27 controller model.
 
@@ -107,9 +105,7 @@ A grid-following IBR control concept is used in this example, as shown in the bl
 
 .. figure:: ./images/IBR_Control.png
    :alt: Block diagram of the IBR control system.
-   :target: _images/IBR_Control.png
-   
-   :width: 50%
+   :target: _images/IBR_Control.png  
 
    Figure 2: Block diagram of the IBR control system.
    
@@ -186,7 +182,7 @@ Initialization by Load-Flow Calculation
 The initial operating point of the power system is required to initialize the converter control model.
 
 The parameters of the Thevenin equivalent are used only to determine the initial operating point of the converter control states.
-Therefore, these parameters are required for the load-flow calculation but are not defined as ``Simulink.Parameter`` of the converter model.
+Therefore, these parameters are required for the load-flow calculation but are not defined as ``Simulink.Parameter`` objects of the converter model.
 The parameters of the Thevenin equivalent are listed in the following table: 
 
 +-----------+---------+------+-----------------------------------+
@@ -208,27 +204,42 @@ The Short-circuit ratio ``SCR = 3`` represents a weak power system.
 The value ``RXratio = 0.1`` is typical for high-voltage power systems.
 
 The resistance and reactance of the Thevenin equivalent are calculated from the nominal voltage, the Short-circuit ratio, and the R/X ratio.
+
 The resistance is calculated using:
+
 ``Re = Vn^2 / (SCR * Sn) / sqrt(RXratio^2+1) * RXratio``
+
 The reactance ic calculated using:
+
 ``Xe = Vn^2 / (SCR * Sn) / sqrt(RXratio^2+1)``
 
 Together with the Thevenin equivalent and the active and reactive power setpoints at the point of common coupling (PCC), the voltage and current at the PCC can be determined by a load-flow calculation.
+
 The inputs to the load-flow calculation are the Thevenin voltage represented as a complex phasor, 
+
 ``cVth = Vn/sqrt(3) + j*0``
+
 the Thevenin impedance,
+
 ``cZe=Re+j*Xe``
+
 and the complex power at the PCC,
+
 ``cSc==Pref+j*Qref``
+
 According to Kirchhoff`s voltage law, the system can be described by the following nonlinear equation:
+
 ``0 = Vn/sqrt(3) - (Vg,r+j*Vg,i) + (Pref-j*Qref)/(3*(Vg,r+j*Vg,i)) * (Re+j*Xe)``
-This equation is solved using the MATLAB function ``fsolve``.
+
+This equation is solved using the MATLAB® function ``fsolve``.
 
 The resulting real and imaginary components of the PCC voltage are ``Vg,r`` and ``Vg,i``.
-The current injected by the IBR at the PCC is then calculated as: 
-``Ir+j*Ii = (Pref-j*Qref)/(3*((Vg,r+j*Vg,i))
 
-The resulting ``Simulink.Paramers`` are required for the initialization are listed in the following table:
+The current injected by the IBR at the PCC is then calculated as: 
+
+``Ir+j*Ii = (Pref-j*Qref)/(3*((Vg,r+j*Vg,i))``
+
+The resulting ``Simulink.Parameters`` are required for the initialization are listed in the following table:
 
 +-----------+-----------+-----------+---------+---------+------+------------+------------------------------------------------------+
 | Parameter | Value     | Data type | Minimum | Maximum | Unit | Complexity | Description                                          |
