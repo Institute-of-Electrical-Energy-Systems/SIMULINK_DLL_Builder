@@ -58,5 +58,11 @@ Thus, the presented Builder leverages existing interfaces for IEC 61400-27-compl
 By exporting the model and integrating the resulting DLL into a simulation program, computationally intensive approaches—such as co-simulation between DIgSILENT PowerFactory and MATLAB Simulink—can be avoided. 
 Consequently, this method enables a significant improvement in simulation performance.
 
+# Software design
+![UML diagramm of the Simulink IEC 61400-27 DLL builder](./UML_Diagramm.svg){width="130%"}
+
+# AI usage disclosure
+OpenAI ChatGPT was used for language editing, and restructuring suggestions. 
+All AI-generated suggestions were reviewed, edited, and validated by the authors before inclusion.
 
 # References
