@@ -391,7 +391,6 @@ The model file for the ``EVALUATE`` model is created in a similar way to the mod
 ..  figure:: ./images/NETOMAC/Create_IBR_DLL_Model.png
     :alt: Defining the settings of a new ``EVALUATE`` model file (.xmac) in PSS®NETOMAC.
     :target: _images/Create_IBR_DLL_Model.png
-    :width: 80%            
 
     Figure 16: Defining the settings of a new ``EVALUATE`` model file (.xmac) in PSS®NETOMAC.
 
@@ -720,9 +719,7 @@ The ``MIMO`` model file is created in a similar manner to the models described i
 ..  figure:: ./images/NETOMAC/Create_MIMO_Model.png
     :alt: Defining the settings of a new ``MIMO`` model file (.xmac) in PSS®NETOMAC.
     :target: _images/Create_MIMO_Model.png
-    :width: 80%
-    :align: center
-
+    
     Figure 38: Defining the settings of a new ``MIMO`` model file (.xmac) in PSS®NETOMAC.
 
 Defining the Model Parameters
@@ -868,7 +865,7 @@ In the ``Data`` section the ``Integration type`` is set to ``During network iter
             Figure 44: Defining the of the ``SOURCE-V`` output block.
 
 .. container:: image-row
-   
+
    ..  figure:: ./images/NETOMAC/Create_MIMO_Output_Topology_R.png
             :alt: Defining the topology for phase R of the ``SOURCE-V`` output block.
             :target: _images/Create_MIMO_Output_Topology_R.png
