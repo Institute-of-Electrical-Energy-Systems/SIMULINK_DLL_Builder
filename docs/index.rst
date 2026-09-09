@@ -81,7 +81,12 @@ Once the `IEC61400_27.c` file has been generated, the compilation, linking, and 
 
 Figure 1 illustrates the relationship between the individual files located in the working directory and their respective roles within the DLL generation process.
 
-![UML diagramm of the Simulink IEC 61400-27 DLL builder](./UML_Diagramm.svg)
+.. figure:: ./publications/UML_Diagramm.svg
+   :alt: UML diagramm of the Simulink IEC 61400-27 DLL builder
+   :width: 50%
+   :target: _images/UML_Diagramm.svg
+
+   Figure 1: UML diagramm of the Simulink IEC 61400-27 DLL builder.
 	
 **********
 References
