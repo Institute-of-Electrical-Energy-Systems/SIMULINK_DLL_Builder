@@ -38,6 +38,50 @@ Consequently, this method enables a significant improvement in simulation perfor
 | The remainder of this documentation is organized as follows:
 | The section :doc:`How_to_use` introduces the developed IEC 61400-27 DLL Builder and explains its basic usage. The files required for the *Simulink Coder* code generation process are described in detail in the :doc:`Simulink_Coder_Section` section. Subsequently, the steps required to use the generated DLL in various simulation programs are presented, including DIgSILENT PowerFactory (see :doc:`DLL_in_PF`), PSS Netomac (see :doc:`DLL_in_Netomac`), and PSCAD (see :doc:`DLL_in_PSCAD`).
 
+*************** 
+Software design
+***************
+
+The software design of the Simulink IEC 61400-27 DLL Builder is largely determined by the established structure of MATLAB/Simulink, as it is integrated into the functionality provided by the Simulink Coder application.
+
+Within the constraints of this environment, the design emphasizes modularity and extensibility. Accordingly, the required working directory comprises two Target Language Compiler (TLC) files, two MATLAB scripts (.m), two header files (.h), one compiled S-Function, and one Template Makefile (TMF), as summarized in Table 1.
+
+**Table 1: Files required for IEC 61400-27 DLL generation**
+
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| File                              | Function                                                                                                                     |
++===================================+==============================================================================================================================+
+| `IEC61400_27_DLL.tlc`             | System Target File that controls the Simulink code generation process and the creation of the controller DLL.                |
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| `IEC61400_27_DLL.tmf`             | Template makefile used during the compilation and linking of the generated C code.                                           |
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| `IEC61400_27_DLL_make_rtw_hook.m` | Build hook executed after code generation and before the DLL is built. It exports the parameter descriptions, units, and     |
+|                                   | limits to `ParameterMetadata.tlc` by invoking `getParamMetadataRTW.m`.                                                       |
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| `getParamMetadataRTW.m`           | MATLAB script that implements the export of the parameter metadata.                                                          |
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| `ext_simenv_capi.h`               | C API header that defines the IEC 61400-27 interface every generated DLL must implement.                                     |
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| `ext_simenv_types.h`              | C API header that defines the data types used by the IEC 61400-27 interface.                                                 |
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| `sfun_info.mexw64`                | Compiled S-Function that triggers `sfun_info.tlc` during code generation.                                                    |
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| `sfun_info.tlc`                   | The TLC file generates the additional C source required for the controller DLL.                                              |
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+
+While several of these files support the preparation and compilation of the IEC 61400-27 DLL, `IEC61400_27_DLL.tlc` serves as the entry point of the code generation process. This TLC file is detected by the Simulink Coder application when it is placed in the MATLAB working directory. After selecting the corresponding System Target File and providing the required DLL metadata in the DLL Builder's graphical interface, the DLL build process can be initiated.
+
+During the DLL creation process, the Simulink Coder application first uses the TMF file to generate a makefile that defines the compilation, linking, and build process for the DLL of the Simulink model under consideration. Since the final output is a dynamically linked library, the linking and build steps are largely predefined by the required DLL structure. As a result, the control logic implemented in the Simulink model primarily influences the compilation of the generated model code, rather than the linking and build steps themselves. The Simulink IEC 61400-27 DLL Builder determines which generated source files are included and subsequently linked as part of the DLL build process.
+
+The overall build process is primarily controlled by `IEC61400_27_DLL.tlc`. During code generation, this TLC file detects the model information file `model_info.mdl` — which holds metadata about the Simulink model being built — together with the compiled S-Function `sfun_info.mexw64`, thereby triggering both `IEC61400_27_DLL_make_rtw_hook.m` and `sfun_info.tlc`. The `IEC61400_27_DLL_make_rtw_hook.m` script extracts the relevant Simulink parameter information, including parameter names, values, minimum and maximum limits, and units, and stores this information in `ParameterMetadata.tlc`.
+
+This metadata is subsequently used during the generation of the C source code that constitutes the core logic of the IEC 61400-27 DLL. The generation of this source code is handled by `sfun_info.tlc`. This Target Language Compiler file creates a temporary `IEC61400_27.c` file that must fulfill the syntactic and semantic requirements specified in IEC 61400-27 Annex F. To achieve this, it loads the parameter information extracted by `IEC61400_27_DLL_make_rtw_hook.m` together with the available model logic, and maps the corresponding Simulink code methods to the methods defined by IEC 61400-27 Annex F.
+
+Once the `IEC61400_27.c` file has been generated, the compilation, linking, and build process is initiated. During this stage, the generated source files and the required interface files are compiled and linked according to the specifications defined by the TMF and the corresponding build configuration. The resulting output is the IEC 61400-27-compliant DLL.
+
+Figure 1 illustrates the relationship between the individual files located in the working directory and their respective roles within the DLL generation process.
+
+![UML diagramm of the Simulink IEC 61400-27 DLL builder](./UML_Diagramm.svg)
 	
 **********
 References
