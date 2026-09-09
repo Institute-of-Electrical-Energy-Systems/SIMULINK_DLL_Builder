@@ -65,9 +65,9 @@ Within the constraints of this environment, the design emphasizes modularity and
 
 **Table 1: Files required for IEC 61400-27 DLL generation**
 
-| **File**                         | **Function**           |
-|----------------------------------|------------------------|
-| `IEC61400_27_DLL.tlc`            | System Target File (STF) that controls the Simulink code generation process and the creation of the controller DLL. |
+| **File**                         | **Function**                     |
+|----------------------------------|----------------------------------|
+| `IEC61400_27_DLL.tlc`            | System Target File that controls the Simulink code generation process and the creation of the controller DLL. |
 | `IEC61400_27_DLL.tmf`            | Template Makefile used during the compilation and linking of the generated C code. |
 | `IEC61400_27_DLL_make_rtw_hook.m` | Build hook executed after code generation and before the DLL is built. It exports the parameter descriptions, units, and limits to `ParameterMetadata.tlc` by invoking `getParamMetadataRTW.m`. |
 | `getParamMetadataRTW.m`          | MATLAB script that implements the export of the parameter metadata. |
