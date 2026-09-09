@@ -14,7 +14,7 @@ The following software and components are required:
 - PSS®NETOMAC (tested for version 22.0)
 - IEC 61400-27 DLL (e.g. the one from the `example <https://simulink-dll-builder.readthedocs.io/en/latest/example_usage.html#example-usage>`_)
 
-Building a Model for Subsequent DLL Integraion  
+Building a Model for Subsequent DLL Integration  
 ----------------------------------------------
 The final model consists of a controlled ideal voltage source with an internal impedance connected to the point of common coupling (PCC). 
 The PCC is supplied by a Thevenin equivalent representing the upstream grid. 
@@ -172,6 +172,7 @@ In the next step, the page settings for the model file are defined, as shown in 
    ..  figure:: ./images/NETOMAC/Define_Page_Size_Ideal_Voltage_Source_xmac.png
             :alt: Defining the page settings of new empty model file (.xmac) in PSS®NETOMAC.
             :target: _images/Define_Page_Size_Ideal_Voltage_Source_xmac.png
+            :width: 80%
             :align: center
 
             Figure 3: Defining the page settings of new empty model file (.xmac) in PSS®NETOMAC.
@@ -241,12 +242,16 @@ The corresponding variable is specified as the ``Constant Value`` in the ``Data`
    ..  figure:: ./images/NETOMAC/Defining_Topology_Of_Constant_Input.png
             :alt: Defining the topology of constant input block in model files (.xmac).
             :target: _images/Defining_Topology_Of_Constant_Input.png
+            :width: 80%
+            :align: center
 
             Figure 7: Defining the topology of constant input block in model files (.xmac).
 
    ..  figure:: ./images/NETOMAC/Defining_Data_Of_Constant_Input.png
             :alt: Defining the data of a constant input block in model files (.xmac).
             :target: _images/Defining_Data_Of_Constant_Input.png
+            :width: 80%
+            :align: center
 
             Figure 8: Defining the data of a constant input block in model files (.xmac).     
 
@@ -313,12 +318,16 @@ In the ``Data`` section, the ``Integration type`` is set to ``During network ite
    ..  figure:: ./images/NETOMAC/GNE_V_Output_Topology.png
             :alt: Defining the topology data of the ``GNE-V`` output block.
             :target: _images/GNE_V_Output_Topology.png
+            :width: 80%
+            :align: center
 
             Figure 12: Defining the topology of the ``GNE-V`` output block.
 
    ..  figure:: ./images/NETOMAC/GNE_V_Output_Data.png
             :alt: Defining the data of the ``GNE-V`` output block.
             :target: _images/GNE_V_Output_Data.png
+            :width: 80%
+            :align: center
 
             Figure 13: Defining the data of the ``GNE-V`` output block.    
 
@@ -382,6 +391,7 @@ The model file for the ``EVALUATE`` model is created in a similar way to the mod
 ..  figure:: ./images/NETOMAC/Create_IBR_DLL_Model.png
     :alt: Defining the settings of a new ``EVALUATE`` model file (.xmac) in PSS®NETOMAC.
     :target: _images/Create_IBR_DLL_Model.png
+    :width: 80%            
 
     Figure 16: Defining the settings of a new ``EVALUATE`` model file (.xmac) in PSS®NETOMAC.
 
@@ -408,12 +418,16 @@ By enabling the ``Individual phase definition`` option, the measurement can be a
    ..  figure:: ./images/NETOMAC/Create_Input_IBR_DLL_Model_Voltage_Function.png
             :alt: Defining the voltage measurement function.
             :target: _images/Create_Input_IBR_DLL_Model_Voltage_Function.png
+            :width: 80%
+            :align: center
 
             Figure 18: Defining the voltage measurement function.
 
    ..  figure:: ./images/NETOMAC/Create_Input_IBR_DLL_Model_Current_Function.png
             :alt: Defining the current measurement function.
             :target: _images/Create_Input_IBR_DLL_Model_Current_Function.png
+            :width: 80%
+            :align: center
 
             Figure 19: Defining the current measurement function.
 
@@ -488,6 +502,8 @@ The conversion factors are defined under ``Equations...``, as shown in Figures 2
    ..  figure:: ./images/NETOMAC/Equations_Fortran.png
             :alt: Defining the parameters for voltage and current unit conversion.
             :target: _images/Equations_Fortran.png
+            :width: 80%
+            :align: center
 
             Figure 23: Defining the parameters for voltage and current unit conversion.
 
@@ -519,12 +535,16 @@ The parameter ``#IMVA2A`` is used for all current inputs, as shown in Figure 26.
    ..  figure:: ./images/NETOMAC/Create_Gain_Voltage_data.png
             :alt: Defining the gain value for voltage conversion.
             :target: _images/Create_Gain_Voltage_data.png
+            :width: 80%
+            :align: center
 
             Figure 25: Defining the gain value for voltage conversion.
 
    ..  figure:: ./images/NETOMAC/Create_Gain_Current_data.png
             :alt: Defining the gain value for current conversion.
             :target: _images/Create_Gain_Current_data.png
+            :width: 80%
+            :align: center
 
             Figure 26: Defining the gain value for current conversion.
 
@@ -543,6 +563,8 @@ In the ``Data`` section the global Parameter ``#SIMDT`` is used as delay paramet
    ..  figure:: ./images/NETOMAC/Create_DeadTime_data.png
             :alt: Defining the deadtime value.
             :target: _images/Create_DeadTime_data.png
+            :width: 80%
+            :align: center
 
             Figure 28: Defining the deadtime value.
 
@@ -567,12 +589,16 @@ These parameters are automatically assigned default values.
    ..  figure:: ./images/NETOMAC/Create_DLL_Block_topology.png
             :alt: Defining the output signal names of the ``DLL IEC`` block.
             :target: _images/Create_DLL_Block_topology.png
+            :width: 80%
+            :align: center
 
             Figure 30: Defining the output signal names of the ``DLL IEC`` block.
 
    ..  figure:: ./images/NETOMAC/Create_DLL_Block_data.png
             :alt: Defining the parameters of the ``DLL IEC`` block.
             :target: _images/Create_DLL_Block_data.png
+            :width: 80%
+            :align: center
 
             Figure 31: Defining the parameters of the ``DLL IEC`` block.
 
@@ -588,12 +614,16 @@ For this conversion, the reciprocal value of ``#Vpu2V`` is used, as shown in Fig
    ..  figure:: ./images/NETOMAC/Create_Gain_Voltage_data_return.png
             :alt: Creating a ``Gain`` block for the back-conversion.
             :target: _images/Create_Gain_Voltage_data_return.png
+            :width: 80%
+            :align: center
 
             Figure 32: Creating a ``Gain`` block for the back-conversion.
 
    ..  figure:: ./images/NETOMAC/Create_Gain_Voltage_data_return.png
             :alt: Defining the data of the Gain blocks.
             :target: _images/Create_Gain_Voltage_data_return.png
+            :width: 80%
+            :align: center
 
             Figure 33: Defining the data of the Gain blocks.
 
@@ -615,6 +645,8 @@ In the ``Data`` section, the ``Integration type`` is set to ``During network ite
    ..  figure:: ./images/NETOMAC/Create_Output_DLL_Data.png
             :alt: Defining the data of the ``EVALUATE`` output block.
             :target: _images/Create_Output_DLL_Data.png
+            :width: 80%
+            :align: center
 
             Figure 35: Defining the data of the ``EVALUATE`` output block. 
 
@@ -675,7 +707,7 @@ The resulting ``[[Models_during_Loadflow]]`` section with the integrated models 
    $-------------------------------------------------------------------------------|
    [[End Models_during_Loadflow]]                                                  |
 
-1. Defining the Interface Model to the Power System
+2. Defining the Interface Model to the Power System
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A ``MIMO`` model (Mulitple Input, Multiple Output) is created to provide the interface between the IBR control model and the controlled voltage source.
@@ -688,6 +720,8 @@ The ``MIMO`` model file is created in a similar manner to the models described i
 ..  figure:: ./images/NETOMAC/Create_MIMO_Model.png
     :alt: Defining the settings of a new ``MIMO`` model file (.xmac) in PSS®NETOMAC.
     :target: _images/Create_MIMO_Model.png
+    :width: 80%
+    :align: center
 
     Figure 38: Defining the settings of a new ``MIMO`` model file (.xmac) in PSS®NETOMAC.
 
@@ -746,6 +780,8 @@ These blocks provide the load-flow voltage magnitude, the load-flow voltage angl
    ..  figure:: ./images/NETOMAC/Create_Model_Variable_Block_data.png
             :alt: Defining the data of ``Model Variable`` input block for each phase.
             :target: _images/Create_Model_Variable_Block_data.png
+            :width: 80%
+            :align: center
 
             Figure 41: Defining the data of ``Model Variable`` input block for each phase.
 
@@ -798,6 +834,8 @@ The implemented logic is shown below :
 ..  figure:: ./images/NETOMAC/Bypass_Logic_in_MIMO.png
     :alt: Defining the DLL bypass logic as an IF statement in FORTRAN.
     :target: _images/Bypass_Logic_in_MIMO.png
+    :width: 80%
+    :align: center
 
     Figure 43: Defining the DLL bypass logic as an IF statement in FORTRAN.
 
@@ -824,24 +862,34 @@ In the ``Data`` section the ``Integration type`` is set to ``During network iter
    ..  figure:: ./images/NETOMAC/Create_MIMO_Output_Data.png
             :alt: Defining the data of the ``SOURCE-V`` output block.
             :target: _images/Create_MIMO_Output_Data.png
+            :width: 80%
+            :align: center
 
             Figure 44: Defining the of the ``SOURCE-V`` output block.
 
+.. container:: image-row
+   
    ..  figure:: ./images/NETOMAC/Create_MIMO_Output_Topology_R.png
             :alt: Defining the topology for phase R of the ``SOURCE-V`` output block.
             :target: _images/Create_MIMO_Output_Topology_R.png
+            :width: 80%
+            :align: center
 
             Figure 45: Defining the topology for phase R of the ``SOURCE-V`` output block.
 
    ..  figure:: ./images/NETOMAC/Create_MIMO_Output_Topology_S.png
             :alt: Defining the topology for phase S of the ``SOURCE-V`` output block.
             :target: _images/Create_MIMO_Output_Topology_S.png
+            :width: 80%
+            :align: center
 
             Figure 46: Defining the topology for phase S of the ``SOURCE-V`` output block.
 
    ..  figure:: ./images/NETOMAC/Create_MIMO_Output_Topology_T.png
             :alt: Defining the topology for phase T of the ``SOURCE-V`` output block.
             :target: _images/Create_MIMO_Output_Topology_T.png
+            :width: 80%
+            :align: center
 
             Figure 47: Defining the topology for phase T of the ``SOURCE-V`` output block.
 
