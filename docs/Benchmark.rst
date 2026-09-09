@@ -434,13 +434,13 @@ Figure 26 shows the active and reactive power at the PCC.
         Figure 24: Phase voltages at the PCC and the amplitude of the voltage space vector.
 
     
-    ..  figure:: ./images/PSCAD/Simulink_currents.png
+    ..  figure:: ./images/Benchmarking/Simulink_currents.png
         :alt: Phase currents of branch Z_IBR and the amplitude of the current space vector.
         :target: _images/Simulink_currents.png
 
         Figure 25: Phase currents of branch Z_IBR and the amplitude of the current space vector.
 
-    ..  figure:: ./images/PSCAD/Simulink_power.png
+    ..  figure:: ./images/Benchmarking/Simulink_power.png
         :alt: Active and reactive power at the PCC.
         :target: _images/Simulink_power.png
 
