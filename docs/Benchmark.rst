@@ -407,7 +407,51 @@ These results demonstrate that the IEC 61400-27 DLL has been successfully integr
 Benchmarking of the Power System Simulation Tools
 ------
 
-In this section a comparison between the simulation results with integrated IEC 61400-27 DLL is performed. Additionally a benchmark to the Model in MATLAB/Simulink is performed.
+This section compares the simulation results obtained with the integrated IEC 61400-27 DLL in the selected power system simulation tools. 
+In addition, the results are compared with those of the reference model implemented in MATLAB®/Simulink®.
+
+1. Benchmark Model in MATLAB®/Simulink®
+^^^^^^^^^^^^^^^^^^^^^^^^
+
+To provide a comprehenxive analysis of the IEC 61400-27 DLL integration into the selected power system simulation tools, the DLL-based simulation results are compared with the results of a reference model implemented in MATLAB®/Simulink®.
+The reference model is located in the ``MATLAB_Simulink`` directory. 
+It integrates the IBR control model into a power system consisting of the electrical converter model and a Thevenin equivalent.
+The power system is modeled in the Laplace domain without using power system libraries such as the Specialized Power Systems library or Simscape™.
+
+Since the integration of the DLL into the power system simulation introduces a one-step time delay at both the DLL input and output, corresponding time delays are also inculded in the MATLAB®/Simulink® model.
+This ensures that the same dynamic behavior is represented in all simulation environments.
+
+Figure 24 shows the three phase voltages at the PCC together with the amplitude of the voltage space vector. 
+Figure 25 shows the three phase currents of branch ``Z_IBR`` together with the amplitude of the current space vector. 
+Figure 26 shows the active and reactive power at the PCC.
+
+.. container:: image-row
+
+    ..  figure:: ./images/Benchmarking/Simulink_voltages.png
+        :alt: Phase voltages at the PCC and the amplitude of the voltage space vector.
+        :target: _images/Simulink_voltages.png
+
+        Figure 24: Phase voltages at the PCC and the amplitude of the voltage space vector.
+
+    
+    ..  figure:: ./images/PSCAD/Simulink_currents.png
+        :alt: Phase currents of branch Z_IBR and the amplitude of the current space vector.
+        :target: _images/Simulink_currents.png
+
+        Figure 25: Phase currents of branch Z_IBR and the amplitude of the current space vector.
+
+    ..  figure:: ./images/PSCAD/Simulink_power.png
+        :alt: Active and reactive power at the PCC.
+        :target: _images/Simulink_power.png
+
+        Figure 26: Active and reactive power at the PCC.
+
+The simulation results show that the simulation starts directly from the load-flow operating point without significant oscillations.
+During the fault, the voltage dip leads to an increase in current. This behavior is expected, as the IBR control system attempts to regulate active and reactive power during the voltage disturbance.
+After the fault is cleared, the voltage, current, and power signals return to their initial steady-state operating points.
+
+2. Comparison between Power System Simulation Tools
+^^^^^^^^^^^^^^^^^^^^^^^^
 
 .. container:: image-row
 
@@ -415,28 +459,28 @@ In this section a comparison between the simulation results with integrated IEC 
         :alt: Amplitude of the voltage space vector.
         :target: _images/comparison_voltage_space_vector_zoom.png
 
-        Figure 24: Amplitude of the voltage space vector.
+        Figure 27: Amplitude of the voltage space vector.
 
     
     ..  figure:: ./images/Benchmarking/comparison_current_space_vector_zoom.png
         :alt: PAmplitude of the current space vector.
         :target: _images/comparison_current_space_vector_zoom.png
 
-        Figure 25: Amplitude of the current space vector.
+        Figure 28: Amplitude of the current space vector.
 
 .. container:: image-row
-    
+
     ..  figure:: ./images/Benchmarking/comparison_active_power_zoom.png
         :alt: Active  power at the PCC.
         :target: _images/comparison_active_power_zoom.png
 
-        Figure 26: Active power at the PCC.
+        Figure 29: Active power at the PCC.
 
     ..  figure:: ./images/Benchmarking/comparison_reactive_power_zoom.png
         :alt: Reactive power at the PCC.
         :target: _images/comparison_reactive_power_zoom.png
 
-        Figure 27: Reactive power at the PCC.
+        Figure 30: Reactive power at the PCC.
 
 RSME for voltage space vector:        
 
