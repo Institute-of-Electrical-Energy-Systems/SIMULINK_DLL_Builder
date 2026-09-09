@@ -500,15 +500,9 @@ The RSME is defined as
 
 .. math::
 
-\mathrm{RMSE}
-
-\sqrt{
-\frac{1}{N}
-\sum_{k=1}^{N}
-\left[
-x_{1,k}-x_{2,k}
-\right]^2
-}.
+   \mathrm{RMSE}
+   =
+   \sqrt{\frac{1}{N}\sum_{k=1}^{N}\left(x_{1,k} - x_{2,k}\right)^2}.
 
 Here, x_{1,t} denotes the value of one simulation result at the time point t_k, x_2,k denotes the corresponding value of the other simulation result, and N represents the number of data points considered.
 The evaluation is performed over the defined time interval from 0.2 s to 1.0 s after all simulation tools have reached their operating point.
@@ -517,10 +511,9 @@ To improve the comparability of quantities with different magnitudes, a relative
 
 .. math::
 
-\mathrm{RMSE}_{\mathrm{rel}}
-
-\frac{\mathrm{RMSE}}{x_{\mathrm{ref}}}
-\cdot 100,%.
+   \mathrm{RMSE}_{\mathrm{rel}}
+   =
+   \frac{\mathrm{RMSE}}{x_{\mathrm{ref}}} \cdot 100,%.
 
 Here, x_ref is the selected reference value. Since the quantities are expressed in per unit (pu) and the reference value is 1 pu, the relative RMSE is obtained directly by multiplying the RMSE by 100.
 
