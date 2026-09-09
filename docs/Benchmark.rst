@@ -411,27 +411,85 @@ In this section a comparison between the simulation results with integrated IEC 
 
 .. container:: image-row
 
-    ..  figure:: ./images/Benchmarking/comparison_voltage_space_vector.png
+    ..  figure:: ./images/Benchmarking/comparison_voltage_space_vector_zoom.png
         :alt: Amplitude of the voltage space vector.
-        :target: _images/PSCAD_voltages.png
+        :target: _images/comparison_voltage_space_vector_zoom.png
 
         Figure 24: Amplitude of the voltage space vector.
 
     
-    ..  figure:: ./images/Benchmarking/comparison_current_space_vector.png
+    ..  figure:: ./images/Benchmarking/comparison_current_space_vector_zoom.png
         :alt: PAmplitude of the current space vector.
-        :target: _images/PSCAD_currents.png
+        :target: _images/comparison_current_space_vector_zoom.png
 
         Figure 25: Amplitude of the current space vector.
 
-    ..  figure:: ./images/Benchmarking/comparison_active_power.png
+.. container:: image-row
+    
+    ..  figure:: ./images/Benchmarking/comparison_active_power_zoom.png
         :alt: Active  power at the PCC.
-        :target: _images/PSCAD_power.png
+        :target: _images/comparison_active_power_zoom.png
 
         Figure 26: Active power at the PCC.
 
-    ..  figure:: ./images/Benchmarking/comparison_reactive_power.png
+    ..  figure:: ./images/Benchmarking/comparison_reactive_power_zoom.png
         :alt: Reactive power at the PCC.
-        :target: _images/PSCAD_power.png
+        :target: _images/comparison_reactive_power_zoom.png
 
         Figure 27: Reactive power at the PCC.
+
+RSME for voltage space vector:        
+
++------------------------+-------------------+------------------------+-------------+--------+
+|                        | MATLAB®/Simulink® | DIgSILENT PowerFactory | PSS®NETOMAC | PSCAD™ |
++------------------------+-------------------+------------------------+-------------+--------+
+| MATLAB®/Simulink®      |                   | 0.646                  | 0.361       | 0.343  |
++------------------------+-------------------+------------------------+-------------+--------+
+| DIgSILENT PowerFactory | 0.646             |                        | 0.318       | 0.306  |
++------------------------+-------------------+------------------------+-------------+--------+
+| PSS®NETOMAC            | 0.361             | 0.318                  |             | 0.121  |
++------------------------+-------------------+------------------------+-------------+--------+
+| PSCAD™                 | 0.343             | 0.306                  | 0.121       |        |
++------------------------+-------------------+------------------------+-------------+--------+
+
+RSME for current space vector:    
+
++------------------------+-------------------+------------------------+-------------+--------+
+|                        | MATLAB®/Simulink® | DIgSILENT PowerFactory | PSS®NETOMAC | PSCAD™ |
++------------------------+-------------------+------------------------+-------------+--------+
+| MATLAB®/Simulink®      |                   | 0.740                  | 0.363       | 0.370  |
++------------------------+-------------------+------------------------+-------------+--------+
+| DIgSILENT PowerFactory | 0.740             |                        | 0.378       | 0.371  |
++------------------------+-------------------+------------------------+-------------+--------+
+| PSS®NETOMAC            | 0.363             | 0.378                  |             | 0.031  |
++------------------------+-------------------+------------------------+-------------+--------+
+| PSCAD™                 | 0.370             | 0.371                  | 0.031       |        |
++------------------------+-------------------+------------------------+-------------+--------+
+
+RSME for active power :    
+
++------------------------+-------------------+------------------------+-------------+--------+
+|                        | MATLAB®/Simulink® | DIgSILENT PowerFactory | PSS®NETOMAC | PSCAD™ |
++------------------------+-------------------+------------------------+-------------+--------+
+| MATLAB®/Simulink®      |                   | 0.315                  | 0.210       | 0.160  |
++------------------------+-------------------+------------------------+-------------+--------+
+| DIgSILENT PowerFactory | 0.315             |                        | 0.205       | 0.166  |
++------------------------+-------------------+------------------------+-------------+--------+
+| PSS®NETOMAC            | 0.210             | 0.205                  |             | 0.151  |
++------------------------+-------------------+------------------------+-------------+--------+
+| PSCAD™                 | 0.370             | 0.166                  | 0.151       |        |
++------------------------+-------------------+------------------------+-------------+--------+
+
+RSME for reactive power:    
+
++------------------------+-------------------+------------------------+-------------+--------+
+|                        | MATLAB®/Simulink® | DIgSILENT PowerFactory | PSS®NETOMAC | PSCAD™ |
++------------------------+-------------------+------------------------+-------------+--------+
+| MATLAB®/Simulink®      |                   | 3.814                  | 2.615       | 1.959  |
++------------------------+-------------------+------------------------+-------------+--------+
+| DIgSILENT PowerFactory | 3.814             |                        | 1.839       | 1.964  |
++------------------------+-------------------+------------------------+-------------+--------+
+| PSS®NETOMAC            | 2.615             | 1.839                  |             | 1.360  |
++------------------------+-------------------+------------------------+-------------+--------+
+| PSCAD™                 | 1.959             | 1.964                  | 1.360       |        |
++------------------------+-------------------+------------------------+-------------+--------+
