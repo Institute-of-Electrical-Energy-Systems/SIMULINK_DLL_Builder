@@ -453,6 +453,14 @@ After the fault is cleared, the voltage, current, and power signals return to th
 2. Comparison between Power System Simulation Tools
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
+The IEC 61400-27 DLL integration into DIgSILENT PowerFactory, PSS®NETOMAC and PSCAD™ is evaulated by comparing the simulation results obtained for an identical fault scenario.
+In addition, the results from the power system simulation tools are compared with those of the MATLAB®/Simulink® benchmark model.
+
+Figure 27 shows the amplitude of the voltage space vector for all simulation tools.
+Figure 28 shows the amplitude of the current space vector for all simulation tools.
+Figure 29 shows the active power at the point of common coupling (PCC) for all simulation tools.
+Figure 30 shows the reavtive power at the PCC for all simulation tools.
+
 .. container:: image-row
 
     ..  figure:: ./images/Benchmarking/comparison_voltage_space_vector_zoom.png
@@ -482,58 +490,68 @@ After the fault is cleared, the voltage, current, and power signals return to th
 
         Figure 30: Reactive power at the PCC.
 
-RSME for voltage space vector:        
+The simulation results show that, after reaching the load-flow operating point, all simulation tools exhibit nearly identical behavior.
+When the fault occurs, the voltage dip and the resulting response are nearly identical in all simulation tools.
+The same applies to the fault-clearing process.
+Only negligible differences in the amplitude of the resulting oscillations can be observed.
+
+For a quantitative comparison, the root mean square error (RSME) is calculated between the simulation results of the individual tools.
+The RSME is defined as
+
+.. math::
+
+\mathrm{RMSE}
+
+\sqrt{
+\frac{1}{N}
+\sum_{k=1}^{N}
+\left[
+x_{1,k}-x_{2,k}
+\right]^2
+}.
+
+Here, x_{1,t} denotes the value of one simulation result at the time point t_k, x_2,k denotes the corresponding value of the other simulation result, and N represents the number of data points considered.
+The evaluation is performed over the defined time interval from 0.2 s to 1.0 s after all simulation tools have reached their operating point.
+
+To improve the comparability of quantities with different magnitudes, a relative RMSE can additionally be calculated as
+
+.. math::
+
+\mathrm{RMSE}_{\mathrm{rel}}
+
+\frac{\mathrm{RMSE}}{x_{\mathrm{ref}}}
+\cdot 100,%.
+
+Here, x_ref is the selected reference value. Since the quantities are expressed in per unit (pu) and the reference value is 1 pu, the relative RMSE is obtained directly by multiplying the RMSE by 100.
+
+The resulting values for the voltage space vector magnitude is shown in the following table:  
 
 +------------------------+-------------------+------------------------+-------------+--------+
 |                        | MATLAB®/Simulink® | DIgSILENT PowerFactory | PSS®NETOMAC | PSCAD™ |
 +------------------------+-------------------+------------------------+-------------+--------+
-| MATLAB®/Simulink®      |                   | 0.646                  | 0.361       | 0.343  |
+| MATLAB®/Simulink®      |                   | 0.646%                 | 0.361%      | 0.343% |
 +------------------------+-------------------+------------------------+-------------+--------+
-| DIgSILENT PowerFactory | 0.646             |                        | 0.318       | 0.306  |
+| DIgSILENT PowerFactory | 0.646%            |                        | 0.318%      | 0.306% |
 +------------------------+-------------------+------------------------+-------------+--------+
-| PSS®NETOMAC            | 0.361             | 0.318                  |             | 0.121  |
+| PSS®NETOMAC            | 0.361%            | 0.318%                 |             | 0.121% |
 +------------------------+-------------------+------------------------+-------------+--------+
-| PSCAD™                 | 0.343             | 0.306                  | 0.121       |        |
-+------------------------+-------------------+------------------------+-------------+--------+
-
-RSME for current space vector:    
-
-+------------------------+-------------------+------------------------+-------------+--------+
-|                        | MATLAB®/Simulink® | DIgSILENT PowerFactory | PSS®NETOMAC | PSCAD™ |
-+------------------------+-------------------+------------------------+-------------+--------+
-| MATLAB®/Simulink®      |                   | 0.740                  | 0.363       | 0.370  |
-+------------------------+-------------------+------------------------+-------------+--------+
-| DIgSILENT PowerFactory | 0.740             |                        | 0.378       | 0.371  |
-+------------------------+-------------------+------------------------+-------------+--------+
-| PSS®NETOMAC            | 0.363             | 0.378                  |             | 0.031  |
-+------------------------+-------------------+------------------------+-------------+--------+
-| PSCAD™                 | 0.370             | 0.371                  | 0.031       |        |
+| PSCAD™                 | 0.343%            | 0.306%                 | 0.121%      |        |
 +------------------------+-------------------+------------------------+-------------+--------+
 
-RSME for active power :    
+The resulting values for the current space vector magnitude is shown in the following table:  
 
 +------------------------+-------------------+------------------------+-------------+--------+
 |                        | MATLAB®/Simulink® | DIgSILENT PowerFactory | PSS®NETOMAC | PSCAD™ |
 +------------------------+-------------------+------------------------+-------------+--------+
-| MATLAB®/Simulink®      |                   | 0.315                  | 0.210       | 0.160  |
+| MATLAB®/Simulink®      |                   | 0.740%                 | 0.363%      | 0.370% |
 +------------------------+-------------------+------------------------+-------------+--------+
-| DIgSILENT PowerFactory | 0.315             |                        | 0.205       | 0.166  |
+| DIgSILENT PowerFactory | 0.740%            |                        | 0.378%      | 0.371% |
 +------------------------+-------------------+------------------------+-------------+--------+
-| PSS®NETOMAC            | 0.210             | 0.205                  |             | 0.151  |
+| PSS®NETOMAC            | 0.363%            | 0.378%                 |             | 0.031% |
 +------------------------+-------------------+------------------------+-------------+--------+
-| PSCAD™                 | 0.370             | 0.166                  | 0.151       |        |
+| PSCAD™                 | 0.370%            | 0.371%                 | 0.031%      |        |
 +------------------------+-------------------+------------------------+-------------+--------+
 
-RSME for reactive power:    
+The results show that the relative RMSE is below 1% in all cases, indicating negligible differences between the simulation results of the individual tools.
+The deviations between PSS®NETOMAC and PSCAD™ are generally smaller than those between the MATLAB®/Simulink® benchmark model or DIgSILENT PowerFactory and the other simulation tools.
 
-+------------------------+-------------------+------------------------+-------------+--------+
-|                        | MATLAB®/Simulink® | DIgSILENT PowerFactory | PSS®NETOMAC | PSCAD™ |
-+------------------------+-------------------+------------------------+-------------+--------+
-| MATLAB®/Simulink®      |                   | 3.814                  | 2.615       | 1.959  |
-+------------------------+-------------------+------------------------+-------------+--------+
-| DIgSILENT PowerFactory | 3.814             |                        | 1.839       | 1.964  |
-+------------------------+-------------------+------------------------+-------------+--------+
-| PSS®NETOMAC            | 2.615             | 1.839                  |             | 1.360  |
-+------------------------+-------------------+------------------------+-------------+--------+
-| PSCAD™                 | 1.959             | 1.964                  | 1.360       |        |
-+------------------------+-------------------+------------------------+-------------+--------+
