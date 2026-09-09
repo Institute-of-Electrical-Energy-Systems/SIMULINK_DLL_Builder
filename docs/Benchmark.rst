@@ -513,7 +513,8 @@ To improve the comparability of quantities with different magnitudes, a relative
 
    \mathrm{RMSE}_{\mathrm{rel}}
    =
-   \frac{\mathrm{RMSE}}{x_{\mathrm{ref}}} \cdot 100,%.
+   \frac{\mathrm{RMSE}}{x_{\mathrm{ref}}}
+   \cdot 100\,\%.
 
 Here, x_ref is the selected reference value. Since the quantities are expressed in per unit (pu) and the reference value is 1 pu, the relative RMSE is obtained directly by multiplying the RMSE by 100.
 
