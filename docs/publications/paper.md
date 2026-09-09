@@ -59,7 +59,7 @@ By exporting the model and integrating the resulting DLL into a simulation progr
 Consequently, this method enables a significant improvement in simulation performance.
 
 # Software design
-![UML diagramm of the Simulink IEC 61400-27 DLL builder](./UML_Diagramm.svg){width="130%, float:right"}
+![UML diagramm of the Simulink IEC 61400-27 DLL builder](./UML_Diagramm.svg){width="130%", float="right"}
 
 # AI usage disclosure
 OpenAI ChatGPT was used for language editing, and restructuring suggestions. 
