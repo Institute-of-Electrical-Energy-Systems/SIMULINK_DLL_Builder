@@ -65,16 +65,16 @@ Within the constraints of this environment, the design emphasizes modularity and
 
 **Table 1: Files required for IEC 61400-27 DLL generation**
 
-| **File**                          | **Function**                                                                                                                                                                                    |
-| --------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `IEC61400_27_DLL.tlc`             | System Target File (STF) that controls the Simulink code generation process and the creation of the controller DLL.                                                                             |
-| `IEC61400_27_DLL.tmf`             | Template Makefile used during the compilation and linking of the generated C code.                                                                                                              |
+| **File**                         | **Function** |
+|----------------------------------|--------------|
+| `IEC61400_27_DLL.tlc`            | System Target File (STF) that controls the Simulink code generation process and the creation of the controller DLL. |
+| `IEC61400_27_DLL.tmf`            | Template Makefile used during the compilation and linking of the generated C code. |
 | `IEC61400_27_DLL_make_rtw_hook.m` | Build hook executed after code generation and before the DLL is built. It exports the parameter descriptions, units, and limits to `ParameterMetadata.tlc` by invoking `getParamMetadataRTW.m`. |
-| `getParamMetadataRTW.m`           | MATLAB script that implements the export of the parameter metadata.                                                                                                                             |
-| `ext_simenv_capi.h`               | C API header that defines the IEC 61400-27 interface that every generated DLL must implement.                                                                                                   |
-| `ext_simenv_types.h`              | C API header that defines the data types required by the IEC 61400-27 interface.                                                                                                                |
-| `sfun_info.mexw64`                | Compiled S-Function that triggers `sfun_info.tlc` during code generation.                                                                                                                        |
-| `sfun_info.tlc`                   | TLC file that generates the additional C source code required for the controller DLL.                                                                                                            |
+| `getParamMetadataRTW.m`          | MATLAB script that implements the export of the parameter metadata. |
+| `ext_simenv_capi.h`              | C API header that defines the IEC 61400-27 interface that every generated DLL must implement. |
+| `ext_simenv_types.h`             | C API header that defines the data types required by the IEC 61400-27 interface. |
+| `sfun_info.mexw64`               | Compiled S-Function that triggers `sfun_info.tlc` during code generation. |
+| `sfun_info.tlc`                  | TLC file that generates the additional C source code required for the controller DLL. |                                                                                               |
 
 While several of these files support the preparation and compilation of the IEC 61400-27 DLL, `IEC61400_27_DLL.tlc` serves as the entry point of the code generation process. This TLC file is detected by the Simulink Coder application when it is placed in the MATLAB working directory. After selecting the corresponding System Target File and providing the required DLL metadata in the DLL Builder's graphical interface, the DLL build process can be initiated.
 
