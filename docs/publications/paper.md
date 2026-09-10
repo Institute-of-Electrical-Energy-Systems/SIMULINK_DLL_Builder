@@ -38,25 +38,15 @@ bibliography: paper.bib
 
 # Statement of need
 
-The range of electrical power system simulation tools is extensive, with each tool differing in its specific capabilities and applications (Thurner et al., 2018).
-Many tools are specialized for particular time scales or levels of model detail. 
-For example, PSCAD is widely used for electromagnetic transient (EMT) simulations (Kim et al., 2026), 
-whereas tools such as Neplan or Integral are mainly applicable to steady-state or root mean square (RMS)-based analyses (ENTSO-E, 2011). 
-Therefore, the choice of a simulation tool largely depends on the specific study objectives and the required level of model detail.
+The increasing complexity of modern electrical grids has led to a growing need for simulation tools capable of accurately analyzing dynamic grid behavior, including system stability and protection system performance. A wide range of power system simulation tools is available, with individual tools differing substantially in their modeling capabilites, simulation methods, and intended applications. Many of these tools are tailored to specific simulation domains, time scales, and levels of model detail. Consequently, the choice of a simulation tool depends strongly on the objectives of the study and the phenomena that need to be represented. For example, PSCAD™ is widely used for electromagnetic transient (EMT) simulations, whereas PSS®E is primarily used for phasor-based (RMS) simulations. Other commercial tools, such as PSS®NETOMAC, DIgSILENT PowerFactory, and NEPLAN®, provide capabilities for both RMS and EMT simulations.
 
-Despite these differences, a common limitation persists across most simulation tools: 
-they are not inherently designed for developing control structures, nor do they typically provide mechanisms to export such control models for use in other simulation environments. 
-This, combined with the industry’s commercial incentive to maintain the confidentiality of their control systems, has led to the development of black-box modeling—a methodology that enables the integration of control systems into simulations without exposing proprietary algorithms. 
-This approach allows the operational behavior of a converter to be replicated while preserving the confidentiality of its underlying control design.
+Despite these differences, many existing simulation tools share a common limitation: they are not primarily designed for the development of control structures, nor do they typically provide mechanisms for exporting such control models for use in other simulation environments. At the same time, the commercial incentive to protect proprietary control strategies and algorithms has contributed to the widespread use of black-box models. Such models enable the integration of the external behavior of control systems into simulation environments without disclosing their underlying implementation. 
 
-To ensure the interoperability and portability of a model across different tools and vendors, the International Electrotechnical Commission (IEC) published IEC 61400-27 Annex F. 
-This standard defines function names, input and output parameters, and the output format of a dynamic-link library (DLL), thereby establishing a standardized data format that can be exchanged between different simulation software tools.
+To facilitate the interoperability and portability of dynamic models across different simulation tools and vendors, the International Electrotechnical Commission (IEC) published IEC 61400-27 Annex F (IEC, 2016). The standard specifies the function names, input and output parameters, and interface of a dynamic-link library (DLL), thereby defining a standardized model interface that enables dynamic models to be exchanged and integrated across different simulation software tools.
 
-This DLL format serves as both the reference and target format for the DLL Builder described in this submission. 
-The Builder can export the C code of a control structure developed in MATLAB Simulink and encapsulate it within the IEC 61400-27 framework before generating a dynamic-link library (DLL) for use in various simulation tools. 
-Thus, the presented Builder leverages existing interfaces for IEC 61400-27-compliant DLLs by populating them with the user-defined control model. 
-By exporting the model and integrating the resulting DLL into a simulation program, computationally intensive approaches—such as co-simulation between DIgSILENT PowerFactory and MATLAB Simulink—can be avoided. 
-Consequently, this method enables a significant improvement in simulation performance.
+MATLAB®/Simulink® is widely used for the design, development, and validation of control systems, including the control structures of power electronic converters. As a general-purpose modeling environment, MATLAB®/Simulink® benefits from a large user base and a comprehensive set of toolboxes for implementing general-purpose control algorithms and mathematical functions. These capabilities make it particularly well suited for the rapid prototyping and validation of new component models and control strategies. However, the execution speed of general-purpose modeling environments can become a limiting factor when studying large or computationally complex systems (Mahseredjian et al., 2009). Exporting control models developed in MATLAB®/Simulink® as C code and integrating them into an IEC 61400-27-compliant DLL provides a means of overcoming this limitation. However, this process requires the generated C code to be integrated with the standardized DLL interface, which can involve additional implementation effort.
+
+The DLL Builder presented in this work addresses this gap by automating this process. The Builder enables users to export the C code generated from a control structure developed in MATLAB®/Simulink® and integrate it into an IEC 61400-27-compliant DLL interface. The resulting dynamic-link library (DLL) can then be directly integrated into compatible simulation environments. Thus, the presented Builder leverages the standardized interface defined by IEC 61400-27 to make user-defined control models portable across different simulation tools without requiring access to the underlying control implementation.
 
 # Software design
 The software design of the Simulink IEC 61400-27 DLL Builder is largely determined by the established structure of MATLAB/Simulink, as it is integrated into the functionality provided by the Simulink Coder application.
@@ -95,3 +85,13 @@ OpenAI ChatGPT was used for language editing, and restructuring suggestions.
 All AI-generated suggestions were reviewed, edited, and validated by the authors before inclusion.
 
 # References
+
+Mahseredjian, J., Dinavahi, V., Martinez, J. A. (2009).  Simulation Tools for Electromagnetic Transients in Power Systems: Overview and Challenges. IEEE Transactions on Power Delivery, 24(3), pp. 1657-1669. http://dx.doi.org/10.1109/TPWRD.2008.2008480. 
+
+IEC 61400-27-1:2016 (2016). Wind energy generation systems - Part 27-1: Electrical simulation models - Generic models.
+
+Thurner, L., Scheidler, A., Schafer, F., Menke, J.-H., Dollichon, J., Meier, F., Meinecke, S., Braun, M. (2018). Pandapower — An Open-Source Python Tool for Convenient Modeling, Analysis, and Optimization of Electric Power Systems. IEEE Transactions on Power Systems,  33(6). http://dx.doi.org/10.1109/TPWRS.2018.2829021  
+
+Kim, B.-G., Moon, C.-J., Choi, S.-H., Choi, Y.-S., Lee, K.-M. (2026). PSCAD-Based Analysis of Short-Circuit Faults and Protection Characteristics in a Real BESS-PV Microgrid. Energies 19(3), 598. https://doi.org/10.3390/en19030598
+
+European Network of Transmission System Operators for Electricity – ENTSO-E (2011). INTEROPERABILITY TEST ― CIM FOR SYSTEM DEVELOPMENT AND OPERATIONS. 
