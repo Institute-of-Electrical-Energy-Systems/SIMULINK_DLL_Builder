@@ -86,9 +86,15 @@ This metadata is subsequently used during the generation of the C source code th
 
 Once the `IEC61400_27.c` file has been generated, the compilation, linking, and build process is initiated. During this stage, the generated source files and the required interface files are compiled and linked according to the specifications defined by the TMF and the corresponding build configuration. The resulting output is the IEC 61400-27-compliant DLL.
 
-Figure 1 illustrates the relationship between the individual files located in the working directory and their respective roles within the DLL generation process.
+\autoref{UMLdiagramm} illustrates the relationship between the individual files located in the working directory and their respective roles within the DLL generation process.
 
-![UML diagramm of the Simulink IEC 61400-27 DLL builder.](./UML_Diagramm.svg)
+![UML diagramm of the Simulink IEC 61400-27 DLL builder.](./UML_Diagramm.svg){label="UMLdiagramm"}
+
+# Research impact statement
+The main contribution of the developed tool is the abstraction of control models from specific simulation environments. Models can be exchanged and integrated as black-box components, reducing the dependency between the controller and individual simulation frameworks. This facilitates the reuse of existing models and the transfer of control approaches between different simulation environments.
+
+The tool has already been applied in several research and development projects, as well as in student projects and academic work. Although publications explicitly reporting results obtained with the tool are not yet available, discussions in online forums, open repositories, and with industry partners indicate a recurring need for solutions that support the exchange and reproducible use of control models across simulation environments. The developed approach therefore addresses a practical gap in heterogeneous simulation ecosystems and has the potential to improve the reusability, comparability, and transferability of simulation-based control research [@doi:10.1177/00375497261444678].
+
 
 # AI usage disclosure
 OpenAI ChatGPT was used for language editing, and restructuring suggestions. 
