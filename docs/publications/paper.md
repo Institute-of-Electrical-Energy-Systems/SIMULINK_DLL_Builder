@@ -13,7 +13,7 @@ authors:
     equal-contrib: true
     affiliation: 1
   - name: Dominik Frauenknecht
-    orcid: 0000-0000-0000-0000
+    orcid: 0009-0008-6796-9883
     equal-contrib: true
     affiliation: 1
   - name: Gert Mehlmann
