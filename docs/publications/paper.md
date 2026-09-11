@@ -75,9 +75,7 @@ Within the constraints of this environment, the design emphasizes modularity and
 | `sfun_info.mexw64`               | Compiled S-Function that triggers `sfun_info.tlc` during code generation. |
 | `sfun_info.tlc`                  | TLC file that generates the additional C source code required for the model DLL. |                                                                                               |
 
-While several of these files support the preparation and compilation of the IEC 61400-27 DLL, `IEC61400_27_DLL.tlc` serves as the entry point of the code generation process. This Target Language Compiler (TLC) file is detected by the Simulink Coder application when it is placed in the MATLAB® working directory. After selecting the corresponding System Target File and providing the required DLL metadata in the DLL Builder's graphical interface, the DLL build process can be initiated.
-
-Figure 1 illustrates the relationship between the individual files located in the working directory and their respective roles within the DLL generation process.
+While several of these files support the preparation and compilation of the IEC 61400-27 DLL, `IEC61400_27_DLL.tlc` serves as the entry point of the code generation process. This Target Language Compiler (TLC) file is detected by the Simulink Coder application when it is placed in the MATLAB® working directory. After selecting the corresponding System Target File and providing the required DLL metadata in the DLL Builder's graphical interface, the DLL build process can be initiated. The relationship between the individual files and their respective roles within the DLL generation process is illustrated in Figure 1.
 
 ![UML diagramm of the Simulink IEC 61400-27 DLL builder.](./UML_Diagramm.svg)
 
