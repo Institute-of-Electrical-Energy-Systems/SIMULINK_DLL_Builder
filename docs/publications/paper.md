@@ -64,9 +64,7 @@ A further established approach for integrating control systems with power system
 Several concepts can be used to establish this communication. For example, the Functional Mock-up Interface (FMI) provides a standarized framework for co-simulation [@2106c10aecf74072908cc1e45e4a8597], while shared memory approaches can be used for data exchange between simulation tools[@8973964], too. However, co-simulation requires both simulation tools to remain available during the simulation, which can increase the computational and implementation effort. Furthermore, the control model remains separated from the power system simulation tool, meaning that the control model must be executed through the coupled modeling tool rather than being directly integrated into the target simulation tool. Consequently, the control model cannot be provided as a self-contained black-box model that can be directly integrated into the target simulation environment.
 
 # Software design
-The design of the Simulink IEC 61400-27 DLL Builder is closely aligned with the code-generation workflow provided by MATLAB®/Simulink® and Simulink Coder. The Builder is implemented as a collection of System Target File, Template Makefile, MATLAB, TLC, and C interface components that extend the standard code-generation process.
-
-The design emphasizes modularity and extensibility within the Simulink Coder framework. The working directory required for DLL generation contains the files listed in Table 1.
+The design of the Simulink IEC 61400-27 DLL Builder is closely aligned with the code-generation workflow provided by MATLAB®/Simulink® and Simulink Coder. The Builder is implemented as a collection of System Target File, Template Makefile, MATLAB, TLC, and C interface components that extend the standard code-generation process. The design emphasizes modularity and extensibility within the Simulink Coder framework. The working directory required for DLL generation contains the files listed in Table 1.
 
 **Table 1:** Files required for IEC 61400-27 DLL generation.
 
