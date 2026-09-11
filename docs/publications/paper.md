@@ -35,6 +35,7 @@ bibliography: paper.bib
 ---
 # Summary
 
+The IEC 61400-27 DLL Builder is an open-source, automated process integrated into the MATLAB®/Simulink® environment for generating dynamic-link libraries (DLLs) compliant with the IEC 61400-27 interface. The resulting DLLs can be integrated into compatible power system simulation tools, such as PSCAD™, DIgSILENT PowerFactory or PSS®NETOMAC, as black-box models, enabling, for example, the integration of control systems into power system simulations. This approach abstracts the control model from a specific simulation environment, facilitating the exchange and reuse of dynamic models between different simulation tools and reducing their dependence on a specific simulation framework. Control models developed in MATLAB®/Simulink® can therefore be transferred to different compatible simulation environments without requiring manual reimplementation of the control structure. This facilitates the reuse and transfer of control approaches between simulation environments and supports the reproducibility and comparability of simulation-based research on electrical power systems.
 
 # Statement of need
 
