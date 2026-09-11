@@ -13,6 +13,7 @@ authors:
     equal-contrib: true
     affiliation: 1
   - name: Dominik Frauenknecht
+    corresponding: true # (This is how to denote the corresponding author)
     orcid: 0009-0008-6796-9883
     equal-contrib: true
     affiliation: 1

@@ -55,11 +55,9 @@ Institue of electrical energy systems.
 
 Contact: 
 
-Gregor Becker 
-Email: gregor.becker@fau.de
+Gregor Becker: gregor.becker@fau.de
 
-Dominik Frauenknecht
-dominik.frauenknecht@fau.de
+Dominik Frauenknecht: dominik.frauenknecht@fau.de
 
 ### License
 
