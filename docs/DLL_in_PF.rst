@@ -619,8 +619,6 @@ Adding a voltage dip event for the simulation benchmark
 -------------------------------------------------------
 To include a voltage dip simulation event which is used within the upcoming `benchmark <https://simulink-dll-builder.readthedocs.io/en/latest/Benchmark.html#>`_ one has to open the ``Edit Simulation Events`` menu (see Figure 57).
 Therin one has to add a new ``Parameter Event`` by clicking ``New Object`` in the upper-left corner and ``Parameter Event`` afterwards (see Figure 58). 
-In the new upcoming window (see Figure 59) the influenced element (the TheveninSource) as well as the timestamp of the events occation need to be defined. 
-Finally the event creation is finished by clicking ``OK`` and ``Close``.
 
 .. container:: image-row
 
@@ -635,9 +633,23 @@ Finally the event creation is finished by clicking ``OK`` and ``Close``.
         :target: _images/NewEvent.png
 
         Figure 58: Create a new Simulation Event.
-    
-    ..  figure:: ./images/PowerFactory/SetupVoltageDip.png
+
+In the new window that appears (see Figure 59), the influenced element (**TheveninSource**) and the timestamp at which the event occurs need to be defined.
+The parameter to be changed by the parameter event is **u0**, the initial voltage of the voltage source. This value must be entered in **per-unit (p.u.)**. For the voltage step shown in the example, **u0 = 0.7 p.u.**
+Finally, the event creation is completed by clicking **OK** and then **Close**.
+When using the parameter **u0** for the voltage dip event, the input setting of the Thevenin voltage source must also be changed for EMT simulations.
+To do this, double-click the voltage source, navigate to **Simulation EMT**, and then select **Advanced**. In the **Voltage input** parameter, select **u0 (p.u.)** as the input, as shown in Figure 60.
+
+.. container:: image-row
+
+ ..  figure:: ./images/PowerFactory/SetupVoltageDip.png
         :alt: Settings of the voltage dip event on the Thevenin Source.
         :target: _images/SetupVoltageDip.png
 
         Figure 59: Settings of the voltage dip event on the Thevenin Source.
+
+ ..  figure:: ./images/PowerFactory/VoltageSourceVoltageDip.png
+        :alt: Settings of the voltage source for the voltage dip event.
+        :target: _images/VoltageSourceVoltageDip.png
+
+        Figure 60: Settings of the voltage source for the voltage dip event.
