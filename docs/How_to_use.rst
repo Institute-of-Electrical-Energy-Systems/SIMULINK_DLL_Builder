@@ -2,7 +2,7 @@
 General Workflow
 ################
 
-The IEC 61400-27 DLL Builder converts a Simulink-based model (e.g., a converter control model) 
+The Simulink IEC 61400-27 DLL Builder converts a Simulink-based model (e.g., a converter control model) 
 into a standardized, self-contained DLL that can be used as an external model in power system 
 simulation tools such as PSS®NETOMAC, DIgSILENT PowerFactory, or PSCAD™.
 
@@ -13,7 +13,7 @@ described in detail in the corresponding chapters of this documentation.
    :alt: Overview of the six-step workflow
    :target: _images/iec61400_27_builder_workflow.png
 
-   Figure 1: Overview of the six-step workflow of the IEC 61400-27 Builder.
+   Figure 1: Overview of the six-step workflow of the Simulink IEC 61400-27 Builder.
 
 .. note::
 
@@ -73,6 +73,8 @@ The following files and folders must be present in (or copied into) the working 
 | `sfun_info.mexw64`                | Compiled S-Function that triggers `sfun_info.tlc` during code generation.                                                    |
 +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
 | `sfun_info.tlc`                   | The TLC file generates the additional C source required for the controller DLL.                                              |
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| `model_info.mdl`                  | The Simulink model contains the sfun_info S-Function block.                                                                  |
 +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
 
 .. note:: 
@@ -180,10 +182,11 @@ Converting Tunable Parameters to Simulink.Parameter Objects
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 Only variables of type `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_ in the base 
-workspace are recognized by the metadata extraction of the IEC 61400-27 DLL Builder. All parameters that should be tunable from 
-the external simulation environment must therefore be converted from ordinary MATLAB variables into 
-`Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_ objects, typically at the end of 
-the parameter script created in step 2.
+workspace are recognized by the metadata extraction of the Simulink IEC 61400-27 DLL Builder. All parameters that should be tunable from 
+the external simulation environment must therefore be defined as `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_ objects. 
+The parameters can either be defined as `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_ objects directly when they are created in the parameter script, 
+or ordinary MATLAB variables can be converted into `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_ objects, typically at the end of 
+the script created in step 2.
 
 Defining the Top-Level In-/Outports
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
