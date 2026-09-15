@@ -24,7 +24,7 @@
     <param name="Check" value="0" />
     <param name="Debug" value="0" />
     <param name="description" value="" />
-    <param name="revisor" value="si89weva, 1789473807" />
+    <param name="revisor" value="si89weva, 1789481207" />
   </paramlist>
   <Layers />
   <List classid="Settings">
@@ -159,7 +159,7 @@
         <ref link="1626509187" />
       </path>
       <paramlist>
-        <param name="xmin" value="0.0905797101449" />
+        <param name="xmin" value="0.0" />
         <param name="xmax" value="1.5" />
       </paramlist>
     </Settings>
@@ -168,8 +168,8 @@
         <ref link="1626509187" />
       </path>
       <paramlist>
-        <param name="ymin" value="0.0" />
-        <param name="ymax" value="600.0" />
+        <param name="ymin" value="-1250.0" />
+        <param name="ymax" value="1000.0" />
       </paramlist>
     </Settings>
     <Settings classid="TraceSettings" id="1213199051" link="1310122553">
@@ -222,6 +222,548 @@
     </paramlist>
   </GlobalSubstitutions>
   <definitions>
+    <Definition classid="UserCmpDefn" name="IBR_Control_2024b_1" build="" crc="96299184" view="false" instances="0" date="0" id="0">
+      <paramlist>
+        <param name="Description" value="IEC 61400-27 DLL - IBR_Control_2024b" />
+      </paramlist>
+      <graphics>
+        <Port classid="Port" x="-126" y="0">
+          <paramlist>
+            <param name="mode" value="1" />
+            <param name="name" value="in_voltage_a" />
+            <param name="datatype" value="3" />
+            <param name="dim" value="1" />
+            <param name="cond" value="true" />
+          </paramlist>
+        </Port>
+        <Port classid="Port" x="-126" y="18">
+          <paramlist>
+            <param name="mode" value="1" />
+            <param name="name" value="in_voltage_b" />
+            <param name="datatype" value="3" />
+            <param name="dim" value="1" />
+            <param name="cond" value="true" />
+          </paramlist>
+        </Port>
+        <Port classid="Port" x="-126" y="36">
+          <paramlist>
+            <param name="mode" value="1" />
+            <param name="name" value="in_voltage_c" />
+            <param name="datatype" value="3" />
+            <param name="dim" value="1" />
+            <param name="cond" value="true" />
+          </paramlist>
+        </Port>
+        <Port classid="Port" x="-126" y="54">
+          <paramlist>
+            <param name="mode" value="1" />
+            <param name="name" value="in_current_a" />
+            <param name="datatype" value="3" />
+            <param name="dim" value="1" />
+            <param name="cond" value="true" />
+          </paramlist>
+        </Port>
+        <Port classid="Port" x="-126" y="72">
+          <paramlist>
+            <param name="mode" value="1" />
+            <param name="name" value="in_current_b" />
+            <param name="datatype" value="3" />
+            <param name="dim" value="1" />
+            <param name="cond" value="true" />
+          </paramlist>
+        </Port>
+        <Port classid="Port" x="-126" y="90">
+          <paramlist>
+            <param name="mode" value="1" />
+            <param name="name" value="in_current_c" />
+            <param name="datatype" value="3" />
+            <param name="dim" value="1" />
+            <param name="cond" value="true" />
+          </paramlist>
+        </Port>
+        <Port classid="Port" x="306" y="0">
+          <paramlist>
+            <param name="mode" value="2" />
+            <param name="name" value="out_voltage_a" />
+            <param name="datatype" value="3" />
+            <param name="dim" value="1" />
+            <param name="cond" value="true" />
+          </paramlist>
+        </Port>
+        <Port classid="Port" x="306" y="18">
+          <paramlist>
+            <param name="mode" value="2" />
+            <param name="name" value="out_voltage_b" />
+            <param name="datatype" value="3" />
+            <param name="dim" value="1" />
+            <param name="cond" value="true" />
+          </paramlist>
+        </Port>
+        <Port classid="Port" x="306" y="36">
+          <paramlist>
+            <param name="mode" value="2" />
+            <param name="name" value="out_voltage_c" />
+            <param name="datatype" value="3" />
+            <param name="dim" value="1" />
+            <param name="cond" value="true" />
+          </paramlist>
+        </Port>
+        <Gfx classid="Graphics.Text" x="90" y="18">
+          <paramlist>
+            <param name="text" value="IEC_DLL_of_Matlab_Simulin" />
+            <param name="cond" value="true" />
+            <param name="color" value="Black" />
+            <param name="angle" value="0" />
+            <param name="anchor" value="1" />
+            <param name="full_font" value="Tahoma, 12world" />
+          </paramlist>
+        </Gfx>
+        <Gfx classid="Graphics.Text" x="90" y="36">
+          <paramlist>
+            <param name="text" value="k_Model" />
+            <param name="cond" value="true" />
+            <param name="color" value="Black" />
+            <param name="angle" value="0" />
+            <param name="anchor" value="1" />
+            <param name="full_font" value="Tahoma, 12world" />
+          </paramlist>
+        </Gfx>
+        <Gfx classid="Graphics.Text" x="90" y="54">
+          <paramlist>
+            <param name="text" value="IEC DLL" />
+            <param name="cond" value="true" />
+            <param name="color" value="Black" />
+            <param name="angle" value="0" />
+            <param name="anchor" value="1" />
+            <param name="full_font" value="Tahoma, 12world" />
+          </paramlist>
+        </Gfx>
+        <Gfx classid="Graphics.Text" x="200" y="72">
+          <paramlist>
+            <param name="text" value="" />
+            <param name="cond" value="true" />
+            <param name="color" value="Black" />
+            <param name="angle" value="0" />
+            <param name="anchor" value="1" />
+            <param name="full_font" value="Tahoma, 12world" />
+          </paramlist>
+        </Gfx>
+        <Gfx classid="Graphics.Rectangle" x="-22" y="-9" w="226" h="103">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="black" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="" />
+            <param name="fill_fg" value="Black" />
+            <param name="fill_bg" value="White" />
+            <param name="fill_style" value="0" />
+          </paramlist>
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-126" y="0">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_voltage_a" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="104" y="0" />
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-22" y="0">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_voltage_a" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="-5" y="5" />
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-22" y="0">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_voltage_a" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="-5" y="-5" />
+        </Gfx>
+        <Gfx classid="Graphics.Text" x="-25" y="12">
+          <paramlist>
+            <param name="text" value="in_voltage_a" />
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="angle" value="0" />
+            <param name="anchor" value="2" />
+            <param name="full_font" value="Tahoma, 12world" />
+          </paramlist>
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-126" y="18">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_voltage_b" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="104" y="0" />
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-22" y="18">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_voltage_b" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="-5" y="5" />
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-22" y="18">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_voltage_b" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="-5" y="-5" />
+        </Gfx>
+        <Gfx classid="Graphics.Text" x="-25" y="30">
+          <paramlist>
+            <param name="text" value="in_voltage_b" />
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="angle" value="0" />
+            <param name="anchor" value="2" />
+            <param name="full_font" value="Tahoma, 12world" />
+          </paramlist>
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-126" y="36">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_voltage_c" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="104" y="0" />
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-22" y="36">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_voltage_c" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="-5" y="5" />
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-22" y="36">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_voltage_c" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="-5" y="-5" />
+        </Gfx>
+        <Gfx classid="Graphics.Text" x="-25" y="48">
+          <paramlist>
+            <param name="text" value="in_voltage_c" />
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="angle" value="0" />
+            <param name="anchor" value="2" />
+            <param name="full_font" value="Tahoma, 12world" />
+          </paramlist>
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-126" y="54">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_current_a" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="104" y="0" />
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-22" y="54">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_current_a" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="-5" y="5" />
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-22" y="54">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_current_a" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="-5" y="-5" />
+        </Gfx>
+        <Gfx classid="Graphics.Text" x="-25" y="66">
+          <paramlist>
+            <param name="text" value="in_current_a" />
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="angle" value="0" />
+            <param name="anchor" value="2" />
+            <param name="full_font" value="Tahoma, 12world" />
+          </paramlist>
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-126" y="72">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_current_b" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="104" y="0" />
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-22" y="72">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_current_b" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="-5" y="5" />
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-22" y="72">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_current_b" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="-5" y="-5" />
+        </Gfx>
+        <Gfx classid="Graphics.Text" x="-25" y="84">
+          <paramlist>
+            <param name="text" value="in_current_b" />
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="angle" value="0" />
+            <param name="anchor" value="2" />
+            <param name="full_font" value="Tahoma, 12world" />
+          </paramlist>
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-126" y="90">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_current_c" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="104" y="0" />
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-22" y="90">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_current_c" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="-5" y="5" />
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="-22" y="90">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="in_current_c" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="-5" y="-5" />
+        </Gfx>
+        <Gfx classid="Graphics.Text" x="-25" y="102">
+          <paramlist>
+            <param name="text" value="in_current_c" />
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="angle" value="0" />
+            <param name="anchor" value="2" />
+            <param name="full_font" value="Tahoma, 12world" />
+          </paramlist>
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="306" y="0">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="out_voltage_a" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="-102" y="0" />
+        </Gfx>
+        <Gfx classid="Graphics.Text" x="207" y="-3">
+          <paramlist>
+            <param name="text" value="out_voltage_a" />
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="angle" value="0" />
+            <param name="anchor" value="0" />
+            <param name="full_font" value="Tahoma, 12world" />
+          </paramlist>
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="306" y="18">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="out_voltage_b" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="-102" y="0" />
+        </Gfx>
+        <Gfx classid="Graphics.Text" x="207" y="15">
+          <paramlist>
+            <param name="text" value="out_voltage_b" />
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="angle" value="0" />
+            <param name="anchor" value="0" />
+            <param name="full_font" value="Tahoma, 12world" />
+          </paramlist>
+        </Gfx>
+        <Gfx classid="Graphics.Line" x="306" y="36">
+          <paramlist>
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="dasharray" value="0" />
+            <param name="thickness" value="0" />
+            <param name="port" value="out_voltage_c" />
+          </paramlist>
+          <vertex x="0" y="0" />
+          <vertex x="-102" y="0" />
+        </Gfx>
+        <Gfx classid="Graphics.Text" x="207" y="33">
+          <paramlist>
+            <param name="text" value="out_voltage_c" />
+            <param name="cond" value="true" />
+            <param name="color" value="Green" />
+            <param name="angle" value="0" />
+            <param name="anchor" value="0" />
+            <param name="full_font" value="Tahoma, 12world" />
+          </paramlist>
+        </Gfx>
+      </graphics>
+      <form w="600" h="400" splitter="40" category-width="180" help-width="490">
+        <category name="Configuration">
+          <cond><![CDATA[true]]></cond>
+          <parameter type="Text" name="Name" desc="Name of the component" group="" allowemptystr="true">
+            <value><![CDATA[IBR_Control_2024b]]></value>
+            <vis><![CDATA[False]]></vis>
+          </parameter>
+          <parameter type="Text" name="DLL_Path" desc="DLL Path" group="" allowemptystr="true">
+            <value><![CDATA[..\IBR_Control_2024b.dll]]></value>
+          </parameter>
+          <parameter type="Logical" name="Use_Interpolation" desc="Use linear interpolation of inputs" group="" animate="false" intent="Input" content_type="Constant" dim="1">
+            <value><![CDATA[.FALSE.]]></value>
+          </parameter>
+        </category>
+        <category name="Model Parameters">
+          <cond><![CDATA[true]]></cond>
+          <parameter type="Real" name="Fn" desc="Fn - Nominal frequency" group="" dim="1" content_type="Literal" intent="Input" min="0.0" max="1000000.0" unit="Hz" animate="false">
+            <value><![CDATA[50.0 [Hz]]]></value>
+          </parameter>
+          <parameter type="Real" name="Iang0_pcc" desc="Iang0_pcc - Initial current angle injected at PCC" group="" dim="1" content_type="Literal" intent="Input" min="0.0" max="6.28318530717959" unit="rad" animate="false">
+            <value><![CDATA[0.118707231926086 [rad]]]></value>
+          </parameter>
+          <parameter type="Real" name="Imag0_pcc" desc="Imag0_pcc - Initial current magnitude injected at PCC" group="" dim="1" content_type="Literal" intent="Input" min="0.0" max="1000000000000.0" unit="A" animate="false">
+            <value><![CDATA[703.871673738482 [A]]]></value>
+          </parameter>
+          <parameter type="Real" name="Ki_I" desc="Ki_I - Integral gain of current controller (continuous)" group="" dim="1" content_type="Literal" intent="Input" min="1e-06" max="1000000.0" unit="V/A" animate="false">
+            <value><![CDATA[8000.0 [V/A]]]></value>
+          </parameter>
+          <parameter type="Real" name="Ki_PLL" desc="Ki_PLL - Integral gain of phase-locked loop (continous)" group="" dim="1" content_type="Literal" intent="Input" min="1e-06" max="1000000.0" unit="Hz/V" animate="false">
+            <value><![CDATA[0.02 [Hz/V]]]></value>
+          </parameter>
+          <parameter type="Real" name="Kp_I" desc="Kp_I - Proportional gain of current controller (continuous)" group="" dim="1" content_type="Literal" intent="Input" min="1e-06" max="1000000.0" unit="V/A" animate="false">
+            <value><![CDATA[400.0 [V/A]]]></value>
+          </parameter>
+          <parameter type="Real" name="Kp_PLL" desc="Kp_PLL - Proportional gain of phase-locked loop (continous)" group="" dim="1" content_type="Literal" intent="Input" min="1e-06" max="1000000.0" unit="Hz/V" animate="false">
+            <value><![CDATA[0.0002 [Hz/V]]]></value>
+          </parameter>
+          <parameter type="Real" name="Lc" desc="Lc - Converter inductance" group="" dim="1" content_type="Literal" intent="Input" min="1e-06" max="1000000.0" unit="H" animate="false">
+            <value><![CDATA[0.1574 [H]]]></value>
+          </parameter>
+          <parameter type="Real" name="Pref" desc="Pref - Active power set-point" group="" dim="1" content_type="Literal" intent="Input" min="-500000000.0" max="500000000.0" unit="W" animate="false">
+            <value><![CDATA[500000000.0 [W]]]></value>
+          </parameter>
+          <parameter type="Real" name="Qref" desc="Qref - Reactive power set-point" group="" dim="1" content_type="Literal" intent="Input" min="-500000000.0" max="500000000.0" unit="VAr" animate="false">
+            <value><![CDATA[100000000.0 [VAr]]]></value>
+          </parameter>
+          <parameter type="Real" name="Rc" desc="Rc - Converter resistance" group="" dim="1" content_type="Literal" intent="Input" min="1e-06" max="1000000.0" unit="Ohm" animate="false">
+            <value><![CDATA[0.782 [Ohm]]]></value>
+          </parameter>
+          <parameter type="Real" name="Tf_S" desc="Tf_S - Filter time constant of power control (continuous)" group="" dim="1" content_type="Literal" intent="Input" min="1e-06" max="1000000.0" unit="s" animate="false">
+            <value><![CDATA[0.1 [s]]]></value>
+          </parameter>
+          <parameter type="Real" name="Ts" desc="Ts - Simulation time step" group="" dim="1" content_type="Literal" intent="Input" min="1e-06" max="0.0001" unit="s" animate="false">
+            <value><![CDATA[5e-05 [s]]]></value>
+          </parameter>
+          <parameter type="Real" name="Vang0_pcc" desc="Vang0_pcc - Initial voltage angle at PCC" group="" dim="1" content_type="Literal" intent="Input" min="0.0" max="6.28318530717959" unit="rad" animate="false">
+            <value><![CDATA[0.316102791775967 [rad]]]></value>
+          </parameter>
+          <parameter type="Real" name="Vmag0_pcc" desc="Vmag0_pcc - Initial voltage magnitude at PCC" group="" dim="1" content_type="Literal" intent="Input" min="0.0" max="1000000000000.0" unit="V" animate="false">
+            <value><![CDATA[418246.734257662 [V]]]></value>
+          </parameter>
+        </category>
+        <category name="Initial Conditions">
+          <cond><![CDATA[true]]></cond>
+          <parameter type="Real" name="TRelease" desc="TRelease - Time to release initial conditions (sec)" group="" dim="1" content_type="Constant" intent="Input" min="0" max="1e+308" unit="sec" animate="false">
+            <value><![CDATA[0 [sec]]]></value>
+          </parameter>
+          <parameter type="Real" name="out_voltage_a_init" desc="out_voltage_a_init - Initial output value" group="" dim="1" content_type="Constant" intent="Input" min="-1e+308" max="1e+308" animate="false">
+            <value><![CDATA[0.0]]></value>
+          </parameter>
+          <parameter type="Real" name="out_voltage_b_init" desc="out_voltage_b_init - Initial output value" group="" dim="1" content_type="Constant" intent="Input" min="-1e+308" max="1e+308" animate="false">
+            <value><![CDATA[0.0]]></value>
+          </parameter>
+          <parameter type="Real" name="out_voltage_c_init" desc="out_voltage_c_init - Initial output value" group="" dim="1" content_type="Constant" intent="Input" min="-1e+308" max="1e+308" animate="false">
+            <value><![CDATA[0.0]]></value>
+          </parameter>
+        </category>
+      </form>
+      <script>
+        <segment name="Fortran" classid="CoreSegment" id="1867108844"><![CDATA[	CALL IBR_Control_2024b_FINTERFACE_PSCAD($in_voltage_a, $in_voltage_b, $in_voltage_c, $in_current_a, $in_current_b, $in_current_c, $Fn, $Iang0_pcc, $Imag0_pcc, $Ki_I, $Ki_PLL, $Kp_I, $Kp_PLL, $Lc, $Pref, $Qref, $Rc, $Tf_S, $Ts, $Vang0_pcc, $Vmag0_pcc, $out_voltage_a, $out_voltage_b, $out_voltage_c, $out_voltage_a_init, $out_voltage_b_init, $out_voltage_c_init, $TRelease, "$DLL_Path", $Use_Interpolation)]]></segment>
+      </script>
+    </Definition>
     <Definition classid="UserCmpDefn" name="IBR_Control" build="" crc="4648581" view="false" instances="0" date="0" id="0">
       <paramlist>
         <param name="Description" value="IEC 61400-27 DLL - IBR_Control" />
@@ -56444,7 +56986,7 @@
         </Wire>
       </schematic>
     </Definition>
-    <Definition classid="UserCmpDefn" name="Main" id="541700690" group="" url="" version="" build="" crc="119036872" view="false" date="1789473744">
+    <Definition classid="UserCmpDefn" name="Main" id="541700690" group="" url="" version="" build="" crc="30855392" view="false" date="1789481184">
       <paramlist name="">
         <param name="Description" value="" />
       </paramlist>
@@ -57494,10 +58036,10 @@
             <param name="Name" value="BRK_DIP" />
           </paramlist>
         </User>
-        <User classid="UserCmp" id="2054028695" name="DLL_Builder:IBR_Control" x="288" y="288" w="440" h="126" z="180" orient="0" defn="DLL_Builder:IBR_Control" link="-1" q="4" disable="false">
-          <paramlist name="" link="-1" crc="71028832">
-            <param name="Name" value="IBR_Control" />
-            <param name="DLL_Path" value="..\IBR_Control.dll" />
+        <User classid="UserCmp" id="57781751" name="DLL_Builder:IBR_Control_2024b_1" x="288" y="288" w="440" h="126" z="180" orient="0" defn="DLL_Builder:IBR_Control_2024b_1" link="-1" q="4" disable="false">
+          <paramlist name="" link="-1" crc="57756284">
+            <param name="Name" value="IBR_Control_2024b" />
+            <param name="DLL_Path" value="..\IBR_Control_2024b.dll" />
             <param name="Use_Interpolation" value=".FALSE." />
             <param name="Fn" value="50.0 [Hz]" />
             <param name="Iang0_pcc" value="0.118707231926086 [rad]" />
@@ -57524,16 +58066,16 @@
     </Definition>
   </definitions>
   <List classid="Resource">
-    <Resource classid="SourceResource" id="1365753514" url="IBR_Control_FINTERFACE_PSCAD.f90">
+    <Resource classid="SourceResource" id="1777790750" url="IBR_Control_2024b_FINTERFACE_PSCAD.f90">
       <paramlist>
-        <param name="filepath" value="IBR_Control_FINTERFACE_PSCAD.f90" />
+        <param name="filepath" value="IBR_Control_2024b_FINTERFACE_PSCAD.f90" />
         <param name="copy_file" value="false" />
         <param name="include" value="true" />
       </paramlist>
     </Resource>
   </List>
   <hierarchy>
-    <call link="125003144" name="DLL_Builder:DS" z="-1" view="false" instance="0">
+    <call link="1201627141" name="DLL_Builder:DS" z="-1" view="false" instance="0">
       <call link="1626509187" name="DLL_Builder:Main" z="-1" view="true" instance="0" />
     </call>
   </hierarchy>
