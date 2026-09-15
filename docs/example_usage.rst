@@ -2,7 +2,7 @@
 Example Usage
 #############
 
-This chapter presents an example of how the IEC 61400-27 DLL Builder converts a Simulink-based converter model into a standardized, self-contained DLL. 
+This chapter presents an example of how the Simulink IEC 61400-27 DLL Builder converts a Simulink-based converter model into a standardized, self-contained DLL. 
 The resulting DLL can be integrated into power system simulation tools such as PSS®NETOMAC, DIgSILENT PowerFactory, or PSCAD™.
 
 The example considers the power system shown in Figure 1.
@@ -67,6 +67,8 @@ The following files and folders must be present in (or copied into) the working 
 +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
 | `sfun_info.tlc`                   | The TLC file generates the additional C source required for the controller DLL.                                              |
 +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| `model_info.mdl`                  | The Simulink model contains the sfun_info S-Function block.                                                                  |
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
 
 .. note:: 
 
@@ -93,7 +95,7 @@ The following example is divided into two steps:
 - Designing the MATLAB®/Simulink® model (.slx)
 - Creating the Parameter Script (.m)
    
-Designing the MATLAB®/Simulink® Model (.slx)
+Designing the Simulink Model
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 A grid-following IBR control concept is used in this example, as shown in the block diagram in Figure 2. 
@@ -115,7 +117,7 @@ An inverse Park transformation is then used to convert these voltage references 
 
 The MATLAB®/Simulink® model is provided as the file ``IBR_Control_2024b.slx``.
 
-Creating the Parameter Script (.m)
+Creating the Parameter Script 
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The MATLAB® script ``IBR_Control_Parameters.m`` is the parameter script for the example. Its primary purpose is to generate all controller parameters, calculate the required operating point, and initialize the workspace with the data required by the model.
@@ -128,13 +130,13 @@ The parameterization of the MATLAB®/Simulink® model is divided into the follow
 
 For the conversion of the model into an IEC 61400-27 DLL and the subsequent modification of its parameters, all parameters must be defined as `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_ objects.
 This is essential for the subsequent code-generation process. The metadata extraction performed by the IEC 61400-27 DLL Builder recognizes only variables of type `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_.
-Ordinary MATLAB® variables are ignored and therefore cannot be exported as tunable paramers.
+Ordinary MATLAB® variables are ignored and therefore cannot be exported as tunable parameters.
 
 Simulation and Grid Data
 '''''''''''''''''''''''''''''''''''
 
 This section defines the general parameters required for the power system simulation.
-The relevant parameters are listd in the following table:
+The relevant parameters are listed in the following table:
 
 +-----------+--------+-----------+---------+---------+------+------------+----------------------+
 | Parameter | Value  | Data type | Minimum | Maximum | Unit | Complexity | Description          |
@@ -155,23 +157,23 @@ The parameters are listed in the following table:
 +===========+========+===========+=========+=========+======+============+======================================================+
 | Sn        | 500E6  | double    | 1       | 100E12  | MVA  | real       | Rated power of converter                             |
 +-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
-| Rc        | 0.7820 | double    | 1E-6    | 1E6     | Hz   | real       | Converter resistance                                 |
+| Rc        | 0.7820 | double    | 1E-6    | 1E6     | Ohm  | real       | Converter resistance                                 |
 +-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
-| Lc        | 0.1574 | double    | 1E-6    | 1E6     | Hz   | real       | Converter inductance                                 |
+| Lc        | 0.1574 | double    | 1E-6    | 1E6     | H    | real       | Converter inductance                                 |
 +-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
-| Pref      | 500e6  | double    | 1E-6    | 1E6     | Hz   | real       | Active power set-point                               |
+| Pref      | 500e6  | double    | 1E-6    | 1E6     | W    | real       | Active power set-point                               |
 +-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
-| Qref      | 100e6  | double    | 1E-6    | 1E6     | Hz   | real       | Reactive power set-point                             |
+| Qref      | 100e6  | double    | 1E-6    | 1E6     | VAr  | real       | Reactive power set-point                             |
 +-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
-| Tf_S      | 0.1    | double    | 1E-6    | 1E6     | Hz   | real       | Filter time constant of power control (continuous)   |
+| Tf_S      | 0.1    | double    | 1E-6    | 1E6     | s    | real       | Filter time constant of power control (continuous)   |
 +-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
-| Kp_I      | 400    | double    | 1E-6    | 1E6     | Hz   | real       | Proportional gain of current controller (continuous) |
+| Kp_I      | 400    | double    | 1E-6    | 1E6     | V/A  | real       | Proportional gain of current controller (continuous) |
 +-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
-| Ki_I      | 8000   | double    | 1E-6    | 1E6     | Hz   | real       | Integral gain of current controller (continuous)     |
+| Ki_I      | 8000   | double    | 1E-6    | 1E6     | V/A  | real       | Integral gain of current controller (continuous)     |
 +-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
-| Kp_PLL    | 0.0002 | double    | 1E-6    | 1E6     | Hz   | real       | Proportional gain of phase-locked loop (continous)   |
+| Kp_PLL    | 0.0002 | double    | 1E-6    | 1E6     | Hz/V | real       | Proportional gain of phase-locked loop (continous)   |
 +-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
-| Ki_PLL    | 0.02   | double    | 1E-6    | 1E6     | Hz   | real       | Integral gain of phase-locked loop (continous)       |
+| Ki_PLL    | 0.02   | double    | 1E-6    | 1E6     | Hz/V | real       | Integral gain of phase-locked loop (continous)       |
 +-----------+--------+-----------+---------+---------+------+------------+------------------------------------------------------+
 
 All controller coefficients are calculated using the selected fixed simulation step size ``Ts`` to ensure consistent discrete-time behaviour.
@@ -213,29 +215,53 @@ The resistance and reactance of the Thevenin equivalent are calculated from the 
 
 The resistance is calculated using:
 
-``Re = Vn^2 / (SCR * Sn) / sqrt(RXratio^2+1) * RXratio``
+.. math::
+
+   R_{\mathrm{e}}
+   =
+   \frac{V_{\mathrm{n}}^{2}}{SCR * S_{\mathrm{n}} \cdot \frac{RX_{\mathrm{ratio}}{\sqrt{RX_{\mathrm{ratio}^{2}+1}}  
 
 The reactance ic calculated using:
 
-``Xe = Vn^2 / (SCR * Sn) / sqrt(RXratio^2+1)``
+.. math::
+
+   X_{\mathrm{e}}
+   =
+   \frac{V_{\mathrm{n}}^{2}}{SCR * S_{\mathrm{n}} \cdot \frac{1}{\sqrt{RX_{\mathrm{ratio}^{2}+1}}  
 
 Together with the Thevenin equivalent and the active and reactive power setpoints at the point of common coupling (PCC), the voltage and current at the PCC can be determined by a load-flow calculation.
 
 The inputs to the load-flow calculation are the Thevenin voltage represented as a complex phasor, 
 
-``cVth = Vn/sqrt(3) + j*0``
+.. math::
+
+   cV_{\mathrm{th}}
+   =
+   \frac{V_{\mathrm{n}}{\sqrt{3}} + \mathrm{j} \cdot 0
 
 the Thevenin impedance,
 
-``cZe=Re+j*Xe``
+.. math::
+
+   cZ_{\mathrm{e}}
+   =
+   R_{\mathrm{e}} + \mathrm{j} \cdot X_{\mathrm{e}}
 
 and the complex power at the PCC,
 
-``cSc==Pref+j*Qref``
+.. math::
+
+   cS_{\mathrm{c}}
+   =
+   P_{\mathrm{ref}} + \mathrm{j} \cdot Q_{\mathrm{ref}}
 
 According to Kirchhoff`s voltage law, the system can be described by the following nonlinear equation:
 
-``0 = Vn/sqrt(3) - (Vg,r+j*Vg,i) + (Pref-j*Qref)/(3*(Vg,r+j*Vg,i)) * (Re+j*Xe)``
+.. math::
+
+   0
+   =
+   \frac{V_{\mathrm{n}}{\sqrt{3}} - (V_{\mathrm{g,r}} + \mathrm{j} \cdot V_{\mathrm{g,i}}) + \frac{P_{\mathrm{ref}} - \mathrm{j} \cdot Q_{\mathrm{ref}}{3\cdot (V_{\mathrm{g,r}} + \mathrm{j} \cdot V_{\mathrm{g,i}})} \cdot R_{\mathrm{e}} + \mathrm{j} \cdot X_{\mathrm{e}
 
 This equation is solved using the MATLAB® function `fsolve <https://de.mathworks.com/help/optim/ug/fsolve.html>`_.
 
@@ -243,7 +269,11 @@ The resulting real and imaginary components of the PCC voltage are ``Vg,r`` and 
 
 The current injected by the IBR at the PCC is then calculated as: 
 
-``Ir+j*Ii = (Pref-j*Qref)/(3*((Vg,r+j*Vg,i))``
+.. math::
+
+   I_{\mathrm{r}} + \mathrm{j} \cdot I_{\mathrm{i}
+   =
+   \frac{P_{\mathrm{ref}} - \mathrm{j} \cdot Q_{\mathrm{ref}}{3\cdot (V_{\mathrm{g,r}} + \mathrm{j} \cdot V_{\mathrm{g,i}})}
 
 The resulting `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_ are required for the initialization are listed in the following table:
 
