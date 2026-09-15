@@ -29,7 +29,7 @@ Prerequisites
 - Simulink Coder Toolbox 
 
 1. Preparing the Working Directory
------------------------------------
+----------------------------------
 
 Before any modeling work can begin, a correctly structured working directory must be set up. 
 The working directory is the folder from which the Simulink model is opened and in which the
@@ -118,7 +118,7 @@ An inverse Park transformation is then used to convert these voltage references 
 The MATLAB®/Simulink® model is provided as the file ``IBR_Control_2024b.slx``.
 
 Creating the Parameter Script 
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 The MATLAB® script ``IBR_Control_Parameters.m`` is the parameter script for the example. Its primary purpose is to generate all controller parameters, calculate the required operating point, and initialize the workspace with the data required by the model.
 
@@ -133,7 +133,7 @@ This is essential for the subsequent code-generation process. The metadata extra
 Ordinary MATLAB® variables are ignored and therefore cannot be exported as tunable parameters.
 
 Simulation and Grid Data
-'''''''''''''''''''''''''''''''''''
+''''''''''''''''''''''''
 
 This section defines the general parameters required for the power system simulation.
 The relevant parameters are listed in the following table:
@@ -147,7 +147,7 @@ The relevant parameters are listed in the following table:
 +-----------+--------+-----------+---------+---------+------+------------+----------------------+
 
 Converter Model Data
-'''''''''''''''''''''''''''''''''''
+''''''''''''''''''''
 
 This section defines the general parameters for the IBR converter, including its rated power, internal impedance, active and reactive setpoints, and control parameters.
 The parameters are listed in the following table:
@@ -179,7 +179,7 @@ The parameters are listed in the following table:
 All controller coefficients are calculated using the selected fixed simulation step size ``Ts`` to ensure consistent discrete-time behaviour.
 
 Initialization by Load-Flow Calculation
-'''''''''''''''''''''''''''''''''''
+'''''''''''''''''''''''''''''''''''''''
 
 To minimize artificial transients at the beginning of the simulation, the controller is initialized directly at its steady-state operatint point.
 Initialization means assigning an initial value to every state variable in the control model. This includes, for example:
@@ -292,7 +292,7 @@ The resulting `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/
 These quantities define the operating point used for controller initialization.
 
 Workspace Export
-'''''''''''''''''''''''''''''''''''
+''''''''''''''''
 
 Once all calculations have been completed, all temporary variables are removed from the MATLAB® workspace.
 
@@ -409,7 +409,7 @@ issues and possible solutions.
 
 
 6. Using the Created DLL File
----------------------------------
+-----------------------------
 
 After a successful build, three output files are produced in the build folder:
 

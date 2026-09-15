@@ -37,7 +37,7 @@ Integration - 001: First sample inf
 DIgSILENT PowerFactory
 ^^^^^^^^^^^^^^^^^^^^^^
 PowerFactory - 001: DLL file <your DLL path> could not be loaded
-^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''''
 **Error Message**::
 	
     Grid\IBR_DLL.ElmDsl: DLL file <your DLL path> could not be loaded.		

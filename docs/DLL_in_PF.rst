@@ -40,11 +40,11 @@ However, the simulation is of limited significance at this stage, as the Theveni
 2. Building the external controlled voltage source (Grid following IBR)
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 ..  figure:: ./images/PowerFactory/SMIB_IBR_PowerFactory.png
-    :alt: IBR in a SMIB configuraiton in DIgSILENT PowerFactory.
+    :alt: IBR in a SMIB configuration in DIgSILENT PowerFactory.
     :width: 50%
     :target: _images/SMIB_IBR_PowerFactory.png
 
-    Figure 2: IBR in a SMIB configuraiton in DIgSILENT PowerFactory.
+    Figure 2: IBR in a SMIB configuration in DIgSILENT PowerFactory.
 
 The regulated ideal voltage source is now connected to the PCC through a series impedance, thereby forming the equivalent circuit of a grid-following IBR. 
 The voltage source will subsequently be controlled by the dynamic model provided by the IEC 61400-27 DLL.
