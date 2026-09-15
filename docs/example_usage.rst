@@ -219,7 +219,7 @@ The resistance is calculated using:
 
    R_{\mathrm{e}}
    =
-   \frac{V_{\mathrm{n}}^{2}}{SCR \cdot S_{\mathrm{n}}} \cdot \frac{RX_{\mathrm{ratio}}{\sqrt{RX_{\mathrm{ratio}}^{2}+1}}  
+   \frac{V_{\mathrm{n}}^{2}}{SCR \cdot S_{\mathrm{n}}} \cdot \frac{RX_{\mathrm{ratio}}}{\sqrt{RX_{\mathrm{ratio}}^{2}+1}}  
 
 The reactance ic calculated using:
 
@@ -261,7 +261,7 @@ According to Kirchhoff`s voltage law, the system can be described by the followi
 
    0
    =
-   \frac{V_{\mathrm{n}}}{\sqrt{3}} - (V_{\mathrm{g,r}} + \mathrm{j} \cdot V_{\mathrm{g,i}}) + \frac{P_{\mathrm{ref}} - \mathrm{j} \cdot Q_{\mathrm{ref}}}{3\cdot (V_{\mathrm{g,r}} + \mathrm{j} \cdot V_{\mathrm{g,i}})} \cdot R_{\mathrm{e}} + \mathrm{j} \cdot X_{\mathrm{e}
+   \frac{V_{\mathrm{n}}}{\sqrt{3}} - (V_{\mathrm{g,r}} + \mathrm{j} \cdot V_{\mathrm{g,i}}) + \frac{P_{\mathrm{ref}} - \mathrm{j} \cdot Q_{\mathrm{ref}}}{3\cdot (V_{\mathrm{g,r}} + \mathrm{j} \cdot V_{\mathrm{g,i}})} \cdot R_{\mathrm{e}} + \mathrm{j} \cdot X_{\mathrm{e}}
 
 This equation is solved using the MATLAB® function `fsolve <https://de.mathworks.com/help/optim/ug/fsolve.html>`_.
 
