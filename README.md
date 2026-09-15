@@ -2,7 +2,7 @@
 [![Generic badge](https://img.shields.io/badge/content-what/why-darkgreen.svg)](https://simulink-dll-builder.readthedocs.io/en/latest/#)
 [![Generic badge](https://img.shields.io/badge/content-how-green.svg)](https://simulink-dll-builder.readthedocs.io/en/latest/#)
 
-[![Documentation Status](https://app.readthedocs.org/projects/simulink-dll-builder/badge/?version=latest&style=flat%20-%20default)](https://app.readthedocs.org/projects/simulink-dll-builder/badge/?version=latest&style=flat%20-%20default)
+[![Documentation Status](https://app.readthedocs.org/projects/simulink-dll-builder/badge/?version=latest&style=flat%20-%20default)](https://simulink-dll-builder.readthedocs.io/en/latest/?badge=latest)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 
 ## Software Description
