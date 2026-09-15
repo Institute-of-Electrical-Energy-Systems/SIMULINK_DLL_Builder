@@ -191,7 +191,7 @@ The example model is provided with an initial set of parameters derived from the
 
 Adding a voltage dip event for the simulation benchmark
 -------------------------------------------------------
-To include a voltage dip simulation event, which is used in the upcoming  `benchmark <https://simulink-dll-builder.readthedocs.io/en/latest/Benchmark.html#>`_, a second voltage source and two switches need to be added (see Figure 13).
+To include a voltage dip simulation event, which is used in the upcoming  `benchmark <https://simulink-dll-builder.readthedocs.io/en/latest/Benchmark.html#>`_, a second voltage source (0.7 p.u.) and two switches need to be added (see Figure 13).
 Afterwards, two events handling the switching at the beginning and the end of the voltage dip need to be added for both the healthy and the distorted Thevenin equivalent (see Figure 14).
 Within the input frame of these events, the initial state and the two switching times need to be specified. For the healthy state, the switch is initially on, whereas for the distorted state, the switch is initially off (see Figure 15).
 
