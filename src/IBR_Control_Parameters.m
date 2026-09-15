@@ -1,6 +1,6 @@
 clear;    % Clear Workspase
 
-%% Simulation Data
+%% Simulation and Grid Data
 
 % Simulation time step 
 Ts = Simulink.Parameter;
@@ -11,8 +11,6 @@ Ts.Max = 100e-6;
 Ts.Unit = 's';
 Ts.Complexity = 'real';
 Ts.Description = 'Simulation time step';
-
-%% Grid Data
 
 % Nominal frequency
 Fn = Simulink.Parameter;
@@ -98,7 +96,7 @@ Kp_I.Description = 'Proportional gain of current controller (continuous)';
 
 % Integral gain of current controller (continous) 
 Ki_I = Simulink.Parameter;
-Ki_I.Value = 400;
+Ki_I.Value = 8000;
 Ki_I.DataType = 'double';
 Ki_I.Min = 1e-6;
 Ki_I.Max = 1e6;
@@ -114,7 +112,7 @@ Kp_PLL.Min = 1e-6;
 Kp_PLL.Max = 1e6;
 Kp_PLL.Unit = 'Hz/V';
 Kp_PLL.Complexity = 'real';
-Kp_PLL.Description = 'Proportional gain of phase-locked loop (continous) ';
+Kp_PLL.Description = 'Proportional gain of phase-locked loop (continous)';
 
 % Integral gain of of phase-locked loop (continous) 
 Ki_PLL = Simulink.Parameter;
@@ -124,7 +122,7 @@ Ki_PLL.Min = 1e-6;
 Ki_PLL.Max = 1e6;
 Ki_PLL.Unit = 'Hz/V';
 Ki_PLL.Complexity = 'real';
-Ki_PLL.Description = 'Integral gain of phase-locked loop (continous) ';
+Ki_PLL.Description = 'Integral gain of phase-locked loop (continous)';
 
 
 %% Thevenin Equivalent Data
@@ -137,21 +135,17 @@ Vn  = 400e3;
 % Unit: -
 SCR = 3;        
 
-% Short-circuit power 
-% Unit: VA
-Sk  = SCR * Sn.Value;    
-
 % R/X-Ratio 
 % Unit: -
-RXratio = 0.1;  
+RXratio = 0.1; 
 
 % Resistance of Thevenin Equivalent 
 % Unit: Ohm
-Re = Vn^2 / Sk / sqrt(RXratio^2 + 1) * RXratio;     
+Re = Vn^2 / (SCR * Sn.Value) / sqrt(RXratio^2 + 1) * RXratio;     
 
 % Inductance of Thevenin Equivalent 
-% Unit: H
-Xe = Vn^2 / Sk / sqrt(RXratio^2 + 1);  
+% Unit: Ohm
+Xe = Vn^2 / (SCR * Sn.Value) / sqrt(RXratio^2 + 1);  
 
 clear SCR Sk RXratio
 
