@@ -219,7 +219,7 @@ The resistance is calculated using:
 
    R_{\mathrm{e}}
    =
-   \frac{V_{\mathrm{n}}^{2}}{SCR * S_{\mathrm{n}} \cdot \frac{RX_{\mathrm{ratio}}{\sqrt{RX_{\mathrm{ratio}^{2}+1}}  
+   \frac{V_{\mathrm{n}}^{2}}{SCR \cdot S_{\mathrm{n}}} \cdot \frac{RX_{\mathrm{ratio}}{\sqrt{RX_{\mathrm{ratio}}^{2}+1}}  
 
 The reactance ic calculated using:
 
@@ -227,7 +227,7 @@ The reactance ic calculated using:
 
    X_{\mathrm{e}}
    =
-   \frac{V_{\mathrm{n}}^{2}}{SCR * S_{\mathrm{n}} \cdot \frac{1}{\sqrt{RX_{\mathrm{ratio}^{2}+1}}  
+   \frac{V_{\mathrm{n}}^{2}}{SCR \cdot S_{\mathrm{n}}} \cdot \frac{1}{\sqrt{RX_{\mathrm{ratio}}^{2}+1}}  
 
 Together with the Thevenin equivalent and the active and reactive power setpoints at the point of common coupling (PCC), the voltage and current at the PCC can be determined by a load-flow calculation.
 
@@ -237,7 +237,7 @@ The inputs to the load-flow calculation are the Thevenin voltage represented as 
 
    cV_{\mathrm{th}}
    =
-   \frac{V_{\mathrm{n}}{\sqrt{3}} + \mathrm{j} \cdot 0
+   \frac{V_{\mathrm{n}}}{\sqrt{3}} + \mathrm{j} \cdot 0
 
 the Thevenin impedance,
 
@@ -261,7 +261,7 @@ According to Kirchhoff`s voltage law, the system can be described by the followi
 
    0
    =
-   \frac{V_{\mathrm{n}}{\sqrt{3}} - (V_{\mathrm{g,r}} + \mathrm{j} \cdot V_{\mathrm{g,i}}) + \frac{P_{\mathrm{ref}} - \mathrm{j} \cdot Q_{\mathrm{ref}}{3\cdot (V_{\mathrm{g,r}} + \mathrm{j} \cdot V_{\mathrm{g,i}})} \cdot R_{\mathrm{e}} + \mathrm{j} \cdot X_{\mathrm{e}
+   \frac{V_{\mathrm{n}}}{\sqrt{3}} - (V_{\mathrm{g,r}} + \mathrm{j} \cdot V_{\mathrm{g,i}}) + \frac{P_{\mathrm{ref}} - \mathrm{j} \cdot Q_{\mathrm{ref}}}{3\cdot (V_{\mathrm{g,r}} + \mathrm{j} \cdot V_{\mathrm{g,i}})} \cdot R_{\mathrm{e}} + \mathrm{j} \cdot X_{\mathrm{e}
 
 This equation is solved using the MATLAB® function `fsolve <https://de.mathworks.com/help/optim/ug/fsolve.html>`_.
 
@@ -271,9 +271,9 @@ The current injected by the IBR at the PCC is then calculated as:
 
 .. math::
 
-   I_{\mathrm{r}} + \mathrm{j} \cdot I_{\mathrm{i}
+   I_{\mathrm{r}} + \mathrm{j} \cdot I_{\mathrm{i}}
    =
-   \frac{P_{\mathrm{ref}} - \mathrm{j} \cdot Q_{\mathrm{ref}}{3\cdot (V_{\mathrm{g,r}} + \mathrm{j} \cdot V_{\mathrm{g,i}})}
+   \frac{P_{\mathrm{ref}} - \mathrm{j} \cdot Q_{\mathrm{ref}}}{3\cdot (V_{\mathrm{g,r}} + \mathrm{j} \cdot V_{\mathrm{g,i}})}
 
 The resulting `Simulink.Parameter <https://de.mathworks.com/help/simulink/slref/simulink.parameter.html>`_ are required for the initialization are listed in the following table:
 
