@@ -51,8 +51,8 @@ $-------------------------------------------------------------------------------
 @ #Vreal     = 1.0                 ! Real part of the voltage source [pu]       |
 @ #Vimag     = 0.0                 ! Imaginary part of the voltage source [pu]  |
 @ #Vdip      = 0.7                 ! Voltage magnitude during voltage dip [pu]  |
-@ #Tdip1     = 1.0                 ! Time at which the voltage dip occurs [s]   |
-@ #Tdip2     = 1.2                 ! Time at which the voltage is restored [s]  |
+@ #Tdip1     = 0.4                 ! Time at which the voltage dip occurs [s]   |
+@ #Tdip2     = 0.6                 ! Time at which the voltage is restored [s]  |
 #.\MAC\Ideal_Voltage_Source.xmac                                                |
 $-------------------------------------------------------------------------------|
 @ #NAME      = 'IBR_DLL'                                                        |
