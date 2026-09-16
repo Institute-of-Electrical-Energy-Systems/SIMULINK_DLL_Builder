@@ -105,6 +105,8 @@ The design emphasizes modularity and extensibility within the Simulink Coder fra
 +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
 | `sfun_info.tlc`                   | TLC file generating the additional C source code required for the model DLL.                                                 |
 +-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
+| `model_info.mdl`                  | The Simulink model contains the sfun_info S-Function block.                                                                  |
++-----------------------------------+------------------------------------------------------------------------------------------------------------------------------+
 
 The central component of the build process is IEC61400_27_DLL.tlc, which acts as the entry point for DLL generation. 
 The file is detected by Simulink Coder when it is placed in the MATLAB working directory and selected as the System Target File. 

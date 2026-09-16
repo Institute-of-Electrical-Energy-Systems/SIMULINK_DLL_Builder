@@ -74,6 +74,7 @@ The design of the Simulink IEC 61400-27 DLL Builder is closely aligned with the 
 | `ext_simenv_types.h`             | C API header defining the data types required by the IEC 61400-27 interface. |
 | `sfun_info.mexw64`               | Compiled S-Function that triggers `sfun_info.tlc` during code generation. |
 | `sfun_info.tlc`                  | TLC file generating the additional C source code required for the model DLL. |                                                                                               |
+| `model_info.mdl`                 | The Simulink model contains the sfun_info S-Function block.  |                                                                                               |
 
 The central component of the build process is IEC61400_27_DLL.tlc, which acts as the entry point for DLL generation. The file is detected by Simulink Coder when it is placed in the MATLAB working directory and selected as the System Target File. After the required DLL metadata have been specified through the Builder's graphical interface, the DLL generation process can be initiated. The relationship between the individual files and their respective functions is illustrated in Figure 1.
 
