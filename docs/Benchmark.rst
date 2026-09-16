@@ -89,8 +89,10 @@ After the load-flow calculation has been succesfully completed, the transient si
 To analyze the simulation results, the signals to be recorded during the simulation must be defined.
 By selecting ``Edit Result Variables``, the signals to be recorded can be configured, as shown in Figure 4.
 In this example, the following signals are selected:
+
 - the three phase voltages at the PCC (``PCC``)
 - the three phase currents of branch ``IBR_Impedance`` at the PCC.
+
 The active and reactive power are calculated afterwards
 
 ..  figure:: ./images/PowerFactory/ResultVariableSelection.png
@@ -140,7 +142,7 @@ PSS®NETOMAC
 After the power system with the integrated IEC 61400-27 DLL has been set up, the dynamic simulation can be performed.
 Before starting the calculation, the approproate calculation settings must be configured.
 By Selecting ``Calculate`` and ``Settings...`` the ``Calculation Settings`` dialog is opened, as shown in Figure 8.
-For the dynamic simulation , the relevant settings are located in the sections ``Common`` → ``Basic Settings`` and ``Calculation`` → ``Dynamics``.
+For the dynamic simulation , the relevant settings are located in the sections ``Common → →Basic Settings`` and ``Calculation → Dynamics``.
 In the ``Basic Settings`` section, the parameter ``Network Representation`` must be set to ``Unbalanced without Coup.``, as shown in Figure 9.
 With this setting, each phase of the power system is considered individually. 
 This is required because the controlled voltage source in the model is implemented using individually controlled voltage sources for each phase.
@@ -187,7 +189,7 @@ The remaining parameters can be left at their default values.
 1. Load-Flow Calculation
 ^^^^^^^^^^^^^^^^^^^^^^^^
 Before starting the transient simulation, a load-flow calculation can be performed to determine and verify the initial steady-state operating point of the power system.
-By Selecting ``Calculate`` → ``Power Flow``, the load-flow calculation is performed. 
+By Selecting ``Calculate → Power Flow``, the load-flow calculation is performed. 
 The calculation results can be viewed in the ``Tabular View``.
 The node results are shown in following table:
 
@@ -239,8 +241,9 @@ The active and reactive power values of the individual phasses add up to approxi
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 After the load-flow calculation has been succesfully completed, the transient simulation can be performed.
 To analyze the simulation results, the signals to be recorded during the simulation must be defined.
-By selecting ``Calculate`` → ``Plot Definition``, the signals to be recorded can be configured, as shown in Figure 12.
+By selecting ``Calculate → Plot Definition``, the signals to be recorded can be configured, as shown in Figure 12.
 In this example, the following signals are selected:
+
 - the three phase voltages at the PCC (``Bus2``)
 - the three phase currents of branch ``Z_IBR`` at the PCC, 
 - the active power of branch ``Z_IBR`` at the PCC, and 
@@ -282,7 +285,7 @@ The resulting ``.plo`` file is shown below:
 
         Figure 13: Defining the ``Time`` settings for dynamic simulations.
 
-The EMT simulation can then be started by selecting ``Calculate`` → ``Dynamics (RMS/EMT)``.
+The EMT simulation can then be started by selecting ``Calculate → Dynamics (RMS/EMT)``.
 After the simulation has been completed, the results can be analyzed in the ``Diagram View``.
 New diagram pages can be created, and the recorded signals can be added from the ``Signal Explorer`` using drag and drop.
 
@@ -351,6 +354,7 @@ To analyze the simulation results, the signals to be recorded during the simulat
 By adding ``master:pgb`` components to the PSCAD™ model and connecting signal names to them, the signals to be recorded can be configured, as shown in Figure 19.
 Within the ``Project`` menu one can define that these recorded signals shall be exported as a file (e.g. as a .out), as shown in Figure 20.
 In this example, the following signals are selected:
+
 - the three phase voltages at the PCC (``PCC``)
 - the three phase currents of branch ``Z_IBR`` at the PCC, 
 - the active power of branch ``Z_IBR`` at the PCC, and 
@@ -414,11 +418,11 @@ In addition, the results are compared with those of the reference model implemen
 ^^^^^^^^^^^^^^^^^^^^^^^^
 
 To provide a comprehenxive analysis of the IEC 61400-27 DLL integration into the selected power system simulation tools, the DLL-based simulation results are compared with the results of a reference model implemented in MATLAB®/Simulink®.
-The reference model is located in the ``MATLAB_Simulink`` directory. 
+The reference model is located in the ``MATLAB_Simulink_Benchmark`` directory. 
 It integrates the IBR control model into a power system consisting of the electrical converter model and a Thevenin equivalent.
 The power system is modeled in the Laplace domain without using power system libraries such as the Specialized Power Systems library or Simscape™.
 
-Since the integration of the DLL into the power system simulation introduces a one-step time delay at both the DLL input and output, corresponding time delays are also inculded in the MATLAB®/Simulink® model.
+Since the integration of the DLL into the power system simulation introduces a one-step time delay at both the DLL input and output, corresponding time delays are also included in the MATLAB®/Simulink® model.
 This ensures that the same dynamic behavior is represented in all simulation environments.
 
 Figure 24 shows the three phase voltages at the PCC together with the amplitude of the voltage space vector. 
