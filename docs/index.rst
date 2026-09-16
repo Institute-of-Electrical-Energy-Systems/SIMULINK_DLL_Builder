@@ -1,9 +1,9 @@
-################################
-Simulink IEC61400-27 DLL Builder
-################################
+##############################################
+An automated Simulink IEC 61400-27 DLL Builder
+##############################################
 Gregor Becker :sup:`1,*`, Dominik Frauenknecht :sup:`1,*`, Gert Mehlmann :sup:`1`, Johann Jaeger :sup:`1` and Matthias Luther :sup:`1` 
 
-| 1 Institue of Electrical Energy Systems, Friedrich-Alexander-Universität Erlangen-Nürnberg
+| 1 Institute of Electrical Energy Systems, Friedrich-Alexander-Universität Erlangen-Nürnberg
 | `*` These authors contributed equally and are thereby the corresponding authors.
 
 *******
@@ -28,11 +28,11 @@ For example, PSCAD™ is widely used for electromagnetic transient (EMT) simulat
 Other commercial tools, such as PSS®NETOMAC, DIgSILENT PowerFactory, and NEPLAN®, provide capabilities for both RMS and EMT simulations. 
 Despite these differences, many simulation tools are not primarily designed for the development of control structures, nor do they typically provide mechanisms for exporting such control models for a use in other simulation tools. 
 At the same time, the protection of proprietary control strategies and algorithms has contributed to the widespread use of black-box models. 
-Such models allow the external behavior of a control system to be integrated into a simulation environments without exposing its underlying implementation. 
+Such models allow the external behavior of a control system to be integrated into a simulation environments without exposing its underlying implementation (Costa et al., 2026). 
 A standardized mechanism for exchanging dynamic models is therefore beneficial both for interoperability and for protecting model implementations.  
 
 To facilitate the interoperability and portability of dynamic models across simulation tools and vendors, the International Electrotechnical Commission (IEC) specifies a standardized DLL in IEC 61400-27 Annex F (International Electrotechnical Commission, 2016). 
-The standard defines the required function names, input and output parameters, and interface of the DLL. The standardized interface enables dynamic models to be exchanged and integrated across compatible simulation tools.
+The standard defines the required function names, input and output parameters, and interface of the DLL. The standardized interface enables dynamic models to be exchanged and integrated across compatible simulation tools (Huang & Cetinkaya, 2026).
 
 MATLAB®/Simulink® is widely used for the design, development, and validation of control systems, including the control structures of power electronic converters. 
 As a general-purpose modeling tool, MATLAB®/Simulink® benefits from a large user base and a comprehensive toolboxes for implementing control algorithms and mathematical functions. 
@@ -50,9 +50,9 @@ Thus, the Builder combines the modeling capabilities of Matlab®/Simulink® with
 State of the field
 ******************
 Several established approaches exist for integrating control systems into power system simulation tools. 
-A straightforward approach is to manually reimplement a control model developed in MATLAB®/Simulink® directly in the selected power system simulation tool. 
+A straightforward method is to manually reimplement a control model developed in MATLAB®/Simulink® directly in the selected power system simulation tool. 
 While this approach can be applied broadyly, it requires considerable implementation effort. 
-Moreover discrepancies may aries between the original and the reimplemented models, making the process susceptible to implementation errors. 
+Moreover discrepancies may arise between the original and the reimplemented models, making the process susceptible to implementation errors. 
 Maintaining consistency between the two implementations becomes particulary challenging when the original control structure is modified or further developed. 
 In addition, manual reimplementation generally prevents the original model from being treated as a black-box model, as its control structure must be recreated in the target simulation tool.
 
@@ -150,7 +150,7 @@ The tool has already been applied in several research and development projects, 
 Although publications explicitly reporting results obtained with the tool are not yet available, discussions in online forums, open repositories, 
 and with industry partners indicate a recurring need for solutions that support the exchange and reproducible use of control models across simulation environments. 
 The developed approach therefore addresses a practical gap in heterogeneous simulation ecosystems and has the potential to improve the reusability, 
-comparability, and transferability of simulation-based control research (Huang & Cetinkaya, 2026).
+comparability, and transferability of simulation-based control research.
 
 
 **********
@@ -159,9 +159,11 @@ References
 
 Blochwitz, T., Otter, M., Åkesson, J., Arnold, M., Clauss, C., Elmqvist, H., Friedrich, M., Junghanns, A., Mauss, J., Neumerkel, D., Olsson, H., & Viel, A. (2012). Functional mockup interface 2.0: The standard for tool independent exchange of simulation models. *Proceedings of the 9th International Modelica Conference*, 173–184. https://doi.org/10.3384/ecp12076173
 
+Costa, I. C., Mirtaheri, H., Schwarzkopf, J. K., Chrystêllo, D., Gouveia, L. M., and Holzapfel, M., Dennetiere, S., Zuga, A. & Hans, F. (2026). Simulation tool independent interface for inverter-based resources (IBRS) models - OEM experience and end-user perspectives. *24th Wind & Solar Integration Workshop (WISO 2025)*, 524-531. https://doi.org/10.1049/icp.2025.4348
+
 Huang, Y., & Cetinkaya, D. (2026). Advancing reproducibility and replicability in simulation: Challenges and opportunities.  *SIMULATION*, *102*(9), 577–593. https://doi.org/10.1177/00375497261444678
 
-International Electrotechnical Commission. (2016). *IEC 61400-27-1:2016: Wind energy generation systems – Part 27-1: Electrical simulation models – Generic models* [Standard].
+International Electrotechnical Commission. (2020). *IEC 61400-27-2:2020: Wind energy generation systems – Part 27-2: Electrical simulation models – Model validation* [Standard].
 
 Mahseredjian, J., Dinavahi, V., \& Martinez, J. A. (2009). Simulation tools for electromagnetic transients in power systems: Overview and challenges. *IEEE Transactions on Power Delivery*, *24*(3), 1657–1669. https://doi.org/10.1109/TPWRD.2008.2008480
 
