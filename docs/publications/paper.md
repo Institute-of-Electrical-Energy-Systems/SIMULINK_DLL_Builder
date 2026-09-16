@@ -1,5 +1,5 @@
 ---
-title: 'Simulink IEC 61400-27 DLL Builder'
+title: 'An automated Simulink IEC 61400-27 DLL Builder'
 tags:
   - Matlab^®^/Simulink^®^
   - IEC 61400-27
@@ -27,7 +27,7 @@ authors:
     orcid: 0000-0002-9678-7244
     affiliation: 1
 affiliations:
- - name: Institue of Electrical Energy Systems,  Friedrich-Alexander-Universität Erlangen-Nürnberg, Germany
+ - name: Institute of Electrical Energy Systems,  Friedrich-Alexander-Universität Erlangen-Nürnberg, Germany
    index: 1
 
 date: 11 September 2026
@@ -49,7 +49,7 @@ MATLAB^®^/Simulink^®^ is widely used for the design, development, and validati
 The Simulink IEC 61400-27 DLL Builder addresses this gap by automating this process. It enables C code generated from a control model developed in MATLAB^®^/Simulink^®^ to be incorperated into an IEC 61400-27-compliant DLL interface. The resulting DLL can then be directly integrated into compatible simulation tools. Thus, the Builder combines the modeling capabilities of Matlab^®^/Simulink^®^ with the standardized model interface specified by IEC 61400-27 and enables user-defined control models to be transferred between compatible simulation tools without requiring their manual reimplementation.
 
 # State of the field
-Several established approaches exist for integrating control systems into power system simulation tools. A straightforward approach is to manually reimplement a control model developed in MATLAB^®^/Simulink^®^ directly in the selected power system simulation tool. While this approach can be applied broadly, it requires considerable implementation effort. Moreover discrepancies may aries between the original and the reimplemented models, making the process susceptible to implementation errors. Maintaining consistency between the two implementations becomes particulary challenging when the original control structure is modified or further developed. In addition, manual reimplementation generally prevents the original model from being treated as a black-box model, as its control structure must be recreated in the target simulation tool.
+Several established approaches exist for integrating control systems into power system simulation tools. A straightforward method is to manually reimplement a control model developed in MATLAB^®^/Simulink^®^ directly in the selected power system simulation tool. While this approach can be applied broadly, it requires considerable implementation effort. Moreover discrepancies may arise between the original and the reimplemented models, making the process susceptible to implementation errors. Maintaining consistency between the two implementations becomes particulary challenging when the original control structure is modified or further developed. In addition, manual reimplementation generally prevents the original model from being treated as a black-box model, as its control structure must be recreated in the target simulation tool.
 
 Another approach for exchanging dynamic models between simulation tools is the Functional Mock-up Interface (FMI) [@2106c10aecf74072908cc1e45e4a8597]. FMI provides a standardized framework for exchanging tool-independent models between different simulation tools. Within this framework, a modeling tool such as MATLAB^®^/Simulink^®^ can export a dynamic system model as a Functional Mock-up Unit (FMU), which can subsequently be imported and executed by a compatible simulation tool. The FMI-approach is conceptually similar to the approach implemented by the DLL Builder, as the control model is developed in one tool and subsequently integrated into another simulation tool without requiring its manual reimplementation. However, support for FMU-based model integration varies between  power system simulation tools. Within the scope considered here, only a limited number of commonly used simulation tools, such as DIgSILENT PowerFactory, provide support for importing and executing FMUs. Consequently, FMU-based models cannot be directly integrated into simulation tools that do not provide the corresponding FMI functionality.
 
@@ -92,7 +92,7 @@ Once the `IEC61400_27.c` file has been generated, the compilation, linking, and 
 # Research impact statement
 The main contribution of the developed tool is the abstraction of control models from specific simulation environments. Models can be exchanged and integrated as black-box components, reducing the dependency between the controller and individual simulation frameworks. This facilitates the reuse of existing models and the transfer of control approaches between different simulation environments.
 
-The tool has already been applied in several research and development projects, as well as in student projects and academic work. Although publications explicitly reporting results obtained with the tool are not yet available, discussions in online forums, open repositories, and with industry partners indicate a recurring need for solutions that support the exchange and reproducible use of control models across simulation environments. The developed approach therefore addresses a practical gap in heterogeneous simulation ecosystems and has the potential to improve the reusability, comparability, and transferability of simulation-based control research [@doi:10.1177/00375497261444678].
+The tool has already been applied in several research and development projects, as well as in student projects and academic works. Although publications explicitly reporting results obtained with the tool are not yet available, discussions in online forums, open repositories, and with industry partners indicate a recurring need for solutions that support the exchange and reproducible use of control models across simulation environments. The developed approach therefore addresses a practical gap in heterogeneous simulation ecosystems and has the potential to improve the reusability, comparability, and transferability of simulation-based control research [@doi:10.1177/00375497261444678].
 
 
 # AI usage disclosure
