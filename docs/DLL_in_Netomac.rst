@@ -10,7 +10,6 @@ The model is created from an empty PSS®NETOMAC project.
 
 Prerequisites
 -------------
-The following software and components are required:
 - PSS®NETOMAC (tested for version 22.0)
 - IEC 61400-27 DLL (e.g. the one from the `example <https://simulink-dll-builder.readthedocs.io/en/latest/example_usage.html#example-usage>`_)
 
@@ -68,6 +67,7 @@ Before defining the power system in the ``.net`` file, the global parameters are
 These global parameters can subsequently be used throughout the power-system model and the associated control models.
 The relevant electrical parameters are therefore defined globally.
 The parameters include:
+
 - the nominal voltage
 - the converter impedance, and
 - the impedance of the Thevenin equivalent.
@@ -147,7 +147,7 @@ The ``GNE-V`` model requires the voltage output to be specified as the real and 
 The voltage phasor is represented in a rotating reference frame rotating with the nominal frequency. 
 Therefore, the output values are defined as constant quantities in the rotating reference frame rather than as time-varying quantities. 
 
-To create a new ``GNE-V`` model, a new model file is created, as shown in Figure 1. 
+To create a new ``GNE-V`` model, select ``File → New → Model File``, as shown in Figure 1. 
 The model properties, such as ``Name``, ``Author`` and ``Description``, are then specified, as shown in Figure 2.
 With the ``Add model file to project`` option enabled, the model file is saved in the ``./MAC`` subdirectory.
 In the next step, the page settings for the model file are defined, as shown in Figure 3.
@@ -227,7 +227,7 @@ Defining the Inputs
 The behavior of the model depends only on the defined model variables.
 Therefore, no measurements from the electrical grid are required. 
 The model variables are provided to the model through input blocks. 
-By selecting ``Insert Input``, a ``Constant`` input block can be added, as shown in Figure 6.
+By selecting ``Insert Input → Constant``, a ``Constant`` input block can be added, as shown in Figure 6.
 The ``Output`` name of the block is specified in the topology section, as shown in Figure 7. 
 The corresponding variable is specified as the ``Constant Value`` in the ``Data`` section of the block, as shown in Figure 8.
 
@@ -262,7 +262,7 @@ The fault logic can be implemented using an ``IF`` statement in FORTRAN code.
 As described above, the voltage source operates with the output values ``#Vreal`` and ``#Vimag`` outside the time interval between ``#Tdip1`` and ``#Tdip2``. 
 During the voltage dip, the voltage magnitude is set to the value specified by ``#Vdip``.
 
-By selecting the ``FORTRAN`` block via ``Insert Special Block``, a user-defined ``IF`` statement can be implemented, as shown in Figure 9. 
+By selecting the ``Insert Special Block → FORTRAN`` block, a user-defined ``IF`` statement can be implemented, as shown in Figure 9. 
 The implemented logic is shown below : 
 
 .. code-block:: netomac
@@ -279,7 +279,6 @@ The implemented logic is shown below :
    $-------------------------------------------------------------------------------|
 
 For the ``FORTRAN`` block, the output signal names ``Vr`` and ``Vi`` must be defined, as shown in Figure 10.
-Figure 11 shows the resulting control model.
 
 .. container:: image-row
 
@@ -300,7 +299,7 @@ Defining the Output
 
 The output block defines the model type. 
 As described above, the ``GNE-V`` output block is used.
-By selecting ``Insert Output``, the ``GNE-V`` output block is created, as shown in Figure 11.
+By selecting ``Insert Output → GNE-V``, the ``GNE-V`` output block is created, as shown in Figure 11.
 In the topology section of the block, the ``Branch for applied voltage``, i.e., the ``R``-line created in the ``[[Network]]`` section, is specified, as shown in Figure 12. 
 In this example, the variable ``#NAME`` is used. 
 This variable automatically represents the name of the model. 
@@ -376,8 +375,10 @@ Integrating the DLL Using the Graphical Model Builder in PSS®NETOMAC
 
 The controlled voltage source is operated by an IBR control system implemented in an IEC 62400-27 DLL. 
 Two models are required to integrate the DLL into the power system:
+
 - an upper-level model in which the DLL is integrated, and
 - an interface model connecting the DLL outputs to the power system.
+
 The upper-level model is implemented as an ``EVALUATE`` model.
 The interface to the power system is implemented as a ``MIMO`` model (Mulitple Inupt, Mulitple Output).
 The ``MIMO`` model uses three ``SOURCE-V`` output blocks within a single model file, one for each phase. 
@@ -399,7 +400,7 @@ Defining the Inputs
 
 The DLL requires the phase voltages at the point of common coupling (PCC) and the phase currents injected into the PCC. 
 Therefore, three voltage measurements and three current measurements are required.
-By selecting ``Insert Input``, a ``Network Signal Remote`` block is created, as shown in Figure 17.
+By selecting ``Insert Input → Network Signal Remote``, a measurement block is created, as shown in Figure 17.
 The ``Output`` name of the block is specified in the topology section.
 The measurement function is specified as ``Function`` in the ``Data`` section of the block.
 For the voltage measurements, the function ``Voltage magnitude [pu]`` is required, as shown in Figure 18. 
@@ -548,7 +549,7 @@ The parameter ``#IMVA2A`` is used for all current inputs, as shown in Figure 26.
             Figure 26: Defining the gain value for current conversion.
 
 For performance reasons, an additional ``Deadtime`` block  is introduced to delay the current measurement by one simulation time step.
-By selecting ``Insert Block`` a ``Deadtime`` block is created, as shown in Figure 27.
+By selecting ``Insert Block → Deadtime`` a deadtime block is created, as shown in Figure 27.
 In the ``Data`` section the global Parameter ``#SIMDT`` is used as delay parameter, as shown in Figure 28.
 
 .. container:: image-row
@@ -630,7 +631,7 @@ For this conversion, the reciprocal value of ``#Vpu2V`` is used, as shown in Fig
 Defining the output
 """"""""""""""""""""""""""""""
 
-By selecting ``Insert Output``, the ``EVALUATE`` output block is created, as shown in Figure 34.
+By selecting ``Insert Output → EVALUATE``, the ``EVALUATE`` output block is created, as shown in Figure 34.
 In the ``Data`` section, the ``Integration type`` is set to ``During network iteration``, as shown in Figure 35.
 
 .. container:: image-row
@@ -657,6 +658,9 @@ Figure 36 shows the finalized model file for the DLL integration.
 
     Figure 36: Resulting IBR control model (.xmac) with integrated DLL.
 
+.. attention:: 
+
+   When inserting the DLL block or modifying the DLL file, always open the ``Data`` section of the ``IEC DLL`` block once. This is required to ensure that the DLL parameters are loaded correctly.
 
 Integration of the model into the power system
 """"""""""""""""""""""""""""""""""""""""""""""
@@ -757,7 +761,7 @@ Defining the Inputs
 """"""""""""""""""""""""""""""
 
 The model requires the outputs of the IBR control model, which provide the voltage signals for the controlled voltage source.
-By selecting ``Insert Input``, a ``Model Variable`` input block is created, as shown in Figure 40.
+By selecting ``Insert Input → Model Variable``, the measurement input block is created, as shown in Figure 40.
 The  ``Output`` name of the block is specified in the ``Topology`` section.
 The ``Model type``, ``Model name`` and ``Output name`` are specified in the ``Data`` section, as shown in Figure 41.
 The ``Model Type`` is set to ``EVALUATE``.
@@ -801,7 +805,7 @@ The imaginary component of the output block is not used during the dynamic simul
 This behavior is implemented using an ``IF`` statement in FORTRAN code.
 As described above, the controlled voltage source uses the values specified by ``#Vmag`` and ``#Vang`` during the load-flow calculation (``BOSL_MODE = 1``) and at the beginning of dynamic simulation until ``#Tfrz`` is reached.
 
-By selecting the ``FORTRAN`` block via ``Insert Special Block``, a user-defined ``IF`` statement can be implemented, as shown in Figure 43. 
+By selecting the ``Insert Special Block → FORTRAN``, a user-defined ``IF`` statement can be implemented, as shown in Figure 43. 
 The implemented logic is shown below : 
 
 .. code-block:: netomac
@@ -831,15 +835,14 @@ The implemented logic is shown below :
 ..  figure:: ./images/NETOMAC/Bypass_Logic_in_MIMO.png
     :alt: Defining the DLL bypass logic as an IF statement in FORTRAN.
     :target: _images/Bypass_Logic_in_MIMO.png
-    :width: 80%
-    :align: center
+    :width: 40%    
 
     Figure 43: Defining the DLL bypass logic as an IF statement in FORTRAN.
 
 Defining the Outputs
 """"""""""""""""""""""""""""""
 
-By selecting ``Insert Output``, a ``SOURCE-V`` output block is created, as shown in Figure 43.
+By selecting ``Insert Output → SOURCE-V``, a ``SOURCE-V`` output block is created, as shown in Figure 43.
 Three ``SOURCE-V`` output blocks are required, one for each phase.
 In the ``Topology`` section of each block, the ``Branch for applied voltage``, i.e., the ``R``-line created in the ``[[Network]]`` section, is specified. 
 In this example, the variable ``#NAME`` is used, which automatically represents the name of the model. 
