@@ -229,7 +229,7 @@ The graphical editing interface of the still-empty frame then opens, in which th
          Figure 19: Empty composite model frame defintion.
 
 
-2. Adding measurment slots to the composite model frame definition
+2. Adding measurement slots to the composite model frame definition
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 The first slots to be created are those for the measured quantities. 
 A slot for the voltage transformer is created to feed the three phase-to-ground voltages at the PCC into the frame (see Figure 20). 
@@ -289,7 +289,7 @@ Figure 25 shows the frame with the integrated DLL slot, whose inputs and outputs
 
 4. Convert the DLL outputs to the DIgSILENT PowerFactory required units
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-Since the output quantities of the DLL do not directly match the unit required by the controlled voltage source (kilovolts), in DIgSILENT PowerFactory, an additional conversion slot is inserted and a new project DSL Model Tyoe is defined (see Figure 26). 
+Since the output quantities of the DLL do not directly match the unit required by the controlled voltage source (kilovolts), in DIgSILENT PowerFactory, an additional conversion slot is inserted and a new project DSL Model Type is defined (see Figure 26). 
 This definition contains the corresponding conversion equations, which transform the DLL output signals into the format required by the voltage source (see Figure 27). 
 Figure 28 shows the frame after the conversion slot has been added.
 
@@ -316,7 +316,7 @@ Figure 28 shows the frame after the conversion slot has been added.
 5. Adding the voltage source input slot and wiring of the slots
 ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 Finally, a slot for the regulated ideal voltage source is created, which was previously introduced as part of the IBR equivalent circuit (see Figure 29). 
-Figure 30 shows the complete frame containing all five slots: voltage measurement, current measurement, DLL, output concersion and controlled voltage source.
+Figure 30 shows the complete frame containing all five slots: voltage measurement, current measurement, DLL, output conversion and controlled voltage source.
 In the last step, the inputs and outputs of the individual slots are connected to one another: the measured voltages and currents are fed into the DLL slot as input signals, 
 the DLL's output quantities are converted into the required format via the conversion slot, and the result is then passed to the controlled voltage source as its setpoint. 
 Figure 31 shows the fully wired Composite Model Frame. 
@@ -416,7 +416,7 @@ EMT simulations of electrical power systems are commonly used to investigate sys
 It is important to note that such simulations are not initiated from an unknown initial state. 
 Instead, the initial operating condition can generally be determined or approximated based on the specified operating point of the system.
 
-During the development of the IEC 61400-27 Builder, the dynamic behavior of the DLL within the DIgSILENT PowerFactory simulation environment was investigated in detail. 
+During the development of the Simulink IEC 61400-27 Builder, the dynamic behavior of the DLL within the DIgSILENT PowerFactory simulation environment was investigated in detail. 
 Based on these investigations, several measures were derived to achieve an initialization that is as accurate as possible. 
 The objective is to ensure that the DLL starts from an operating point consistent with the surrounding DIgSILENT PowerFactory model, thereby minimizing the need for subsequent balancing operations.
 
